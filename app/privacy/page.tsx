@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
                 3. Data Storage and Security
               </h2>
               <p>
-                Your anonymized analysis data and the associated anonymous user ID are stored securely on Google's Firebase platform. We do not store your original photos on our servers by default.
+                Your anonymized analysis data and the associated anonymous user ID are stored securely on Google&apos;s Firebase platform. We do not store your original photos on our servers by default.
               </p>
             </section>
   
