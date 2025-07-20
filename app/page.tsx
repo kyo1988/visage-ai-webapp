@@ -91,7 +91,7 @@ const translations: Translations = {
     cta3_desc: "Visage AIの全体像、技術詳細、価格体系などをまとめた資料をご提供します。貴社のペースで詳細にご確認いただき、Visage AIが提供する価値を深くご理解いただけます。",
     cta3_btn: "資料をダウンロード",
     footer_tagline: "AIとデータで紡ぐ、次世代の「肌物語」",
-    footer_company_name: "株式会社Faceless", footer_website_text: "Webサイト", footer_website_url: "https://visageai.com", footer_email_text: "メール", footer_email_address: "info@visageai.com",
+    footer_company_name: "株式会社Faceless", footer_website_text: "Webサイト", footer_website_url: "http://www.visageaiconsulting.com", footer_email_text: "メール", footer_email_address: "kyoharada@visageaiconsulting.com",
     footer_sitemap: "サイトマップ", footer_follow_sns: "SNSをフォロー", footer_copyright: "Faceless Inc. All Rights Reserved.",
   },
   en: {

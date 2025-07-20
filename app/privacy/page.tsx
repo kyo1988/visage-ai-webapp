@@ -90,7 +90,7 @@ export default function PrivacyPolicyPage() {
                 6. Contact Us
               </h2>
               <p>
-                If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:privacy@visage-ai.com" className="text-blue-600 hover:underline">privacy@visage-ai.com</a>
+                If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:kyoharada@visageaiconsulting.com" className="text-blue-600 hover:underline">kyoharada@visageaiconsulting.com</a>
               </p>
             </section>
           </div>
