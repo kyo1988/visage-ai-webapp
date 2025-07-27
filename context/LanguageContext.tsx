@@ -161,7 +161,7 @@ const translations: Translations = {
     cta3_desc: "We provide a document summarizing Visage AI's overall picture, technical details, and pricing structure. You can review the value Visage AI offers at your own pace and gain a deeper understanding.",
     cta3_btn: "Download Document",
     footer_tagline: 'Weaving the Next-Gen "Skin Story" with AI and Data',
-    footer_company_name: "Faceless Inc.", footer_website_text: "Website", footer_website_url: "https://visageai.com", footer_email_text: "Email", footer_email_address: "info@visageai.com",
+    footer_company_name: "Faceless Inc.", footer_website_text: "Website", footer_website_url: "http://www.visageaiconsulting.com", footer_email_text: "Email", footer_email_address: "kyoharada@visageaiconsulting.com",
     footer_sitemap: "Sitemap", footer_follow_sns: "Follow us on SNS", footer_copyright: "Faceless Inc. All Rights Reserved.",
   },
 };
