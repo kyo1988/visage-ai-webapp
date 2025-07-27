@@ -15,5 +15,15 @@ const firebaseConfig = {
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 
+// ▼▼▼ このApp Checkを初期化するコードを、ここに追加します ▼▼▼
+// このコードは、ブラウザ（クライアント）でのみ実行されるようにします
+if (typeof window !== 'undefined') {
+    initializeAppCheck(app, {
+      provider: new ReCaptchaV3Provider(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY),
+      isTokenAutoRefreshEnabled: true
+    });
+  }
+  // ▲▲▲ ▲▲▲
+
 // Firestoreのインスタンスをエクスポート
 export { db };
