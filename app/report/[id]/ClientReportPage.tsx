@@ -4,6 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { Sparkles, CakeSlice, Droplets, Target, Star, BrainCircuit, CalendarCheck2, Sun, Moon, FlaskConical, ShieldCheck, Zap, PackageCheck, ArrowRight } from 'lucide-react';
 
+// FirestoreのクライアントSDKをインポート
+import { db } from '@/app/lib/client'; // @ はプロジェクトルートを指すエイリアス
+import { doc, getDoc } from "firebase/firestore";
+
 // --- 型定義セクション ---
 
 // APIから受け取るレポートデータの型
@@ -164,21 +168,43 @@ export default function ClientReportPage() {
   const t = translations[lang];
 
   useEffect(() => {
+    // idが取得できたら、データ取得処理を開始
     if (id) {
       const fetchData = async () => {
         setLoading(true);
         setError(null);
         try {
-          const res = await fetch(`/api/report/${id}`);
-          if (!res.ok) throw new Error('診断レポートの読み込みに失敗しました。');
-          const reportData = await res.json();
-          setData(reportData);
+          // ★★★ Firestoreから直接データを取得！ ★★★
+          const docRef = doc(db, "diagnostics", id);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const firestoreData = docSnap.data();
+            // APIルートで行っていたデータ整形を、ここで行う
+            const reportData: ReportData = {
+              skinAge: firestoreData.skinAge,
+              skinType: firestoreData.skinType,
+              createdAt: firestoreData.createdAt?.toDate?.().toISOString() ?? '',
+              scores: {
+                wrinkles: firestoreData.wrinklesScore,
+                texture: firestoreData.textureScore,
+                pores: firestoreData.poresScore,
+                brightening: firestoreData.brighteningScore,
+                transparency: firestoreData.transparencyScore,
+                spots: firestoreData.spotsScore,
+              }
+            };
+            setData(reportData);
+          } else {
+            throw new Error('診断レポートが見つかりませんでした。');
+          }
         } catch (err) {
           setError(err instanceof Error ? err.message : '不明なエラーが発生しました。');
         } finally {
           setLoading(false);
         }
       };
+
       fetchData();
     } else {
       setLoading(false);
@@ -186,6 +212,7 @@ export default function ClientReportPage() {
     }
     document.documentElement.lang = lang;
   }, [id, lang]);
+
 
   if (loading) return <div className="text-center p-12">Loading...</div>;
   if (error) return <div className="text-center p-12 text-red-500">Error: {error}</div>;
