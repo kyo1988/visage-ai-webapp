@@ -164,7 +164,8 @@ export default function ClientReportPage() {
 
   const params = useParams();
   const id = params.id as string;  
-  const [lang, setLang] = useState<'ja' | 'en'>('ja');
+  // const [lang, setLang] = useState<'ja' | 'en'>('ja');
+  const [lang, setLang] = useState<'ja' | 'en'>('en');
   const t = translations[lang];
 
   useEffect(() => {
