@@ -401,13 +401,17 @@ export default function ClientReportPage() {
           <p className="mt-2 text-brand-text-sub">{lang === 'ja' ? 'メールアドレスを入力すると、このレポートへのリンクをいつでも見返せるように送信します。' : 'Enter your email to receive a permanent link to this report.'}</p>
           <form onSubmit={handleSaveReport} className="mt-4 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
           <input
-              type="text" // ← "email"から"text"に変更
-              inputMode="email" // ← 代わりにinputModeを指定
+              type="email" // typeは"email"に戻し、セマンティックな正しさを保ちます
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={lang === 'ja' ? 'メールアドレス' : 'Your Email Address'}
               required
               className="visage-email-input"
+              // --- iOSの「過剰な親切」を、ここで、完全に無効化します ---
+              autoCorrect="off"
+              autoCapitalize="none"
+              spellCheck="false"
+              // --- ここまで ---
             />
             <button type="submit" disabled={isSubmitting} className="visage-cta-btn text-base">
               {isSubmitting ? (lang === 'ja' ? '送信中...' : 'Sending...') : (lang === 'ja' ? '送信' : 'Send Link')}
