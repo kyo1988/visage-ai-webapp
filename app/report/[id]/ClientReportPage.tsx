@@ -173,6 +173,7 @@ export default function ClientReportPage() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [isClient, setIsClient] = useState(false); // ★★★ クライアントサイドでの実行を保証するため
 
   useEffect(() => {
     // idが取得できたら、データ取得処理を開始
@@ -220,12 +221,22 @@ export default function ClientReportPage() {
     document.documentElement.lang = lang;
   }, [id, lang]);
 
+  // --- このコンポーネントが、ブラウザに表示された後に、初めて isClient を true にする ---
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const handleSaveReport = async (e: React.FormEvent) => {
-    // フォームのデフォルトの送信動作を、まず、止めます
     e.preventDefault();
     
-    // --- デバッグの光、その1：関数が呼ばれたことを、まず、確認する ---
-    console.log("handleSaveReport function CALLED.");
+    // --- このガード節により、この関数がサーバーサイドで誤って実行されることを、完全に防ぎます ---
+    if (!isClient) {
+      console.warn("Save report function was called on the server. Aborting.");
+      return;
+    }
+    
+    // (これ以降のロジックは、あなたのデバッグコードを含んだ、完璧な状態です)
+    console.log("handleSaveReport function CALLED on CLIENT.");
 
     if (!email || !id) {
       console.error("Email or Report ID is missing.");
@@ -236,9 +247,8 @@ export default function ClientReportPage() {
     setSubmitMessage('');
 
     try {
-      // --- デバッグの光、その2：APIに、何を、送ろうとしているのか、確認する ---
       const payload = { email, reportId: id };
-      console.log("Sending payload to API:", JSON.stringify(payload));
+      console.log("Sending payload to EXTERNAL API:", JSON.stringify(payload));
 
       const response = await fetch('https://visage-ai-api.vercel.app/api/v1/save-report', {
         method: 'POST',
@@ -248,22 +258,25 @@ export default function ClientReportPage() {
         body: JSON.stringify(payload),
       });
 
-      // --- デバッグの光、その3：APIから、何が、返ってきたのか、確認する ---
-      console.log("Received response from API. Status:", response.status);
-      const responseBody = await response.json();
-      console.log("Response body:", responseBody);
-
+      console.log("Received response from EXTERNAL API. Status:", response.status);
+      
+      // 405エラーの場合、レスポンスボディは空なので、.json()を呼ぶ前にチェックする
+      if (response.status === 405) {
+        throw new Error('Method Not Allowed. Please check the API endpoint configuration.');
+      }
       if (!response.ok) {
-        // サーバーからのエラーメッセージを、より詳細に表示する
-        const errorMessage = responseBody.detail || 'Failed to save the report. Please try again.';
+        const responseBody = await response.json();
+        const errorMessage = responseBody.detail || 'Failed to save the report.';
         throw new Error(errorMessage);
       }
       
-      setSubmitMessage(lang === 'ja' ? '保存しました！メールをご確認ください。' : 'Saved! Please check your email.');
+      const responseBody = await response.json();
+      console.log("Response body:", responseBody);
+
+      setSubmitMessage('Saved! Please check your email.');
       setEmail('');
 
     } catch (err) {
-      // --- デバッグの光、その4：最終的に、何が、エラーとして、キャッチされたのか、確認する ---
       console.error("Error in handleSaveReport:", err);
       setSubmitMessage(err instanceof Error ? err.message : 'An unknown error occurred.');
     } finally {
