@@ -221,34 +221,55 @@ export default function ClientReportPage() {
   }, [id, lang]);
 
   const handleSaveReport = async (e: React.FormEvent) => {
+    // フォームのデフォルトの送信動作を、まず、止めます
     e.preventDefault();
-    if (!email || !id) return;
+    
+    // --- デバッグの光、その1：関数が呼ばれたことを、まず、確認する ---
+    console.log("handleSaveReport function CALLED.");
+
+    if (!email || !id) {
+      console.error("Email or Report ID is missing.");
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitMessage('');
 
     try {
-      const response = await fetch('/api/v1/save-report', { // FastAPIのエンドポイント
+      // --- デバッグの光、その2：APIに、何を、送ろうとしているのか、確認する ---
+      const payload = { email, reportId: id };
+      console.log("Sending payload to API:", JSON.stringify(payload));
+
+      const response = await fetch('/api/v1/save-report', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, reportId: id }),
+        body: JSON.stringify(payload),
       });
 
+      // --- デバッグの光、その3：APIから、何が、返ってきたのか、確認する ---
+      console.log("Received response from API. Status:", response.status);
+      const responseBody = await response.json();
+      console.log("Response body:", responseBody);
+
       if (!response.ok) {
-        throw new Error('Failed to save the report. Please try again.');
+        // サーバーからのエラーメッセージを、より詳細に表示する
+        const errorMessage = responseBody.detail || 'Failed to save the report. Please try again.';
+        throw new Error(errorMessage);
       }
       
       setSubmitMessage(lang === 'ja' ? '保存しました！メールをご確認ください。' : 'Saved! Please check your email.');
-      setEmail(''); // 入力欄をクリア
+      setEmail('');
 
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'An error occurred.');
+      // --- デバッグの光、その4：最終的に、何が、エラーとして、キャッチされたのか、確認する ---
+      console.error("Error in handleSaveReport:", err);
+      setSubmitMessage(err instanceof Error ? err.message : 'An unknown error occurred.');
     } finally {
       setIsSubmitting(false);
     }
-  };  
+  };
 
   if (loading) return <div className="text-center p-12">Loading...</div>;
   if (error) return <div className="text-center p-12 text-red-500">Error: {error}</div>;
