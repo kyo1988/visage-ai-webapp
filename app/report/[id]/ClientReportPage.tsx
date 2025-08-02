@@ -240,7 +240,7 @@ export default function ClientReportPage() {
       const payload = { email, reportId: id };
       console.log("Sending payload to API:", JSON.stringify(payload));
 
-      const response = await fetch('/api/v1/save-report', {
+      const response = await fetch('https://visage-ai-api.vercel.app/api/v1/save-report', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
