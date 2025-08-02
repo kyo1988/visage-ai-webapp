@@ -8,6 +8,8 @@ import { Sparkles, CakeSlice, Droplets, Target, Star, BrainCircuit, CalendarChec
 import { db } from '@/app/lib/client'; // @ はプロジェクトルートを指すエイリアス
 import { doc, getDoc } from "firebase/firestore";
 
+import { FacebookShareButton, LineShareButton, TwitterShareButton, FacebookIcon, LineIcon, TwitterIcon } from 'next-share';
+
 // --- 型定義セクション ---
 
 // APIから受け取るレポートデータの型
@@ -168,6 +170,10 @@ export default function ClientReportPage() {
   const [lang, setLang] = useState<'ja' | 'en'>('en');
   const t = translations[lang];
 
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
   useEffect(() => {
     // idが取得できたら、データ取得処理を開始
     if (id) {
@@ -214,6 +220,35 @@ export default function ClientReportPage() {
     document.documentElement.lang = lang;
   }, [id, lang]);
 
+  const handleSaveReport = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !id) return;
+
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch('/api/v1/save-report', { // FastAPIのエンドポイント
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, reportId: id }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save the report. Please try again.');
+      }
+      
+      setSubmitMessage(lang === 'ja' ? '保存しました！メールをご確認ください。' : 'Saved! Please check your email.');
+      setEmail(''); // 入力欄をクリア
+
+    } catch (err) {
+      setSubmitMessage(err instanceof Error ? err.message : 'An error occurred.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };  
 
   if (loading) return <div className="text-center p-12">Loading...</div>;
   if (error) return <div className="text-center p-12 text-red-500">Error: {error}</div>;
@@ -332,6 +367,54 @@ export default function ClientReportPage() {
           <p className="mt-2 max-w-2xl mx-auto">{t.ctaSubtitle}</p>
           <a href="#" className="visage-cta-btn">{t.ctaButton}<ArrowRight size={20} /></a>
         </section>
+
+        <section className="text-center">
+          <h3 className="text-lg font-semibold mb-3">{lang === 'ja' ? 'この結果をシェアする' : 'Share Your Results'}</h3>
+          <div className="flex justify-center items-center gap-3">
+            <FacebookShareButton
+              url={`https://www.visageaiconsulting.com/report/${id}`}
+              quote={lang === 'ja' ? `私のAI肌診断結果！#VisageAI` : `My AI skin analysis result! #VisageAI`}
+              hashtag={'#visageai'}
+            >
+              <FacebookIcon size={40} round />
+            </FacebookShareButton>
+
+            <TwitterShareButton 
+              url={`https://www.visageaiconsulting.com/report/${id}`}
+              title={lang === 'ja' ? `私のAI肌診断結果！肌年齢は${data.skinAge}歳でした。` : `My AI skin analysis result! My skin age is ${data.skinAge}.`}
+              hashtags={["VisageAI", "SkinCare"]}
+            >
+              <TwitterIcon size={40} round />
+            </TwitterShareButton>
+            
+            <LineShareButton 
+              url={`https://www.visageaiconsulting.com/report/${id}`}
+              title={lang === 'ja' ? `私のAI肌診断結果をチェック！` : `Check out my AI skin analysis result!`}
+            >
+              <LineIcon size={40} round />
+            </LineShareButton>
+          </div>
+        </section>
+
+        <section className="visage-save-report-card">
+          <h2 className="text-2xl font-bold">{lang === 'ja' ? 'この診断結果を保存' : 'Save This Report'}</h2>
+          <p className="mt-2 text-brand-text-sub">{lang === 'ja' ? 'メールアドレスを入力すると、このレポートへのリンクをいつでも見返せるように送信します。' : 'Enter your email to receive a permanent link to this report.'}</p>
+          <form onSubmit={handleSaveReport} className="mt-4 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={lang === 'ja' ? 'メールアドレス' : 'Your Email Address'}
+              required
+              className="visage-email-input"
+            />
+            <button type="submit" disabled={isSubmitting} className="visage-cta-btn text-base">
+              {isSubmitting ? (lang === 'ja' ? '送信中...' : 'Sending...') : (lang === 'ja' ? '送信' : 'Send Link')}
+            </button>
+          </form>
+          {submitMessage && <p className="mt-4 text-center text-sm">{submitMessage}</p>}
+        </section>
+
       </main>
     </div>
   );
