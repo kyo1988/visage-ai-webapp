@@ -8,7 +8,7 @@ import { Sparkles, CakeSlice, Droplets, Target, Star, BrainCircuit, CalendarChec
 import { db } from '@/app/lib/client'; // @ はプロジェクトルートを指すエイリアス
 import { doc, getDoc } from "firebase/firestore";
 
-import { FacebookShareButton, LineShareButton, TwitterShareButton, FacebookIcon, LineIcon, TwitterIcon } from 'next-share';
+import { FacebookShareButton, LineShareButton, TwitterShareButton, FacebookIcon, LineIcon, TwitterIcon, InstagramIcon } from 'next-share';
 
 // --- 型定義セクション ---
 
@@ -400,8 +400,9 @@ export default function ClientReportPage() {
           <h2 className="text-2xl font-bold">{lang === 'ja' ? 'この診断結果を保存' : 'Save This Report'}</h2>
           <p className="mt-2 text-brand-text-sub">{lang === 'ja' ? 'メールアドレスを入力すると、このレポートへのリンクをいつでも見返せるように送信します。' : 'Enter your email to receive a permanent link to this report.'}</p>
           <form onSubmit={handleSaveReport} className="mt-4 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-            <input
-              type="email"
+          <input
+              type="text" // ← "email"から"text"に変更
+              inputMode="email" // ← 代わりにinputModeを指定
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={lang === 'ja' ? 'メールアドレス' : 'Your Email Address'}
