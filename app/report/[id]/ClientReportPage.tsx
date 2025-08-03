@@ -190,7 +190,7 @@ export default function ClientReportPage() {
   useEffect(() => {
     setIsClient(true);
 
-    const fetchReportAndRecommendations = async () => {
+    const fetchReportData = async () => {
       if (!id) {
         setLoading(false);
         setError('Report ID could not be retrieved from the URL.');
@@ -200,13 +200,11 @@ export default function ClientReportPage() {
       setError(null);
 
       try {
-        // --- ステップ1: レポートデータを取得 ---
         const docRef = doc(db, "diagnostics", id);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
           const firestoreData = docSnap.data();
-          // (データ整形部分は、あなたの既存のコードに合わせてください)
           const reportData: ReportData = {
               skinAge: firestoreData.skinAge,
               skinType: firestoreData.skinType,
@@ -221,32 +219,52 @@ export default function ClientReportPage() {
               }
           };
           setData(reportData);
+          
+          // ★★★ ここからが、最後の、そして、真実の、変更点です ★★★
+          // レポートデータの取得が、成功した、その、直後。
+          // 我々は、製品レコメンドの、APIを、呼び出します。
+          fetchRecommendations(reportData.skinType);
 
-          // --- ステップ2: レポート取得成功後、製品レコメンドを取得 ---
-          try {
-            const recoResponse = await fetch('https://visage-ai-api.vercel.app/api/v1/recommendations', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ skinType: reportData.skinType }),
-            });
-            if (!recoResponse.ok) throw new Error('Failed to fetch recommendations.');
-            const recoData = await recoResponse.json();
-            setRecommendedProducts(recoData.products || []);
-          } catch (recoError) {
-            console.error("Recommendation fetch error:", recoError);
-            // レコメンド取得に失敗しても、ページ全体はエラーにしない
-          }
         } else {
           throw new Error('Diagnostic report not found.');
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unknown error occurred.');
       } finally {
+        // setLoading(false) は、レコメンド取得後に行うため、ここではコメントアウト
+        // setLoading(false); 
+      }
+    };
+
+    const fetchRecommendations = async (skinType: string) => {
+      try {
+        // fetchのURLを、我々が、血と、汗と、涙で、作り上げた、
+        // あなたの、FastAPIサーバーの、絶対URLに、します。
+        const response = await fetch('https://visage-ai-api.vercel.app/api/v1/recommendations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ skinType }),
+        });
+
+        if (!response.ok) {
+          // もし、サーバーが、エラーを返したら、その理由を、コンソールに、記録します
+          const errorText = await response.text();
+          console.error("Server responded with an error:", errorText);
+          throw new Error('Failed to fetch recommendations.');
+        }
+
+        const data = await response.json();
+        setRecommendedProducts(data.products || []);
+
+      } catch (err) {
+        console.error("Recommendation fetch error:", err);
+      } finally {
+        // ★★★ 全ての、データの、取得が、完了した、この、最後の、場所で、ローディングを、終了させます ★★★
         setLoading(false);
       }
     };
 
-    fetchReportAndRecommendations();
+    fetchReportData();
     document.documentElement.lang = lang;
   }, [id, lang]);
 
