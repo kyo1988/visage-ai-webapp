@@ -6,7 +6,7 @@ import { Sparkles, CakeSlice, Droplets, Target, Star, BrainCircuit, CalendarChec
 
 // FirestoreのクライアントSDKをインポート
 import { db } from '@/app/lib/client'; // @ はプロジェクトルートを指すエイリアス
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 import { FacebookShareButton, LineShareButton, TwitterShareButton, FacebookIcon, LineIcon, TwitterIcon, InstagramIcon } from 'next-share';
 
@@ -193,84 +193,82 @@ export default function ClientReportPage() {
 
   useEffect(() => {
     setIsClient(true);
+    if (!id) {
+      setError('Report ID could not be retrieved from the URL.');
+      setLoading(false);
+      return;
+    }
 
-    const fetchReportData = async () => {
-      if (!id) {
-        setLoading(false);
-        setError('Report ID could not be retrieved from the URL.');
-        return;
-      }
-      setLoading(true);
-      setError(null);
+    const docRef = doc(db, "diagnostics", id);
+    
+    // --- ★★★ リアルタイム監視を開始 ★★★ ---
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      console.log("Firestore data UPDATED! Checking for insights...");
+      if (docSnap.exists()) {
+        const firestoreData = docSnap.data();
+        const reportData: ReportData = {
+          skinAge: firestoreData.skinAge,
+          skinType: firestoreData.skinType,
+          createdAt: firestoreData.createdAt?.toDate?.().toISOString() ?? '',
+          scores: {
+            wrinkles: firestoreData.wrinklesScore,
+            texture: firestoreData.textureScore,
+            pores: firestoreData.poresScore,
+            brightening: firestoreData.brighteningScore,
+            transparency: firestoreData.transparencyScore,
+            spots: firestoreData.spotsScore,
+          },
+          // insightsフィールドも、ここに追加します
+          insights: firestoreData.insights,
+        };
+        setData(reportData);
 
-      try {
-        const docRef = doc(db, "diagnostics", id);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const firestoreData = docSnap.data();
-          const reportData: ReportData = {
-              skinAge: firestoreData.skinAge,
-              skinType: firestoreData.skinType,
-              createdAt: firestoreData.createdAt?.toDate?.().toISOString() ?? '',
-              scores: {
-                wrinkles: firestoreData.wrinklesScore,
-                texture: firestoreData.textureScore,
-                pores: firestoreData.poresScore,
-                brightening: firestoreData.brighteningScore,
-                transparency: firestoreData.transparencyScore,
-                spots: firestoreData.spotsScore,
-              }
-          };
-          setData(reportData);
-          
-          // ★★★ ここからが、最後の、そして、真実の、変更点です ★★★
-          // レポートデータの取得が、成功した、その、直後。
-          // 我々は、製品レコメンドの、APIを、呼び出します。
-          fetchRecommendations(reportData.skinType);
-
+        // レポートデータが初めて取得された時にだけ、レコメンドを取得する
+        // (recommendedProducts.length === 0 という条件で、一度だけ実行されるように制御)
+        if (recommendedProducts.length === 0) {
+            fetchRecommendations(reportData.skinType);
         } else {
-          throw new Error('Diagnostic report not found.');
+            // レコメンドが既に取得済みの場合は、ローディングを即座に終了
+            setLoading(false);
         }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An unknown error occurred.');
-      } finally {
-        // setLoading(false) は、レコメンド取得後に行うため、ここではコメントアウト
-        // setLoading(false); 
+      } else {
+        setError('Diagnostic report not found.');
+        setLoading(false);
       }
-    };
+    }, (error) => {
+      console.error("Firestore subscription error:", error);
+      setError('Failed to subscribe to report updates.');
+      setLoading(false);
+    });
 
     const fetchRecommendations = async (skinType: string) => {
       try {
-        // fetchのURLを、我々が、血と、汗と、涙で、作り上げた、
-        // あなたの、FastAPIサーバーの、絶対URLに、します。
         const response = await fetch('https://visage-ai-api.vercel.app/api/v1/recommendations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ skinType }),
         });
-
         if (!response.ok) {
-          // もし、サーバーが、エラーを返したら、その理由を、コンソールに、記録します
-          const errorText = await response.text();
-          console.error("Server responded with an error:", errorText);
           throw new Error('Failed to fetch recommendations.');
         }
-
         const data = await response.json();
         setRecommendedProducts(data.products || []);
-
       } catch (err) {
         console.error("Recommendation fetch error:", err);
       } finally {
-        // ★★★ 全ての、データの、取得が、完了した、この、最後の、場所で、ローディングを、終了させます ★★★
+        // 全てのデータ取得が完了したこの場所で、ローディングを終了
         setLoading(false);
       }
     };
 
-    fetchReportData();
     document.documentElement.lang = lang;
-  }, [id, lang]);
+
+    // コンポーネントが画面から消える時に、監視を解除するための、お作法
+    return () => {
+      console.log("Unsubscribing from Firestore listener.");
+      unsubscribe();
+    };
+  }, [id, lang, recommendedProducts.length]); // recommendedProducts.lengthを依存配列に追加
 
   // --- このコンポーネントが、ブラウザに表示された後に、初めて isClient を true にする ---
   useEffect(() => {
@@ -417,7 +415,7 @@ export default function ClientReportPage() {
             <h3 className="flex items-center gap-2 font-bold text-xl mb-4"><BrainCircuit size={22} />{t.aiInsights}</h3>
             
             {/* ★★★ ここが、最後の「安全網」です ★★★ */}
-            {data.insights && data.insights[lang] ? (
+            {data && data.insights && data.insights[lang] ? (
               // 【もし、運が良ければ】Mac miniが生成した、パーソナルな、インサイトを表示
               <div className="prose prose-sm" dangerouslySetInnerHTML={{ __html: data.insights[lang] }} />
             ) : (
