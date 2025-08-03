@@ -36,6 +36,10 @@ interface ReportData {
     transparency: number;
     spots: number;
   };
+  insights?: { // ← "insights"は、存在するかもしれないし、しないかもしれない("?")
+    en: string;
+    ja: string;
+  };
 }
 
 // 翻訳データの各言語ごとのコンテンツの型
@@ -411,7 +415,16 @@ export default function ClientReportPage() {
           </div>
           <div className="visage-insight-card">
             <h3 className="flex items-center gap-2 font-bold text-xl mb-4"><BrainCircuit size={22} />{t.aiInsights}</h3>
-            <div className="prose prose-sm" dangerouslySetInnerHTML={{ __html: t.insightText }} />
+            
+            {/* ★★★ ここが、最後の「安全網」です ★★★ */}
+            {data.insights && data.insights[lang] ? (
+              // 【もし、運が良ければ】Mac miniが生成した、パーソナルな、インサイトを表示
+              <div className="prose prose-sm" dangerouslySetInnerHTML={{ __html: data.insights[lang] }} />
+            ) : (
+              // 【もし、運が悪くても】我々が用意した、最高の、テンプレートを表示
+              <div className="prose prose-sm" dangerouslySetInnerHTML={{ __html: t.insightText }} />
+            )}
+            
           </div>
         </div>
         
