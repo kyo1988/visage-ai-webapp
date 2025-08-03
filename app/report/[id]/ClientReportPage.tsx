@@ -12,6 +12,17 @@ import { FacebookShareButton, LineShareButton, TwitterShareButton, FacebookIcon,
 
 // --- 型定義セクション ---
 
+// APIから受け取る商品データの型
+interface Product {
+  id: string;
+  productName: string;
+  brandName: string;
+  description_en: string;
+  description_ja: string;
+  imageUrl: string;
+  purchaseUrl: string;
+}
+
 // APIから受け取るレポートデータの型
 interface ReportData {
   skinAge: number;
@@ -174,22 +185,29 @@ export default function ClientReportPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [isClient, setIsClient] = useState(false); // ★★★ クライアントサイドでの実行を保証するため
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // idが取得できたら、データ取得処理を開始
-    if (id) {
-      const fetchData = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-          // ★★★ Firestoreから直接データを取得！ ★★★
-          const docRef = doc(db, "diagnostics", id);
-          const docSnap = await getDoc(docRef);
+    setIsClient(true);
 
-          if (docSnap.exists()) {
-            const firestoreData = docSnap.data();
-            // APIルートで行っていたデータ整形を、ここで行う
-            const reportData: ReportData = {
+    const fetchReportAndRecommendations = async () => {
+      if (!id) {
+        setLoading(false);
+        setError('Report ID could not be retrieved from the URL.');
+        return;
+      }
+      setLoading(true);
+      setError(null);
+
+      try {
+        // --- ステップ1: レポートデータを取得 ---
+        const docRef = doc(db, "diagnostics", id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const firestoreData = docSnap.data();
+          // (データ整形部分は、あなたの既存のコードに合わせてください)
+          const reportData: ReportData = {
               skinAge: firestoreData.skinAge,
               skinType: firestoreData.skinType,
               createdAt: firestoreData.createdAt?.toDate?.().toISOString() ?? '',
@@ -201,23 +219,34 @@ export default function ClientReportPage() {
                 transparency: firestoreData.transparencyScore,
                 spots: firestoreData.spotsScore,
               }
-            };
-            setData(reportData);
-          } else {
-            throw new Error('診断レポートが見つかりませんでした。');
-          }
-        } catch (err) {
-          setError(err instanceof Error ? err.message : '不明なエラーが発生しました。');
-        } finally {
-          setLoading(false);
-        }
-      };
+          };
+          setData(reportData);
 
-      fetchData();
-    } else {
-      setLoading(false);
-      setError('レポートIDをURLから取得できませんでした。');
-    }
+          // --- ステップ2: レポート取得成功後、製品レコメンドを取得 ---
+          try {
+            const recoResponse = await fetch('/api/v1/recommendations', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ skinType: reportData.skinType }),
+            });
+            if (!recoResponse.ok) throw new Error('Failed to fetch recommendations.');
+            const recoData = await recoResponse.json();
+            setRecommendedProducts(recoData.products || []);
+          } catch (recoError) {
+            console.error("Recommendation fetch error:", recoError);
+            // レコメンド取得に失敗しても、ページ全体はエラーにしない
+          }
+        } else {
+          throw new Error('Diagnostic report not found.');
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReportAndRecommendations();
     document.documentElement.lang = lang;
   }, [id, lang]);
 
@@ -396,10 +425,33 @@ export default function ClientReportPage() {
           </div>
         </section>
 
-        <section className="visage-cta-card">
-          <h2 className="text-3xl font-bold">{t.ctaTitle}</h2>
-          <p className="mt-2 max-w-2xl mx-auto">{t.ctaSubtitle}</p>
-          <a href="#" className="visage-cta-btn">{t.ctaButton}<ArrowRight size={20} /></a>
+        <section>
+          <h2 className="text-2xl font-bold mb-6 text-center">
+            <PackageCheck className="inline-block mr-2" />
+            {lang === 'ja' ? 'あなたの肌への推奨製品 (東京で入手可能)' : 'Recommended For You (Available in Tokyo)'}
+          </h2>
+          {recommendedProducts.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recommendedProducts.map((product) => (
+                <div key={product.id} className="visage-product-card">
+                  <img src={product.imageUrl} alt={product.productName} className="product-image" />
+                  <div className="p-4 flex flex-col h-full">
+                    <h3 className="font-bold text-base">{product.productName}</h3>
+                    <p className="text-sm text-gray-500 mb-2">{product.brandName}</p>
+                    <p className="text-xs text-gray-600 mb-4 flex-grow">
+                      {lang === 'ja' ? product.description_ja : product.description_en}
+                    </p>
+                    <a href={product.purchaseUrl} target="_blank" rel="noopener noreferrer" className="visage-cta-btn text-sm w-full mt-auto">
+                      {lang === 'ja' ? '詳細を見る' : 'See Details'} <ArrowRight size={16} />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            // ローディング中、または商品が見つからなかった場合の表示
+            <p className="text-center text-gray-500">{loading ? (lang === 'ja' ? '検索中...' : 'Searching...') : (lang === 'ja' ? 'あなたにおすすめの製品は見つかりませんでした。' : 'No recommended products found for you.')}</p>
+          )}
         </section>
 
         <section className="text-center">
