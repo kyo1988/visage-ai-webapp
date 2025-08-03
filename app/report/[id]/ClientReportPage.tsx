@@ -452,15 +452,25 @@ export default function ClientReportPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendedProducts.map((product) => (
                 <div key={product.id} className="visage-product-card">
-                  <img src={product.imageUrl} alt={product.productName} className="product-image" />
-                  <div className="p-4 flex flex-col h-full">
-                    <h3 className="font-bold text-base">{product.productName}</h3>
-                    <p className="text-sm text-gray-500 mb-2">{product.brandName}</p>
-                    <p className="text-xs text-gray-600 mb-4 flex-grow">
+                  {/* ★★★ 画像のアスペクト比を、美しく、保つための、おまじない ★★★ */}
+                  <div className="aspect-square w-full overflow-hidden">
+                    <img 
+                      src={product.imageUrl.replace('?_ex=128x128', '')} // ← 小さな画像のURLを、大きな画像に、置き換える、魔法
+                      alt={product.productName} 
+                      className="product-image" 
+                    />
+                  </div>
+                  <div className="p-4 flex flex-col flex-grow">
+                    <h3 className="font-bold text-base leading-tight">{product.productName}</h3>
+                    <p className="text-sm text-gray-500 mt-1 mb-2">{product.brandName}</p>
+                    
+                    {/* ★★★ ここが、情報の、洪水を、制御する、「ダム」です ★★★ */}
+                    <p className="text-xs text-gray-600 mb-4 flex-grow overflow-hidden line-clamp-3">
                       {lang === 'ja' ? product.description_ja : product.description_en}
                     </p>
+                    
                     <a href={product.purchaseUrl} target="_blank" rel="noopener noreferrer" className="visage-cta-btn text-sm w-full mt-auto">
-                      {lang === 'ja' ? '詳細を見る' : 'See Details'} <ArrowRight size={16} />
+                      {lang === 'ja' ? '楽天で見る' : 'View on Rakuten'} <ArrowRight size={16} />
                     </a>
                   </div>
                 </div>
