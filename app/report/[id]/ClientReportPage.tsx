@@ -224,7 +224,7 @@ export default function ClientReportPage() {
 
           // --- ステップ2: レポート取得成功後、製品レコメンドを取得 ---
           try {
-            const recoResponse = await fetch('/api/v1/recommendations', {
+            const recoResponse = await fetch('https://visage-ai-api.vercel.app/api/v1/recommendations', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ skinType: reportData.skinType }),
