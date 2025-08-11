@@ -14,9 +14,9 @@ export default function Scalability() {
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {[
-            ["SDK & API", "Web / iOS / Android"],
-            ["Security", "PII minimization / SOC2 in progress"],
-            ["Governance", "Human-in-the-loop and audit trails"]
+            [t("item1.title"), t("item1.desc")],
+            [t("item2.title"), t("item2.desc")],
+            [t("item3.title"), t("item3.desc")]
           ].map(([title, desc]) => (
             <div key={title} className="rounded-xl border bg-white p-6 shadow-sm">
               <h3 className="font-semibold">{title}</h3>

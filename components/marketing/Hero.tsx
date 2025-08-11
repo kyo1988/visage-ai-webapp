@@ -13,14 +13,24 @@ export default function Hero() {
       <div className="grid gap-10 md:grid-cols-2 md:items-center">
         <div>
           <div className="flex gap-2 mb-4">
-            {["A/B growth", "Explainable AI", "SDK & API"].map((b: string, i: number) => (
-              <span
-                key={i}
-                className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium"
-              >
-                {b}
-              </span>
-            ))}
+            {locale === 'ja' 
+              ? ["A/B成長", "説明可能AI", "SDK & API"].map((b: string, i: number) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium"
+                  >
+                    {b}
+                  </span>
+                ))
+              : ["A/B growth", "Explainable AI", "SDK & API"].map((b: string, i: number) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium"
+                  >
+                    {b}
+                  </span>
+                ))
+            }
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
             {t("title")}

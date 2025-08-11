@@ -235,6 +235,24 @@
     "scalability2_desc": "クラウド型、オンプレミス型、ハイブリッド型など、お客様のセキュリティポリシーやインフラ環境に合わせた柔軟な導入が可能です。",
     "scalability_img_alt": "SDK/API連携のイメージ"
   },
+  "landing": {
+    "scalability": {
+      "title": "導入の柔軟性と拡張性",
+      "lead": "SDKとAPIで、あらゆるビジネスモデルにシームレスに統合。",
+      "item1": {
+        "title": "SDK & API",
+        "desc": "Web / iOS / Android"
+      },
+      "item2": {
+        "title": "セキュリティ",
+        "desc": "PII最小化 / SOC2対応中"
+      },
+      "item3": {
+        "title": "ガバナンス",
+        "desc": "人間による監視と監査証跡"
+      }
+    }
+  },
   "CTASection": {
     "cta_bottom_main_title": "お問い合わせ",
     "cta_bottom_main_subtitle": "Visage AIに関するご質問、デモのご依頼、資料請求など、お気軽にお問い合わせください。",
@@ -557,29 +575,29 @@
       },
       "sdkJs": {
         "title": "JavaScript SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "subtitle": "数行でインストール・分析",
+        "response": "レスポンス",
         "navigation": {
-          "prev": "overview",
-          "next": "sdk-swift"
+          "prev": "概要",
+          "next": "Swift SDK"
         }
       },
       "sdkSwift": {
         "title": "Swift SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "subtitle": "数行でインストール・分析",
+        "response": "レスポンス",
         "navigation": {
-          "prev": "sdk-js",
-          "next": "sdk-kotlin"
+          "prev": "JavaScript SDK",
+          "next": "Kotlin SDK"
         }
       },
       "sdkKotlin": {
         "title": "Kotlin SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "subtitle": "数行でインストール・分析",
+        "response": "レスポンス",
         "navigation": {
-          "prev": "sdk-swift",
-          "next": "security"
+          "prev": "Swift SDK",
+          "next": "セキュリティ"
         }
       },
       "security": {
