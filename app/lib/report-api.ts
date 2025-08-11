@@ -138,8 +138,16 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
         // dev: API未設定 → Firestoreから実際のデータを取得
     try {
       console.log("🔍 Attempting to fetch from Firestore...");
-      // Firestoreから実際の診断データを取得
-      const { db } = await import("@/firebase-admin");
+      
+      // 新しいfirebaseAdminからDBを取得（フェイルソフト）
+      const { getDbOrNull } = await import("@/app/lib/firebaseAdmin");
+      const db = getDbOrNull();
+      
+      if (!db) {
+        console.log("🔍 Firebase DB not available, falling back to mock data");
+        throw new Error("Firebase DB not available");
+      }
+      
       console.log("🔍 Firebase Admin DB imported successfully");
       
       const docRef = db.collection('diagnostics').doc(id);
@@ -230,6 +238,7 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
       }
     } catch (error) {
       console.error("🔍 Firestore fetch error:", error);
+      console.log("🔍 Falling back to mock data due to Firebase error");
     }
     
     // Firestore取得失敗時はMOCKを使用

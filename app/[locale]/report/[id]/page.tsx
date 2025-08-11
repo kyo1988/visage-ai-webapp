@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { ReportServer } from "@/components/report/ReportServer";
 import { fetchReportById } from "@/app/lib/report-api";
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 export const revalidate = 300;
 
 type Props = { params: { locale: string; id: string } };
