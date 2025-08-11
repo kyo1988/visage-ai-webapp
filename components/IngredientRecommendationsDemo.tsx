@@ -4,10 +4,13 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import IngredientRecommendations from './IngredientRecommendations';
 
+// ==== 追加：型定義 ====
+type Locale = "en" | "ja";
+
 export default function IngredientRecommendationsDemo() {
   const t = useTranslations();
   const [selectedSkinType, setSelectedSkinType] = useState('normal');
-  const [selectedLocale, setSelectedLocale] = useState('ja');
+  const [selectedLocale, setSelectedLocale] = useState<Locale>('ja');
 
   const skinTypes = [
     { value: 'oily', label: { ja: '脂性肌', en: 'Oily' } },

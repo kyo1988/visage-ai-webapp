@@ -4,9 +4,12 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import { useIngredientRecommendations, Ingredient, getSkinTypeDisplayName } from '../utils/ingredientRecommendations';
 
+// ==== 追加：型定義 ====
+type Locale = "en" | "ja";
+
 interface IngredientRecommendationsProps {
   skinType: string;
-  locale?: string;
+  locale?: Locale;
   className?: string;
 }
 

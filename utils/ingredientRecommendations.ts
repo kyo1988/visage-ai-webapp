@@ -1,5 +1,9 @@
 import { useTranslations } from 'next-intl';
 
+// ==== 追加：型定義 ====
+type Locale = "en" | "ja";
+type SkinKey = "oily" | "dry" | "combination" | "sensitive" | "normal";
+
 export interface Ingredient {
   name: string;
   desc: string;
@@ -72,8 +76,9 @@ export function getIngredientRecommendations(
  * @param locale 言語
  * @returns 肌タイプの表示名
  */
-export function getSkinTypeDisplayName(skinType: string, locale: string = 'ja'): string {
-  const skinTypeNames = {
+export function getSkinTypeDisplayName(skinType: string, locale: Locale = 'ja'): string {
+  // ==== 置換：辞書の型を強くする ====
+  const skinTypeNames: Record<Locale, Record<SkinKey, string>> = {
     ja: {
       oily: '脂性肌',
       dry: '乾燥肌',
@@ -90,5 +95,14 @@ export function getSkinTypeDisplayName(skinType: string, locale: string = 'ja'):
     }
   };
   
-  return skinTypeNames[locale as keyof typeof skinTypeNames]?.[skinType.toLowerCase()] || skinType;
+  // ==== 置換：当該行を含む関数（L93付近） ====
+  const key = (skinType || "").toLowerCase() as string;
+
+  // ランタイムで安全にナローイング（型外はフォールバック）
+  const valid = ["oily", "dry", "combination", "sensitive", "normal"] as const;
+  const isSkinKey = (k: string): k is SkinKey => (valid as readonly string[]).includes(k);
+
+  if (!isSkinKey(key)) return skinType; // 未知の値はそのまま返す（現状維持）
+
+  return skinTypeNames[locale]?.[key] ?? skinType;
 }
