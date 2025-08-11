@@ -2,6 +2,15 @@ import '../globals.css';
 import { StickyHeader } from '@/components/layout/StickyHeader';
 import MobileStickyCta from '@/components/layout/MobileStickyCta';
 import { I18nProvider } from '@/app/lib/intl';
+import type { Metadata } from "next";
+
+const base =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(base),
+};
+
 export function generateStaticParams() {
   return [{locale: 'ja'}, {locale: 'en'}];
 }
