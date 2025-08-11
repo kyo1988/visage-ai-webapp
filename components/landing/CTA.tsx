@@ -1,29 +1,82 @@
 'use client';
-import { useTranslation } from "@/context/LanguageContext";
+
+import { useTranslations } from '@/app/lib/intl';
 
 export const CTASection = () => {
-  const { t } = useTranslation();
-  const ctas = [
-    { id: 1, title: t('cta1_title'), desc: t('cta1_desc'), btn: t('cta1_btn') },
-    { id: 2, title: t('cta2_title'), desc: t('cta2_desc'), btn: t('cta2_btn') },
-    { id: 3, title: t('cta3_title'), desc: t('cta3_desc'), btn: t('cta3_btn') },
-  ];
-
+  const t = useTranslations();
+  
   return (
-    <section id="contact" className="py-20 md:py-24 bg-brand-beige">
-      <div className="container mx-auto px-6 text-center">
-        <h3 className="font-display text-3xl md:text-4xl font-bold text-brand-pink-brown">{t("cta_bottom_main_title")}</h3>
-        <p className="text-lg text-brand-text-sub mt-4 mb-16 max-w-3xl mx-auto">{t("cta_bottom_main_subtitle")}</p>
-        <div className="grid md:grid-cols-3 gap-8">
-          {ctas.map(cta => (
-            <div key={cta.id} className="bg-white p-8 rounded-4xl shadow-card flex flex-col">
-              <h4 className="font-display text-xl font-bold mb-4">{cta.title}</h4>
-              <p className="text-brand-text-sub flex-grow mb-8">{cta.desc}</p>
-              <a href="#" className="mt-auto inline-block bg-white text-brand-pink-brown border border-brand-pink-hover font-bold px-6 py-3 rounded-full shadow-md hover:bg-brand-pink-hover hover:text-white transition-all">{cta.btn}</a>
+    <>
+      {/* Implementation Steps Section */}
+      <section className="py-20 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+          <h3 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {t("howItWorks.title")}
+          </h3>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Step 1: Design */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <div className="w-16 h-16 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
+                <span className="text-2xl font-bold text-blue-600">1</span>
+              </div>
+              <h4 className="font-display text-xl font-bold mb-4 text-gray-900">{t("howItWorks.step1.title")}</h4>
+              <p className="text-gray-600">
+                {t("howItWorks.step1.description")}
+              </p>
             </div>
-          ))}
+            
+            {/* Step 2: Implementation */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <div className="w-16 h-16 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">
+                <span className="text-2xl font-bold text-green-600">2</span>
+              </div>
+              <h4 className="font-display text-xl font-bold mb-4 text-gray-900">{t("howItWorks.step2.title")}</h4>
+              <p className="text-gray-600">
+                {t("howItWorks.step2.description")}
+              </p>
+            </div>
+            
+            {/* Step 3: Verification */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <div className="w-16 h-16 mx-auto mb-6 bg-purple-100 rounded-full flex items-center justify-center">
+                <span className="text-2xl font-bold text-purple-600">3</span>
+              </div>
+              <h4 className="font-display text-xl font-bold mb-4 text-gray-900">{t("howItWorks.step3.title")}</h4>
+              <p className="text-gray-600">
+                {t("howItWorks.step3.description")}
+              </p>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <a href="#" className="inline-block text-blue-600 hover:text-blue-700 font-medium text-lg">
+              {t("howItWorks.docsLink")} →
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 md:py-24 bg-gradient-to-br from-blue-900 via-purple-900 to-blue-800">
+        <div className="container mx-auto px-6 text-center">
+          <h3 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
+            {t("finalCta.title")}
+          </h3>
+          <p className="text-lg text-gray-200 mb-8 max-w-3xl mx-auto">
+            {t("finalCta.description")}
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+              {t("finalCta.ctaPrimary")}
+            </a>
+            <a href="#" className="inline-block bg-transparent text-white border-2 border-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-blue-900 transition-all text-center">
+              {t("finalCta.ctaSecondary")}
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };

@@ -1,0 +1,33 @@
+import '../globals.css';
+import { StickyHeader } from '@/components/layout/StickyHeader';
+import MobileStickyCta from '@/components/layout/MobileStickyCta';
+import { I18nProvider } from '@/app/lib/intl';
+export function generateStaticParams() {
+  return [{locale: 'ja'}, {locale: 'en'}];
+}
+
+export default async function RootLayout({
+  children,
+  params: {locale}
+}: {
+  children: React.ReactNode;
+  params: {locale: 'ja' | 'en'};
+}) {
+  const messages = (await import(`../../messages/${locale}.json`)).default as any;
+  
+  return (
+    <html lang={locale} className="h-full">
+      <body className="h-full">
+        <I18nProvider locale={locale} messages={messages}>
+          <div className="flex min-h-screen flex-col">
+            <StickyHeader />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <MobileStickyCta />
+          </div>
+        </I18nProvider>
+      </body>
+    </html>
+  );
+}

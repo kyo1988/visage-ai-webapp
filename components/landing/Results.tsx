@@ -1,34 +1,102 @@
 'use client';
-import { useTranslation } from "@/context/LanguageContext";
-import { Icons } from "@/components/Icons";
+
+import { useTranslations } from '@/app/lib/intl';
 
 export const ResultsSection = () => {
-  const { t, lang } = useTranslation();
-  const results = [
-    { id: 1, icon: <Icons.ChartPie />, title: t("result1_title"), desc: t("result1_desc"), highlight: "20%" },
-    { id: 2, icon: <Icons.FaceSmile />, title: t("result2_title"), desc: t("result2_desc"), highlight: "5%" },
-    { id: 3, icon: <Icons.Sparkles />, title: t("result3_title"), desc: t("result3_desc"), highlight: `10`, smallText: lang === 'ja' ? 'ポイント' : 'points' },
-  ];
-
+  const t = useTranslations();
+  
   return (
-    <section id="results" className="py-20 md:py-24 bg-[#f8f4ed]">
+    <section className="py-20 md:py-24 bg-gray-50">
       <div className="container mx-auto px-6 text-center">
-        <h3 className="font-display text-3xl md:text-4xl font-bold">{t("results_main_title")}</h3>
-        <p className="text-lg text-brand-text-sub mt-4 mb-16 max-w-3xl mx-auto">{t("results_main_subtitle")}</p>
+        <h3 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {t("ResultsSection.results_main_title")}
+        </h3>
+        <p className="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
+          {t("ResultsSection.results_main_subtitle")}
+        </p>
+        
         <div className="grid md:grid-cols-3 gap-8">
-          {results.map(result => (
-            <div key={result.id} className="bg-white p-8 rounded-4xl shadow-card hover:shadow-card-hover hover:-translate-y-2 transition-all flex flex-col items-center">
-              <h4 className="font-display text-xl font-bold mb-2 h-16">{result.title.replace(result.highlight, '').replace(result.smallText ?? '', '')}</h4>
-              <p className="text-4xl font-bold bg-gradient-to-r from-brand-pink-hover to-brand-pink-brown text-transparent bg-clip-text mb-4">
-                {result.highlight}
-                {result.smallText && <span className="text-lg text-brand-pink-brown">{result.smallText}</span>}
-              </p>
-              <p className="text-brand-text-sub flex-grow">{result.desc}</p>
-              <div className="w-20 h-20 mt-6">{result.icon}</div>
+          {/* Case Study 1 */}
+          <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all text-left">
+            <div className="w-16 h-16 mb-6 bg-gray-200 rounded flex items-center justify-center text-gray-600 text-sm font-medium">
+              {t("caseStudies.study1.logo")}
             </div>
-          ))}
+            <h4 className="font-semibold text-gray-900 mb-3">{t("caseStudies.challenge")}</h4>
+            <p className="text-gray-600 mb-4">{t("caseStudies.study1.challenge")}</p>
+            <h4 className="font-semibold text-gray-900 mb-3">{t("caseStudies.solution")}</h4>
+            <p className="text-gray-600 mb-4">{t("caseStudies.study1.solution")}</p>
+            <div className="space-y-2 mb-4">
+              <div className="flex justify-between">
+                <span className="text-gray-600">{t("caseStudies.study1.kpi1.label")}</span>
+                <span className="font-semibold text-green-600">{t("caseStudies.study1.kpi1.value")}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">{t("caseStudies.study1.kpi2.label")}</span>
+                <span className="font-semibold text-green-600">{t("caseStudies.study1.kpi2.value")}</span>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500 mb-4">{t("caseStudies.study1.duration")}</div>
+            <a href="#" className="inline-block text-blue-600 hover:text-blue-700 text-sm font-medium">
+              {t("caseStudies.cta")} →
+            </a>
+          </div>
+          
+          {/* Case Study 2 */}
+          <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all text-left">
+            <div className="w-16 h-16 mb-6 bg-gray-200 rounded flex items-center justify-center text-gray-600 text-sm font-medium">
+              {t("caseStudies.study2.logo")}
+            </div>
+            <h4 className="font-semibold text-gray-900 mb-3">{t("caseStudies.challenge")}</h4>
+            <p className="text-gray-600 mb-4">{t("caseStudies.study2.challenge")}</p>
+            <h4 className="font-semibold text-gray-900 mb-3">{t("caseStudies.solution")}</h4>
+            <p className="text-gray-600 mb-4">{t("caseStudies.study2.solution")}</p>
+            <div className="space-y-2 mb-4">
+              <div className="flex justify-between">
+                <span className="text-gray-600">{t("caseStudies.study2.kpi1.label")}</span>
+                <span className="font-semibold text-green-600">{t("caseStudies.study2.kpi1.value")}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">{t("caseStudies.study2.kpi2.label")}</span>
+                <span className="font-semibold text-green-600">{t("caseStudies.study2.kpi2.value")}</span>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500 mb-4">{t("caseStudies.study2.duration")}</div>
+            <a href="#" className="inline-block text-blue-600 hover:text-blue-700 text-sm font-medium">
+              {t("caseStudies.cta")} →
+            </a>
+          </div>
+          
+          {/* Case Study 3 */}
+          <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all text-left">
+            <div className="w-16 h-16 mb-6 bg-gray-200 rounded flex items-center justify-center text-gray-600 text-sm font-medium">
+              {t("caseStudies.study3.logo")}
+            </div>
+            <h4 className="font-semibold text-gray-900 mb-3">{t("caseStudies.challenge")}</h4>
+            <p className="text-gray-600 mb-4">{t("caseStudies.study3.challenge")}</p>
+            <h4 className="font-semibold text-gray-900 mb-3">{t("caseStudies.solution")}</h4>
+            <p className="text-gray-600 mb-4">{t("caseStudies.study3.solution")}</p>
+            <div className="space-y-2 mb-4">
+              <div className="flex justify-between">
+                <span className="text-gray-600">{t("caseStudies.study3.kpi1.label")}</span>
+                <span className="font-semibold text-green-600">{t("caseStudies.study3.kpi1.value")}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">{t("caseStudies.study3.kpi2.label")}</span>
+                <span className="font-semibold text-green-600">{t("caseStudies.study3.kpi2.value")}</span>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500 mb-4">{t("caseStudies.study3.duration")}</div>
+            <a href="#" className="inline-block text-blue-600 hover:text-blue-700 text-sm font-medium">
+              {t("caseStudies.cta")} →
+            </a>
+          </div>
         </div>
-        <p className="mt-16 font-medium text-brand-pink-brown">{t("results_conclusion")}</p>
+        
+        <div className="mt-12 text-center">
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            {t("ResultsSection.results_conclusion")}
+          </p>
+        </div>
       </div>
     </section>
   );

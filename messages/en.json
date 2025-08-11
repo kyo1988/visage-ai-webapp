@@ -1,0 +1,766 @@
+{
+  "metadata": {
+    "title": "Visage AI - Maximize CVR & LTV with Explainable AI Skin Analysis",
+    "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail. SDK/API integration in as little as 1 week. Understandable recommendations with region-specific XAI.",
+    "og": {
+      "title": "Visage AI - Explainable AI Skin Analysis",
+      "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail.",
+      "siteName": "Visage AI",
+      "alt": "Visage AI diagnostic report UI"
+    },
+    "twitter": {
+      "title": "Visage AI - Explainable AI Skin Analysis",
+      "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail."
+    }
+  },
+  "nav": {
+    "product": "Product",
+    "cases": "Case Studies",
+    "docs": "Documentation",
+    "pricing": "Pricing",
+    "security": "Security",
+    "demo": "Book a Demo"
+  },
+  "hero": {
+    "title": "Boost CVR & LTV with AI Skin Analysis",
+    "lead": "Explainable AI & precise region targeting for trustworthy, personalized recommendations",
+    "primaryCta": "Book a demo",
+    "secondaryCta": "See case studies"
+  },
+  "examples": {
+    "title": "Diagnostic Reports in Action"
+  },
+  "reports": {
+    "title": "Report Examples",
+    "viewSample": "View sample"
+  },
+  "kpi": {
+    "title": "Impact",
+    "cvr": "CVR Uplift",
+    "aov": "Higher AOV",
+    "retention": "Better Retention"
+  },
+  "tech": {
+    "title": "Core Technology",
+    "xai": "Explainable AI (XAI)",
+    "roi": "High-precision region detection drives ROI",
+    "sdk": "Easy SDK / API integration"
+  },
+  "howItWorks": {
+    "title": "3 Steps to Implementation",
+    "step1": {
+      "title": "Design (~1 day)",
+      "description": "We listen to your business requirements and design the optimal implementation plan."
+    },
+    "step2": {
+      "title": "Implementation (3–5 days)",
+      "description": "Integrate SDK/API into your existing system and confirm operation in a test environment."
+    },
+    "step3": {
+      "title": "Verification (7–14 days)",
+      "description": "Conduct final tests and performance measurements in a production environment, and make adjustments as needed."
+    },
+    "docsLink": "View Technical Documentation"
+  },
+  "caseStudies": {
+    "title": "Case Studies",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "duration": "Duration",
+    "cta": "See a demo to solve the same challenge",
+    "study1": {
+      "logo": "Logo 1",
+      "challenge": "Unable to accurately grasp customer skin concerns",
+      "solution": "Achieved personalized proposals with AI skin analysis",
+      "kpi1": {
+        "label": "CVR Improvement",
+        "value": "+20%"
+      },
+      "kpi2": {
+        "label": "LTV Increase",
+        "value": "+10%"
+      },
+      "duration": "Implementation period: 2 months"
+    },
+    "study2": {
+      "logo": "Logo 2",
+      "challenge": "Difficulty in product recommendation due to lack of objective data",
+      "solution": "Implemented data-driven recommendations based on skin analysis",
+      "kpi1": {
+        "label": "AOV Increase",
+        "value": "+15%"
+      },
+      "kpi2": {
+        "label": "CVR",
+        "value": "+8%"
+      },
+      "duration": "Implementation period: 3 months"
+    },
+    "study3": {
+      "logo": "Logo 3",
+      "challenge": "Low repeat purchase rate",
+      "solution": "Promoted repurchase by tracking changes in skin condition",
+      "kpi1": {
+        "label": "Repurchase Rate",
+        "value": "+25%"
+      },
+      "kpi2": {
+        "label": "Customer Retention Rate",
+        "value": "+12%"
+      },
+      "duration": "Implementation period: 4 months"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "How is the captured face photo data handled? Is privacy safe?",
+      "answer": "No PII is required, and data can be sent anonymously after on-device preprocessing. Data retention is a default of 30 days (variable), and region selection for Japan/US/EU is supported."
+    },
+    "q2": {
+      "question": "How long does implementation take?",
+      "answer": "Implementation is possible in as little as 1 week. This may vary depending on your system environment and requirements, so please contact us for details."
+    },
+    "q3": {
+      "question": "Can it be integrated into existing e-commerce sites or apps?",
+      "answer": "Yes, we provide SDK/API that can be flexibly integrated into existing systems. We support major platforms."
+    },
+    "moreInfo": "Learn More"
+  },
+  "finalCta": {
+    "title": "Ready to accelerate your business with Visage AI?",
+    "description": "Numerous companies have achieved improved customer experience and increased sales by implementing Visage AI.",
+    "ctaPrimary": "Book a Demo (20 min)",
+    "ctaSecondary": "Download Materials"
+  },
+  "demo": {
+    "title": "Book a 20-min Product Demo",
+    "lead": "We’ll walk through your use case, integration steps, and KPIs in an online session."
+  },
+  "cta": {
+    "mobile": "Book a 20-min Demo"
+  },
+  "HeroSection": {
+    "badge1": "Analysis < 8s",
+    "badge2": "100% Evidence-based",
+    "badge3": "SDK & API Ready",
+    "title": "From Experience to Retention, <br/> All with Explainable AI Skin Analysis.",
+    "subtitle": "Boost CVR and LTV for e-commerce and retail with XAI and segmentation.",
+    "ctaDemo": "Book a Demo",
+    "ctaExamples": "See Report Examples"
+  },
+  "FeaturesSection": {
+    "title": "Examples of introduction effect indicators (simulation)",
+    "subtitle": "Simulate the impact of introducing Visage AI on customer experience and business indicators.",
+    "item1_title": "Revisit rate +20%*",
+    "item1_desc": "Personalized experiences increase customer satisfaction and encourage revisits to stores and EC sites.",
+    "item2_title": "NPS +10pt*",
+    "item2_desc": "Increase customer recommendation intention and create positive word of mouth.",
+    "item3_title": "CVR +5%*",
+    "item3_desc": "Convincing proposals improve the purchase decision rate.",
+    "footnote": "*The figures shown are simulation values calculated based on our customer data and market research. The actual effect varies depending on the installation environment and operation method."
+  },
+  "FaqSection": {
+    "title": "Frequently Asked Questions",
+    "q1": "How is the captured face photo data handled? Is privacy safe?",
+    "a1_p1": "Yes, customer privacy is our top priority.",
+    "a1_p2": "<strong>In the standard simple diagnosis, all face images are processed within the customer's smartphone.</strong> Analysis data is never sent to the cloud server.",
+    "a1_p3": "Only when using more advanced analysis (PRO version function), after obtaining <strong>explicit consent from the customer</strong>, anonymized data that cannot identify individuals is analyzed in a secure cloud environment. For details on the data retention policy, please check the <a href='/privacy' class='text-blue-600 underline'>Privacy Policy</a>."
+  },
+  "ReportExamplesSection": {
+    "title": "See diagnostic reports in actual examples",
+    "subtitle": "Experience how AI analyzes the condition of your skin and what insights it provides with an actual report.",
+    "cta": "Experience an actual report"
+  },
+  "FloatingCta": {
+    "text": "Book a Demo"
+  },
+  "Header": {
+    "nav_features": "Features",
+    "nav_story": "Story",
+    "nav_technology": "Technology",
+    "nav_results": "Results",
+    "nav_contact": "Contact"
+  },
+  "PrivacySection": {
+    "privacy_main_title": "Privacy and Security",
+    "privacy_main_subtitle": "Your data is strictly protected, and we strive for transparent operations.",
+    "privacy1_title": "Data Encryption",
+    "privacy1_desc": "All communications and stored data are protected by industry-standard encryption technology.",
+    "privacy2_title": "Access Control",
+    "privacy2_desc": "Access to your data is strictly managed to prevent unauthorized access.",
+    "privacy3_title": "Transparency",
+    "privacy3_desc": "We clearly disclose our policies on data collection, use, and sharing."
+  },
+  "StorySection": {
+    "story_main_title": "The Story of Visage AI",
+    "story_main_subtitle": "Weaving the next-generation 'skin story' with AI and data.",
+    "story_img_alt": "Image of AI skin analysis",
+    "story_para1": "Visage AI was born to provide scientifically-backed, personalized solutions to all those with skin concerns. We combine cutting-edge AI technology with dermatological knowledge to enable deep skin analysis that was previously impossible.",
+    "story_para2": "We aim to be a partner that understands each customer's 'skin story' and guides them to optimal care, not just a diagnostic tool. By visualizing skin conditions and tracking changes, we support customers in confidently pursuing beauty."
+  },
+  "TechnologySection": {
+    "tech_main_title": "Visage AI Technology",
+    "tech_main_subtitle": "Unraveling the truth of skin through the fusion of cutting-edge AI technology and dermatology.",
+    "tech_title1": "Explainable AI (XAI)",
+    "tech_desc1": "AI clearly presents the basis of diagnostic results. It visualizes which parts were evaluated, why, and how, increasing trust and satisfaction for customers.",
+    "tech_title2": "High-precision Part Segmentation",
+    "tech_desc2": "Accurately identifies each part of the face (eyes, mouth, cheeks, etc.) and analyzes skin conditions in detail for each part. Enables personalized care recommendations.",
+    "tech_img1_caption": "AI skin analysis",
+    "tech_img2_caption": "Grad-CAMによる根拠可視化",
+    "ux_main_title": "Commitment to User Experience",
+    "ux_main_subtitle": "Making skin diagnosis more accessible with an intuitive and seamless experience.",
+    "ux_title1": "High-speed Diagnosis",
+    "ux_desc1": "Fast diagnosis within 8 seconds, no waiting for customers. Provides a stress-free experience.",
+    "ux_title2": "Easy Operation",
+    "ux_desc2": "Anyone can easily diagnose their skin by simply taking a photo of their face with a smartphone. No special equipment is required."
+  },
+  "ResultsSection": {
+    "results_main_title": "Implementation Results and Effects",
+    "results_main_subtitle": "Visage AI is improving customer experience and business results in various industries.",
+    "result1_title": "Improved Customer Satisfaction",
+    "result1_desc": "Personalized diagnosis significantly improves customer engagement and satisfaction.",
+    "result2_title": "Improved Conversion Rate",
+    "result2_desc": "Accurate product recommendations improve purchase rates on e-commerce sites.",
+    "result3_title": "Increased Repeat Rate",
+    "result3_desc": "Continuous tracking of skin condition promotes repeat purchases by customers.",
+    "results_conclusion": "Visage AI strongly supports your business growth with data-driven skin diagnosis."
+  },
+  "ScalabilitySection": {
+    "scalability_main_title": "Flexibility and Scalability of Introduction",
+    "scalability_main_subtitle": "Seamlessly integrates into any business model with SDK and API.",
+    "scalability1_title": "SDK/API Integration",
+    "scalability1_desc": "Easily embed into existing apps and websites with a few lines of code. Significantly reduces development costs and time.",
+    "scalability2_title": "Diverse Introduction Forms",
+    "scalability2_desc": "Flexible introduction is possible according to your security policy and infrastructure environment, such as cloud, on-premise, and hybrid.",
+    "scalability_img_alt": "Image of SDK/API integration"
+  },
+  "CTASection": {
+    "cta_bottom_main_title": "Contact Us",
+    "cta_bottom_main_subtitle": "Please feel free to contact us with any questions about Visage AI, demo requests, or material requests.",
+    "cta1_title": "Book a Demo",
+    "cta1_desc": "Experience the functions of Visage AI firsthand. We will explain individually how we can contribute to your business.",
+    "cta1_btn": "Book a Demo",
+    "cta2_title": "Download Materials",
+    "cta2_desc": "You can download materials summarizing Visage AI's functions, case studies, and technical details for free.",
+    "cta2_btn": "Download Materials",
+    "cta3_title": "Contact Us",
+    "cta3_desc": "Please feel free to contact us if you have any other questions or concerns.",
+    "cta3_btn": "Contact Us"
+  },
+  "Footer": {
+    "footer_tagline": "Weaving the next-generation 'skin story' with AI and data.",
+    "footer_company_name": "Visage AI Inc.",
+    "footer_website_url": "https://www.visageaiconsulting.com",
+    "footer_website_text": "Official Website",
+    "footer_email_address": "info@visageaiconsulting.com",
+    "footer_email_text": "Contact Us",
+    "footer_sitemap": "Sitemap",
+    "footer_follow_sns": "Follow SNS",
+    "footer_copyright": "Visage AI All Rights Reserved."
+  },
+  "product": {
+    "title": "Product",
+    "description": "This is the product information page for Visage AI.",
+    "underConstruction": "This page is currently under construction.",
+    "hero": {
+      "title": "AI-Powered Skin Analysis Platform",
+      "subtitle": "Transform your business with explainable AI that delivers personalized skin care recommendations and boosts customer engagement.",
+      "cta": "Book a Demo",
+      "secondaryCta": "View Documentation"
+    },
+    "features": {
+      "title": "Key Features",
+      "speed": {
+        "title": "Lightning Fast",
+        "description": "Complete skin analysis in under 8 seconds with real-time processing and instant results."
+      },
+      "accuracy": {
+        "title": "High Precision",
+        "description": "Advanced AI algorithms with 95%+ accuracy in skin condition assessment and region detection."
+      },
+      "integration": {
+        "title": "Easy Integration",
+        "description": "Simple SDK/API integration that works seamlessly with your existing systems and workflows."
+      }
+    },
+    "technology": {
+      "title": "Advanced Technology",
+      "xai": {
+        "title": "Explainable AI (XAI)",
+        "description": "Our AI doesn't just provide results—it explains why and how it reached its conclusions, building trust with your customers.",
+        "benefit1": "Transparent decision-making process",
+        "benefit2": "Customer confidence and trust",
+        "benefit3": "Regulatory compliance support"
+      },
+      "specs": {
+        "title": "Technical Specifications",
+        "analysisTime": "Analysis Time",
+        "analysisTimeValue": "< 8 seconds",
+        "accuracy": "Accuracy Rate",
+        "accuracyValue": "95%+",
+        "regions": "Detectable Regions",
+        "regionsValue": "15+ facial areas",
+        "integration": "Integration Time",
+        "integrationValue": "1 week"
+      }
+    },
+    "integration": {
+      "title": "Integration Options",
+      "web": {
+        "title": "Web SDK",
+        "description": "JavaScript SDK for web applications with easy installation and comprehensive documentation."
+      },
+      "mobile": {
+        "title": "Mobile SDKs",
+        "description": "Native iOS and Android SDKs for mobile applications with optimized performance."
+      },
+      "api": {
+        "title": "REST API",
+        "description": "RESTful API endpoints for custom integrations and enterprise solutions."
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join leading brands that are already using Visage AI to improve customer experience and increase sales.",
+      "primary": "Book a Demo",
+      "secondary": "Download SDK"
+    }
+  },
+  "cases": {
+    "title": "Case Studies",
+    "description": "This is the case studies page for Visage AI.",
+    "underConstruction": "This page is currently under construction.",
+    "hero": {
+      "title": "Real Success Stories",
+      "subtitle": "Discover how leading brands are transforming their business with Visage AI's explainable skin analysis technology.",
+      "cta": "Book a Demo",
+      "secondaryCta": "Download Case Studies"
+    },
+    "metrics": {
+      "title": "Proven Results",
+      "cvr": "CVR Improvement",
+      "aov": "AOV Increase",
+      "retention": "Retention Rate",
+      "ltv": "LTV Growth"
+    },
+    "caseStudies": {
+      "title": "Customer Success Stories",
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "chartPlaceholder": "Performance Chart",
+      "study1": {
+        "company": "BeautyCorp",
+        "industry": "Cosmetics & Skincare",
+        "challenge": "Unable to accurately grasp customer skin concerns and provide personalized recommendations.",
+        "solution": "Implemented Visage AI's skin analysis to deliver data-driven, personalized product recommendations.",
+        "kpi1": {
+          "label": "CVR Improvement",
+          "value": "+20%"
+        },
+        "kpi2": {
+          "label": "LTV Increase",
+          "value": "+10%"
+        }
+      },
+      "study2": {
+        "company": "SkinTech",
+        "industry": "Dermatology & Wellness",
+        "challenge": "Difficulty in product recommendation due to lack of objective skin data and customer engagement.",
+        "solution": "Integrated Visage AI to provide evidence-based skin analysis and improve customer experience.",
+        "kpi1": {
+          "label": "AOV Increase",
+          "value": "+15%"
+        },
+        "kpi2": {
+          "label": "CVR Improvement",
+          "value": "+8%"
+        }
+      },
+      "study3": {
+        "company": "HealthBeauty",
+        "industry": "Health & Beauty Retail",
+        "challenge": "Low repeat purchase rate and customer retention due to lack of personalized follow-up.",
+        "solution": "Leveraged Visage AI to track skin condition changes and provide personalized care recommendations.",
+        "kpi1": {
+          "label": "Repurchase Rate",
+          "value": "+25%"
+        },
+        "kpi2": {
+          "label": "Customer Retention",
+          "value": "+12%"
+        }
+      }
+    },
+    "implementation": {
+      "title": "Implementation Process",
+      "step1": {
+        "title": "Planning & Design",
+        "description": "We work closely with your team to understand your business requirements and design the optimal implementation strategy.",
+        "duration": "1-2 weeks"
+      },
+      "step2": {
+        "title": "Development & Integration",
+        "description": "Our engineers integrate the SDK/API into your existing systems and conduct thorough testing in development environments.",
+        "duration": "2-4 weeks"
+      },
+      "step3": {
+        "title": "Launch & Optimization",
+        "description": "We launch the solution in production, monitor performance, and optimize based on real-world usage data.",
+        "duration": "1-2 weeks"
+      }
+    },
+    "cta": {
+      "title": "Ready to See Similar Results?",
+      "description": "Join these success stories and transform your business with Visage AI's proven technology.",
+      "primary": "Book a Demo",
+      "secondary": "Contact Sales"
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "description": "This is the pricing information page for Visage AI.",
+    "underConstruction": "This page is currently under construction.",
+    "hero": {
+      "title": "Simple, Transparent Pricing",
+      "subtitle": "Choose the plan that fits your business needs. Scale up as you grow with no hidden fees.",
+      "cta": "Get Started",
+      "secondaryCta": "Contact Sales"
+    },
+    "popular": "Most Popular",
+    "perMonth": "per month",
+    "tiers": {
+      "starter": {
+        "name": "Starter",
+        "price": "$0",
+        "description": "Perfect for small businesses and startups",
+        "features": {
+          "analyses": "100 analyses per month",
+          "support": "Email support",
+          "api": "Basic API access",
+          "docs": "Documentation access"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$499",
+        "description": "Ideal for growing businesses",
+        "features": {
+          "analyses": "10,000 analyses per month",
+          "support": "Priority support",
+          "xai": "Explainable AI features",
+          "analytics": "Advanced analytics dashboard",
+          "integration": "Custom integration support"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "description": "For large organizations with specific requirements",
+        "features": {
+          "sla": "99.9% SLA guarantee",
+          "onprem": "On-premise deployment options",
+          "security": "SOC2 Type II compliance",
+          "support": "24/7 dedicated support",
+          "custom": "Custom feature development"
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Can I change plans at any time?",
+        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately."
+      },
+      "q2": {
+        "question": "What happens if I exceed my monthly limit?",
+        "answer": "We'll notify you when you're approaching your limit. You can upgrade your plan or purchase additional analyses."
+      },
+      "q3": {
+        "question": "Is there a setup fee?",
+        "answer": "No setup fees for Starter and Pro plans. Enterprise plans may have custom setup requirements."
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join thousands of businesses already using Visage AI to improve customer experience.",
+      "primary": "Start Free Trial",
+      "secondary": "Schedule a Demo"
+    },
+    "getStarted": "Get Started",
+    "contactSales": "Contact Sales"
+  },
+  "docs": {
+    "home": {
+      "title": "Visage AI Documentation",
+      "lead": "Get started with SDK/API integration, core concepts, and security information."
+    },
+    "search": {
+      "placeholder": "Search docs...",
+      "noResults": "No results"
+    },
+    "cards": {
+      "overview": {
+        "title": "Overview",
+        "desc": "Core concepts, limits & support"
+      },
+      "sdkJs": {
+        "title": "JavaScript SDK",
+        "desc": "Web/Node quickstart"
+      },
+      "sdkSwift": {
+        "title": "Swift SDK",
+        "desc": "iOS example"
+      },
+      "sdkKotlin": {
+        "title": "Kotlin SDK",
+        "desc": "Android example"
+      },
+      "security": {
+        "title": "Security",
+        "desc": "Data flow & compliance"
+      }
+    },
+    "cta": {
+      "demo": "Book a live demo →"
+    },
+    "nextSteps": {
+      "title": "Next steps",
+      "step1": "Get your API key and",
+      "step2": "Run sample code and inspect the response.",
+      "step3": "Configure region & retention for production."
+    },
+    "pages": {
+      "overview": {
+        "title": "Visage AI Documentation",
+        "lead": "Get started with SDK/API integration, core concepts, and security. Pick your platform to begin.",
+        "nextSteps": {
+          "title": "Next steps",
+          "step1": "Get your API key and",
+          "step1Code": "NEXT_PUBLIC_VISAGE_KEY",
+          "step1End": " environment variable.",
+          "step2": "Run sample code and inspect the response.",
+          "step3": "Configure region & retention for production."
+        },
+        "cards": {
+          "sdkJs": {
+            "title": "JavaScript SDK",
+            "desc": "Install in a few lines for Web/Node."
+          },
+          "sdkSwift": {
+            "title": "Swift SDK",
+            "desc": "For iOS / visionOS apps."
+          },
+          "sdkKotlin": {
+            "title": "Kotlin SDK",
+            "desc": "For Android apps."
+          },
+          "security": {
+            "title": "Security",
+            "desc": "Data handling, retention and transport."
+          }
+        }
+      },
+      "sdkJs": {
+        "title": "JavaScript SDK",
+        "subtitle": "Install and analyze in a few lines.",
+        "response": "Response",
+        "navigation": {
+          "prev": "overview",
+          "next": "sdk-swift"
+        }
+      },
+      "sdkSwift": {
+        "title": "Swift SDK",
+        "subtitle": "Install and analyze in a few lines.",
+        "response": "Response",
+        "navigation": {
+          "prev": "sdk-js",
+          "next": "sdk-kotlin"
+        }
+      },
+      "sdkKotlin": {
+        "title": "Kotlin SDK",
+        "subtitle": "Install and analyze in a few lines.",
+        "response": "Response",
+        "navigation": {
+          "prev": "sdk-swift",
+          "next": "security"
+        }
+      },
+      "security": {
+        "title": "Security & Privacy",
+        "navigation": {
+          "prev": "sdk-kotlin"
+        }
+      }
+    },
+    "common": {
+      "breadcrumb": "Docs",
+      "navigation": {
+        "prev": "←",
+        "next": "→"
+      }
+    }
+  },
+  "story": {
+    "title": "How teams use Visage AI",
+    "subtitle": "From integration to operations, here is how customers adopt and scale.",
+    "points": [
+      "Start small with SDK and one attribute, expand later.",
+      "Ship explainable recommendations to improve trust and CVR.",
+      "Operate safely with region control and retention policy."
+    ],
+    "imageAlt": "Customer success story"
+  },
+  "scalability": {
+    "title": "Built for scale and governance",
+    "subtitle": "Operate globally with transparent controls.",
+    "cards": {
+      "region": { "title": "Regions", "desc": "JP/US/EU selectable per tenant." },
+      "sdk": { "title": "SDK & API", "desc": "JS / Swift / Kotlin and REST API." },
+      "security": { "title": "Security", "desc": "TLS 1.2+, JWT auth, PII-optional." },
+      "cost": { "title": "Cost control", "desc": "Analyze at scale with predictable cost." }
+    },
+    "imageAlt": "Global, scalable architecture illustration"
+  },
+  "landing": {
+    "hero": {
+      "title": "From experience to retention — all with explainable AI skin analysis",
+      "lead": "Boost CVR and LTV for e-commerce and retail with XAI insights, precise segmentation, and developer-friendly SDKs.",
+      "primaryCta": "Book a Demo",
+      "secondaryCta": "See Report Examples",
+      "badges": ["A/B growth", "Explainable AI", "SDK & API"],
+      "previewAlt": "Visage AI report preview",
+      "deployedNote": "Already deployed in our iOS app \"Visage AI: Skin Advisor\" — a live showcase for B2B clients."
+    },
+    "kpi": {
+      "title": "Simulated impact after adoption",
+      "cards": {
+        "cvr": { "title": "CVR +20%", "desc": "On-site personalization and XAI-based nudges" },
+        "nps": { "title": "NPS +10pt", "desc": "Better explanation → higher satisfaction" },
+        "ltv": { "title": "LTV +10%", "desc": "Retention through routine tracking" }
+      }
+    },
+    "tech": {
+      "title": "Visage AI Technology",
+      "lead": "Client-side inference, privacy-first pipeline, and flexible SDKs",
+      "deployedNote": "Deployed and tested in production via our iOS app—ask us for a live demo.",
+      "code": {
+        "jsTitle": "JavaScript (Web SDK)",
+        "kotlinTitle": "Kotlin (Android)",
+        "swiftTitle": "Swift (iOS)"
+      }
+    },
+    "cases": {
+      "title": "Implementation results and effects",
+      "lead": "From trial to scale: measurable outcomes across verticals",
+      "disclaimer": "Figures are simulated examples for demonstration purposes."
+    },
+    "story": { 
+      "title": "Our story", 
+      "lead": "Why we obsess over transparent AI",
+      "alt": "Tokyo skyline with elegant East Asian woman illustration and subtle circuitry motif",
+      "storyTitle": "Tokyo-born AI, crafted with omotenashi",
+      "storyLead": "Inspired by timeless Japanese beauty rituals and the precision of modern AI, Visage AI focuses on transparency, reproducibility, and measurable uplift.",
+      "appNote": "Our lightweight model is already deployed in the iOS app \"Visage AI: Skin Advisor\"."
+    },
+    "scalability": { "title": "Scale & governance", "lead": "Operate safely at enterprise scale" },
+    "finalCta": {
+      "title": "Ready to accelerate your business with Visage AI?",
+      "primary": "Book a Demo (15 min)",
+      "secondary": "Read the Docs"
+    },
+    "faq": { "title": "FAQ" }
+  },
+      "footer": {
+      "tagline": "Explainable skin analysis SDK/API for e-commerce & retail.",
+      "sitemap": {
+        "title": "Sitemap",
+        "product": "Product",
+        "cases": "Case Studies",
+        "docs": "Documentation",
+        "pricing": "Pricing",
+        "security": "Security"
+      },
+      "follow": { "title": "Follow us" },
+      "app": "iOS app: Visage AI — Skin Advisor"
+    },
+  "NotFound": {
+    "title": "Page Not Found",
+    "message": "The page you are looking for could not be found."
+  },
+  "report": {
+    "metaTitle": "Personal Skin Care Diagnostic Report",
+    "title": "Personal Skin Care Diagnostic Report",
+    "share": "Copy share link",
+    "copied": "Copied!",
+    "print": "Print",
+    "score": "Score",
+    "profile": "Profile",
+    "aiInsights": "AI Insights",
+    "amRoutine": "AM Routine",
+    "pmRoutine": "PM Routine",
+    "weeklyRoutine": "Weekly",
+    "ingredientsBySkinType": "Skin Type Based Recommendations",
+    "recommendedProducts": "Recommended Products",
+    "viewProduct": "View Product",
+    "score": {
+      "label": "Good"
+    },
+    "radar": {
+      "labels": ["Texture", "Hydration", "Pores", "Wrinkles", "Pigmentation", "Sensitivity"]
+    },
+    "ingredients": {
+      "title": "Recommended Ingredients",
+      "subtitle": "Optimal ingredients for your skin type",
+      "noRecommendations": "No ingredient recommendations found.",
+      "disclaimer": "* These ingredients are general recommendations. Please perform a patch test and consult with a dermatologist before use.",
+      "items": [
+        { "name": "Niacinamide 5%", "desc": "Tone-evening, sebum balance, barrier support." },
+        { "name": "Retinol 0.1%", "desc": "Clinically proven for fine lines; ramp slowly." },
+        { "name": "Hyaluronic Acid", "desc": "Humectant; layer under occlusive moisturizer." },
+        { "name": "Urea 5%", "desc": "Keratolytic + humectant for texture care." }
+      ]
+    }
+  },
+  "ingredientRecommendations": {
+    "demoTitle": "Ingredient Recommendations Demo",
+    "demoSubtitle": "Display optimal ingredients based on skin type",
+    "oily": [
+      { "name": "Salicylic Acid", "desc": "Unclogs pores and regulates sebum production." },
+      { "name": "Niacinamide", "desc": "Controls oil production and tightens pores." },
+      { "name": "Retinol", "desc": "Promotes cell turnover and keeps pores clear." },
+      { "name": "Glycolic Acid", "desc": "Exfoliates dead skin cells and improves texture." },
+      { "name": "Ceramides", "desc": "Strengthens skin barrier and retains moisture." }
+    ],
+    "dry": [
+      { "name": "Hyaluronic Acid", "desc": "Hydrates skin and prevents dryness." },
+      { "name": "Ceramides", "desc": "Repairs skin barrier and prevents moisture loss." },
+      { "name": "Urea", "desc": "Softens keratin and enhances moisturization." },
+      { "name": "Panthenol", "desc": "Promotes skin repair and soothes inflammation." },
+      { "name": "Squalane", "desc": "Protects skin and maintains softness." }
+    ],
+    "combination": [
+      { "name": "Niacinamide", "desc": "Balances oil in T-zone and prevents cheek dryness." },
+      { "name": "Hyaluronic Acid", "desc": "Hydrates dry areas while maintaining balance." },
+      { "name": "Salicylic Acid", "desc": "Unclogs pores and keeps skin clean." },
+      { "name": "Ceramides", "desc": "Strengthens barrier and balances moisture." },
+      { "name": "Retinol", "desc": "Promotes turnover and improves overall skin quality." }
+    ],
+    "sensitive": [
+      { "name": "Ceramides", "desc": "Repairs skin barrier and protects from irritation." },
+      { "name": "Panthenol", "desc": "Soothes inflammation and promotes healing." },
+      { "name": "Aloe Vera", "desc": "Calming properties for irritated skin." },
+      { "name": "Glycerin", "desc": "Gentle hydration without irritation." },
+      { "name": "Squalane", "desc": "Protects skin and minimizes irritation." }
+    ],
+    "normal": [
+      { "name": "Vitamin C", "desc": "Antioxidant protection and brightness maintenance." },
+      { "name": "Retinol", "desc": "Promotes cell turnover and maintains youthfulness." },
+      { "name": "Hyaluronic Acid", "desc": "Balanced hydration for optimal moisture." },
+      { "name": "Niacinamide", "desc": "Even skin tone and pore refinement." },
+      { "name": "Peptides", "desc": "Improves elasticity and prevents fine lines." }
+    ]
+  }
+}

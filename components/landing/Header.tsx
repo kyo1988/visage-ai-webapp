@@ -1,10 +1,16 @@
 'use client';
-import { useTranslation } from "@/context/LanguageContext"; // Contextのパスを修正
+import { useTranslations, useLocale } from '@/app/lib/intl';
 
 export const Header = () => {
-  const { t, lang, changeLanguage } = useTranslation();
+  const t = useTranslations();
+  const locale = useLocale();
+  
   const handleLangChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    changeLanguage(e.target.value as "ja" | "en");
+    const newLang = e.target.value as "ja" | "en";
+    // For now, we'll use a simple approach - redirect to the new locale
+    if (newLang !== locale) {
+      window.location.href = `/${newLang}`;
+    }
   };
 
   return (
@@ -21,7 +27,7 @@ export const Header = () => {
           </ul>
         </nav>
         <div className="language-switcher">
-          <select onChange={handleLangChange} value={lang} className="rounded border border-brand-pink-brown bg-transparent px-3 py-1 text-sm text-brand-pink-brown">
+          <select onChange={handleLangChange} value={locale} className="rounded border border-brand-pink-brown bg-transparent px-3 py-1 text-sm text-brand-pink-brown">
             <option value="ja">日本語</option>
             <option value="en">English</option>
           </select>

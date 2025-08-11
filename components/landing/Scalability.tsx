@@ -1,31 +1,48 @@
 'use client';
-import { useTranslation } from "@/context/LanguageContext";
 
-export const ScalabilitySection = () => {
-  const { t } = useTranslation();
+import Image from 'next/image';
+import { useTranslations } from '@/app/lib/intl';
+
+export default function Scalability() {
+  const t = useTranslations();
+
   return (
-    <section className="py-20 md:py-24 bg-[#f8f0f0]">
-      <div className="container mx-auto px-6">
-        <div className="text-center">
-          <h3 className="font-display text-3xl md:text-4xl font-bold">{t("scalability_main_title")}</h3>
-          <p className="text-lg text-brand-text-sub mt-4 mb-16 max-w-3xl mx-auto">{t("scalability_main_subtitle")}</p>
+    <section id="scale" className="scroll-mt-28 py-16 bg-slate-50">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 grid gap-10 lg:grid-cols-2 items-center">
+        <div>
+          <h2 className="text-2xl font-semibold">{t("scalability.title")}</h2>
+          <p className="mt-3 text-slate-600">{t("scalability.subtitle")}</p>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border bg-white p-5">
+              <h3 className="font-medium">{t("scalability.cards.region.title")}</h3>
+              <p className="mt-1 text-sm text-slate-600">{t("scalability.cards.region.desc")}</p>
+            </div>
+            <div className="rounded-xl border bg-white p-5">
+              <h3 className="font-medium">{t("scalability.cards.sdk.title")}</h3>
+              <p className="mt-1 text-sm text-slate-600">{t("scalability.cards.sdk.desc")}</p>
+            </div>
+            <div className="rounded-xl border bg-white p-5">
+              <h3 className="font-medium">{t("scalability.cards.security.title")}</h3>
+              <p className="mt-1 text-sm text-slate-600">{t("scalability.cards.security.desc")}</p>
+            </div>
+            <div className="rounded-xl border bg-white p-5">
+              <h3 className="font-medium">{t("scalability.cards.cost.title")}</h3>
+              <p className="mt-1 text-sm text-slate-600">{t("scalability.cards.cost.desc")}</p>
+            </div>
+          </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-10 order-2 md:order-1">
-            <div>
-              <h4 className="font-display text-xl font-bold mb-3">{t("scalability1_title")}</h4>
-              <p>{t("scalability1_desc")}</p>
-            </div>
-            <div>
-              <h4 className="font-display text-xl font-bold mb-3">{t("scalability2_title")}</h4>
-              <p>{t("scalability2_desc")}</p>
-            </div>
-          </div>
-          <div className="order-1 md:order-2 p-4 bg-white rounded-4xl shadow-card">
-            <img src="https://res.cloudinary.com/dgqphttst/image/upload/v1747936806/LPSpace_vcltnd.png" alt={t("scalability_img_alt")} className="w-full h-auto rounded-3xl" />
-          </div>
+
+        <div>
+          <Image
+            src="/mock/scalability-1.png" // ない場合は差し替え
+            alt={t("scalability.imageAlt")}
+            width={960}
+            height={640}
+            className="w-full h-auto rounded-xl border bg-white object-cover"
+          />
         </div>
       </div>
     </section>
   );
-};
+}

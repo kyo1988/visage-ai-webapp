@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    { "source": "/docs",              "destination": "/ja/docs",              "permanent": true },
+    { "source": "/docs/:path*",       "destination": "/ja/docs/:path*",       "permanent": true },
+    { "source": "/pricing",           "destination": "/ja/pricing",           "permanent": true },
+    { "source": "/pricing/:path*",    "destination": "/ja/pricing/:path*",    "permanent": true },
+    { "source": "/product",           "destination": "/ja/product",           "permanent": true },
+    { "source": "/product/:path*",    "destination": "/ja/product/:path*",    "permanent": true },
+    { "source": "/cases",             "destination": "/ja/cases",             "permanent": true },
+    { "source": "/cases/:path*",      "destination": "/ja/cases/:path*",      "permanent": true },
+    { "source": "/security",          "destination": "/ja/security",          "permanent": true },
+    { "source": "/security/:path*",   "destination": "/ja/security/:path*",   "permanent": true },
+    { "source": "/demo",              "destination": "/ja/demo",              "permanent": true },
+    { "source": "/demo/:path*",       "destination": "/ja/demo/:path*",       "permanent": true }
+  ]
+}

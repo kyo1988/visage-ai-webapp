@@ -1,43 +1,60 @@
 'use client';
-import { useTranslation } from "@/context/LanguageContext";
-import { Icons } from "@/components/Icons";
 
-export const Footer = () => {
-  const { t } = useTranslation();
+import Link from 'next/link';
+import intl from '@/app/lib/intl';
+
+export default function Footer() {
+  const t = intl.useTranslations();
+  const locale = intl.useLocale();
+  const base = `/${locale}`;
+
+  const nav = [
+    { href: `${base}`, label: t("footer.sitemap.product") },
+    { href: `${base}/cases`, label: t("footer.sitemap.cases") },
+    { href: `${base}/docs`, label: t("footer.sitemap.docs") },
+    { href: `${base}/pricing`, label: t("footer.sitemap.pricing") },
+    { href: `${base}/docs/security`, label: t("footer.sitemap.security") }
+  ];
+
   return (
-    <footer className="bg-brand-pink-brown text-white/90 pt-20 pb-8">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-12 text-center md:text-left">
-          <div className="footer-col">
-            <h3 className="font-display text-2xl font-bold text-white mb-4">Visage AI</h3>
-            <p className="text-white/80">{t("footer_tagline")}</p>
-            <p className="text-white/80 mt-4">{t("footer_company_name")}</p>
-            <a href={t("footer_website_url")} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">{t("footer_website_text")}</a>
-            <a href={`mailto:${t("footer_email_address")}`} className="text-white/80 hover:text-white transition-colors block">{t("footer_email_text")}</a>
-          </div>
-          <div className="footer-col">
-            <h4 className="font-bold text-lg text-white mb-4">{t("footer_sitemap")}</h4>
-            <ul className="space-y-2">
-              <li><a href="#features" className="text-white/80 hover:text-white transition-colors">{t("nav_features")}</a></li>
-              <li><a href="#story" className="text-white/80 hover:text-white transition-colors">{t("nav_story")}</a></li>
-              <li><a href="#technology" className="text-white/80 hover:text-white transition-colors">{t("nav_technology")}</a></li>
-              <li><a href="#results" className="text-white/80 hover:text-white transition-colors">{t("nav_results")}</a></li>
-              <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">{t("nav_contact")}</a></li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <h4 className="font-bold text-lg text-white mb-4">{t("footer_follow_sns")}</h4>
-            <div className="flex justify-center md:justify-start gap-4">
-              <a href="#" aria-label="Facebook" className="hover:scale-110 transition-transform"><Icons.Facebook /></a>
-              <a href="#" aria-label="Instagram" className="hover:scale-110 transition-transform"><Icons.Instagram /></a>
-              <a href="#" aria-label="X (Twitter)" className="hover:scale-110 transition-transform"><Icons.X /></a>
-            </div>
+    <footer className="mt-0 bg-gray-900 text-gray-300">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8 md:py-10 grid gap-10 md:grid-cols-3">
+        <div>
+          <div className="text-white font-semibold">Visage AI</div>
+          <p className="mt-2 text-sm text-gray-400">{t("footer.tagline")}</p>
+          <p className="mt-4 text-xs text-gray-500">© {new Date().getFullYear()} Visage AI</p>
+          <div className="mt-4">
+            <a
+              href="https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-sky-400 hover:text-sky-300"
+            >
+              → App Store
+            </a>
           </div>
         </div>
-        <div className="border-t border-white/20 mt-12 pt-6 text-center text-sm text-white/60">
-          <p>&copy; {new Date().getFullYear()} {t("footer_copyright")}</p>
+
+        <nav>
+          <div className="text-white font-medium">{t("footer.sitemap.title")}</div>
+          <ul className="mt-3 space-y-2">
+            {nav.map((n) => (
+              <li key={n.href}>
+                <Link href={n.href} className="hover:text-white">{n.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <div className="text-white font-medium">{t("footer.follow.title")}</div>
+          <ul className="mt-3 space-y-2">
+            <li><a href="#" className="hover:text-white" aria-label="X/Twitter">X (Twitter)</a></li>
+            <li><a href="#" className="hover:text-white" aria-label="GitHub">GitHub</a></li>
+            <li><a href="#" className="hover:text-white" aria-label="LinkedIn">LinkedIn</a></li>
+          </ul>
         </div>
       </div>
     </footer>
   );
-};
+}

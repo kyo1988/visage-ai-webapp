@@ -1,0 +1,760 @@
+{
+  "metadata": {
+    "title": "Visage AI - 説明可能なAI肌診断でCVRとLTVを最大化",
+    "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。SDK/APIで最短1週間導入。部位特定×XAIで納得感のあるレコメンド。",
+    "og": {
+      "title": "Visage AI - 説明可能なAI肌診断",
+      "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。",
+      "siteName": "Visage AI",
+      "alt": "Visage AI diagnostic report UI"
+    },
+    "twitter": {
+      "title": "Visage AI - 説明可能なAI肌診断",
+      "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。"
+    }
+  },
+  "nav": {
+    "product": "製品",
+    "cases": "導入事例",
+    "docs": "ドキュメント",
+    "pricing": "価格",
+    "security": "セキュリティ",
+    "demo": "デモを予約"
+  },
+  "hero": {
+    "title": "AI肌診断でCVRとLTVを最大化",
+    "lead": "XAIによる納得感と高精度な部位特定で、最適なレコメンドを自動化",
+    "primaryCta": "デモを予約",
+    "secondaryCta": "事例を見る"
+  },
+  "examples": {
+    "title": "例で見る診断レポート"
+  },
+  "reports": {
+    "title": "レポート例",
+    "viewSample": "サンプルを見る"
+  },
+  "kpi": {
+    "title": "導入効果",
+    "cvr": "CVR向上",
+    "aov": "客単価向上",
+    "retention": "リピート率改善"
+  },
+  "tech": {
+    "title": "技術の核",
+    "xai": "説明可能AI（XAI）",
+    "roi": "ROIに直結する高精度部位特定",
+    "sdk": "SDK / API で簡単統合"
+  },
+  "howItWorks": {
+    "title": "導入までの3ステップ",
+    "step1": {
+      "title": "設計(〜1日)",
+      "description": "お客様のビジネス要件をヒアリングし、最適な導入プランを設計します。"
+    },
+    "step2": {
+      "title": "実装(3–5日)",
+      "description": "SDK/APIを既存システムに組み込み、テスト環境で動作確認を行います。"
+    },
+    "step3": {
+      "title": "検証(7–14日)",
+      "description": "実運用環境での最終テストと効果測定を行い、必要に応じて調整します。"
+    },
+    "docsLink": "技術資料を見る"
+  },
+  "caseStudies": {
+    "title": "導入事例",
+    "challenge": "課題",
+    "solution": "解決",
+    "duration": "導入期間",
+    "cta": "同じ課題を解決するデモを見る",
+    "study1": {
+      "logo": "Logo 1",
+      "challenge": "顧客の肌悩みを正確に把握できない",
+      "solution": "AI肌診断でパーソナライズされた提案を実現",
+      "kpi1": {
+        "label": "CVR向上",
+        "value": "+20%"
+      },
+      "kpi2": {
+        "label": "LTV向上",
+        "value": "+10%"
+      },
+      "duration": "導入期間: 2ヶ月"
+    },
+    "study2": {
+      "logo": "Logo 2",
+      "challenge": "客観データ不足でレコメンドが困難",
+      "solution": "肌診断に基づくデータドリブンな推薦を実装",
+      "kpi1": {
+        "label": "客単価向上",
+        "value": "+15%"
+      },
+      "kpi2": {
+        "label": "CVR",
+        "value": "+8%"
+      },
+      "duration": "導入期間: 3ヶ月"
+    },
+    "study3": {
+      "logo": "Logo 3",
+      "challenge": "リピート率が低い",
+      "solution": "肌状態推移のトラッキングで再購買を促進",
+      "kpi1": {
+        "label": "再購入率",
+        "value": "+25%"
+      },
+      "kpi2": {
+        "label": "顧客維持率",
+        "value": "+12%"
+      },
+      "duration": "導入期間: 4ヶ月"
+    }
+  },
+  "faq": {
+    "title": "よくあるご質問",
+    "q1": {
+      "question": "撮影した顔写真データはどのように扱われますか？プライバシーは安全ですか？",
+      "answer": "PIIは不要で、オンデバイス前処理後に匿名化して送信可能です。データ保持はデフォルト30日（可変）、日本/US/EUのリージョン選択に対応しています。"
+    },
+    "q2": {
+      "question": "導入にはどのくらいの期間がかかりますか？",
+      "answer": "SDK/API連携で最短1週間。3–5日で実装、7–14日で検証を行います。"
+    },
+    "q3": {
+      "question": "既存のECサイトやアプリに組み込めますか？",
+      "answer": "はい、SDK/APIを提供しており、既存のシステムに柔軟に組み込むことができます。主要なプラットフォームに対応しています。"
+    },
+    "moreInfo": "もっと詳しく"
+  },
+  "finalCta": {
+    "title": "Visage AIで、あなたのビジネスを加速させませんか？",
+    "description": "数多くの企業がVisage AIの導入により、顧客体験の向上と売上増加を実現しています。",
+    "ctaPrimary": "デモを予約（20分）",
+    "ctaSecondary": "資料を受け取る"
+  },
+  "demo": {
+    "title": "20分の製品デモを予約",
+    "lead": "担当者がユースケースに沿って導入方法と効果指標を解説します。オンラインで実施します。"
+  },
+  "cta": {
+    "mobile": "20分で分かるデモを予約"
+  },
+  "HeroSection": {
+    "badge1": "診断 < 8秒",
+    "badge2": "部位根拠100%提示",
+    "badge3": "SDK & API即組み込み",
+    "title": "根拠が見えるAI肌診断で、<br/> 体験からリピートまでを一気通貫。",
+    "subtitle": "説明可能性(XAI) × 部位セグメンテーションで、EC・店頭のCVRとLTVを底上げします。",
+    "ctaDemo": "デモを予約",
+    "ctaExamples": "レポートの実例を見る"
+  },
+  "FeaturesSection": {
+    "title": "導入効果の指標例 (シミュレーション)",
+    "subtitle": "Visage AIの導入がもたらす、顧客体験とビジネス指標へのインパクトをシミュレーションします。",
+    "item1_title": "再来店率 +20%*",
+    "item1_desc": "パーソナライズされた体験が顧客満足度を高め、店舗やECサイトへの再訪を促します。",
+    "item2_title": "NPS +10pt*",
+    "item2_desc": "顧客の推奨意向を高め、ポジティブな口コミを創出します。",
+    "item3_title": "CVR +5%*",
+    "item3_desc": "納得感のある提案が、購入決定率を向上させます。",
+    "footnote": "*表記されている数値は、弊社の顧客データおよび市場調査に基づき算出されたシミュレーション値です。実際の効果は、導入環境や運用方法によって変動します。"
+  },
+  "FaqSection": {
+    "title": "よくあるご質問",
+    "q1": "撮影した顔写真データはどのように扱われますか？プライバシーは安全ですか？",
+    "a1_p1": "はい、お客様のプライバシーは最優先事項です。",
+    "a1_p2": "<strong>標準の簡易診断では、顔画像はすべてお客様のスマートフォン内で処理が完結します。</strong>解析データがクラウドサーバーへ送信されることは一切ありません。",
+    "a1_p3": "より高精度な解析（PRO版機能）をご利用いただく場合に限り、お客様から<strong>個別の明確な同意を得た上で</strong>、個人を特定できないよう匿名化したデータを安全なクラウド環境で解析します。データ保持ポリシーの詳細はプライバシーポリシーをご確認ください。"
+  },
+  "ReportExamplesSection": {
+    "title": "実例で見る診断レポート",
+    "subtitle": "AIがどのように肌の状態を分析し、どんなインサイトを提供するか、実際のレポートで体験してください。",
+    "cta": "実際のレポートを体験する"
+  },
+  "FloatingCta": {
+    "text": "デモを予約"
+  },
+  "Header": {
+    "nav_features": "特徴",
+    "nav_story": "ストーリー",
+    "nav_technology": "技術",
+    "nav_results": "実績",
+    "nav_contact": "お問い合わせ"
+  },
+  "PrivacySection": {
+    "privacy_main_title": "プライバシーとセキュリティ",
+    "privacy_main_subtitle": "お客様のデータは厳重に保護され、透明性の高い運用を心がけています。",
+    "privacy1_title": "データ暗号化",
+    "privacy1_desc": "全ての通信と保存データは業界標準の暗号化技術で保護されます。",
+    "privacy2_title": "アクセス制御",
+    "privacy2_desc": "お客様のデータへのアクセスは厳格に管理され、不正アクセスを防止します。",
+    "privacy3_title": "透明性",
+    "privacy3_desc": "データの収集、利用、共有に関するポリシーを明確に開示しています。"
+  },
+  "StorySection": {
+    "story_main_title": "Visage AIのストーリー",
+    "story_main_subtitle": "AIとデータで、次世代の「肌の物語」を紡ぐ。",
+    "story_img_alt": "AIによる肌分析のイメージ",
+    "story_para1": "Visage AIは、肌の悩みを抱えるすべての人々に、科学的根拠に基づいたパーソナライズされたソリューションを提供するために誕生しました。私たちは、最先端のAI技術と皮膚科学の知見を融合させ、これまで不可能だった肌の深層分析を可能にしました。",
+    "story_para2": "単なる診断ツールではなく、お客様一人ひとりの肌の「物語」を理解し、最適なケアへと導くパートナーとなることを目指しています。肌の状態を可視化し、変化を追跡することで、お客様が自信を持って美しさを追求できるようサポートします。"
+  },
+  "TechnologySection": {
+    "tech_main_title": "Visage AIの技術",
+    "tech_main_subtitle": "最先端のAI技術と皮膚科学の融合で、肌の真実を解き明かす。",
+    "tech_title1": "説明可能なAI (XAI)",
+    "tech_desc1": "AIが診断結果の根拠を明確に提示。どの部位が、なぜ、どのように評価されたかを可視化し、お客様への信頼と納得感を高めます。",
+    "tech_title2": "高精度部位セグメンテーション",
+    "tech_desc2": "顔の各部位（目元、口元、頬など）を正確に識別し、部位ごとの肌状態を詳細に分析。パーソナライズされたケア提案を可能にします。",
+    "tech_img1_caption": "AIによる肌分析",
+    "tech_img2_caption": "Grad-CAMによる根拠可視化",
+    "ux_main_title": "ユーザー体験へのこだわり",
+    "ux_main_subtitle": "直感的でシームレスな体験で、お客様の肌診断をより身近に。",
+    "ux_title1": "高速診断",
+    "ux_desc1": "8秒以内の高速診断で、お客様を待たせません。ストレスフリーな体験を提供します。",
+    "ux_title2": "簡単操作",
+    "ux_desc2": "スマートフォンで顔写真を撮影するだけで、誰でも簡単に肌診断ができます。特別な機器は不要です。"
+  },
+  "ResultsSection": {
+    "results_main_title": "導入実績と効果",
+    "results_main_subtitle": "Visage AIは、様々な業界で顧客体験とビジネス成果を向上させています。",
+    "result1_title": "顧客満足度向上",
+    "result1_desc": "パーソナライズされた診断で、顧客のエンゲージメントと満足度が大幅に向上。",
+    "result2_title": "コンバージョン率改善",
+    "result2_desc": "的確な商品レコメンドにより、ECサイトでの購入率が向上。",
+    "result3_title": "リピート率増加",
+    "result3_desc": "継続的な肌状態のトラッキングで、顧客のリピート購入を促進。",
+    "results_conclusion": "Visage AIは、データに基づいた肌診断で、お客様のビジネス成長を強力にサポートします。"
+  },
+  "ScalabilitySection": {
+    "scalability_main_title": "導入の柔軟性と拡張性",
+    "scalability_main_subtitle": "SDKとAPIで、あらゆるビジネスモデルにシームレスに統合。",
+    "scalability1_title": "SDK/API連携",
+    "scalability1_desc": "既存のアプリやウェブサイトに数行のコードで簡単に組み込み可能。開発コストと時間を大幅に削減します。",
+    "scalability2_title": "多様な導入形態",
+    "scalability2_desc": "クラウド型、オンプレミス型、ハイブリッド型など、お客様のセキュリティポリシーやインフラ環境に合わせた柔軟な導入が可能です。",
+    "scalability_img_alt": "SDK/API連携のイメージ"
+  },
+  "CTASection": {
+    "cta_bottom_main_title": "お問い合わせ",
+    "cta_bottom_main_subtitle": "Visage AIに関するご質問、デモのご依頼、資料請求など、お気軽にお問い合わせください。",
+    "cta1_title": "デモを予約",
+    "cta1_desc": "Visage AIの機能を実際に体験。貴社のビジネスにどう貢献できるか、個別にご説明します。",
+    "cta1_btn": "デモ予約",
+    "cta2_title": "資料をダウンロード",
+    "cta2_desc": "You can download materials summarizing Visage AI's functions, case studies, and technical details for free.",
+    "cta2_btn": "資料ダウンロード",
+    "cta3_title": "お問い合わせ",
+    "cta3_desc": "その他、ご不明な点やご相談がございましたら、お気軽にお問い合わせください。",
+    "cta3_btn": "お問い合わせ"
+  },
+  "Footer": {
+    "footer_tagline": "AIとデータで、次世代の「肌の物語」を紡ぐ。",
+    "footer_company_name": "Visage AI株式会社",
+    "footer_website_url": "https://www.visageaiconsulting.com",
+    "footer_website_text": "公式サイト",
+    "footer_email_address": "info@visageaiconsulting.com",
+    "footer_email_text": "お問い合わせ",
+    "footer_sitemap": "サイトマップ",
+    "footer_follow_sns": "SNSをフォロー",
+    "footer_copyright": "Visage AI All Rights Reserved."
+  },
+  "product": {
+    "title": "製品",
+    "description": "Visage AIの製品情報ページです。",
+    "underConstruction": "現在、このページは準備中です。",
+    "hero": {
+      "title": "AI搭載肌診断プラットフォーム",
+      "subtitle": "説明可能なAIでパーソナライズされたスキンケアレコメンドを提供し、顧客エンゲージメントを向上させることで、ビジネスを変革しましょう。",
+      "cta": "デモを予約",
+      "secondaryCta": "ドキュメントを見る"
+    },
+    "features": {
+      "title": "主要機能",
+      "speed": {
+        "title": "超高速処理",
+        "description": "8秒以内で肌診断を完了し、リアルタイム処理と即座の結果を提供します。"
+      },
+      "accuracy": {
+        "title": "高精度",
+        "description": "肌状態の評価と部位検出で95%以上の精度を実現する先進的なAIアルゴリズム。"
+      },
+      "integration": {
+        "title": "簡単統合",
+        "description": "既存のシステムとワークフローにシームレスに統合できるシンプルなSDK/API。"
+      }
+    },
+    "technology": {
+      "title": "先進技術",
+      "xai": {
+        "title": "説明可能AI（XAI）",
+        "description": "私たちのAIは結果を提供するだけでなく、なぜ、どのように結論に達したかを説明し、お客様の顧客との信頼関係を構築します。",
+        "benefit1": "透明性のある意思決定プロセス",
+        "benefit2": "顧客の信頼と自信",
+        "benefit3": "規制コンプライアンスのサポート"
+      },
+      "specs": {
+        "title": "技術仕様",
+        "analysisTime": "分析時間",
+        "analysisTimeValue": "8秒未満",
+        "accuracy": "精度",
+        "accuracyValue": "95%以上",
+        "regions": "検出可能な部位",
+        "regionsValue": "15以上の顔の部位",
+        "integration": "統合時間",
+        "integrationValue": "1週間"
+      }
+    },
+    "integration": {
+      "title": "統合オプション",
+      "web": {
+        "title": "Web SDK",
+        "description": "簡単なインストールと包括的なドキュメントを備えたWebアプリケーション用のJavaScript SDK。"
+      },
+      "mobile": {
+        "title": "モバイルSDK",
+        "description": "最適化されたパフォーマンスを備えたモバイルアプリケーション用のネイティブiOSおよびAndroid SDK。"
+      },
+      "api": {
+        "title": "REST API",
+        "description": "カスタム統合とエンタープライズソリューション用のRESTful APIエンドポイント。"
+      }
+    },
+    "cta": {
+      "title": "始める準備はできていますか？",
+      "description": "既にVisage AIを使用して顧客体験を改善し、売上を向上させている主要ブランドに参加しましょう。",
+      "primary": "デモを予約",
+      "secondary": "SDKをダウンロード"
+    }
+  },
+  "cases": {
+    "title": "導入事例",
+    "description": "Visage AIの導入事例ページです。",
+    "underConstruction": "現在、このページは準備中です。",
+    "hero": {
+      "title": "実際の成功事例",
+      "subtitle": "主要ブランドがVisage AIの説明可能な肌診断技術でビジネスを変革している事例をご紹介します。",
+      "cta": "デモを予約",
+      "secondaryCta": "事例をダウンロード"
+    },
+    "metrics": {
+      "title": "実証された成果",
+      "cvr": "CVR改善",
+      "aov": "客単価向上",
+      "retention": "リピート率",
+      "ltv": "LTV成長"
+    },
+    "caseStudies": {
+      "title": "顧客成功事例",
+      "challenge": "課題",
+      "solution": "解決策",
+      "chartPlaceholder": "パフォーマンスチャート",
+      "study1": {
+        "company": "BeautyCorp",
+        "industry": "化粧品・スキンケア",
+        "challenge": "顧客の肌悩みを正確に把握し、パーソナライズされたレコメンドを提供できない。",
+        "solution": "Visage AIの肌診断を導入し、データドリブンでパーソナライズされた商品レコメンドを実現。",
+        "kpi1": {
+          "label": "CVR改善",
+          "value": "+20%"
+        },
+        "kpi2": {
+          "label": "LTV向上",
+          "value": "+10%"
+        }
+      },
+      "study2": {
+        "company": "SkinTech",
+        "industry": "皮膚科・ウェルネス",
+        "challenge": "客観的な肌データと顧客エンゲージメントの不足により、商品レコメンドが困難。",
+        "solution": "Visage AIを統合し、エビデンスベースの肌診断を提供して顧客体験を改善。",
+        "kpi1": {
+          "label": "客単価向上",
+          "value": "+15%"
+        },
+        "kpi2": {
+          "label": "CVR改善",
+          "value": "+8%"
+        }
+      },
+      "study3": {
+        "company": "HealthBeauty",
+        "industry": "ヘルス・ビューティー小売",
+        "challenge": "パーソナライズされたフォローアップの不足により、リピート購入率と顧客維持率が低い。",
+        "solution": "Visage AIを活用して肌状態の変化を追跡し、パーソナライズされたケアレコメンドを提供。",
+        "kpi1": {
+          "label": "リピート購入率",
+          "value": "+25%"
+        },
+        "kpi2": {
+          "label": "顧客維持率",
+          "value": "+12%"
+        }
+      }
+    },
+    "implementation": {
+      "title": "導入プロセス",
+      "step1": {
+        "title": "計画・設計",
+        "description": "お客様のチームと密接に連携し、ビジネス要件を理解して最適な導入戦略を設計します。",
+        "duration": "1-2週間"
+      },
+      "step2": {
+        "title": "開発・統合",
+        "description": "当社のエンジニアがSDK/APIを既存システムに統合し、開発環境での徹底的なテストを実施します。",
+        "duration": "2-4週間"
+      },
+      "step3": {
+        "title": "ローンチ・最適化",
+        "description": "本番環境でソリューションをローンチし、パフォーマンスを監視し、実際の使用データに基づいて最適化します。",
+        "duration": "1-2週間"
+      }
+    },
+    "cta": {
+      "title": "同じような成果を見たいですか？",
+      "description": "これらの成功事例に参加し、Visage AIの実証された技術でビジネスを変革しましょう。",
+      "primary": "デモを予約",
+      "secondary": "営業に相談"
+    }
+  },
+  "pricing": {
+    "title": "価格",
+    "description": "Visage AIの価格情報ページです。",
+    "underConstruction": "現在、このページは準備中です。",
+    "hero": {
+      "title": "シンプルで透明性の高い価格設定",
+      "subtitle": "ビジネスニーズに合ったプランを選択してください。隠れた料金なしで、成長に合わせてスケールアップできます。",
+      "cta": "始める",
+      "secondaryCta": "営業に相談"
+    },
+    "popular": "最も人気",
+    "perMonth": "月額",
+    "tiers": {
+      "starter": {
+        "name": "スターター",
+        "price": "¥0",
+        "description": "小規模ビジネスやスタートアップに最適",
+        "features": {
+          "analyses": "月100回の分析",
+          "support": "メールサポート",
+          "api": "基本APIアクセス",
+          "docs": "ドキュメントアクセス"
+        }
+      },
+      "pro": {
+        "name": "プロ",
+        "price": "¥74,800",
+        "description": "成長中のビジネスに最適",
+        "features": {
+          "analyses": "月10,000回の分析",
+          "support": "優先サポート",
+          "xai": "説明可能AI機能",
+          "analytics": "高度な分析ダッシュボード",
+          "integration": "カスタム統合サポート"
+        }
+      },
+      "enterprise": {
+        "name": "エンタープライズ",
+        "price": "カスタム",
+        "description": "特定の要件を持つ大規模組織向け",
+        "features": {
+          "sla": "99.9% SLA保証",
+          "onprem": "オンプレミス展開オプション",
+          "security": "SOC2 Type II準拠",
+          "support": "24/7専用サポート",
+          "custom": "カスタム機能開発"
+        }
+      }
+    },
+    "faq": {
+      "title": "よくある質問",
+      "q1": {
+        "question": "プランはいつでも変更できますか？",
+        "answer": "はい、いつでもプランをアップグレードまたはダウングレードできます。変更は即座に反映されます。"
+      },
+      "q2": {
+        "question": "月間制限を超えた場合はどうなりますか？",
+        "answer": "制限に近づいた際にお知らせします。プランをアップグレードするか、追加の分析を購入できます。"
+      },
+      "q3": {
+        "question": "セットアップ料金はありますか？",
+        "answer": "スターターとプロプランにはセットアップ料金はありません。エンタープライズプランはカスタムセットアップ要件がある場合があります。"
+      }
+    },
+    "cta": {
+      "title": "始める準備はできていますか？",
+      "description": "既にVisage AIを使用して顧客体験を向上させている何千ものビジネスに参加してください。",
+      "primary": "無料トライアルを開始",
+      "secondary": "デモをスケジュール"
+    },
+    "getStarted": "始める",
+    "contactSales": "営業に相談"
+  },
+  "docs": {
+    "home": {
+      "title": "Visage AI ドキュメント",
+      "lead": "SDK/API の導入、コア概念、セキュリティをここから。まずはお使いのプラットフォームを選択してください。"
+    },
+    "search": {
+      "placeholder": "ドキュメントを検索...",
+      "noResults": "結果が見つかりません"
+    },
+    "cards": {
+      "overview": {
+        "title": "概要",
+        "desc": "コア概念、制限、サポート"
+      },
+      "sdkJs": {
+        "title": "JavaScript SDK",
+        "desc": "Web/Node クイックスタート"
+      },
+      "sdkSwift": {
+        "title": "Swift SDK",
+        "desc": "iOS サンプル"
+      },
+      "sdkKotlin": {
+        "title": "Kotlin SDK",
+        "desc": "Android サンプル"
+      },
+      "security": {
+        "title": "セキュリティ",
+        "desc": "データフローとコンプライアンス"
+      }
+    },
+    "cta": {
+      "demo": "ライブデモを予約 →"
+    },
+    "pages": {
+      "overview": {
+        "title": "Visage AI ドキュメント",
+        "lead": "SDK/API の導入、コア概念、セキュリティをここから。まずはお使いのプラットフォームを選択してください。",
+        "nextSteps": {
+          "title": "次のステップ",
+          "step1": "API キーを取得し",
+          "step1Code": "NEXT_PUBLIC_VISAGE_KEY",
+          "step1End": "を設定。",
+          "step2": "サンプルコードを動かしてレスポンスを確認。",
+          "step3": "本番環境に合わせてリージョン/保持期間を設定。"
+        },
+        "cards": {
+          "sdkJs": {
+            "title": "JavaScript SDK",
+            "desc": "数行で導入。Web/Node 対応。"
+          },
+          "sdkSwift": {
+            "title": "Swift SDK",
+            "desc": "iOS / visionOS アプリへ。"
+          },
+          "sdkKotlin": {
+            "title": "Kotlin SDK",
+            "desc": "Android アプリへ。"
+          },
+          "security": {
+            "title": "セキュリティ",
+            "desc": "データ取り扱い・保持期間・送信仕様など。"
+          }
+        }
+      },
+      "sdkJs": {
+        "title": "JavaScript SDK",
+        "subtitle": "Install and analyze in a few lines.",
+        "response": "Response",
+        "navigation": {
+          "prev": "overview",
+          "next": "sdk-swift"
+        }
+      },
+      "sdkSwift": {
+        "title": "Swift SDK",
+        "subtitle": "Install and analyze in a few lines.",
+        "response": "Response",
+        "navigation": {
+          "prev": "sdk-js",
+          "next": "sdk-kotlin"
+        }
+      },
+      "sdkKotlin": {
+        "title": "Kotlin SDK",
+        "subtitle": "Install and analyze in a few lines.",
+        "response": "Response",
+        "navigation": {
+          "prev": "sdk-swift",
+          "next": "security"
+        }
+      },
+      "security": {
+        "title": "Security & Privacy",
+        "navigation": {
+          "prev": "sdk-kotlin"
+        }
+      }
+    },
+    "common": {
+      "breadcrumb": "Docs",
+      "navigation": {
+        "prev": "←",
+        "next": "→"
+      }
+    }
+  },
+  "story": {
+    "title": "Visage AI の活用例",
+    "subtitle": "導入から運用まで、実際のお客様の進め方。",
+    "points": [
+      "まずは SDK と最小の属性から開始、段階的に拡張。",
+      "説明可能なレコメンドで信頼と CVR を向上。",
+      "リージョン制御と保持期間で安全に運用。"
+    ],
+    "imageAlt": "導入事例のイメージ"
+  },
+  "scalability": {
+    "title": "スケールとガバナンスの両立",
+    "subtitle": "透明性の高いコントロールでグローバル運用。",
+    "cards": {
+      "region": { "title": "リージョン", "desc": "JP/US/EU をテナント単位で選択可能。" },
+      "sdk": { "title": "SDK & API", "desc": "JS / Swift / Kotlin と REST API。" },
+      "security": { "title": "セキュリティ", "desc": "TLS 1.2+・JWT・PII なし運用も可能。" },
+      "cost": { "title": "コスト管理", "desc": "スケールしても予測可能なコスト設計。" }
+    },
+    "imageAlt": "グローバル・スケーラブルな構成図"
+  },
+  "landing": {
+    "hero": {
+      "title": "体験からリテンションまで——説明可能なAI肌診断で一気通貫",
+      "lead": "XAIインサイトと精緻なセグメンテーションで、EC/店舗のCVRとLTVを底上げ。開発者に優しいSDKも提供。",
+      "primaryCta": "デモを予約",
+      "secondaryCta": "レポート例を見る",
+      "badges": ["A/B成長", "説明可能AI", "SDK & API"],
+      "previewAlt": "Visage AI レポートのプレビュー",
+      "deployedNote": "iOSアプリ「Visage AI: Skin Advisor」で既に運用中。B2B向けの実機デモとしてご利用いただけます。"
+    },
+    "kpi": {
+      "title": "導入後のインパクト（シミュレーション）",
+      "cards": {
+        "cvr": { "title": "CVR +20%", "desc": "パーソナライズとXAIナッジ" },
+        "nps": { "title": "NPS +10pt", "desc": "説明が増えると満足度も上がる" },
+        "ltv": { "title": "LTV +10%", "desc": "習慣化支援でリテンション向上" }
+      }
+    },
+    "tech": {
+      "title": "Visage AI の技術",
+      "lead": "クライアントサイド推論・プライバシーファースト・柔軟なSDK",
+      "deployedNote": "iOSアプリで実運用・検証済み。ライブデモをご希望の方はご連絡ください。",
+      "code": {
+        "jsTitle": "JavaScript（Web SDK）",
+        "kotlinTitle": "Kotlin（Android）",
+        "swiftTitle": "Swift（iOS）"
+      }
+    },
+    "cases": {
+      "title": "導入事例と効果",
+      "lead": "トライアルからスケールまで、各業界での実測成果",
+      "disclaimer": "数値はデモ目的のシミュレーション例です。"
+    },
+    "story": { 
+      "title": "ストーリー", 
+      "lead": "透明なAIにこだわる理由",
+      "alt": "東京のスカイラインと東アジア女性のイラスト（回路モチーフ）",
+      "storyTitle": "東京発、もてなしの心でつくるAI",
+      "storyLead": "日本の美容文化と現代AIの精緻さから着想を得て、透明性・再現性・測定可能な効果にこだわります。",
+      "appNote": "軽量モデルはiOSアプリ「Visage AI: Skin Advisor」に実装済みです。"
+    },
+    "scalability": { "title": "スケールとガバナンス", "lead": "エンタープライズ水準で安全に運用" },
+    "finalCta": {
+      "title": "Visage AIで事業成長を加速しませんか？",
+      "primary": "15分でデモ予約",
+      "secondary": "ドキュメントを読む"
+    },
+    "faq": { "title": "FAQ" }
+  },
+      "footer": {
+      "tagline": "EC・店舗向けの説明可能な肌診断 SDK/API。",
+      "sitemap": {
+        "title": "サイトマップ",
+        "product": "プロダクト",
+        "cases": "導入事例",
+        "docs": "ドキュメント",
+        "pricing": "料金",
+        "security": "セキュリティ"
+      },
+      "follow": { "title": "SNS" },
+      "app": "iOSアプリ：Visage AI — Skin Advisor"
+    },
+  "NotFound": {
+    "title": "ページが見つかりません",
+    "message": "お探しのページは見つかりませんでした。"
+  },
+  "report": {
+    "metaTitle": "パーソナルスキンケア診断レポート",
+    "title": "パーソナルスキンケア診断レポート",
+    "share": "共有リンクをコピー",
+    "copied": "コピーしました",
+    "print": "印刷",
+    "score": "スコア",
+    "profile": "プロフィール",
+    "aiInsights": "AIインサイト",
+    "amRoutine": "朝のルーチン",
+    "pmRoutine": "夜のルーチン",
+    "weeklyRoutine": "週間",
+    "ingredientsBySkinType": "肌質に基づくおすすめ成分",
+    "recommendedProducts": "おすすめ商品",
+    "viewProduct": "商品を見る",
+    "score": {
+      "label": "良好"
+    },
+    "radar": {
+      "labels": ["テクスチャ", "水分", "毛穴", "シワ", "色素沈着", "敏感度"]
+    },
+    "ingredients": {
+      "title": "推奨イングラディエント",
+      "subtitle": "あなたの肌タイプに最適な成分",
+      "noRecommendations": "推奨イングラディエントが見つかりませんでした。",
+      "disclaimer": "※ これらの成分は一般的な推奨事項です。使用前にパッチテストを行い、医師に相談してください。",
+      "items": [
+        { "name": "ナイアシンアミド 5%", "desc": "トーン調整、皮脂バランス、バリアサポート。" },
+        { "name": "レチノール 0.1%", "desc": "細かいシワに臨床的に証明された効果。徐々に増量してください。" },
+        { "name": "ヒアルロン酸", "desc": "保湿剤。オクルーシブクリームの下に重ねて使用。" },
+        { "name": "尿素 5%", "desc": "角質溶解 + 保湿。テクスチャーケアに。" }
+      ]
+    }
+  },
+  "ingredientRecommendations": {
+    "demoTitle": "イングラディエント推奨デモ",
+    "demoSubtitle": "肌タイプに応じた最適な成分を表示します",
+    "oily": [
+      { "name": "サリチル酸", "desc": "毛穴の詰まりを解消し、皮脂分泌を調整します。" },
+      { "name": "ナイアシンアミド", "desc": "皮脂分泌を抑制し、毛穴を引き締めます。" },
+      { "name": "レチノール", "desc": "角質のターンオーバーを促進し、毛穴を清潔に保ちます。" },
+      { "name": "グリコール酸", "desc": "古い角質を除去し、肌のテクスチャを改善します。" },
+      { "name": "セラミド", "desc": "肌のバリア機能を強化し、水分を保持します。" }
+    ],
+    "dry": [
+      { "name": "ヒアルロン酸", "desc": "肌に水分を補給し、乾燥を防ぎます。" },
+      { "name": "セラミド", "desc": "肌のバリア機能を修復し、水分の蒸発を防ぎます。" },
+      { "name": "尿素", "desc": "角質を柔らかくし、保湿効果を高めます。" },
+      { "name": "パンテノール", "desc": "肌の修復を促進し、炎症を鎮めます。" },
+      { "name": "スクワラン", "desc": "肌を保護し、柔らかさを保ちます。" }
+    ],
+    "combination": [
+      { "name": "ナイアシンアミド", "desc": "Tゾーンの皮脂を調整し、頬の乾燥を防ぎます。" },
+      { "name": "ヒアルロン酸", "desc": "乾燥しやすい部分に水分を補給します。" },
+      { "name": "サリチル酸", "desc": "毛穴の詰まりを解消し、肌を清潔に保ちます。" },
+      { "name": "セラミド", "desc": "肌のバリア機能を強化し、水分バランスを整えます。" },
+      { "name": "レチノール", "desc": "肌のターンオーバーを促進し、全体的な肌質を改善します。" }
+    ],
+    "sensitive": [
+      { "name": "セラミド", "desc": "肌のバリア機能を修復し、刺激から保護します。" },
+      { "name": "パンテノール", "desc": "炎症を鎮め、肌の修復を促進します。" },
+      { "name": "アロエベラ", "desc": "鎮静効果があり、刺激された肌を落ち着かせます。" },
+      { "name": "グリセリン", "desc": "穏やかな保湿効果で、肌を乾燥から守ります。" },
+      { "name": "スクワラン", "desc": "肌を保護し、刺激を最小限に抑えます。" }
+    ],
+    "normal": [
+      { "name": "ビタミンC", "desc": "抗酸化作用で肌を保護し、明るさを保ちます。" },
+      { "name": "レチノール", "desc": "肌のターンオーバーを促進し、若々しさを維持します。" },
+      { "name": "ヒアルロン酸", "desc": "適度な保湿で肌の水分バランスを整えます。" },
+      { "name": "ナイアシンアミド", "desc": "肌のトーンを整え、毛穴を引き締めます。" },
+      { "name": "ペプチド", "desc": "肌の弾力性を向上させ、シワを防ぎます。" }
+    ]
+  }
+}

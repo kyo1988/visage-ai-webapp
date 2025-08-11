@@ -7,6 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        brand: 'hsl(var(--brand)/<alpha-value>)',
+        bg: 'hsl(var(--bg)/<alpha-value>)',
+        card: 'hsl(var(--card)/<alpha-value>)',
+        fg: 'hsl(var(--fg)/<alpha-value>)',
+        muted: 'hsl(var(--muted)/<alpha-value>)',
         'brand': {
           'beige': '#fdfbf8',
           'brown-dark': '#4a3c3c',
@@ -24,6 +29,7 @@ module.exports = {
         display: ['"Montserrat"', '"Noto Sans JP"', 'sans-serif'],
       },
       borderRadius: {
+        'brand':'1rem', // 16px ≒ rounded-2xl
         '4xl': '2rem', // 32px
         '5xl': '2.5rem', // 40px
       },

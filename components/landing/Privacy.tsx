@@ -1,9 +1,9 @@
 'use client';
-import { useTranslation } from "@/context/LanguageContext";
+import { useTranslations } from '@/app/lib/intl';
 import { Icons } from "@/components/Icons";
 
 export const PrivacySection = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const items = [
     { id: 1, icon: <Icons.ShieldCheck />, title: t('privacy1_title'), desc: t('privacy1_desc') },
     { id: 2, icon: <Icons.LockClosed />, title: t('privacy2_title'), desc: t('privacy2_desc') },

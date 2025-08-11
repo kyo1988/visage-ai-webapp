@@ -1,20 +1,37 @@
-//
-// visage-ai-webapp/app/report/[id]/page.tsx
-// 【最終完成形コード - paramsに一切触れない、真の抜け殻】
-//
-import ClientReportPage from './ClientReportPage';
+import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
+import { ReportServer } from "@/components/report/ReportServer";
+import { fetchReportById } from "@/app/lib/report-api";
 
-// 未知のIDにも対応できるように、ダイナミックレンダリングを有効化
-export const dynamicParams = true; 
+export const revalidate = 300;
 
-// ビルド時に静的生成したいIDがあれば、ここで列挙します
-export async function generateStaticParams() {
-  return []; 
+type Props = { params: { id: string } };
+
+function negotiateLocale(h: string | null): "ja" | "en" { 
+  return (h ?? "").toLowerCase().startsWith("ja") ? "ja" : "en"; 
 }
 
-// このページコンポーネントの唯一の役割は、
-// ただClientReportPageを呼び出すこと。それだけです。
-export default function Page() {
-  // ClientReportPageは自立しているので、何も渡す必要はありません。
-  return <ClientReportPage />;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const h = headers();
+  const loc = negotiateLocale(h.get("accept-language"));
+  const data = await fetchReportById(params.id, loc);
+  if (!data) return {};
+  const title = loc === "ja" ? "パーソナルスキンケア診断レポート" : "Personal Skin Care Diagnostic Report";
+  const description = data.summary?.slice(0, 120) ?? (loc === "ja" ? "AIによる肌解析レポート" : "AI skin analysis report");
+  const ogImage = data.ogImage ?? "/og.jpg";
+  return {
+    title,
+    description,
+    alternates: { languages: { "en": `/en/report/${params.id}`, "ja": `/ja/report/${params.id}` } },
+    openGraph: { title, description, images: [{ url: ogImage }], type: "article" },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+  };
+}
+
+export default async function Page({ params }: Props) {
+  const loc = negotiateLocale(headers().get("accept-language"));
+  const data = await fetchReportById(params.id, loc);
+  if (!data) return notFound();
+  return <ReportServer id={params.id} locale={loc} />;
 }
