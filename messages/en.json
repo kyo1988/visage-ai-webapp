@@ -165,7 +165,7 @@
     "q1": "How is the captured face photo data handled? Is privacy safe?",
     "a1_p1": "Yes, customer privacy is our top priority.",
     "a1_p2": "<strong>In the standard simple diagnosis, all face images are processed within the customer's smartphone.</strong> Analysis data is never sent to the cloud server.",
-    "a1_p3": "Only when using more advanced analysis (PRO version function), after obtaining <strong>explicit consent from the customer</strong>, anonymized data that cannot identify individuals is analyzed in a secure cloud environment. For details on the data retention policy, please check the <a href='/privacy' class='text-blue-600 underline'>Privacy Policy</a>."
+    "a1_p3": "Only when using more advanced analysis (PRO version function), after obtaining <strong>explicit consent from the customer</strong>, anonymized data that cannot identify individuals is analyzed in a secure cloud environment. For details on the data retention policy, please check the <a href='/{locale}/privacy' class='text-blue-600 underline'>Privacy Policy</a>."
   },
   "ReportExamplesSection": {
     "title": "See diagnostic reports in actual examples",
