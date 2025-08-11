@@ -16,14 +16,6 @@ export default function DemoPage({params:{locale}}:{params:{locale:string}}) {
     process.env.CALCOM_URL ??
     "";
 
-  // デバッグ情報（本番環境では削除）
-  const debugInfo = {
-    NEXT_PUBLIC_CAL_URL: process.env.NEXT_PUBLIC_CAL_URL,
-    CALCOM_URL: process.env.CALCOM_URL,
-    calUrl: calUrl,
-    hasCalUrl: !!calUrl
-  };
-
   if (!calUrl) {
     // ← ローカル/PreviewでENV未設定でも落ちない
     return (
@@ -57,14 +49,6 @@ export default function DemoPage({params:{locale}}:{params:{locale:string}}) {
             : '(Set NEXT_PUBLIC_CAL_URL or CALCOM_URL to enable the booking iframe.)'
           }
         </p>
-        
-        {/* デバッグ情報 */}
-        <details className="mt-6 p-4 bg-gray-100 rounded-lg">
-          <summary className="cursor-pointer font-medium text-gray-700">Debug Info</summary>
-          <pre className="mt-2 text-xs text-gray-600 whitespace-pre-wrap">
-            {JSON.stringify(debugInfo, null, 2)}
-          </pre>
-        </details>
       </main>
     );
   }
