@@ -10,7 +10,9 @@ type SAEnv = {
 
 function readEnv(): SAEnv {
   return {
-    projectId: process.env.FIREBASE_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT,
+    projectId: process.env.FIREBASE_PROJECT_ID || 
+               process.env.GOOGLE_CLOUD_PROJECT || 
+               process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL,
     privateKeyRaw: process.env.FIREBASE_PRIVATE_KEY || process.env.GOOGLE_PRIVATE_KEY,
   };
