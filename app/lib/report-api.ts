@@ -96,14 +96,22 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
   console.log("🔍 fetchReportById called with id:", id, "locale:", locale);
   console.log("🔍 NEXT_PUBLIC_API_BASE:", apiBase);
   
-  try {
-    if (apiBase) {
+  // 1) API 優先（設定があれば）
+  if (apiBase) {
+    try {
       const res = await fetch(`${apiBase}/reports/${id}`, {
         cache: "force-cache",
         next: { revalidate: 300 }
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as Report;
+      
+      // データの妥当性チェック
+      if (!data || !data.id) {
+        console.warn("[report] api invalid shape:", { id, locale });
+        throw new Error("Invalid API response");
+      }
+      
       // 欠落補完（UI欠落を避ける）
       if (!data.products?.length) data.products = createFallbackProducts(locale);
       if (!data.routine) data.routine = createMockData(locale).routine;
@@ -134,118 +142,97 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
       
       console.log("🔍 Final merged insights:", merged.insights);
       return merged;
-    }
-        // dev: API未設定 → Firestoreから実際のデータを取得
-    try {
-      console.log("🔍 Attempting to fetch from Firestore...");
-      
-      // 新しいfirebaseAdminからDBを取得（フェイルソフト）
-      const { getDbOrNull } = await import("@/app/lib/firebaseAdmin");
-      const db = getDbOrNull();
-      
-      if (!db) {
-        console.log("🔍 Firebase DB not available, falling back to mock data");
-        throw new Error("Firebase DB not available");
-      }
-      
-      console.log("🔍 Firebase Admin DB imported successfully");
-      
-      const docRef = db.collection('diagnostics').doc(id);
-      console.log("🔍 Document reference created:", docRef.path);
-      
-      const doc = await docRef.get();
-      console.log("🔍 Document fetch completed, exists:", doc.exists);
-      
-      if (doc.exists) {
-        const firestoreData = doc.data();
-        console.log("🔍 Firestore data:", firestoreData);
-        console.log("🔍 skinType from Firestore:", firestoreData?.skinType);
-        console.log("🔍 skinAge from Firestore:", firestoreData?.skinAge);
-        
-        // メッセージファイルから言語データを取得
-        const messages = await getMessages(locale);
-        console.log("🔍 Messages loaded for locale:", locale, messages.report);
-        
-        // FirestoreデータをReport形式に変換
-        const base: Report = {
-          id,
-          title: messages.report?.title || "Personal Skin Care Diagnostic Report",
-          generatedAt: firestoreData?.createdAt?.toDate?.() || Date.now(),
-          score: { 
-            skinAge: firestoreData?.skinAge || 29, 
-            rank: 75, 
-            label: messages.report?.score?.label || "Good" 
-          },
-          radar: {
-            labels: messages.report?.radar?.labels || ["Texture", "Hydration", "Pores", "Wrinkles", "Pigmentation", "Sensitivity"],
-            values: [
-              firestoreData?.textureScore || 0.72,
-              firestoreData?.brighteningScore || 0.58,
-              firestoreData?.poresScore || 0.64,
-              firestoreData?.wrinklesScore || 0.40,
-              firestoreData?.spotsScore || 0.55,
-              0.68
-            ]
-          },
-          insights: locale === "ja" 
-            ? (firestoreData?.insights?.ja ? [firestoreData.insights.ja] : [])
-            : (firestoreData?.insights?.en ? [firestoreData.insights.en] : []),
-          routine: createMockData(locale).routine, // 言語に応じたルーチンを使用
-          ingredients: {
-            items: messages.report?.ingredients?.items || [
-              // 言語に応じたデフォルト成分データ
-              ...(locale === 'ja' ? [
-                { name: "ナイアシンアミド 5%", desc: "トーン調整、皮脂バランス、バリアサポート。" },
-                { name: "レチノール 0.1%", desc: "細かいシワに臨床的に証明された効果。徐々に増量してください。" },
-                { name: "ヒアルロン酸", desc: "保湿剤。オクルーシブクリームの下に重ねて使用。" },
-                { name: "尿素 5%", desc: "角質溶解 + 保湿。テクスチャーケアに。" }
-              ] : [
-                { name: "Niacinamide 5%", desc: "Tone-evening, sebum balance, barrier support." },
-                { name: "Retinol 0.1%", desc: "Clinically proven for fine lines; ramp slowly." },
-                { name: "Hyaluronic Acid", desc: "Humectant; layer under occlusive moisturizer." },
-                { name: "Urea 5%", desc: "Keratolytic + humectant for texture care." }
-              ])
-            ]
-          },
-          products: createFallbackProducts(locale),
-          ogImage: "/og.jpg",
-          summary: "AI-driven skin analysis with personalized routines, ingredients, and product picks.",
-          // 肌タイプ情報を追加（複数のフィールド名を試行）
-          skinType: firestoreData?.skinType || firestoreData?.skin_type || firestoreData?.type || "normal"
-        };
-        
-        // 2) FastAPIから動的レコメンド
-        const dyn = await buildDynamicRecommendations(base, locale);
-        
-        // 3) マージ（FastAPI優先・空なら既存/モック）
-        const merged: Report = {
-          ...base,
-          insights: dyn.insights?.length ? dyn.insights : (base.insights || []),
-          ingredients:
-            dyn.ingredients?.length
-              ? { items: dyn.ingredients.map(name => ({ name })) }
-              : base.ingredients ?? null,
-          products:
-            dyn.products?.length
-              ? dyn.products.map(p => ({
-                  id: p.id, name: p.name, brand: p.brand, image: p.image,
-                  url: p.url, price: p.price
-                }))
-              : (base.products ?? [])
-        };
-        
-        return merged;
-      }
     } catch (error) {
-      console.error("🔍 Firestore fetch error:", error);
-      console.log("🔍 Falling back to mock data due to Firebase error");
+      console.warn("[report] api fetch failed, falling back to Firebase:", { id, err: String(error) });
+    }
+  }
+
+  // 2) Firebase フォールバック
+  try {
+    console.log("🔍 Attempting to fetch from Firestore...");
+    
+    // 新しいfirebaseAdminからDBを取得（フェイルソフト）
+    const { getDbOrNull } = await import("@/app/lib/firebaseAdmin");
+    const db = getDbOrNull();
+    
+    if (!db) {
+      console.warn("[report] firestore unavailable (db=null), using mock:", { id });
+      throw new Error("Firebase DB not available");
     }
     
-    // Firestore取得失敗時はMOCKを使用
-    const base = { ...createMockData(locale), id };
+    console.log("🔍 Firebase Admin DB imported successfully");
     
-    // 2) FastAPIから動的レコメンド（開発環境でも試行）
-    try {
+    const docRef = db.collection('diagnostics').doc(id);
+    console.log("🔍 Document reference created:", docRef.path);
+    
+    const doc = await docRef.get();
+    console.log("🔍 Document fetch completed, exists:", doc.exists);
+    
+    if (doc.exists) {
+      const firestoreData = doc.data();
+      console.log("🔍 Firestore data:", firestoreData);
+      console.log("🔍 skinType from Firestore:", firestoreData?.skinType);
+      console.log("🔍 skinAge from Firestore:", firestoreData?.skinAge);
+      
+      // データの妥当性チェック
+      if (!firestoreData || (!firestoreData.skinAge && !firestoreData.textureScore)) {
+        console.warn("[report] firestore invalid shape:", { id, locale });
+        throw new Error("Invalid Firestore data");
+      }
+      
+      // メッセージファイルから言語データを取得
+      const messages = await getMessages(locale);
+      console.log("🔍 Messages loaded for locale:", locale, messages.report);
+      
+      // FirestoreデータをReport形式に変換
+      const base: Report = {
+        id,
+        title: messages.report?.title || "Personal Skin Care Diagnostic Report",
+        generatedAt: firestoreData?.createdAt?.toDate?.() || Date.now(),
+        score: { 
+          skinAge: firestoreData?.skinAge || 29, 
+          rank: 75, 
+          label: messages.report?.score?.label || "Good" 
+        },
+        radar: {
+          labels: messages.report?.radar?.labels || ["Texture", "Hydration", "Pores", "Wrinkles", "Pigmentation", "Sensitivity"],
+          values: [
+            firestoreData?.textureScore || 0.72,
+            firestoreData?.brighteningScore || 0.58,
+            firestoreData?.poresScore || 0.64,
+            firestoreData?.wrinklesScore || 0.40,
+            firestoreData?.spotsScore || 0.55,
+            0.68
+          ]
+        },
+        insights: locale === "ja" 
+          ? (firestoreData?.insights?.ja ? [firestoreData.insights.ja] : [])
+          : (firestoreData?.insights?.en ? [firestoreData.insights.en] : []),
+        routine: createMockData(locale).routine, // 言語に応じたルーチンを使用
+        ingredients: {
+          items: messages.report?.ingredients?.items || [
+            // 言語に応じたデフォルト成分データ
+            ...(locale === 'ja' ? [
+              { name: "ナイアシンアミド 5%", desc: "トーン調整、皮脂バランス、バリアサポート。" },
+              { name: "レチノール 0.1%", desc: "細かいシワに臨床的に証明された効果。徐々に増量してください。" },
+              { name: "ヒアルロン酸", desc: "保湿剤。オクルーシブクリームの下に重ねて使用。" },
+              { name: "尿素 5%", desc: "角質溶解 + 保湿。テクスチャーケアに。" }
+            ] : [
+              { name: "Niacinamide 5%", desc: "Tone-evening, sebum balance, barrier support." },
+              { name: "Retinol 0.1%", desc: "Clinically proven for fine lines; ramp slowly." },
+              { name: "Hyaluronic Acid", desc: "Humectant; layer under occlusive moisturizer." },
+              { name: "Urea 5%", desc: "Keratolytic + humectant for texture care." }
+            ])
+          ]
+        },
+        products: createFallbackProducts(locale),
+        ogImage: "/og.jpg",
+        summary: "AI-driven skin analysis with personalized routines, ingredients, and product picks.",
+        // 肌タイプ情報を追加（複数のフィールド名を試行）
+        skinType: firestoreData?.skinType || firestoreData?.skin_type || firestoreData?.type || "normal"
+      };
+      
+      // 2) FastAPIから動的レコメンド
       const dyn = await buildDynamicRecommendations(base, locale);
       
       // 3) マージ（FastAPI優先・空なら既存/モック）
@@ -266,42 +253,41 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
       };
       
       return merged;
-    } catch (error) {
-      console.error("🔍 FastAPI recommendations failed:", error);
-      return base;
+    } else {
+      console.warn("[report] firestore not found:", { id });
     }
-  } catch {
-    // 本番失敗時：null。dev：MOCKへフェイルオーバー
-    if (process.env.NODE_ENV !== "production") {
-      const base = { ...createMockData(locale), id };
-      
-      // 2) FastAPIから動的レコメンド
-      try {
-        const dyn = await buildDynamicRecommendations(base, locale);
-        
-        // 3) マージ（FastAPI優先・空なら既存/モック）
-        const merged: Report = {
-          ...base,
-          insights: dyn.insights?.length ? dyn.insights : (base.insights || []),
-          ingredients:
-            dyn.ingredients?.length
-              ? { items: dyn.ingredients.map(name => ({ name })) }
-              : base.ingredients ?? null,
-          products:
-            dyn.products?.length
-              ? dyn.products.map(p => ({
-                  id: p.id, name: p.name, brand: p.brand, image: p.image,
-                  url: p.url, price: p.price
-                }))
-            : (base.products ?? [])
-        };
-        
-        return merged;
-      } catch (error) {
-        console.error("🔍 FastAPI recommendations failed:", error);
-        return base;
-      }
-    }
-    return null;
+  } catch (error) {
+    console.warn("[report] firestore fetch failed, using mock:", { id, err: String(error) });
+  }
+  
+  // 3) Mock フォールバック
+  console.log("🔍 Falling back to mock data");
+  const base = { ...createMockData(locale), id };
+  
+  // 2) FastAPIから動的レコメンド（開発環境でも試行）
+  try {
+    const dyn = await buildDynamicRecommendations(base, locale);
+    
+    // 3) マージ（FastAPI優先・空なら既存/モック）
+    const merged: Report = {
+      ...base,
+      insights: dyn.insights?.length ? dyn.insights : (base.insights || []),
+      ingredients:
+        dyn.ingredients?.length
+          ? { items: dyn.ingredients.map(name => ({ name })) }
+          : base.ingredients ?? null,
+      products:
+        dyn.products?.length
+          ? dyn.products.map(p => ({
+              id: p.id, name: p.name, brand: p.brand, image: p.image,
+              url: p.url, price: p.price
+            }))
+          : (base.products ?? [])
+    };
+    
+    return merged;
+  } catch (error) {
+    console.error("🔍 FastAPI recommendations failed:", error);
+    return base;
   }
 }
