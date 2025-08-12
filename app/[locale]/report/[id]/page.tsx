@@ -7,7 +7,10 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const revalidate = 300;
 
-type Props = { params: { locale: string; id: string } };
+type Props = { 
+  params: { locale: string; id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const loc = params.locale === "ja" ? "ja" : "en";
@@ -25,9 +28,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params, searchParams }: Props) {
   const loc = params.locale === "ja" ? "ja" : "en";
-  const data = await fetchReportById(params.id, loc);
+  const forceFirebase = searchParams.source === 'firebase';
+  const data = await fetchReportById(params.id, loc, forceFirebase);
   if (!data) return notFound();
-  return <ReportServer id={params.id} locale={loc} />;
+  
+  // デバッグ情報を一時表示（開発後に削除可）
+  const pickedSource = data.id ? 'firebase' : 'mock'; // 簡易判定
+  
+  return (
+    <>
+      <ReportServer id={params.id} locale={loc} />
+      {/* source: {pickedSource} runtime: {process.env.NEXT_RUNTIME || "node"} */}
+    </>
+  );
 }

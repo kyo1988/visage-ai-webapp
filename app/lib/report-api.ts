@@ -91,13 +91,15 @@ function createMockData(locale: "ja" | "en"): Report {
   };
 }
 
-export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Promise<Report | null> {
+export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", forceFirebase: boolean = false): Promise<Report | null> {
   const apiBase = process.env.NEXT_PUBLIC_API_BASE;
+  const envApi = !!(process.env.NEXT_PUBLIC_API_BASE || process.env.API_BASE_URL);
+  console.info("[report] start", { envApi, id, locale, forceFirebase });
   console.log("🔍 fetchReportById called with id:", id, "locale:", locale);
   console.log("🔍 NEXT_PUBLIC_API_BASE:", apiBase);
   
-  // 1) API 優先（設定があれば）
-  if (apiBase) {
+  // 1) API 優先（設定があれば、かつforceFirebaseがfalseの場合のみ）
+  if (apiBase && !forceFirebase) {
     try {
       const res = await fetch(`${apiBase}/reports/${id}`, {
         cache: "force-cache",
@@ -141,10 +143,13 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
       };
       
       console.log("🔍 Final merged insights:", merged.insights);
+      console.info("[report] decided", { pick: 'api', id, locale, runtime: process.env.NEXT_RUNTIME || "node" });
       return merged;
     } catch (error) {
       console.warn("[report] api fetch failed, falling back to Firebase:", { id, err: String(error) });
     }
+  } else if (forceFirebase) {
+    console.info("[report] forceFirebase=true, skipping API, going directly to Firebase");
   }
 
   // 2) Firebase フォールバック
@@ -252,6 +257,7 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
             : (base.products ?? [])
       };
       
+      console.info("[report] decided", { pick: 'firebase', id, locale, runtime: process.env.NEXT_RUNTIME || "node" });
       return merged;
     } else {
       console.warn("[report] firestore not found:", { id });
@@ -285,9 +291,11 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja"): Pro
           : (base.products ?? [])
     };
     
+    console.info("[report] decided", { pick: 'mock', id, locale, runtime: process.env.NEXT_RUNTIME || "node" });
     return merged;
   } catch (error) {
     console.error("🔍 FastAPI recommendations failed:", error);
+    console.info("[report] decided", { pick: 'mock-fallback', id, locale, runtime: process.env.NEXT_RUNTIME || "node" });
     return base;
   }
 }

@@ -11,10 +11,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(base),
 };
 
-export function generateStaticParams() {
-  return [{locale: 'ja'}, {locale: 'en'}];
-}
-
 export default async function RootLayout({
   children,
   params: {locale}
