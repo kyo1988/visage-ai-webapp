@@ -5,6 +5,7 @@ import ReportClient from "@/app/[locale]/report/[id]/ReportClient";
 import SectionObserverClient from "../analytics/SectionObserverClient";
 import { fetchReportById } from "@/app/lib/report-api";
 import { getMessages } from "@/app/lib/messages";
+import type { Report } from "@/types/report";
 
 // 肌タイプの型定義
 type SkinType = "oily" | "dry" | "combination" | "sensitive" | "normal";
@@ -64,14 +65,19 @@ async function getIngredientRecommendationsBySkinType(skinType: string, locale: 
   }
 }
 
-export async function ReportServer({ id, locale }: { id: string; locale: "ja" | "en" }) {
-  const r = await fetchReportById(id, locale);
+export async function ReportServer({ id, locale, report }: { id: string; locale: "ja" | "en"; report: Report }) {
+  const r = report;
   if (!r) return null;
 
   const dt = new Date(r.generatedAt).toLocaleString(locale === "ja" ? "ja-JP" : "en-US");
 
   return (
     <div style={{backgroundColor: '#f9fafb', minHeight: '100vh'}}>
+      {/* データソースをsr-onlyで表示（デバッグ用） */}
+      <div className="sr-only">
+        source: {r._source || 'unknown'} runtime: {process.env.NEXT_RUNTIME || "node"}
+      </div>
+      
       <main style={{maxWidth: '72rem', margin: '0 auto', padding: '2rem 1rem', paddingBottom: '6rem'}} className="py-8 pb-24">
         {/* Header */}
         <header style={{marginBottom: '2rem'}}>
@@ -79,7 +85,7 @@ export async function ReportServer({ id, locale }: { id: string; locale: "ja" | 
           <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.875rem', color: '#4b5563'}}>
             <span style={{backgroundColor: 'white', padding: '0.25rem 0.75rem', borderRadius: '9999px', border: '1px solid #d1d5db'}}>{dt}</span>
             <span style={{backgroundColor: '#e0f2fe', color: '#0369a1', border: '1px solid #7dd3fc', padding: '0.25rem 0.75rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: '500'}}>XAI</span>
-            <span style={{backgroundColor: '#f3f4f6', color: '#374151', border: '1px solid #d1d5db', padding: '0.25rem 0.75rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: '500'}}>Personalization</span>
+            <span style={{backgroundColor: '#f3f4f6', color: '#374151', border: '1px solid #d1d5db', padding: '0.25rem 0.75rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: '500'}}>ランタイム: {process.env.NEXT_RUNTIME || "node"}</span>
           </div>
         </header>
 

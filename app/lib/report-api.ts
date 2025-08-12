@@ -91,10 +91,11 @@ function createMockData(locale: "ja" | "en"): Report {
   };
 }
 
-export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", forceFirebase: boolean = false): Promise<Report | null> {
+export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", options: { forceFirebase?: boolean } = {}): Promise<Report | null> {
+  const { forceFirebase = false } = options;
   const apiBase = process.env.NEXT_PUBLIC_API_BASE;
   const envApi = !!(process.env.NEXT_PUBLIC_API_BASE || process.env.API_BASE_URL);
-  console.info("[report] start", { envApi, id, locale, forceFirebase });
+  console.info("[report] start", { envApi, id, locale, forceFirebase, apiBase: !!apiBase });
   console.log("🔍 fetchReportById called with id:", id, "locale:", locale);
   console.log("🔍 NEXT_PUBLIC_API_BASE:", apiBase);
   
@@ -128,6 +129,7 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", forc
       // 3) マージ（FastAPI優先・空なら既存/モック）
       const merged: Report = {
         ...data,
+        _source: 'api',
         insights: dyn.insights?.length ? dyn.insights : (data.insights || []),
         ingredients:
           dyn.ingredients?.length
@@ -150,6 +152,8 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", forc
     }
   } else if (forceFirebase) {
     console.info("[report] forceFirebase=true, skipping API, going directly to Firebase");
+  } else if (!apiBase) {
+    console.info("[report] no API_BASE_URL, going directly to Firebase");
   }
 
   // 2) Firebase フォールバック
@@ -243,6 +247,7 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", forc
       // 3) マージ（FastAPI優先・空なら既存/モック）
       const merged: Report = {
         ...base,
+        _source: 'firebase',
         insights: dyn.insights?.length ? dyn.insights : (base.insights || []),
         ingredients:
           dyn.ingredients?.length
@@ -277,6 +282,7 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", forc
     // 3) マージ（FastAPI優先・空なら既存/モック）
     const merged: Report = {
       ...base,
+      _source: 'mock',
       insights: dyn.insights?.length ? dyn.insights : (base.insights || []),
       ingredients:
         dyn.ingredients?.length
@@ -295,7 +301,8 @@ export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", forc
     return merged;
   } catch (error) {
     console.error("🔍 FastAPI recommendations failed:", error);
+    const fallbackBase = { ...base, _source: 'mock' as const };
     console.info("[report] decided", { pick: 'mock-fallback', id, locale, runtime: process.env.NEXT_RUNTIME || "node" });
-    return base;
+    return fallbackBase;
   }
 }

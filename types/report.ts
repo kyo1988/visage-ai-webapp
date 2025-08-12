@@ -18,4 +18,5 @@ export interface Report {
   ogImage?: string;
   summary?: string;
   skinType?: string; // 肌タイプ（oily, dry, combination, sensitive, normal）
+  _source?: 'api' | 'firebase' | 'mock'; // データソース（デバッグ用）
 }
