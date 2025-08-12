@@ -6,7 +6,10 @@ import { fetchReportById } from "@/app/lib/report-api";
 
 export const revalidate = 300;
 
-type Props = { params: { id: string } };
+type Props = { 
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 function negotiateLocale(h: string | null): "ja" | "en" { 
   return (h ?? "").toLowerCase().startsWith("ja") ? "ja" : "en"; 
@@ -29,9 +32,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params, searchParams }: Props) {
   const loc = negotiateLocale(headers().get("accept-language"));
-  const data = await fetchReportById(params.id, loc);
+  const forceFirebase = searchParams.source === 'firebase';
+  const data = await fetchReportById(params.id, loc, { forceFirebase });
   if (!data) return notFound();
-  return <ReportServer id={params.id} locale={loc} />;
+  return <ReportServer id={params.id} locale={loc} report={data} />;
 }
