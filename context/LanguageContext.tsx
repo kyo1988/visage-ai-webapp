@@ -8,6 +8,7 @@ import React, {
   useContext,
   ReactNode,
 } from "react";
+import { useMounted } from "@/app/lib/useMounted";
 
 // --- Types ---
 type Language = "ja" | "en";
@@ -174,27 +175,30 @@ interface LanguageProviderProps {
 // プロバイダーコンポーネント: アプリケーション全体をこれで囲む
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [lang, setLang] = useState<Language>("ja");
+  const mounted = useMounted();
 
   useEffect(() => {
-    // サーバーサイドでは実行されないように、localStorageへのアクセスをガード
-    if (typeof window !== 'undefined') {
-      const storedLang = localStorage.getItem("lang") as Language | null;
-      if (storedLang && (storedLang === "ja" || storedLang === "en")) {
-        setLang(storedLang);
-      } else {
-        const browserLang = navigator.language.split("-")[0] as Language;
-        const initialLang: Language = ["ja", "en"].includes(browserLang)
-          ? browserLang
-          : "ja";
-        setLang(initialLang);
-        localStorage.setItem("lang", initialLang);
-      }
+    // マウント後にのみ実行（SSRとクライアントの差分を回避）
+    if (!mounted) return;
+    
+    const storedLang = localStorage.getItem("lang") as Language | null;
+    if (storedLang && (storedLang === "ja" || storedLang === "en")) {
+      setLang(storedLang);
+    } else {
+      const browserLang = navigator.language.split("-")[0] as Language;
+      const initialLang: Language = ["ja", "en"].includes(browserLang)
+        ? browserLang
+        : "ja";
+      setLang(initialLang);
+      localStorage.setItem("lang", initialLang);
     }
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
+    // マウント後にのみ実行
+    if (!mounted) return;
     document.documentElement.lang = lang;
-  }, [lang]);
+  }, [lang, mounted]);
 
   const t = useCallback((key: string): string => {
     return translations[lang][key] || key;
