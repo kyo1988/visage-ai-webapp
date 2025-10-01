@@ -22,7 +22,7 @@ export default function Footer() {
         <div>
           <div className="text-white font-semibold">Visage AI</div>
           <p className="mt-2 text-sm text-gray-400">{t("footer.tagline")}</p>
-          <p className="mt-4 text-xs text-gray-500">© {new Date().getFullYear()} Visage AI</p>
+          <p className="mt-4 text-xs text-gray-500">© <span suppressHydrationWarning>{new Date().getFullYear()}</span> Visage AI</p>
           <div className="mt-4">
             <a
               href="https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785"

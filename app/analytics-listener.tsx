@@ -13,6 +13,9 @@ export default function AnalyticsListener() {
     
     const query = search?.toString();
     const url = query ? `${pathname}?${query}` : pathname;
+    
+    // DEBUG LOG
+    console.log('[GA] pageview ->', url);
     pageview(url);
   }, [pathname, search]);
 

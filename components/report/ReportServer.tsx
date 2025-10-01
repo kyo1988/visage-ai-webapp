@@ -83,7 +83,7 @@ export async function ReportServer({ id, locale, report }: { id: string; locale:
         <header style={{marginBottom: '2rem'}}>
           <h1 style={{fontSize: '2.25rem', fontWeight: '700', lineHeight: '1.1', color: '#111827', marginBottom: '0.5rem'}}>{r.title}</h1>
           <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.875rem', color: '#4b5563'}}>
-            <span style={{backgroundColor: 'white', padding: '0.25rem 0.75rem', borderRadius: '9999px', border: '1px solid #d1d5db'}}>{dt}</span>
+            <span style={{backgroundColor: 'white', padding: '0.25rem 0.75rem', borderRadius: '9999px', border: '1px solid #d1d5db'}} suppressHydrationWarning>{dt}</span>
             <span style={{backgroundColor: '#e0f2fe', color: '#0369a1', border: '1px solid #7dd3fc', padding: '0.25rem 0.75rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: '500'}}>XAI</span>
             <span style={{backgroundColor: '#f3f4f6', color: '#374151', border: '1px solid #d1d5db', padding: '0.25rem 0.75rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: '500'}}>ランタイム: {process.env.NEXT_RUNTIME || "node"}</span>
           </div>

@@ -42,6 +42,16 @@ export default function RootLayout({
                 });
               `}
             </Script>
+            <Script id="ga-first-pv" strategy="afterInteractive">
+              {`
+                window.__ga_first_pv__||=(function(){ 
+                  if(window.gtag){ window.gtag('event','page_view', { 
+                    page_location: location.href, page_path: location.pathname, page_title: document.title 
+                  }); } 
+                  return true; 
+                })();
+              `}
+            </Script>
           </>
         )}
         <Suspense fallback={null}>
