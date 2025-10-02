@@ -7,6 +7,10 @@ const base =
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
+// デバッグ: ビルド時の値を確認
+console.log('[Build] GA_ID:', GA_ID);
+console.log('[Build] NEXT_PUBLIC_GA_ID:', process.env.NEXT_PUBLIC_GA_ID);
+
 export const metadata: Metadata = {
   title: "Visage AI",
   description: "AI-powered skin analysis and ingredient recommendations",
