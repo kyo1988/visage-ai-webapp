@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {GA_ID && (
+        {GA_ID ? (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
@@ -29,15 +29,25 @@ export default function RootLayout({
             />
             <Script id="gtag-init" strategy="afterInteractive">
               {`
+                console.log('[GA4] Initializing with ID:', '${GA_ID}');
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${GA_ID}', {
                   page_path: window.location.pathname,
                 });
+                console.log('[GA4] Configuration complete');
+                console.log('[GA4] dataLayer:', window.dataLayer);
               `}
             </Script>
           </>
+        ) : (
+          <Script id="ga-debug" strategy="afterInteractive">
+            {`
+              console.log('[GA4] GA_ID not found');
+              console.log('[GA4] NODE_ENV:', '${process.env.NODE_ENV}');
+            `}
+          </Script>
         )}
         {children}
       </body>
