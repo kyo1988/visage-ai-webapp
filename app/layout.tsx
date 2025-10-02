@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Suspense } from "react";
+import AnalyticsListener from "./analytics-listener";
 import "./globals.css";
 
 const base =
@@ -38,7 +40,10 @@ export default function RootLayout({
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${GA_ID}', {
-                  page_path: window.location.pathname,
+                  send_page_view: false,
+                  linker: {
+                    domains: ['www.visageaiconsulting.com', 'visageaiconsulting.com', 'kyo1988.github.io']
+                  }
                 });
                 console.log('[GA4] Configuration complete');
                 console.log('[GA4] dataLayer:', window.dataLayer);
@@ -53,6 +58,9 @@ export default function RootLayout({
             `}
           </Script>
         )}
+        <Suspense fallback={null}>
+          <AnalyticsListener />
+        </Suspense>
         {children}
       </body>
     </html>
