@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from '@/app/lib/intl';
+import { gaEvent } from '@/app/lib/gtag';
 
 export const CTASection = () => {
   const t = useTranslations();
@@ -50,7 +51,15 @@ export const CTASection = () => {
           </div>
           
           <div className="text-center">
-            <a href="#" className="inline-block text-blue-600 hover:text-blue-700 font-medium text-lg">
+            <a 
+              href="#" 
+              className="inline-block text-blue-600 hover:text-blue-700 font-medium text-lg"
+              onClick={() => gaEvent('click_cta', {
+                destination: 'documentation',
+                placement: 'how_it_works',
+                campaign: 'docs_link'
+              })}
+            >
               {t("howItWorks.docsLink")} →
             </a>
           </div>
@@ -68,10 +77,26 @@ export const CTASection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+            <a 
+              href="#" 
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-center"
+              onClick={() => gaEvent('click_cta', {
+                destination: 'demo_booking',
+                placement: 'final_cta',
+                campaign: 'primary_cta'
+              })}
+            >
               {t("finalCta.ctaPrimary")}
             </a>
-            <a href="#" className="inline-block bg-transparent text-white border-2 border-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-blue-900 transition-all text-center">
+            <a 
+              href="#" 
+              className="inline-block bg-transparent text-white border-2 border-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-blue-900 transition-all text-center"
+              onClick={() => gaEvent('click_cta', {
+                destination: 'download_materials',
+                placement: 'final_cta',
+                campaign: 'secondary_cta'
+              })}
+            >
               {t("finalCta.ctaSecondary")}
             </a>
           </div>

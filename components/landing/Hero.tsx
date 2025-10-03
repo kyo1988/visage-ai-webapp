@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations, useLocale } from '@/app/lib/intl';
+import { gaEvent } from '@/app/lib/gtag';
 
 export const HeroSection = () => {
   const t = useTranslations();
@@ -31,10 +32,26 @@ export const HeroSection = () => {
           
           {/* CTAボタン */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href={`/${locale}/demo`} className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+            <a 
+              href={`/${locale}/demo`} 
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-center"
+              onClick={() => gaEvent('click_cta', {
+                destination: 'demo_booking',
+                placement: 'hero',
+                campaign: 'main_cta'
+              })}
+            >
               {t("HeroSection.ctaDemo")}
             </a>
-            <a href="#" className="inline-block bg-transparent text-white border-2 border-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-blue-900 transition-all text-center">
+            <a 
+              href="#" 
+              className="inline-block bg-transparent text-white border-2 border-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-blue-900 transition-all text-center"
+              onClick={() => gaEvent('click_cta', {
+                destination: 'report_examples',
+                placement: 'hero',
+                campaign: 'secondary_cta'
+              })}
+            >
               {t("HeroSection.ctaExamples")}
             </a>
           </div>
