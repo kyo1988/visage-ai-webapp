@@ -32,11 +32,17 @@ export const pageview = (path: string) => {
 };
 
 export const gaEvent = (name: string, params?: Record<string, any>) => {
-  if (!canUseGtag()) return;
+  if (!canUseGtag()) {
+    console.log('[GA4] gaEvent skipped - no GA_ID or window');
+    return;
+  }
+  
+  console.log('[GA4] Sending event:', name, params);
   
   // window.gtagが存在しない場合はdataLayerに直接push
   if (typeof window.gtag === 'function') {
     window.gtag('event', name, params || {});
+    console.log('[GA4] Event sent via gtag');
   } else {
     // gtagがまだ読み込まれていない場合はdataLayerに直接push
     window.dataLayer = window.dataLayer || [];
@@ -44,6 +50,7 @@ export const gaEvent = (name: string, params?: Record<string, any>) => {
       event: name,
       ...params
     });
+    console.log('[GA4] Event queued in dataLayer');
   }
 };
 

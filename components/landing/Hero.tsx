@@ -35,22 +35,28 @@ export const HeroSection = () => {
             <a 
               href={`/${locale}/demo`} 
               className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all text-center"
-              onClick={() => gaEvent('click_cta', {
-                destination: 'demo_booking',
-                placement: 'hero',
-                campaign: 'main_cta'
-              })}
+              onClick={() => {
+                console.log('[CTA] Hero Demo button clicked');
+                gaEvent('cta_click', {
+                  destination: 'demo_booking',
+                  placement: 'hero',
+                  campaign: 'main_cta'
+                });
+              }}
             >
               {t("HeroSection.ctaDemo")}
             </a>
             <a 
               href="#" 
               className="inline-block bg-transparent text-white border-2 border-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-blue-900 transition-all text-center"
-              onClick={() => gaEvent('click_cta', {
-                destination: 'report_examples',
-                placement: 'hero',
-                campaign: 'secondary_cta'
-              })}
+              onClick={() => {
+                console.log('[CTA] Hero Examples button clicked');
+                gaEvent('cta_click', {
+                  destination: 'report_examples',
+                  placement: 'hero',
+                  campaign: 'secondary_cta'
+                });
+              }}
             >
               {t("HeroSection.ctaExamples")}
             </a>
