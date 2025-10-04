@@ -780,5 +780,34 @@
       { "name": "Niacinamide", "desc": "Even skin tone and pore refinement." },
       { "name": "Peptides", "desc": "Improves elasticity and prevents fine lines." }
     ]
+  },
+  "whitepaper": {
+    "title": "Evidence-Based Marketing Playbook",
+    "subtitle": "Executive Preview v0.1",
+    "description": "AI-Powered Skin Analysis for E-commerce & Retail",
+    "downloadCta": "Get the Whitepaper",
+    "formTitle": "Download Your Copy",
+    "formDescription": "Get instant access to the complete Evidence-Based Marketing Playbook",
+    "formFields": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "company": "Company Name",
+      "role": "Job Title",
+      "industry": "Industry"
+    },
+    "formSubmit": "Download Now",
+    "formSuccess": "Thank you! Your whitepaper is ready for download.",
+    "formSuccessDescription": "Check your email for the download link, or click below to download directly.",
+    "formError": "Something went wrong. Please try again.",
+    "printVersion": "Print Version",
+    "sections": {
+      "cover": "Cover",
+      "tldr": "Executive Summary",
+      "architecture": "Technical Architecture",
+      "reproduction": "Implementation Guide",
+      "caseStudies": "Case Studies",
+      "decisionBridge": "Decision Framework",
+      "legal": "Legal & Compliance"
+    }
   }
 }

@@ -1,0 +1,125 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="quantileGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.8" />
+      <stop offset="25%" style="stop-color:#8B5CF6;stop-opacity:0.6" />
+      <stop offset="50%" style="stop-color:#EC4899;stop-opacity:0.4" />
+      <stop offset="75%" style="stop-color:#F59E0B;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#10B981;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="#F8FAFC"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1F2937">
+    Conversion Rate Improvement Distribution
+  </text>
+  <text x="300" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">
+    Evidence-Based Marketing Implementation Results
+  </text>
+  
+  <!-- Y-axis -->
+  <line x1="80" y1="80" x2="80" y2="320" stroke="#374151" stroke-width="2"/>
+  <text x="70" y="85" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">25%</text>
+  <text x="70" y="120" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">20%</text>
+  <text x="70" y="155" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">15%</text>
+  <text x="70" y="190" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">10%</text>
+  <text x="70" y="225" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">5%</text>
+  <text x="70" y="260" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">0%</text>
+  <text x="70" y="295" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">-5%</text>
+  <text x="70" y="330" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#374151">-10%</text>
+  
+  <!-- Y-axis label -->
+  <text x="20" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151" transform="rotate(-90, 20, 200)">
+    Conversion Rate Improvement (%)
+  </text>
+  
+  <!-- X-axis -->
+  <line x1="80" y1="320" x2="520" y2="320" stroke="#374151" stroke-width="2"/>
+  <text x="120" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Q1</text>
+  <text x="200" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Q2</text>
+  <text x="280" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Q3</text>
+  <text x="360" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Q4</text>
+  <text x="440" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">Q5</text>
+  
+  <!-- X-axis label -->
+  <text x="300" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">
+    Implementation Quartiles (by Market Maturity)
+  </text>
+  
+  <!-- Quantile bands -->
+  <!-- Q1: 5-15% -->
+  <rect x="100" y="240" width="40" height="80" fill="url(#quantileGradient)" opacity="0.3"/>
+  <text x="120" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">5-15%</text>
+  
+  <!-- Q2: 10-20% -->
+  <rect x="180" y="200" width="40" height="120" fill="url(#quantileGradient)" opacity="0.4"/>
+  <text x="200" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">10-20%</text>
+  
+  <!-- Q3: 15-25% -->
+  <rect x="260" y="160" width="40" height="160" fill="url(#quantileGradient)" opacity="0.5"/>
+  <text x="280" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">15-25%</text>
+  
+  <!-- Q4: 18-28% -->
+  <rect x="340" y="140" width="40" height="180" fill="url(#quantileGradient)" opacity="0.6"/>
+  <text x="360" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">18-28%</text>
+  
+  <!-- Q5: 20-30% -->
+  <rect x="420" y="120" width="40" height="200" fill="url(#quantileGradient)" opacity="0.7"/>
+  <text x="440" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">20-30%</text>
+  
+  <!-- Median line -->
+  <line x1="100" y1="200" x2="460" y2="180" stroke="#DC2626" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="480" y="185" font-family="Arial, sans-serif" font-size="10" fill="#DC2626">Median: 18.5%</text>
+  
+  <!-- Average line -->
+  <line x1="100" y1="190" x2="460" y2="170" stroke="#059669" stroke-width="3" stroke-dasharray="3,3"/>
+  <text x="480" y="175" font-family="Arial, sans-serif" font-size="10" fill="#059669">Average: 17.2%</text>
+  
+  <!-- Data points -->
+  <circle cx="120" cy="220" r="4" fill="#3B82F6" stroke="#1E40AF" stroke-width="2"/>
+  <circle cx="200" cy="180" r="4" fill="#8B5CF6" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="280" cy="140" r="4" fill="#EC4899" stroke="#DB2777" stroke-width="2"/>
+  <circle cx="360" cy="120" r="4" fill="#F59E0B" stroke="#D97706" stroke-width="2"/>
+  <circle cx="440" cy="100" r="4" fill="#10B981" stroke="#059669" stroke-width="2"/>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="450" y="80" width="140" height="100" rx="5" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="520" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1F2937">
+      Legend
+    </text>
+    
+    <line x1="460" y1="115" x2="480" y2="115" stroke="#DC2626" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="485" y="120" font-family="Arial, sans-serif" font-size="10" fill="#374151">Median</text>
+    
+    <line x1="460" y1="135" x2="480" y2="135" stroke="#059669" stroke-width="2" stroke-dasharray="3,3"/>
+    <text x="485" y="140" font-family="Arial, sans-serif" font-size="10" fill="#374151">Average</text>
+    
+    <circle cx="470" cy="155" r="3" fill="#3B82F6" stroke="#1E40AF" stroke-width="1"/>
+    <text x="480" y="160" font-family="Arial, sans-serif" font-size="10" fill="#374151">Data Points</text>
+    
+    <rect x="460" y="170" width="15" height="10" fill="url(#quantileGradient)" opacity="0.5"/>
+    <text x="480" y="180" font-family="Arial, sans-serif" font-size="10" fill="#374151">Range</text>
+  </g>
+  
+  <!-- Statistics box -->
+  <rect x="50" y="350" width="500" height="40" rx="5" fill="#F0F9FF" stroke="#0EA5E9" stroke-width="1"/>
+  <text x="300" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0C4A6E">
+    Key Statistics
+  </text>
+  <text x="150" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C4A6E">
+    Min: 5.2%
+  </text>
+  <text x="250" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C4A6E">
+    Max: 28.7%
+  </text>
+  <text x="350" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C4A6E">
+    Std Dev: 6.8%
+  </text>
+  <text x="450" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C4A6E">
+    N: 47 clients
+  </text>
+</svg>

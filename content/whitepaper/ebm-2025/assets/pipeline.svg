@@ -1,0 +1,151 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="#F8FAFC"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1F2937">
+    Evidence-Based Marketing Pipeline
+  </text>
+  
+  <!-- Stage 1: Data Collection -->
+  <g id="stage1">
+    <rect x="50" y="80" width="120" height="80" rx="10" fill="url(#gradient1)" stroke="#1E40AF" stroke-width="2"/>
+    <text x="110" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+      Data Collection
+    </text>
+    <text x="110" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Multi-spectral
+    </text>
+    <text x="110" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Imaging
+    </text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path d="M 180 120 L 220 120" stroke="#6B7280" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Stage 2: AI Analysis -->
+  <g id="stage2">
+    <rect x="240" y="80" width="120" height="80" rx="10" fill="url(#gradient2)" stroke="#7C3AED" stroke-width="2"/>
+    <text x="300" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+      AI Analysis
+    </text>
+    <text x="300" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Skin Condition
+    </text>
+    <text x="300" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Detection
+    </text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path d="M 370 120 L 410 120" stroke="#6B7280" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Stage 3: Recommendation Engine -->
+  <g id="stage3">
+    <rect x="430" y="80" width="120" height="80" rx="10" fill="url(#gradient3)" stroke="#DC2626" stroke-width="2"/>
+    <text x="490" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+      Recommendation
+    </text>
+    <text x="490" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Engine
+    </text>
+    <text x="490" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Personalization
+    </text>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <path d="M 560 120 L 600 120" stroke="#6B7280" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Stage 4: User Interface -->
+  <g id="stage4">
+    <rect x="620" y="80" width="120" height="80" rx="10" fill="#10B981" stroke="#059669" stroke-width="2"/>
+    <text x="680" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+      User Interface
+    </text>
+    <text x="680" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Personalized
+    </text>
+    <text x="680" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+      Experience
+    </text>
+  </g>
+  
+  <!-- Data Flow Indicators -->
+  <g id="dataflow">
+    <!-- Input Data -->
+    <circle cx="110" cy="200" r="15" fill="#3B82F6" stroke="#1E40AF" stroke-width="2"/>
+    <text x="110" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">RGB</text>
+    
+    <circle cx="110" cy="230" r="15" fill="#8B5CF6" stroke="#7C3AED" stroke-width="2"/>
+    <text x="110" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">NIR</text>
+    
+    <circle cx="110" cy="260" r="15" fill="#EC4899" stroke="#DB2777" stroke-width="2"/>
+    <text x="110" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">UV</text>
+    
+    <!-- Processing Indicators -->
+    <rect x="250" y="200" width="80" height="20" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="290" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">94.2% Accuracy</text>
+    
+    <rect x="250" y="230" width="80" height="20" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="290" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">XAI Enabled</text>
+    
+    <rect x="250" y="260" width="80" height="20" rx="5" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="290" y="273" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#374151">&lt;200ms Latency</text>
+    
+    <!-- Output Metrics -->
+    <rect x="450" y="200" width="80" height="20" rx="5" fill="#DCFCE7" stroke="#16A34A" stroke-width="1"/>
+    <text x="490" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">+20% CVR</text>
+    
+    <rect x="450" y="230" width="80" height="20" rx="5" fill="#DCFCE7" stroke="#16A34A" stroke-width="1"/>
+    <text x="490" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">+15% AOV</text>
+    
+    <rect x="450" y="260" width="80" height="20" rx="5" fill="#DCFCE7" stroke="#16A34A" stroke-width="1"/>
+    <text x="490" y="273" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#166534">+10% LTV</text>
+  </g>
+  
+  <!-- Performance Metrics Box -->
+  <rect x="50" y="320" width="700" height="60" rx="10" fill="#F8FAFC" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="400" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1F2937">
+    Performance Metrics
+  </text>
+  
+  <text x="150" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">
+    <tspan x="150" dy="0">Latency: &lt;200ms</tspan>
+  </text>
+  
+  <text x="300" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">
+    <tspan x="300" dy="0">Accuracy: 94.2%</tspan>
+  </text>
+  
+  <text x="450" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">
+    <tspan x="450" dy="0">Uptime: 99.9%</tspan>
+  </text>
+  
+  <text x="600" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">
+    <tspan x="600" dy="0">Scale: 10K+ users</tspan>
+  </text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280"/>
+    </marker>
+  </defs>
+</svg>

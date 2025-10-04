@@ -1,0 +1,3 @@
+# TL;DR: Ehrenberg-Bass Validation Results
+
+Specification-compliant analysis of public datasets (Instacart, dunnhumby, UCI) reveals mixed validation of Ehrenberg-Bass principles. DoP near-miss (0.015863) shows closest approach to theoretical thresholds, while DJ analysis fails correlation requirements (r=0.627 vs 0.80 target). Q4 heavy buyers demonstrate strongest moderation effect (R²=0.472), suggesting real-world data may not always meet theoretical expectations.
