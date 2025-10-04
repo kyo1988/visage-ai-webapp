@@ -11,14 +11,16 @@ A Next.js application featuring AI-powered skin analysis solutions and evidence-
 
 ### 📊 Evidence-Based Marketing Playbook
 - **Whitepaper Landing Page**: `/en/whitepaper/ebm-2025/`
-- **Lead Capture System**: Form submission with GA4 tracking
+- **Lead Capture System**: Form submission with GA4 tracking and email automation
 - **PDF Generation**: Print-ready whitepaper with technical details
 - **Dual-Viewer Structure**: Marketing insights + technical methodology
+- **Email Integration**: Automated whitepaper delivery via Nodemailer
 
 ### 🎯 Analytics & Tracking
 - GA4 integration with cross-domain tracking
 - Lead attribution and segmentation
 - Event tracking for whitepaper downloads and form submissions
+- Email delivery tracking and internal notifications
 
 ## Getting Started
 
@@ -43,6 +45,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - **4 Key Findings**: Entry situations, heavy buyers, top quarter response, repertoire behavior
 - **Actionable Insights**: What it means, what to do next, how to measure
 - **Technical Details**: Collapsible methodology for each finding
+- **14-Day Checklist**: Implementation roadmap for immediate action
 
 ### PDF Generation
 ```bash
@@ -53,10 +56,26 @@ npm run generate-whitepaper-pdf
 npm run generate-pdf
 ```
 
+### Email System
+```bash
+# Test email functionality
+npm run test-email
+```
+
 ### Content Management
 - Markdown files in `content/whitepaper/ebm-2025/`
 - Server-side rendering with `remark` and `remark-html`
 - Responsive design with Tailwind CSS
+- Email templates with HTML formatting
+
+### Environment Variables
+```bash
+# Required for email functionality
+NEXT_PUBLIC_SITE_URL=your-site-url
+NEXT_PUBLIC_GA_ID=your-ga-id
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-app-password
+```
 
 ## Learn More
 
