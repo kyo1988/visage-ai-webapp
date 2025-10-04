@@ -24,16 +24,74 @@ export default async function WhitepaperPrintPage({
       <style dangerouslySetInnerHTML={{
         __html: `
           @media print {
-            body {
+            @page { 
+              size: A4; 
+              margin: 14mm; 
+            }
+            
+            body { 
+              font: 12pt/1.5 system-ui; 
+              color: #111; 
               margin: 0;
               padding: 0;
+            }
+            
+            h1 { 
+              font-size: 22pt; 
+              margin: 0 0 8mm; 
+              color: #1f2937;
+            }
+            
+            h2 { 
+              font-size: 14pt; 
+              margin: 6mm 0 3mm; 
+              color: #374151;
+            }
+            
+            h3 {
               font-size: 12pt;
-              line-height: 1.4;
+              margin: 4mm 0 2mm;
+              color: #4b5563;
+            }
+            
+            p {
+              margin-bottom: 6pt;
+              text-align: justify;
+            }
+            
+            ul, ol {
+              margin-bottom: 6pt;
+              padding-left: 15pt;
+            }
+            
+            li {
+              margin-bottom: 3pt;
+            }
+            
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin: 6pt 0;
+            }
+            
+            th, td {
+              border: 1pt solid #ddd;
+              padding: 4pt;
+              text-align: left;
+            }
+            
+            th {
+              background-color: #f5f5f5;
+              font-weight: bold;
+            }
+            
+            img, pre, code { 
+              page-break-inside: avoid; 
             }
             
             .print-page {
               page-break-after: always;
-              margin: 20mm;
+              margin: 0;
               padding: 0;
             }
             
@@ -41,58 +99,24 @@ export default async function WhitepaperPrintPage({
               page-break-after: avoid;
             }
             
-            h1 {
-              font-size: 24pt;
-              margin-bottom: 20pt;
-              color: #1f2937;
-            }
-            
-            h2 {
-              font-size: 18pt;
-              margin-bottom: 15pt;
-              margin-top: 20pt;
-              color: #374151;
-            }
-            
-            h3 {
-              font-size: 14pt;
-              margin-bottom: 10pt;
-              margin-top: 15pt;
-              color: #4b5563;
-            }
-            
-            p {
-              margin-bottom: 10pt;
-              text-align: justify;
-            }
-            
-            ul, ol {
-              margin-bottom: 15pt;
-              padding-left: 20pt;
-            }
-            
-            li {
-              margin-bottom: 5pt;
-            }
-            
             .print-header {
               border-bottom: 2pt solid #3b82f6;
-              padding-bottom: 10pt;
-              margin-bottom: 20pt;
+              padding-bottom: 6pt;
+              margin-bottom: 8mm;
             }
             
             .print-footer {
               border-top: 1pt solid #e5e7eb;
-              padding-top: 10pt;
-              margin-top: 20pt;
-              font-size: 10pt;
+              padding-top: 6pt;
+              margin-top: 8mm;
+              font-size: 9pt;
               color: #6b7280;
             }
             
             .print-chart {
               max-width: 100%;
               height: auto;
-              margin: 15pt 0;
+              margin: 6pt 0;
               border: 1pt solid #e5e7eb;
             }
             
@@ -148,28 +172,44 @@ export default async function WhitepaperPrintPage({
         </div>
       </div>
 
-      {/* Case Studies Section */}
+      {/* Dirichlet Analysis Section */}
       <div className="print-page">
         <div 
           className="prose max-w-none"
-          dangerouslySetInnerHTML={{ __html: markdownToHtml(content.caseStudies) }}
+          dangerouslySetInnerHTML={{ __html: markdownToHtml(content.dirichlet) }}
+        />
+      </div>
+
+      {/* CEP Analysis Section */}
+      <div className="print-page">
+        <div 
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: markdownToHtml(content.cep) }}
+        />
+      </div>
+
+      {/* Quantile Tails Section */}
+      <div className="print-page">
+        <div 
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: markdownToHtml(content.quantileTails) }}
         />
         
         {/* Quantile Bands Chart */}
         <div className="my-8">
           <img 
             src="/whitepaper/ebm-2025/assets/quantile-bands.svg" 
-            alt="Conversion Rate Improvement Distribution"
+            alt="Quantile Error Analysis: Q1-Q4 Buyer Segmentation"
             className="print-chart"
           />
         </div>
       </div>
 
-      {/* Implementation Guide Section */}
+      {/* Case Studies Section */}
       <div className="print-page">
         <div 
           className="prose max-w-none"
-          dangerouslySetInnerHTML={{ __html: markdownToHtml(content.reproduction) }}
+          dangerouslySetInnerHTML={{ __html: markdownToHtml(content.caseStudies) }}
         />
       </div>
 
@@ -178,6 +218,14 @@ export default async function WhitepaperPrintPage({
         <div 
           className="prose max-w-none"
           dangerouslySetInnerHTML={{ __html: markdownToHtml(content.decisionBridge) }}
+        />
+      </div>
+
+      {/* Reproduction Checklist Section */}
+      <div className="print-page">
+        <div 
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: markdownToHtml(content.reproductionChecklist) }}
         />
       </div>
 

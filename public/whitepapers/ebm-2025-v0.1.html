@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence-Based Marketing Playbook - Executive Preview v0.1</title>
+    <style>
+        @page { 
+            size: A4; 
+            margin: 14mm; 
+        }
+        
+        body { 
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 { 
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1f2937;
+            margin: 0 0 12pt 0;
+            page-break-after: avoid;
+        }
+        
+        h2 { 
+            font-size: 14pt;
+            font-weight: bold;
+            color: #374151;
+            margin: 16pt 0 8pt 0;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #4b5563;
+            margin: 12pt 0 6pt 0;
+            page-break-after: avoid;
+        }
+        
+        p {
+            margin: 0 0 8pt 0;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 8pt 0;
+            padding-left: 20pt;
+        }
+        
+        li {
+            margin: 2pt 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8pt 0;
+            font-size: 10pt;
+        }
+        
+        th, td {
+            border: 1pt solid #ddd;
+            padding: 4pt 6pt;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            color: #374151;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        code {
+            font-family: "Consolas", "Monaco", "Courier New", monospace;
+            font-size: 9pt;
+            background-color: #f3f4f6;
+            padding: 1pt 3pt;
+            border-radius: 2pt;
+            color: #d63384;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            border: 1pt solid #e9ecef;
+            border-radius: 4pt;
+            padding: 8pt;
+            margin: 8pt 0;
+            font-family: "Consolas", "Monaco", "Courier New", monospace;
+            font-size: 9pt;
+            line-height: 1.3;
+            overflow-x: auto;
+            page-break-inside: avoid;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            color: #333;
+        }
+        
+        blockquote {
+            margin: 8pt 0;
+            padding: 8pt 12pt;
+            border-left: 3pt solid #3b82f6;
+            background-color: #f8fafc;
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1pt solid #e5e7eb;
+            margin: 16pt 0;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .cover-page {
+            text-align: center;
+            page-break-after: always;
+        }
+        
+        .cover-page h1 {
+            font-size: 24pt;
+            margin: 40pt 0 20pt 0;
+            color: #1f2937;
+        }
+        
+        .cover-page .subtitle {
+            font-size: 16pt;
+            color: #6b7280;
+            margin: 0 0 40pt 0;
+        }
+        
+        .cover-page .description {
+            font-size: 12pt;
+            color: #9ca3af;
+            margin: 0 0 60pt 0;
+        }
+        
+        .section-header {
+            border-bottom: 2pt solid #3b82f6;
+            padding-bottom: 4pt;
+            margin-bottom: 12pt;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 8pt 0;
+            page-break-inside: avoid;
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            img, pre, table {
+                page-break-inside: avoid;
+            }
+            
+            p {
+                orphans: 3;
+                widows: 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-page">
+        <h1>Evidence-Based Marketing Playbook</h1>
+        <div class="subtitle">Executive Preview v0.1</div>
+        <div class="description">Validating Ehrenberg-Bass Principles with Public Data</div>
+        <p><strong>Author:</strong> Kyo Harada<br>
+        <strong>Date:</strong> September 2025<br>
+        <strong>Subject:</strong> Marketing Science Research</p>
+    </div>
+    
+<div><h1>Evidence-Based Marketing Playbook</h1>
+<h2>Executive Preview v0.1</h2>
+
+<p><strong>Validating Ehrenberg-Bass Principles with Public Data</strong></p>
+
+<hr>
+
+<p><em>Kyo Harada</em>  </p>
+<p><em>September 27, 2025</em></p>
+
+<hr>
+
+<h3>Abstract</h3>
+
+<p>This executive preview presents specification-compliant validation of Ehrenberg-Bass marketing science principles using publicly available datasets. Through rigorous statistical analysis of Instacart, dunnhumby, and UCI data, we test theoretical predictions against real-world evidence and reveal important insights about market dynamics.</p>
+
+<p><strong>Key Findings:</strong></p>
+<p>- DoP near-miss (0.015863) - closest to specification-compliant PASS</p>
+<p>- Q4 heavy buyers show strongest relationship (R²=0.472)</p>
+<p>- DJ analysis fails correlation threshold (r=0.627 vs 0.80 target)</p>
+<p>- CEP analysis reveals English-centric bias (r=-0.28)</p>
+
+<hr>
+
+<p><em>This document presents academic research findings from public dataset analysis, not client implementations.</em></p></div>
+
+<div class="page-break"></div>
+<div><h1>TL;DR: Ehrenberg-Bass Validation Results</h1>
+
+<p>Specification-compliant analysis of public datasets (Instacart, dunnhumby, UCI) reveals mixed validation of Ehrenberg-Bass principles. DoP near-miss (0.015863) shows closest approach to theoretical thresholds, while DJ analysis fails correlation requirements (r=0.627 vs 0.80 target). Q4 heavy buyers demonstrate strongest moderation effect (R²=0.472), suggesting real-world data may not always meet theoretical expectations.</p></div>
+
+<div class="page-break"></div>
+<div><h1>Technical Architecture</h1>
+
+<h2>Pipeline Overview</h2>
+
+<p>The Ehrenberg-Bass validation pipeline processes publicly available datasets through four core stages to test theoretical predictions against real-world evidence.</p>
+
+<h3>1. <strong>Data Collection</strong></h3>
+<p>- <strong>Instacart</strong>: 5M+ transactions across beauty categories</p>
+<p>- <strong>dunnhumby</strong>: 2.5M+ transactions (beauty & personal care)</p>
+<p>- <strong>UCI</strong>: 900K+ transactions (bodycare, haircare, fragrance)</p>
+<p>- <strong>Amazon</strong>: Review data for CEP analysis (256 matches, 27 languages)</p>
+
+<h3>2. <strong>Specification Validation</strong></h3>
+<p>- <strong>Invariants</strong>: Penetration∈[0,1], frequency≥1 (buyers), duplication symmetry</p>
+<p>- <strong>Statistical Rigor</strong>: BCa 5000 bootstrap, weekly shuffle tests, negative controls</p>
+<p>- <strong>Threshold Testing</strong>: Against theoretical requirements (MAD≤0.015, r≥0.80)</p>
+
+<h3>3. <strong>Model Testing</strong></h3>
+<p>- <strong>Dirichlet</strong>: NBD model fitting with P-P plot validation (R²≈-7e-06)</p>
+<p>- <strong>CEP</strong>: Multilingual coverage analysis with language bias detection</p>
+<p>- <strong>Moderation</strong>: Quantile-based buyer segmentation analysis</p>
+
+<h3>4. <strong>Results & Validation</strong></h3>
+<p>- <strong>DoP Analysis</strong>: Near-miss validation (0.015863 vs 0.015 threshold)</p>
+<p>- <strong>DJ Analysis</strong>: Failed correlation test (r=0.627 vs 0.80 target)</p>
+<p>- <strong>Quantile Bands</strong>: Q1-Q4 progression (R²: 0.00001→0.472)</p>
+
+<h2>So What</h2>
+
+<p>Rigorous validation reveals that real-world data may not always meet theoretical thresholds, providing valuable insights into market dynamics and the importance of statistical rigor in marketing science research.</p></div>
+
+<div class="page-break"></div>
+<div><h1>Dirichlet Analysis: NBD Model Validation</h1>
+
+<h2>Purpose</h2>
+
+<p>To test the NBD-Dirichlet model's ability to fit real-world purchase data and validate its theoretical predictions against public dataset evidence.</p>
+
+<h2>Model Implementation</h2>
+
+<p>- <strong>Method</strong>: Maximum Likelihood Estimation (MLE)</p>
+<p>- <strong>Data</strong>: UCI bodycare transactions (900K+ records)</p>
+<p>- <strong>Validation</strong>: P-P plot analysis for goodness-of-fit</p>
+
+<h2>Key Results</h2>
+
+<table>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Interpretation</th>
+<p></tr></p>
+<tr>
+<td>R²</td>
+<td>-7.0e-06</td>
+<td>Poor model fit</td>
+<p></tr></p>
+<tr>
+<td>Std Dev</td>
+<td>181.9</td>
+<td>High variance in purchase data</td>
+<p></tr></p>
+<tr>
+<td>MLE Status</td>
+<td>✅ Converged</td>
+<td>Model parameters estimated</td>
+<p></tr></p>
+<p></table></p>
+
+<h2>Statistical Validation</h2>
+
+<p>- <strong>P-P Plot</strong>: Shows weak fit across quantiles</p>
+<p>- <strong>High Variance</strong>: Purchase data exhibits extreme variability</p>
+<p>- <strong>Illustrative Only</strong>: Model fit insufficient for statistical inference</p>
+
+<h2>Dataset Characteristics</h2>
+
+<p>- <strong>Users</strong>: 1,264 active buyers</p>
+<p>- <strong>Brands</strong>: 27 distinct brands</p>
+<p>- <strong>Categories</strong>: Bodycare, haircare, fragrance, nailcare</p>
+<p>- <strong>Time Period</strong>: 26-week rolling window</p>
+
+<h2>So What</h2>
+
+<p>The NBD-Dirichlet model shows poor fit with real-world data (R²≈-7e-06), suggesting that theoretical models may require significant adaptation for practical application in diverse market contexts.</p></div>
+
+<div class="page-break"></div>
+<div><h1>Category Entry Points (CEP) Analysis: Multilingual Validation</h1>
+
+<h2>Purpose</h2>
+
+<p>To validate CEP methodology using Amazon review data and test for language bias in brand coverage analysis across 27 languages.</p>
+
+<h2>CEP Implementation</h2>
+
+<p>- <strong>Data Source</strong>: Amazon Beauty Reviews (2018)</p>
+<p>- <strong>Method</strong>: Sentence-level hit rate of curated lexicon (v1.0)</p>
+<p>- <strong>Processing</strong>: Language Detection → Embedding → Taxonomy</p>
+<p>- <strong>Languages</strong>: 27 languages analyzed</p>
+
+<h2>Coverage Results</h2>
+
+<table>
+<tr>
+<th>Language</th>
+<th>Coverage</th>
+<th>Distinctiveness</th>
+<th>Correlation</th>
+<p></tr></p>
+<tr>
+<td>English</td>
+<td>52%</td>
+<td>0.31</td>
+<td>0.22 (p<0.01)</td>
+<p></tr></p>
+<tr>
+<td>Japanese</td>
+<td>38%</td>
+<td>0.23</td>
+<td>0.15 (p<0.05)</td>
+<p></tr></p>
+<tr>
+<td>Spanish</td>
+<td>45%</td>
+<td>0.18</td>
+<td>0.08 (p>0.05)</td>
+<p></tr></p>
+<p></table></p>
+
+<h2>Language Bias Detection</h2>
+
+<p>- <strong>English-Centric Bias</strong>: r=-0.28 (p<0.01)</p>
+<p>- <strong>Statistical Significance</strong>: Strong evidence of bias</p>
+<p>- <strong>Normalization</strong>: Required for fair cross-language comparison</p>
+<p>- <strong>Total Matches</strong>: 256 across all languages</p>
+
+<h2>Statistical Validation</h2>
+
+<p>- <strong>Wilson CI</strong>: Implemented for coverage estimates</p>
+<p>- <strong>H1 Correlation</strong>: Brand penetration vs CEP coverage</p>
+<p>- <strong>Bootstrap</strong>: B=5000 iterations for confidence intervals</p>
+<p>- <strong>Significance</strong>: p<0.05 threshold maintained</p>
+
+<h2>So What</h2>
+
+<p>CEP analysis reveals significant English-centric bias in brand coverage, highlighting the importance of language normalization in multilingual marketing research and the need for culturally-aware lexicon development.</p></div>
+
+<div class="page-break"></div>
+<div><h1>Decision Bridge: Research Validation Guidelines</h1>
+
+<h2>Do's</h2>
+
+<p>- <strong>Use specification-compliant methods</strong> (weighted MAD, BCa bootstrap)</p>
+<p>- <strong>Implement proper statistical controls</strong> (weekly shuffle, negative controls)</p>
+<p>- <strong>Report both simplified and spec-compliant results</strong> for transparency</p>
+<p>- <strong>Validate across multiple datasets</strong> (Instacart, dunnhumby, UCI)</p>
+
+<h2>Don'ts</h2>
+
+<p>- <strong>Don't claim PASS when using simplified methods</strong> (unweighted MAD)</p>
+<p>- <strong>Avoid language bias in CEP analysis</strong> without normalization</p>
+<p>- <strong>Don't ignore near-miss results</strong> - they provide valuable insights</p>
+<p>- <strong>Avoid over-interpretation of poor model fits</strong> (Dirichlet R²≈-7e-06)</p>
+
+<h2>Research Validation Checklist</h2>
+
+<h3>Phase 1: Data Preparation</h3>
+<p>- [ ] Download public datasets (Instacart, dunnhumby, UCI, Amazon)</p>
+<p>- [ ] Apply consistent preprocessing (26-week window, brand normalization)</p>
+<p>- [ ] Validate data quality (penetration ∈[0,1], frequency ≥1)</p>
+
+<h3>Phase 2: Analysis Execution</h3>
+<p>- [ ] Run specification-compliant DoP analysis (weighted MAD)</p>
+<p>- [ ] Execute DJ analysis with correlation thresholds</p>
+<p>- [ ] Perform CEP analysis with language normalization</p>
+<p>- [ ] Generate quantile-based moderation analysis</p>
+
+<h3>Phase 3: Statistical Validation</h3>
+<p>- [ ] Apply BCa Bootstrap (B=5000) for all key metrics</p>
+<p>- [ ] Implement weekly shuffle negative controls</p>
+<p>- [ ] Test stationarity for time-series analysis</p>
+<p>- [ ] Report confidence intervals and significance levels</p>
+
+<h2>Key Research Findings</h2>
+
+<p>- <strong>DoP Near-Miss</strong>: 0.015863 (closest to specification-compliant PASS)</p>
+<p>- <strong>DJ Analysis</strong>: Failed correlation test (r=0.627 vs 0.80 target)</p>
+<p>- <strong>Q4 Heavy Buyers</strong>: R²=0.472 (strongest moderation effect)</p>
+<p>- <strong>Language Bias</strong>: r=-0.28 (English-centric bias in CEP analysis)</p>
+
+<h2>So What</h2>
+
+<p>Rigorous validation using public datasets reveals that real-world data may not always meet theoretical thresholds, providing valuable insights into market dynamics and the importance of statistical rigor in marketing science research.</p></div>
+
+<div class="page-break"></div>
+<div><h1>Reproduction Checklist: 1-Hour Validation</h1>
+
+<h2>Steps</h2>
+
+<p>1. <strong>Data Download</strong>: Download public datasets (Instacart, dunnhumby, UCI, Amazon)</p>
+<p>2. <strong>DoP Analysis</strong>: Run specification-compliant weighted MAD calculation</p>
+<p>3. <strong>DJ Analysis</strong>: Execute correlation analysis with threshold testing</p>
+<p>4. <strong>CEP Processing</strong>: Perform multilingual coverage analysis with bias detection</p>
+<p>5. <strong>Moderation Analysis</strong>: Generate quantile-based buyer segmentation</p>
+
+<h2>Deliverables</h2>
+
+<p><strong>Generated Files:</strong></p>
+<p>- <code>results/dop_dunnhumby_beauty_spec_q90_b2_m20.csv</code> (DoP near-miss results)</p>
+<p>- <code>results/dj_bodycare.csv</code> (DJ analysis results)</p>
+<p>- <code>results/cep_coverage_complete.csv</code> (CEP analysis results)</p>
+<p>- <code>results/moderation_bodycare.csv</code> (quantile moderation results)</p>
+<p>- <code>figs/dop_heat_dunnhumby_beauty_spec_q90_b2_m20.png</code> (DoP heatmap)</p>
+
+<h2>Requirements</h2>
+
+<p><strong>Environment:</strong> Python 3.9+, Poetry, pandas, numpy, scipy, scikit-learn</p>
+
+<p><strong>Data Sources:</strong> Public datasets (Instacart, dunnhumby, UCI, Amazon)</p>
+
+<p><strong>Validation:</strong> BCa Bootstrap (B=5000), weekly shuffle, negative controls, stationarity tests</p>
+
+<h2>Quick Start</h2>
+
+<code>`</code>bash
+<h1>Setup environment</h1>
+<p>make setup</p>
+
+<h1>Download datasets</h1>
+<p>make download-uci</p>
+<p>make download-instacart</p>
+<p>make download-amazon</p>
+
+<h1>Run analyses</h1>
+<p>make dj</p>
+<p>make dop_ultra</p>
+<p>make validate_all</p>
+<code>`</code>
+
+<h2>So What</h2>
+
+<p>Systematic reproduction enables independent validation of Ehrenberg-Bass principles using public datasets, ensuring transparency and reproducibility in marketing science research.</p>
+</div>
+
+<div class="page-break"></div>
+<div><h1>Legal & Compliance</h1>
+
+<h2>Disclaimer</h2>
+
+<p>This document is for informational and educational purposes only. It does not constitute medical, investment, or professional advice.</p>
+
+<h2>Data Usage</h2>
+
+<p>Emails collected are used for document delivery and updates only. Data retention period: 12 months. No third-party sharing without explicit consent.</p>
+
+<h2>Data Deletion</h2>
+
+<p>For data deletion requests, contact: support@visageaiconsulting.com</p>
+
+<h2>So What</h2>
+
+<p>Minimal legal framework ensures compliance while maintaining focus on evidence-based marketing analysis methodology.</p></div>
+
+
+    <hr>
+    <p style="text-align: center; color: #6b7280; font-size: 10pt;">
+        Visage AI Consulting • September 2025 • Executive Preview v0.1
+    </p>
+    
+    <div class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button onclick="window.print()" style="
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        ">Print to PDF</button>
+    </div>
+</body>
+</html>

@@ -28,26 +28,23 @@ export function markdownToHtml(markdown: string): string {
     .replace(/<ol>/g, '<ol class="list-decimal ml-6 mb-6">')
     .replace(/<li>/g, '<li class="mb-2">')
     
-                // Code blocks
+                // Code blocks - handle <pre><code> combinations
                 .replace(/<pre>/g, '<pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4">')
-                .replace(/<code(?:\s+class="[^"]*")?>/g, (match) => {
-                  // Handle both plain <code> and <code class="language-js"> etc.
+                .replace(/<pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4"><code(?:\s+class="[^"]*")?>/g, (match) => {
+                  // This is a code block inside <pre>, only add font classes
                   if (match.includes('class=')) {
-                    // Already has classes, merge with our classes
                     return match.replace(/class="([^"]*)"/, 'class="$1 text-sm font-mono"');
                   } else {
-                    // Plain <code>, add our classes
-                    return '<code class="text-sm font-mono">';
+                    return match.replace('><code', '><code class="text-sm font-mono"');
                   }
                 })
                 
-                // Inline code - handle both plain and language-tagged code
-                .replace(/<code(?:\s+class="[^"]*")?>/g, (match) => {
+                // Inline code - handle standalone <code> tags (not inside <pre>)
+                .replace(/(?<!<pre[^>]*>)<code(?:\s+class="[^"]*")?>/g, (match) => {
+                  // This is inline code, add background and padding classes
                   if (match.includes('class=')) {
-                    // Already has classes, merge with our classes
                     return match.replace(/class="([^"]*)"/, 'class="$1 bg-gray-100 px-2 py-1 rounded text-sm font-mono"');
                   } else {
-                    // Plain <code>, add our classes
                     return '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">';
                   }
                 })
