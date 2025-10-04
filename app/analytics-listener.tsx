@@ -1,17 +1,16 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export default function AnalyticsListener() {
   const pathname = usePathname();
-  const search = useSearchParams();
 
   useEffect(() => {
     if (!pathname) return;
     
-    const query = search?.toString();
-    const url = query ? `${pathname}?${query}` : pathname;
+    // クライアントサイドでのみURLを構築
+    const url = typeof window !== 'undefined' ? window.location.pathname + window.location.search : pathname;
     
     // DEBUG LOG
     console.log('[GA] pageview ->', url);
@@ -27,7 +26,7 @@ export default function AnalyticsListener() {
     } else {
       console.log('[GA4] gtag not available yet');
     }
-  }, [pathname, search]);
+  }, [pathname]);
 
   return null;
 }

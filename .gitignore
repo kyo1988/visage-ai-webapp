@@ -42,3 +42,8 @@ next-env.d.ts
 
 # cursor rules
 .cursorrules
+
+# internal documentation
+WHITEPAPER_SOW.md
+*.md
+!README.md

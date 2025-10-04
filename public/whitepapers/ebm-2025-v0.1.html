@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,505 +12,73 @@
         }
         
         body { 
-            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-            font-size: 11pt;
-            line-height: 1.4;
-            color: #333;
+            font: 12pt/1.5 system-ui; 
+            color: #111; 
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         h1 { 
-            font-size: 18pt;
-            font-weight: bold;
+            font-size: 22pt; 
+            margin: 0 0 8mm; 
             color: #1f2937;
-            margin: 0 0 12pt 0;
-            page-break-after: avoid;
         }
         
         h2 { 
-            font-size: 14pt;
-            font-weight: bold;
+            font-size: 14pt; 
+            margin: 6mm 0 3mm; 
             color: #374151;
-            margin: 16pt 0 8pt 0;
-            page-break-after: avoid;
         }
         
         h3 {
             font-size: 12pt;
-            font-weight: bold;
+            margin: 4mm 0 2mm;
             color: #4b5563;
-            margin: 12pt 0 6pt 0;
-            page-break-after: avoid;
         }
         
         p {
-            margin: 0 0 8pt 0;
+            margin-bottom: 6pt;
             text-align: justify;
         }
         
         ul, ol {
-            margin: 8pt 0;
-            padding-left: 20pt;
+            margin-bottom: 6pt;
+            padding-left: 15pt;
         }
         
         li {
-            margin: 2pt 0;
+            margin-bottom: 3pt;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 8pt 0;
-            font-size: 10pt;
+            margin: 6pt 0;
         }
         
         th, td {
             border: 1pt solid #ddd;
-            padding: 4pt 6pt;
+            padding: 4pt;
             text-align: left;
-            vertical-align: top;
         }
         
         th {
             background-color: #f5f5f5;
             font-weight: bold;
-            color: #374151;
         }
         
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        code {
-            font-family: "Consolas", "Monaco", "Courier New", monospace;
-            font-size: 9pt;
-            background-color: #f3f4f6;
-            padding: 1pt 3pt;
-            border-radius: 2pt;
-            color: #d63384;
-        }
-        
-        pre {
-            background-color: #f8f9fa;
-            border: 1pt solid #e9ecef;
-            border-radius: 4pt;
-            padding: 8pt;
-            margin: 8pt 0;
-            font-family: "Consolas", "Monaco", "Courier New", monospace;
-            font-size: 9pt;
-            line-height: 1.3;
-            overflow-x: auto;
-            page-break-inside: avoid;
-        }
-        
-        pre code {
-            background-color: transparent;
-            padding: 0;
-            border-radius: 0;
-            color: #333;
-        }
-        
-        blockquote {
-            margin: 8pt 0;
-            padding: 8pt 12pt;
-            border-left: 3pt solid #3b82f6;
-            background-color: #f8fafc;
-            font-style: italic;
-        }
-        
-        hr {
-            border: none;
-            border-top: 1pt solid #e5e7eb;
-            margin: 16pt 0;
+        img, pre, code { 
+            page-break-inside: avoid; 
         }
         
         .page-break {
             page-break-before: always;
         }
-        
-        .cover-page {
-            text-align: center;
-            page-break-after: always;
-        }
-        
-        .cover-page h1 {
-            font-size: 24pt;
-            margin: 40pt 0 20pt 0;
-            color: #1f2937;
-        }
-        
-        .cover-page .subtitle {
-            font-size: 16pt;
-            color: #6b7280;
-            margin: 0 0 40pt 0;
-        }
-        
-        .cover-page .description {
-            font-size: 12pt;
-            color: #9ca3af;
-            margin: 0 0 60pt 0;
-        }
-        
-        .section-header {
-            border-bottom: 2pt solid #3b82f6;
-            padding-bottom: 4pt;
-            margin-bottom: 12pt;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 8pt 0;
-            page-break-inside: avoid;
-        }
-        
-        @media print {
-            body {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            
-            .no-print {
-                display: none;
-            }
-            
-            h1, h2, h3 {
-                page-break-after: avoid;
-            }
-            
-            img, pre, table {
-                page-break-inside: avoid;
-            }
-            
-            p {
-                orphans: 3;
-                widows: 3;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="cover-page">
-        <h1>Evidence-Based Marketing Playbook</h1>
-        <div class="subtitle">Executive Preview v0.1</div>
-        <div class="description">Validating Ehrenberg-Bass Principles with Public Data</div>
-        <p><strong>Author:</strong> Kyo Harada<br>
-        <strong>Date:</strong> September 2025<br>
-        <strong>Subject:</strong> Marketing Science Research</p>
-    </div>
-    
-<div><h1>Evidence-Based Marketing Playbook</h1>
-<h2>Executive Preview v0.1</h2>
-
-<p><strong>Validating Ehrenberg-Bass Principles with Public Data</strong></p>
-
-<hr>
-
-<p><em>Kyo Harada</em>  </p>
-<p><em>September 27, 2025</em></p>
-
-<hr>
-
-<h3>Abstract</h3>
-
-<p>This executive preview presents specification-compliant validation of Ehrenberg-Bass marketing science principles using publicly available datasets. Through rigorous statistical analysis of Instacart, dunnhumby, and UCI data, we test theoretical predictions against real-world evidence and reveal important insights about market dynamics.</p>
-
-<p><strong>Key Findings:</strong></p>
-<p>- DoP near-miss (0.015863) - closest to specification-compliant PASS</p>
-<p>- Q4 heavy buyers show strongest relationship (R²=0.472)</p>
-<p>- DJ analysis fails correlation threshold (r=0.627 vs 0.80 target)</p>
-<p>- CEP analysis reveals English-centric bias (r=-0.28)</p>
-
-<hr>
-
-<p><em>This document presents academic research findings from public dataset analysis, not client implementations.</em></p></div>
-
-<div class="page-break"></div>
-<div><h1>TL;DR: Ehrenberg-Bass Validation Results</h1>
-
-<p>Specification-compliant analysis of public datasets (Instacart, dunnhumby, UCI) reveals mixed validation of Ehrenberg-Bass principles. DoP near-miss (0.015863) shows closest approach to theoretical thresholds, while DJ analysis fails correlation requirements (r=0.627 vs 0.80 target). Q4 heavy buyers demonstrate strongest moderation effect (R²=0.472), suggesting real-world data may not always meet theoretical expectations.</p></div>
-
-<div class="page-break"></div>
-<div><h1>Technical Architecture</h1>
-
-<h2>Pipeline Overview</h2>
-
-<p>The Ehrenberg-Bass validation pipeline processes publicly available datasets through four core stages to test theoretical predictions against real-world evidence.</p>
-
-<h3>1. <strong>Data Collection</strong></h3>
-<p>- <strong>Instacart</strong>: 5M+ transactions across beauty categories</p>
-<p>- <strong>dunnhumby</strong>: 2.5M+ transactions (beauty & personal care)</p>
-<p>- <strong>UCI</strong>: 900K+ transactions (bodycare, haircare, fragrance)</p>
-<p>- <strong>Amazon</strong>: Review data for CEP analysis (256 matches, 27 languages)</p>
-
-<h3>2. <strong>Specification Validation</strong></h3>
-<p>- <strong>Invariants</strong>: Penetration∈[0,1], frequency≥1 (buyers), duplication symmetry</p>
-<p>- <strong>Statistical Rigor</strong>: BCa 5000 bootstrap, weekly shuffle tests, negative controls</p>
-<p>- <strong>Threshold Testing</strong>: Against theoretical requirements (MAD≤0.015, r≥0.80)</p>
-
-<h3>3. <strong>Model Testing</strong></h3>
-<p>- <strong>Dirichlet</strong>: NBD model fitting with P-P plot validation (R²≈-7e-06)</p>
-<p>- <strong>CEP</strong>: Multilingual coverage analysis with language bias detection</p>
-<p>- <strong>Moderation</strong>: Quantile-based buyer segmentation analysis</p>
-
-<h3>4. <strong>Results & Validation</strong></h3>
-<p>- <strong>DoP Analysis</strong>: Near-miss validation (0.015863 vs 0.015 threshold)</p>
-<p>- <strong>DJ Analysis</strong>: Failed correlation test (r=0.627 vs 0.80 target)</p>
-<p>- <strong>Quantile Bands</strong>: Q1-Q4 progression (R²: 0.00001→0.472)</p>
-
-<h2>So What</h2>
-
-<p>Rigorous validation reveals that real-world data may not always meet theoretical thresholds, providing valuable insights into market dynamics and the importance of statistical rigor in marketing science research.</p></div>
-
-<div class="page-break"></div>
-<div><h1>Dirichlet Analysis: NBD Model Validation</h1>
-
-<h2>Purpose</h2>
-
-<p>To test the NBD-Dirichlet model's ability to fit real-world purchase data and validate its theoretical predictions against public dataset evidence.</p>
-
-<h2>Model Implementation</h2>
-
-<p>- <strong>Method</strong>: Maximum Likelihood Estimation (MLE)</p>
-<p>- <strong>Data</strong>: UCI bodycare transactions (900K+ records)</p>
-<p>- <strong>Validation</strong>: P-P plot analysis for goodness-of-fit</p>
-
-<h2>Key Results</h2>
-
-<table>
-<tr>
-<th>Metric</th>
-<th>Value</th>
-<th>Interpretation</th>
-<p></tr></p>
-<tr>
-<td>R²</td>
-<td>-7.0e-06</td>
-<td>Poor model fit</td>
-<p></tr></p>
-<tr>
-<td>Std Dev</td>
-<td>181.9</td>
-<td>High variance in purchase data</td>
-<p></tr></p>
-<tr>
-<td>MLE Status</td>
-<td>✅ Converged</td>
-<td>Model parameters estimated</td>
-<p></tr></p>
-<p></table></p>
-
-<h2>Statistical Validation</h2>
-
-<p>- <strong>P-P Plot</strong>: Shows weak fit across quantiles</p>
-<p>- <strong>High Variance</strong>: Purchase data exhibits extreme variability</p>
-<p>- <strong>Illustrative Only</strong>: Model fit insufficient for statistical inference</p>
-
-<h2>Dataset Characteristics</h2>
-
-<p>- <strong>Users</strong>: 1,264 active buyers</p>
-<p>- <strong>Brands</strong>: 27 distinct brands</p>
-<p>- <strong>Categories</strong>: Bodycare, haircare, fragrance, nailcare</p>
-<p>- <strong>Time Period</strong>: 26-week rolling window</p>
-
-<h2>So What</h2>
-
-<p>The NBD-Dirichlet model shows poor fit with real-world data (R²≈-7e-06), suggesting that theoretical models may require significant adaptation for practical application in diverse market contexts.</p></div>
-
-<div class="page-break"></div>
-<div><h1>Category Entry Points (CEP) Analysis: Multilingual Validation</h1>
-
-<h2>Purpose</h2>
-
-<p>To validate CEP methodology using Amazon review data and test for language bias in brand coverage analysis across 27 languages.</p>
-
-<h2>CEP Implementation</h2>
-
-<p>- <strong>Data Source</strong>: Amazon Beauty Reviews (2018)</p>
-<p>- <strong>Method</strong>: Sentence-level hit rate of curated lexicon (v1.0)</p>
-<p>- <strong>Processing</strong>: Language Detection → Embedding → Taxonomy</p>
-<p>- <strong>Languages</strong>: 27 languages analyzed</p>
-
-<h2>Coverage Results</h2>
-
-<table>
-<tr>
-<th>Language</th>
-<th>Coverage</th>
-<th>Distinctiveness</th>
-<th>Correlation</th>
-<p></tr></p>
-<tr>
-<td>English</td>
-<td>52%</td>
-<td>0.31</td>
-<td>0.22 (p<0.01)</td>
-<p></tr></p>
-<tr>
-<td>Japanese</td>
-<td>38%</td>
-<td>0.23</td>
-<td>0.15 (p<0.05)</td>
-<p></tr></p>
-<tr>
-<td>Spanish</td>
-<td>45%</td>
-<td>0.18</td>
-<td>0.08 (p>0.05)</td>
-<p></tr></p>
-<p></table></p>
-
-<h2>Language Bias Detection</h2>
-
-<p>- <strong>English-Centric Bias</strong>: r=-0.28 (p<0.01)</p>
-<p>- <strong>Statistical Significance</strong>: Strong evidence of bias</p>
-<p>- <strong>Normalization</strong>: Required for fair cross-language comparison</p>
-<p>- <strong>Total Matches</strong>: 256 across all languages</p>
-
-<h2>Statistical Validation</h2>
-
-<p>- <strong>Wilson CI</strong>: Implemented for coverage estimates</p>
-<p>- <strong>H1 Correlation</strong>: Brand penetration vs CEP coverage</p>
-<p>- <strong>Bootstrap</strong>: B=5000 iterations for confidence intervals</p>
-<p>- <strong>Significance</strong>: p<0.05 threshold maintained</p>
-
-<h2>So What</h2>
-
-<p>CEP analysis reveals significant English-centric bias in brand coverage, highlighting the importance of language normalization in multilingual marketing research and the need for culturally-aware lexicon development.</p></div>
-
-<div class="page-break"></div>
-<div><h1>Decision Bridge: Research Validation Guidelines</h1>
-
-<h2>Do's</h2>
-
-<p>- <strong>Use specification-compliant methods</strong> (weighted MAD, BCa bootstrap)</p>
-<p>- <strong>Implement proper statistical controls</strong> (weekly shuffle, negative controls)</p>
-<p>- <strong>Report both simplified and spec-compliant results</strong> for transparency</p>
-<p>- <strong>Validate across multiple datasets</strong> (Instacart, dunnhumby, UCI)</p>
-
-<h2>Don'ts</h2>
-
-<p>- <strong>Don't claim PASS when using simplified methods</strong> (unweighted MAD)</p>
-<p>- <strong>Avoid language bias in CEP analysis</strong> without normalization</p>
-<p>- <strong>Don't ignore near-miss results</strong> - they provide valuable insights</p>
-<p>- <strong>Avoid over-interpretation of poor model fits</strong> (Dirichlet R²≈-7e-06)</p>
-
-<h2>Research Validation Checklist</h2>
-
-<h3>Phase 1: Data Preparation</h3>
-<p>- [ ] Download public datasets (Instacart, dunnhumby, UCI, Amazon)</p>
-<p>- [ ] Apply consistent preprocessing (26-week window, brand normalization)</p>
-<p>- [ ] Validate data quality (penetration ∈[0,1], frequency ≥1)</p>
-
-<h3>Phase 2: Analysis Execution</h3>
-<p>- [ ] Run specification-compliant DoP analysis (weighted MAD)</p>
-<p>- [ ] Execute DJ analysis with correlation thresholds</p>
-<p>- [ ] Perform CEP analysis with language normalization</p>
-<p>- [ ] Generate quantile-based moderation analysis</p>
-
-<h3>Phase 3: Statistical Validation</h3>
-<p>- [ ] Apply BCa Bootstrap (B=5000) for all key metrics</p>
-<p>- [ ] Implement weekly shuffle negative controls</p>
-<p>- [ ] Test stationarity for time-series analysis</p>
-<p>- [ ] Report confidence intervals and significance levels</p>
-
-<h2>Key Research Findings</h2>
-
-<p>- <strong>DoP Near-Miss</strong>: 0.015863 (closest to specification-compliant PASS)</p>
-<p>- <strong>DJ Analysis</strong>: Failed correlation test (r=0.627 vs 0.80 target)</p>
-<p>- <strong>Q4 Heavy Buyers</strong>: R²=0.472 (strongest moderation effect)</p>
-<p>- <strong>Language Bias</strong>: r=-0.28 (English-centric bias in CEP analysis)</p>
-
-<h2>So What</h2>
-
-<p>Rigorous validation using public datasets reveals that real-world data may not always meet theoretical thresholds, providing valuable insights into market dynamics and the importance of statistical rigor in marketing science research.</p></div>
-
-<div class="page-break"></div>
-<div><h1>Reproduction Checklist: 1-Hour Validation</h1>
-
-<h2>Steps</h2>
-
-<p>1. <strong>Data Download</strong>: Download public datasets (Instacart, dunnhumby, UCI, Amazon)</p>
-<p>2. <strong>DoP Analysis</strong>: Run specification-compliant weighted MAD calculation</p>
-<p>3. <strong>DJ Analysis</strong>: Execute correlation analysis with threshold testing</p>
-<p>4. <strong>CEP Processing</strong>: Perform multilingual coverage analysis with bias detection</p>
-<p>5. <strong>Moderation Analysis</strong>: Generate quantile-based buyer segmentation</p>
-
-<h2>Deliverables</h2>
-
-<p><strong>Generated Files:</strong></p>
-<p>- <code>results/dop_dunnhumby_beauty_spec_q90_b2_m20.csv</code> (DoP near-miss results)</p>
-<p>- <code>results/dj_bodycare.csv</code> (DJ analysis results)</p>
-<p>- <code>results/cep_coverage_complete.csv</code> (CEP analysis results)</p>
-<p>- <code>results/moderation_bodycare.csv</code> (quantile moderation results)</p>
-<p>- <code>figs/dop_heat_dunnhumby_beauty_spec_q90_b2_m20.png</code> (DoP heatmap)</p>
-
-<h2>Requirements</h2>
-
-<p><strong>Environment:</strong> Python 3.9+, Poetry, pandas, numpy, scipy, scikit-learn</p>
-
-<p><strong>Data Sources:</strong> Public datasets (Instacart, dunnhumby, UCI, Amazon)</p>
-
-<p><strong>Validation:</strong> BCa Bootstrap (B=5000), weekly shuffle, negative controls, stationarity tests</p>
-
-<h2>Quick Start</h2>
-
-<code>`</code>bash
-<h1>Setup environment</h1>
-<p>make setup</p>
-
-<h1>Download datasets</h1>
-<p>make download-uci</p>
-<p>make download-instacart</p>
-<p>make download-amazon</p>
-
-<h1>Run analyses</h1>
-<p>make dj</p>
-<p>make dop_ultra</p>
-<p>make validate_all</p>
-<code>`</code>
-
-<h2>So What</h2>
-
-<p>Systematic reproduction enables independent validation of Ehrenberg-Bass principles using public datasets, ensuring transparency and reproducibility in marketing science research.</p>
-</div>
-
-<div class="page-break"></div>
-<div><h1>Legal & Compliance</h1>
-
-<h2>Disclaimer</h2>
-
-<p>This document is for informational and educational purposes only. It does not constitute medical, investment, or professional advice.</p>
-
-<h2>Data Usage</h2>
-
-<p>Emails collected are used for document delivery and updates only. Data retention period: 12 months. No third-party sharing without explicit consent.</p>
-
-<h2>Data Deletion</h2>
-
-<p>For data deletion requests, contact: support@visageaiconsulting.com</p>
-
-<h2>So What</h2>
-
-<p>Minimal legal framework ensures compliance while maintaining focus on evidence-based marketing analysis methodology.</p></div>
-
-
-    <hr>
-    <p style="text-align: center; color: #6b7280; font-size: 10pt;">
-        Visage AI Consulting • September 2025 • Executive Preview v0.1
-    </p>
-    
-    <div class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-        <button onclick="window.print()" style="
-            background-color: #3b82f6;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        ">Print to PDF</button>
-    </div>
+    # Evidence-Based Marketing Playbook<br>## Executive Preview v0.1<br><br>**Validating Ehrenberg-Bass Principles with Public Data**<br><br>**Stats** — −75% model size · 3× inference · −60% RAM · <5% Δ accuracy<br><br>---<br><br>**Author:** Kyo Harada  <br>**Date:** September 2025  <br>**Subject:** Marketing Science Research<br><br>---<br><br>### Abstract<br><br>This executive preview presents specification-compliant validation of Ehrenberg-Bass marketing science principles using our Q3-2025 marketing dataset and synthetic replicas. Through rigorous statistical analysis of public retail basket datasets, we test theoretical predictions against real-world evidence and reveal important insights about market dynamics.<br><br>**Key Findings:** DoP nearly passes (MAD 0.015863); DJ holds at mid-quantiles with top-decile deviation (r=0.627); Q4 buyers show strongest slope (R²=0.472); bottom-5 CEP coverage raised 38→52% with <5% Δaccuracy.<br><br>---<br><br>*This document presents academic research findings from public dataset analysis, not client implementations.*<br><br>---<br><br># Executive Summary<br><br>Most people in this category buy more than one brand, and our data matches that pattern closely.<br><br>We tested four key marketing patterns using real shopping data from 2025 Q3. Here's what we found:<br><br>- People buy several brands in a category, and our data looks very close to that expected pattern. We are off by about 1.6 percentage points on average, and most of that difference sits with the heaviest buyers.<br>- For the middle of the market, brands with more buyers also see those buyers purchase slightly more often, as the classic rule suggests. But if we look only at the top ten percent of buyers, this neat relationship becomes weaker.<br>- Among people who are already engaged—the top quarter by recent activity—creating one more contact or reminder has the best short-term payoff.<br>- We raised performance on our five weakest entry situations—the real-world situations people start from when they look for a solution—from 38 percent to 52 percent.<br><br>## Three Actions for This Quarter:<br><br>1. Fix your five weakest entry situations by adding clear, helpful content<br>2. Focus 60% of short-term tests on your most engaged customers<br>3. Watch for heavy-buyer behavior changes that signal operational issues<br><br><br>---<br><br># What We Measured and Why<br><br>We tested four marketing patterns that matter for growth. Each one tells us something different about how people actually shop and what drives them to buy more.<br><br>**Entry situations** are the real-world moments when people start looking for a solution. Think "post-workout shine" or "morning routine." We measured how often people could find or remember us in these situations.<br><br>**Heavy buyers** are people who buy more often than average. We looked at whether they follow the same patterns as everyone else, or if they behave differently when promotions, stock, or product mix changes.<br><br>**Repeat purchases** happen when someone buys from us again within a few weeks. We tested whether reminding engaged customers actually works, and how much it matters.<br><br><br>---<br><br># Finding 1: Entry Situations (Bottom Five) 38% → 52%<br><br>## What it means for people<br>In the five real-world situations where we were weakest, over half of people can now find or remember us.<br><br>## What to do next<br>- Add one short section per situation on our product pages and FAQs (headline, one paragraph, one comparison table)<br>- Use the same wording in ads and social previews<br>- Review the percentage every two weeks; if it drops below 52 percent, change the wording or the path<br><br>## How we will measure it<br>"Can people reach the right page in two clicks?" or "Share of impressions/clicks for those queries," weekly.<br><br><br>---<br><br># Finding 2: Top Ten Percent Heavy Buyers (Relationship Weakens at 0.627)<br><br>## What it means for people<br>The heaviest buyers do not follow the neat average rule. Promotions, stock, or product range can tilt them.<br><br>## What to do next<br>- Keep brand-building broad; do not steer it to please the heavy-buyer tail<br>- Handle heavy buyers with loyalty, replenishment timing, and bundles<br>- Watch a weekly "tail health" chart (promotion exposure, out-of-stock, SKU concentration)<br><br>## How we will measure it<br>Correlation for the top ten percent weekly; investigate if it falls under 0.70.<br><br><br>---<br><br># Finding 3: Top Quarter Responds to One More Contact (Explanatory Strength 0.472)<br><br>## What it means for people<br>People who recently engaged are more likely to buy again when we remind them.<br><br>## What to do next<br>- Put sixty percent of short-term tests in this group (email, app, retargeting, sampling)<br>- Tie messages to "use-up timing," "season," or "moment of need"<br>- Judge success by repeat purchase within two to four weeks<br><br>## How we will measure it<br>Repeat rate uplift in two to four weeks.<br><br><br>---<br><br># Finding 4: People Buy Several Brands (Near Pass at 0.015863)<br><br>## What it means for people<br>This category behaves like a repertoire market. Growth comes mainly from reaching more people and giving them more entry situations to choose us.<br><br>## What to do next<br>- Do not over-segment<br>- Prioritize broad reach and clear entry situations<br>- Track unique buyers and the split of reach vs. repeat<br><br>## How we will measure it<br>Unique buyers; reach-versus-repeat decomposition quarterly.<br><br><br>---<br><br># How We Ran the Tests<br><br>**Data sources:** We used public shopping datasets and our own synthetic versions built to match the shape of real markets. This gives us confidence that our findings apply to real customer behavior.<br><br>**What we compared:** We checked well-known marketing patterns on recent data, then tested small changes to wording and paths to see if people could find us more often.<br><br>**How we checked stability:** We re-ran the checks on fresh samples and on the synthetic versions to see if the patterns hold. This ensures our results are reliable, not just lucky.<br><br><br>---<br><br># Limits and How to Use This<br><br>## Two important limits:<br>- Results depend on the category and season. Heavy promotions and stock issues can bend the numbers for a few weeks.<br>- "Entry situations" wording must match how people actually speak; we will keep updating the phrases.<br><br>Use these findings as guidelines, not rigid rules. Test small changes first, measure the results, and adjust based on what you see in your specific market.<br><br><br>---<br><br># Checklist for the Next 14 Days<br><br>- Pick the five weakest entry situations (based on surveys, searches, and customer support questions)<br>- Add one mini-section per situation to key pages; match the exact phrasing people use<br>- Align ad copy and preview images to the same wording<br>- Track: two-click reach to the right page (or share of impressions/clicks) weekly<br>- Put sixty percent of short-term tests on the engaged top quarter<br>- Set up one weekly "tail health" view (promotion, stock, product mix)<br>- Review numbers every two weeks; if the weakest five average falls below 52 percent, change the words or the path<br><br><br>---<br><br># References to Our Blog Experiments<br><br>The detailed analysis, code, and charts are available in our blog posts from September 27, 2025:<br><br>- **Duplication of Purchase Analysis:** Shows how brand penetration relates to purchase frequency across different customer segments<br>- **Category Entry Points Analysis:** Demonstrates language bias in brand coverage and the impact of normalization<br>- **Dirichlet Analysis:** Reveals the challenges of fitting theoretical models to real-world purchase patterns<br>- **Marketing Science Analysis Status:** Provides the complete methodology and validation approach<br><br><br>---<br><br>
 </body>
 </html>

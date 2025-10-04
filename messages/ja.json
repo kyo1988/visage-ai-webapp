@@ -780,6 +780,8 @@
     "subtitle": "エグゼクティブプレビュー v0.1",
     "description": "Eコマース・小売業向けAI皮膚分析",
     "downloadCta": "ホワイトペーパーを取得",
+    "ctaTitle": "マーケティング戦略を変革する準備はできていますか？",
+    "ctaDescription": "実用的な洞察と実装ガイドラインを含む完全なホワイトペーパーをダウンロードしてください。",
     "formTitle": "コピーをダウンロード",
     "formDescription": "完全なエビデンスベースマーケティングプレイブックに即座にアクセス",
     "formFields": {
@@ -791,7 +793,7 @@
     },
     "formSubmit": "今すぐダウンロード",
     "formSuccess": "ありがとうございます！ホワイトペーパーのダウンロード準備ができました。",
-    "formSuccessDescription": "メールでダウンロードリンクをお送りしました。または、下のボタンから直接ダウンロードしてください。",
+    "formSuccessDescription": "メールでダウンロードリンクをお送りしました。",
     "formError": "エラーが発生しました。もう一度お試しください。",
     "printVersion": "印刷版",
     "sections": {
@@ -800,7 +802,7 @@
       "architecture": "技術アーキテクチャ",
       "reproduction": "実装ガイド",
       "caseStudies": "ケーススタディ",
-      "decisionBridge": "意思決定フレームワーク",
+      "decisionBridge": "今四半期のアクション",
       "legal": "法的・コンプライアンス"
     }
   }

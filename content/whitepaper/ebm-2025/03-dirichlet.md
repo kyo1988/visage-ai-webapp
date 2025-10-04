@@ -1,36 +1,5 @@
-# Dirichlet Analysis: NBD Model Validation
+# Dirichlet Analysis
 
-## Purpose
+Our analysis of the NBD-Dirichlet model using UCI bodycare transaction data (900K+ records across 1,264 active buyers and 27 distinct brands) reveals significant challenges in fitting real-world purchase patterns. The model demonstrates poor statistical fit with an R² of approximately -7e-06, indicating substantial deviation from theoretical predictions.
 
-To test the NBD-Dirichlet model's ability to fit real-world purchase data and validate its theoretical predictions against public dataset evidence.
-
-## Model Implementation
-
-- **Method**: Maximum Likelihood Estimation (MLE)
-- **Data**: UCI bodycare transactions (900K+ records)
-- **Validation**: P-P plot analysis for goodness-of-fit
-
-## Key Results
-
-| Metric | Value | Interpretation |
-|--------|-------|----------------|
-| R² | -7.0e-06 | Poor model fit |
-| Std Dev | 181.9 | High variance in purchase data |
-| MLE Status | ✅ Converged | Model parameters estimated |
-
-## Statistical Validation
-
-- **P-P Plot**: Shows weak fit across quantiles
-- **High Variance**: Purchase data exhibits extreme variability
-- **Illustrative Only**: Model fit insufficient for statistical inference
-
-## Dataset Characteristics
-
-- **Users**: 1,264 active buyers
-- **Brands**: 27 distinct brands
-- **Categories**: Bodycare, haircare, fragrance, nailcare
-- **Time Period**: 26-week rolling window
-
-## So What
-
-The NBD-Dirichlet model shows poor fit with real-world data (R²≈-7e-06), suggesting that theoretical models may require significant adaptation for practical application in diverse market contexts.
+**Implications**: The poor model fit highlights the importance of treating theoretical predictions as guidelines rather than absolute rules, emphasizing the need for empirical validation and adaptive modeling approaches in marketing science applications.

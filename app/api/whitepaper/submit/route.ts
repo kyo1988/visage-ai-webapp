@@ -13,8 +13,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Replace with actual lead capture logic
-    // For now, just log the lead data
+    // Log the lead data
     console.log('Lead captured:', {
       name,
       email,
@@ -24,12 +23,12 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    // TODO: Integrate with your CRM/email service
-    // Examples:
-    // - Send to HubSpot, Salesforce, etc.
-    // - Send welcome email
-    // - Add to mailing list
-    // - Store in database
+    // Generate lead ID
+    const leadId = `lead_${Date.now()}`;
+
+    // TODO: Integrate with your email service (SendGrid, Mailgun, etc.)
+    // For now, we'll just log that we would send an email
+    console.log('Would send email to:', email, 'with whitepaper PDF');
 
     // Simulate processing time
     await new Promise(resolve => setTimeout(resolve, 500));
@@ -37,7 +36,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Lead captured successfully',
-      leadId: `lead_${Date.now()}`,
+      leadId,
     });
 
   } catch (error) {

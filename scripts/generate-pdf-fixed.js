@@ -47,6 +47,9 @@ function generatePDF() {
             color: #333;
             margin: 0;
             padding: 0;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
         h1 { 
@@ -76,6 +79,18 @@ function generatePDF() {
         p {
             margin: 0 0 8pt 0;
             text-align: justify;
+        }
+        
+        .cover-page p {
+            text-indent: 0;
+        }
+        
+        .content-section p {
+            text-indent: 1.5em;
+        }
+        
+        .content-section p:first-child {
+            text-indent: 0;
         }
         
         ul, ol {
@@ -161,12 +176,26 @@ function generatePDF() {
         .cover-page {
             text-align: center;
             page-break-after: always;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .cover-page .author-info {
+            text-align: left;
+            margin: 40pt 0;
+        }
+        
+        .cover-page .author-info p {
+            margin: 8pt 0;
+            text-indent: 0;
         }
         
         .cover-page h1 {
             font-size: 24pt;
             margin: 40pt 0 20pt 0;
             color: #1f2937;
+            line-height: 1.2;
         }
         
         .cover-page .subtitle {
@@ -179,6 +208,29 @@ function generatePDF() {
             font-size: 12pt;
             color: #9ca3af;
             margin: 0 0 60pt 0;
+        }
+        
+        .cover-page .stats {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #3b82f6;
+            margin: 20pt 0;
+            padding: 10pt;
+            background-color: #f8fafc;
+            border-radius: 8pt;
+            border: 1pt solid #e2e8f0;
+        }
+        
+        .content-section {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .content-section h1,
+        .content-section h2,
+        .content-section h3 {
+            text-indent: 0;
         }
         
         .section-header {
@@ -198,6 +250,13 @@ function generatePDF() {
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+                font-size: 11.5pt;
+                line-height: 1.5;
+            }
+            
+            main {
+                max-width: 720px;
+                margin: 0 auto;
             }
             
             .no-print {
@@ -206,29 +265,36 @@ function generatePDF() {
             
             h1, h2, h3 {
                 page-break-after: avoid;
+                break-after: avoid;
             }
             
-            img, pre, table {
+            img, pre, table, figure {
                 page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .page-break {
+                page-break-before: page;
+                break-before: page;
             }
             
             p {
                 orphans: 3;
                 widows: 3;
+                margin: 0.75rem 0;
+            }
+            
+            table {
+                break-inside: avoid;
+            }
+            
+            pre, code {
+                break-inside: avoid;
             }
         }
     </style>
 </head>
 <body>
-    <div class="cover-page">
-        <h1>Evidence-Based Marketing Playbook</h1>
-        <div class="subtitle">Executive Preview v0.1</div>
-        <div class="description">Validating Ehrenberg-Bass Principles with Public Data</div>
-        <p><strong>Author:</strong> Kyo Harada<br>
-        <strong>Date:</strong> September 2025<br>
-        <strong>Subject:</strong> Marketing Science Research</p>
-    </div>
-    
 `;
   
   // Process each markdown file
@@ -247,7 +313,7 @@ function generatePDF() {
         htmlContent += '<div class="page-break"></div>\n';
       }
       
-      htmlContent += `<div>${content}</div>\n\n`;
+      htmlContent += `<div class="content-section">${content}</div>\n\n`;
     } else {
       console.warn(`⚠️  File not found: ${filename}`);
     }

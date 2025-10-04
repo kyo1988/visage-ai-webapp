@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:i18n": "ts-node scripts/find-untranslated.ts",
     "generate-pdf": "node scripts/generate-pdf-fixed.js",
-    "generate-whitepaper-pdf": "./scripts/generate-whitepaper-pdf.sh"
+    "generate-whitepaper-pdf": "node scripts/generate-whitepaper-pdf.js"
   },
   "dependencies": {
     "@next/third-parties": "^14.2.3",

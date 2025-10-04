@@ -2,29 +2,14 @@
 
 ## Pipeline Overview
 
-The Ehrenberg-Bass validation pipeline processes publicly available datasets through four core stages to test theoretical predictions against real-world evidence.
+The Ehrenberg-Bass validation pipeline processes publicly available datasets through three core stages to test theoretical predictions against real-world evidence. Our approach begins with comprehensive data collection and validation, followed by rigorous model testing and analysis, culminating in results that can be independently reproduced.
 
-### 1. **Data Collection**
-- **Instacart**: 5M+ transactions across beauty categories
-- **dunnhumby**: 2.5M+ transactions (beauty & personal care)
-- **UCI**: 900K+ transactions (bodycare, haircare, fragrance)
-- **Amazon**: Review data for CEP analysis (256 matches, 27 languages)
+**Data Collection & Validation** forms the foundation of our analysis, utilizing public retail basket datasets containing over 5 million transactions across beauty categories. We apply consistent preprocessing protocols including 26-week rolling windows and brand normalization to ensure data quality. Our statistical rigor is maintained through BCa 5000 bootstrap procedures, weekly shuffle tests, and negative controls, with all analyses tested against theoretical requirements (MAD≤0.015, r≥0.80).
 
-### 2. **Specification Validation**
-- **Invariants**: Penetration∈[0,1], frequency≥1 (buyers), duplication symmetry
-- **Statistical Rigor**: BCa 5000 bootstrap, weekly shuffle tests, negative controls
-- **Threshold Testing**: Against theoretical requirements (MAD≤0.015, r≥0.80)
+**Model Testing & Analysis** encompasses three key methodologies. The Dirichlet analysis employs NBD model fitting with P-P plot validation, revealing poor statistical fit (R²≈-7e-06) that highlights the challenges of applying theoretical models to real-world data. Our CEP analysis processes 256 language-specific matches across 27 languages, detecting significant language bias in brand coverage assessment. Quantile-based buyer segmentation analysis provides insights into how different customer segments respond to marketing interventions.
 
-### 3. **Model Testing**
-- **Dirichlet**: NBD model fitting with P-P plot validation (R²≈-7e-06)
-- **CEP**: Multilingual coverage analysis with language bias detection
-- **Moderation**: Quantile-based buyer segmentation analysis
+**Results & Reproduction** demonstrate the practical implications of our findings. DoP analysis shows near-miss validation (0.015863 vs 0.015 threshold), while DJ analysis reveals that models fit well at mid-quantiles but deviate significantly in the top decile (r=0.627 vs 0.80 target). Quantile band analysis shows clear progression from Q1 to Q4 (R²: 0.00001→0.472), with all analyses designed to regenerate from pinned environments within one hour.
 
-### 4. **Results & Validation**
-- **DoP Analysis**: Near-miss validation (0.015863 vs 0.015 threshold)
-- **DJ Analysis**: Failed correlation test (r=0.627 vs 0.80 target)
-- **Quantile Bands**: Q1-Q4 progression (R²: 0.00001→0.472)
-
-## So What
+## Implications
 
 Rigorous validation reveals that real-world data may not always meet theoretical thresholds, providing valuable insights into market dynamics and the importance of statistical rigor in marketing science research.

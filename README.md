@@ -1,4 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Visage AI Web Application
+
+A Next.js application featuring AI-powered skin analysis solutions and evidence-based marketing insights.
+
+## Features
+
+### 🧬 AI Skin Analysis
+- Explainable AI (XAI) for transparent skin condition assessment
+- High-precision region detection and analysis
+- SDK/API integration for e-commerce and retail
+
+### 📊 Evidence-Based Marketing Playbook
+- **Whitepaper Landing Page**: `/en/whitepaper/ebm-2025/`
+- **Lead Capture System**: Form submission with GA4 tracking
+- **PDF Generation**: Print-ready whitepaper with technical details
+- **Dual-Viewer Structure**: Marketing insights + technical methodology
+
+### 🎯 Analytics & Tracking
+- GA4 integration with cross-domain tracking
+- Lead attribution and segmentation
+- Event tracking for whitepaper downloads and form submissions
 
 ## Getting Started
 
@@ -16,9 +36,27 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Whitepaper System
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Content Structure
+- **Executive Summary**: Plain-English insights from Q3 2025 experiments
+- **4 Key Findings**: Entry situations, heavy buyers, top quarter response, repertoire behavior
+- **Actionable Insights**: What it means, what to do next, how to measure
+- **Technical Details**: Collapsible methodology for each finding
+
+### PDF Generation
+```bash
+# Generate whitepaper PDF
+npm run generate-whitepaper-pdf
+
+# Generate general PDF
+npm run generate-pdf
+```
+
+### Content Management
+- Markdown files in `content/whitepaper/ebm-2025/`
+- Server-side rendering with `remark` and `remark-html`
+- Responsive design with Tailwind CSS
 
 ## Learn More
 

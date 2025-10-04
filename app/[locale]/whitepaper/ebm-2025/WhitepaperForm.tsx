@@ -84,16 +84,8 @@ export default function WhitepaperForm({ t }: WhitepaperFormProps) {
           {t ? t('whitepaper.formSuccess') : 'Thank you! Your whitepaper is ready for download.'}
         </h3>
         <p className="text-green-700 mb-6">
-          {t ? t('whitepaper.formSuccessDescription') : 'Check your email for the download link, or click below to download directly.'}
+          {t ? t('whitepaper.formSuccessDescription') : 'Check your email for the download link.'}
         </p>
-        <a
-          href="/whitepapers/ebm-2025-v0.1.html"
-          target="_blank"
-          className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3 rounded-lg transition-all"
-          onClick={() => track('whitepaper_download', { source: 'success_page' })}
-        >
-          {t ? t('whitepaper.downloadCta') : 'View & Print Whitepaper'}
-        </a>
       </div>
     );
   }
