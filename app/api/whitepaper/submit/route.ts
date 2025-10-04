@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendWhitepaperEmail, sendInternalNotification, type WhitepaperLead } from '@/app/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,30 +14,50 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log the lead data
-    console.log('Lead captured:', {
+    // Generate lead ID
+    const leadId = `lead_${Date.now()}`;
+
+    // Create lead object
+    const lead: WhitepaperLead = {
       name,
       email,
       company,
       role,
       industry,
+      leadId,
+    };
+
+    // Log the lead data
+    console.log('Lead captured:', {
+      ...lead,
       timestamp: new Date().toISOString(),
     });
 
-    // Generate lead ID
-    const leadId = `lead_${Date.now()}`;
+    // Send emails in parallel
+    const [emailSent, notificationSent] = await Promise.allSettled([
+      sendWhitepaperEmail(lead),
+      sendInternalNotification(lead),
+    ]);
 
-    // TODO: Integrate with your email service (SendGrid, Mailgun, etc.)
-    // For now, we'll just log that we would send an email
-    console.log('Would send email to:', email, 'with whitepaper PDF');
+    // Log results
+    if (emailSent.status === 'fulfilled' && emailSent.value) {
+      console.log(`✅ Whitepaper email sent to ${email}`);
+    } else {
+      console.error(`❌ Failed to send whitepaper email to ${email}:`, emailSent.status === 'rejected' ? emailSent.reason : 'Unknown error');
+    }
 
-    // Simulate processing time
-    await new Promise(resolve => setTimeout(resolve, 500));
+    if (notificationSent.status === 'fulfilled' && notificationSent.value) {
+      console.log(`✅ Internal notification sent for lead ${leadId}`);
+    } else {
+      console.error(`❌ Failed to send internal notification for lead ${leadId}:`, notificationSent.status === 'rejected' ? notificationSent.reason : 'Unknown error');
+    }
 
+    // Return success even if email sending fails (to not break user experience)
     return NextResponse.json({
       success: true,
       message: 'Lead captured successfully',
       leadId,
+      emailSent: emailSent.status === 'fulfilled' && emailSent.value,
     });
 
   } catch (error) {

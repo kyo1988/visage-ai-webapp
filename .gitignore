@@ -43,7 +43,9 @@ next-env.d.ts
 # cursor rules
 .cursorrules
 
-# internal documentation
-WHITEPAPER_SOW.md
+# internal documentation - ignore all MD files except README
 *.md
 !README.md
+
+# Whitepaper content (internal use only)
+content/whitepaper/ebm-2025/*.md
