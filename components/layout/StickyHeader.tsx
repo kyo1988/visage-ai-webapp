@@ -36,6 +36,9 @@ export function StickyHeader() {
               <Link href={`/${locale}/docs`} className="text-base font-medium text-gray-500 hover:text-gray-900">
                 {t('docs')}
               </Link>
+              <Link href={`/${locale}/whitepaper/ebm-2025`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                {t('whitepaper')}
+              </Link>
               <Link href={`/${locale}/pricing`} className="text-base font-medium text-gray-500 hover:text-gray-900">
                 {t('pricing')}
               </Link>
