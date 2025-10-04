@@ -111,18 +111,18 @@ export async function loadWhitepaperContent(): Promise<{
     fs.readFile(path.join(contentDir, '04-case-snapshot.md'), 'utf-8'),
     fs.readFile(path.join(contentDir, '05-decision-bridge.md'), 'utf-8'),
     fs.readFile(path.join(contentDir, '99-legal.md'), 'utf-8'),
-    // Marketing-focused content
-    fs.readFile(path.join(contentDir, '01-executive-summary.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '02-what-we-measured.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '03-finding-1-entry-situations.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '04-finding-2-heavy-buyers.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '05-finding-3-top-quarter.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '06-finding-4-repertoire.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '07-methods.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '08-limits.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '09-checklist.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '10-references.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '11-bridge-texts.md'), 'utf-8'),
+    // Marketing-focused content - use existing files
+    fs.readFile(path.join(contentDir, '01-tldr.md'), 'utf-8'), // executiveSummary
+    fs.readFile(path.join(contentDir, '02-architecture.md'), 'utf-8'), // whatWeMeasured
+    fs.readFile(path.join(contentDir, '03-dirichlet.md'), 'utf-8'), // finding1
+    fs.readFile(path.join(contentDir, '04-cep.md'), 'utf-8'), // finding2
+    fs.readFile(path.join(contentDir, '05-decision-bridge.md'), 'utf-8'), // finding3
+    fs.readFile(path.join(contentDir, '06-decision-bridge.md'), 'utf-8'), // finding4
+    fs.readFile(path.join(contentDir, '07-reproduction-checklist.md'), 'utf-8'), // methods
+    fs.readFile(path.join(contentDir, '06-reproduction-checklist.md'), 'utf-8'), // limits
+    fs.readFile(path.join(contentDir, '06-reproduction-checklist.md'), 'utf-8'), // checklist
+    fs.readFile(path.join(contentDir, '99-legal.md'), 'utf-8'), // references
+    fs.readFile(path.join(contentDir, '11-bridge-texts.md'), 'utf-8'), // bridgeTexts
   ]);
 
 
