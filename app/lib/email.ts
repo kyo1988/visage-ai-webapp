@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 // Nodemailer transporterの設定
 const createTransporter = () => {
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.NEXT_PUBLIC_EMAIL_USER,
