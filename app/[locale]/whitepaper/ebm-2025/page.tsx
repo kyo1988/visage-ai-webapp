@@ -7,8 +7,9 @@ export default async function WhitepaperPage({
 }: {
   params: { locale: 'ja' | 'en' };
 }) {
-  const messages = (await import(`../../../../messages/${locale}.json`)).default as any;
-  const content = await loadWhitepaperContent();
+  try {
+    const messages = (await import(`../../../../messages/${locale}.json`)).default as any;
+    const content = await loadWhitepaperContent();
   
   // Helper function to get translations
   const t = (key: string) => {
@@ -455,4 +456,21 @@ export default async function WhitepaperPage({
       </section>
     </div>
   );
+  } catch (error) {
+    console.error('Whitepaper page error:', error);
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Whitepaper</h1>
+          <p className="text-gray-600 mb-4">Sorry, there was an error loading the whitepaper content.</p>
+          <a 
+            href="/" 
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Return to Home
+          </a>
+        </div>
+      </div>
+    );
+  }
 }

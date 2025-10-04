@@ -98,7 +98,8 @@ export async function loadWhitepaperContent(): Promise<{
   references: string;
   bridgeTexts: string;
 }> {
-  const contentDir = path.join(process.cwd(), 'content', 'whitepaper', 'ebm-2025');
+  try {
+    const contentDir = path.join(process.cwd(), 'content', 'whitepaper', 'ebm-2025');
   
   const [
     cover, tldr, architecture, reproduction, caseStudies, decisionBridge, legal,
@@ -147,4 +148,28 @@ export async function loadWhitepaperContent(): Promise<{
     references,
     bridgeTexts,
   };
+  } catch (error) {
+    console.error('Error loading whitepaper content:', error);
+    // Return default content to prevent page crash
+    return {
+      cover: '# Cover\n\nEvidence-Based Marketing Playbook',
+      tldr: '# TL;DR\n\nKey insights from our marketing experiments.',
+      architecture: '# Architecture\n\nTechnical implementation details.',
+      reproduction: '# Reproduction\n\nHow to reproduce our findings.',
+      caseStudies: '# Case Studies\n\nReal-world applications.',
+      decisionBridge: '# Decision Bridge\n\nActionable recommendations.',
+      legal: '# Legal\n\nTerms and conditions.',
+      executiveSummary: '# Executive Summary\n\nOverview of key findings.',
+      whatWeMeasured: '# What We Measured\n\nMetrics and methodology.',
+      finding1: '# Finding 1\n\nFirst key finding.',
+      finding2: '# Finding 2\n\nSecond key finding.',
+      finding3: '# Finding 3\n\nThird key finding.',
+      finding4: '# Finding 4\n\nFourth key finding.',
+      methods: '# Methods\n\nResearch methodology.',
+      limits: '# Limits\n\nStudy limitations.',
+      checklist: '# Checklist\n\nImplementation checklist.',
+      references: '# References\n\nSource materials.',
+      bridgeTexts: '# Bridge Texts\n\nTechnical details.',
+    };
+  }
 }
