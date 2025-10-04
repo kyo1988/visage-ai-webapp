@@ -31,9 +31,9 @@ export function DemoButton({
       href={to}
       prefetch={prefetch}
       className={[
-        'inline-flex items-center rounded-brand bg-brand px-5 py-3 text-white text-sm font-medium shadow-sm',
-        'hover:opacity-90',
-        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:oklch(62%_0.2_280)]',
+        'inline-flex items-center rounded-lg bg-blue-600 px-5 py-3 text-white text-sm font-medium shadow-sm',
+        'hover:bg-blue-700 transition-colors',
+        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500',
         className
       ].join(' ')}
       data-analytics-id="header_demo_click"
