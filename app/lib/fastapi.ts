@@ -1,5 +1,5 @@
-const BASE = process.env.FASTAPI_URL;
-const TOKEN = process.env.FASTAPI_TOKEN;
+const BASE = process.env.NEXT_PUBLIC_FASTAPI_URL || process.env.FASTAPI_URL;
+const TOKEN = process.env.NEXT_PUBLIC_FASTAPI_TOKEN || process.env.FASTAPI_TOKEN;
 
 function authHeaders(): Record<string, string> {
   return TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {};
