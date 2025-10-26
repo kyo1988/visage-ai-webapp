@@ -224,7 +224,7 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
                   className="text-sm text-blue-600 hover:text-blue-800 underline"
                   onClick={() => gaEvent('cta_click', { destination: 'demo_booking', placement: 'rate_limit' })}
                 >
-                  {locale === 'ja' ? 'メール登録で続きを利用' : 'Sign up to continue'}
+                  {locale === 'ja' ? 'デモ予約で続きを利用' : 'Book demo to continue'}
                 </a>
               )}
             </div>
