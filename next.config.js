@@ -1,7 +1,13 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["example.com", "cdn.example.jp", "thumbnail.image.rakuten.co.jp", "image.rakuten.co.jp"]
+    domains: [
+      "example.com", 
+      "cdn.example.jp", 
+      "thumbnail.image.rakuten.co.jp", 
+      "image.rakuten.co.jp",
+      "images.unsplash.com"
+    ]
   },
   experimental: {
     serverComponentsExternalPackages: ['firebase-admin']
