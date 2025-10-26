@@ -46,6 +46,11 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
       setSessionId(newId);
     }
     setIsInitialized(true);
+    
+    // Track page load
+    gaEvent('interactive_demo_page_viewed', {
+      locale,
+    });
   }, []);
 
   // Check rate limit on mount and when session changes
@@ -113,9 +118,31 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
 
   const handleMetricChange = (key: string, value: number) => {
     setMetrics(prev => ({ ...prev, [key]: value }));
+    
+    // Track slider change
+    gaEvent('demo_slider_changed', {
+      metric: key,
+      value,
+      skin_type: skinType,
+    });
+  };
+
+  const handleSkinTypeChange = (newSkinType: string) => {
+    setSkinType(newSkinType);
+    
+    // Track skin type change
+    gaEvent('demo_skin_type_changed', {
+      old_skin_type: skinType,
+      new_skin_type: newSkinType,
+    });
   };
 
   const handleGetRecommendations = () => {
+    gaEvent('demo_get_recommendations_clicked', {
+      skin_type: skinType,
+      metrics,
+      remaining_requests: remainingRequests,
+    });
     fetchRecommendations();
   };
 
@@ -202,7 +229,7 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
               <select
                 id="skin-type"
                 value={skinType}
-                onChange={(e) => setSkinType(e.target.value)}
+                onChange={(e) => handleSkinTypeChange(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="normal">Normal (普通肌)</option>
@@ -280,7 +307,15 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
                 {recommendations.map((rec, index) => (
                   <div
                     key={rec.id}
-                    className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
+                    className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                    onClick={() => gaEvent('demo_recommendation_clicked', {
+                      recommendation_id: rec.id,
+                      recommendation_name: rec.name,
+                      confidence: rec.confidence,
+                      source: rec.source,
+                      index,
+                      session_id: sessionId,
+                    })}
                   >
                     <div className="flex justify-between items-start mb-2">
                       <h4 className="font-semibold text-gray-900">{rec.name}</h4>
