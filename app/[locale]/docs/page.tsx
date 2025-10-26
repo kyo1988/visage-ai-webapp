@@ -70,21 +70,6 @@ export default async function DocsHome({
         </Link>
       </div>
 
-      <h2 className="mt-10">{messages.default.docs.pages.overview.nextSteps.title}</h2>
-      <ol>
-        <li>
-          {messages.default.docs.pages.overview.nextSteps.step1}
-          <code>{messages.default.docs.pages.overview.nextSteps.step1Code}</code>
-          {messages.default.docs.pages.overview.nextSteps.step1End}
-        </li>
-        <li>
-          {messages.default.docs.pages.overview.nextSteps.step2}
-        </li>
-        <li>
-          {messages.default.docs.pages.overview.nextSteps.step3}
-        </li>
-      </ol>
-
       <div className="mt-8">
         <a href={`/${locale}/demo`} className="inline-flex items-center rounded-lg bg-black px-4 py-2 text-white text-sm hover:opacity-90">
           {messages.default.docs.cta.demo}
