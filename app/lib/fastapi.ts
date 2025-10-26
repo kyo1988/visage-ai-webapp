@@ -86,3 +86,107 @@ export async function fastapiRecommendInsights(input: {
     insights: [] // 空配列にして、既存のFirestoreデータを使用
   };
 }
+
+// ======================================================================
+// CrystalAI API Integration
+// ======================================================================
+
+import type { RecommendationItem } from "@/types/recommendation";
+
+export interface CrystalAIRecommendationRequest {
+  skinType: string;
+  skinAnalysis?: Record<string, number>;
+  limit?: number;
+  context?: 'lp_demo' | 'mobile' | 'premium';
+  user_id?: string;
+}
+
+export interface CrystalAIRecommendationResponse {
+  recommendations: RecommendationItem[];
+  message: string;
+  accuracy_note?: string;
+  session_id?: string;
+}
+
+export interface DemoRecommendationRequest {
+  skinType: string;
+  email?: string;
+  session_id?: string;
+}
+
+export interface ModelStatusResponse {
+  status: string;
+  models_count: number;
+  ensemble_weight?: number | null;
+  last_updated?: string | null;
+  performance?: Record<string, number> | null;
+}
+
+export async function fastapiCrystalAIRecommendations(input: CrystalAIRecommendationRequest): Promise<CrystalAIRecommendationResponse> {
+  if (!BASE) throw new Error("FASTAPI_URL not set");
+  
+  const res = await fetch(`${BASE}/api/v2/crystalai/recommendations`, {
+    method: 'POST',
+    headers: { 
+      "Content-Type": "application/json", 
+      ...authHeaders() 
+    },
+    body: JSON.stringify(input)
+  });
+  
+  if (!res.ok) {
+    const error = await res.text();
+    throw new Error(`FastAPI /api/v2/crystalai/recommendations: ${res.status} - ${error}`);
+  }
+  
+  return res.json();
+}
+
+export async function fastapiCrystalAIModelsStatus(): Promise<ModelStatusResponse> {
+  if (!BASE) throw new Error("FASTAPI_URL not set");
+  
+  const res = await fetch(`${BASE}/api/v2/crystalai/models/status`, {
+    headers: { "Content-Type": "application/json", ...authHeaders() },
+    cache: "no-store"
+  });
+  
+  if (!res.ok) {
+    throw new Error(`FastAPI /api/v2/crystalai/models/status: ${res.status}`);
+  }
+  
+  return res.json();
+}
+
+export async function fastapiCrystalAIDemo(input: DemoRecommendationRequest): Promise<CrystalAIRecommendationResponse> {
+  if (!BASE) throw new Error("FASTAPI_URL not set");
+  
+  const res = await fetch(`${BASE}/api/v2/crystalai/demo`, {
+    method: 'POST',
+    headers: { 
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(input)
+  });
+  
+  if (!res.ok) {
+    const error = await res.text();
+    throw new Error(`FastAPI /api/v2/crystalai/demo: ${res.status} - ${error}`);
+  }
+  
+  return res.json();
+}
+
+export async function fastapiCrystalAIDemoRateLimit(session_id: string): Promise<{ remaining_requests: number; max_requests: number; window_minutes: number }> {
+  if (!BASE) throw new Error("FASTAPI_URL not set");
+  
+  const res = await fetch(`${BASE}/api/v2/crystalai/demo/rate-limit?session_id=${session_id}`, {
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store"
+  });
+  
+  if (!res.ok) {
+    throw new Error(`FastAPI /api/v2/crystalai/demo/rate-limit: ${res.status}`);
+  }
+  
+  return res.json();
+}
