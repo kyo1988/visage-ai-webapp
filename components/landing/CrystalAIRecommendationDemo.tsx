@@ -164,6 +164,11 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
       skinTypeLabel: '肌タイプ',
       profileLabel: 'プロフィール',
       controlsLabel: '調整',
+      productNames: {
+        '化粧水': '化粧水',
+        '美容液': '美容液',
+        'クリーム': 'クリーム',
+      },
     },
     en: {
       title: 'CrystalAI Recommendations',
@@ -171,10 +176,20 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
       skinTypeLabel: 'Skin Type',
       profileLabel: 'Profile',
       controlsLabel: 'Adjust',
+      productNames: {
+        '化粧水': 'Toner',
+        '美容液': 'Serum',
+        'クリーム': 'Cream',
+      },
     },
   };
 
   const t = translations[locale];
+  
+  // Translate product names based on locale
+  const getTranslatedName = (name: string): string => {
+    return (t as any).productNames?.[name] || name;
+  };
 
   return (
     <div style={{backgroundColor: '#f9fafb', minHeight: '100vh'}}>
@@ -262,9 +277,9 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
               <ProductGridClient 
                 products={recommendations.map(rec => ({
                   id: rec.id,
-                  name: rec.name,
-                  image: '', // TODO: Get actual product images
-                  url: '#', // TODO: Add product URL
+                  name: getTranslatedName(rec.name),
+                  image: rec.image_url || rec.imageUrl || '',
+                  url: rec.url || '#',
                   source: rec.source,
                 }))} 
               />

@@ -17,6 +17,9 @@ export interface RecommendationItem {
   source: 'crystalai' | 'rakuten' | 'hybrid';
   demo_mode?: boolean;
   reason?: string;
+  image_url?: string;
+  imageUrl?: string;
+  url?: string;
 }
 
 export interface MergedRecommendation {
