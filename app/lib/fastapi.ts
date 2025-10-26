@@ -93,6 +93,9 @@ export async function fastapiRecommendInsights(input: {
 
 import type { RecommendationItem } from "@/types/recommendation";
 
+// Re-export for external usage
+export type { RecommendationItem };
+
 export interface CrystalAIRecommendationRequest {
   skinType: string;
   skinAnalysis?: Record<string, number>;

@@ -6,8 +6,7 @@
  * handling duplicates with weighted averages and metadata guarantees.
  */
 
-import type { RecommendationItem } from "./fastapi";
-import type { RakutenItem, MergedRecommendation } from "@/types/recommendation";
+import type { RecommendationItem, MergedRecommendation, RakutenItem } from "@/types/recommendation";
 
 /**
  * Merge CrystalAI and Rakuten recommendations
