@@ -30,6 +30,9 @@ export function StickyHeader() {
               <Link href={`/${locale}/#technology`} className="text-base font-medium text-gray-500 hover:text-gray-900">
                 {t('product')}
               </Link>
+              <Link href={`/${locale}/recommendation-demo`} className="text-base font-medium text-blue-600 hover:text-blue-700">
+                Try Demo
+              </Link>
               <Link href={`/${locale}/#cases`} className="text-base font-medium text-gray-500 hover:text-gray-900">
                 {t('cases')}
               </Link>
