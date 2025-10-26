@@ -161,9 +161,12 @@ export async function fastapiCrystalAIModelsStatus(): Promise<ModelStatusRespons
 }
 
 export async function fastapiCrystalAIDemo(input: DemoRecommendationRequest): Promise<CrystalAIRecommendationResponse> {
-  if (!BASE) throw new Error("FASTAPI_URL not set");
+  const baseUrl = process.env.NEXT_PUBLIC_FASTAPI_URL || process.env.FASTAPI_URL;
+  if (!baseUrl) {
+    throw new Error("NEXT_PUBLIC_FASTAPI_URL not set. Please configure the environment variable in Vercel.");
+  }
   
-  const res = await fetch(`${BASE}/api/v2/crystalai/demo`, {
+  const res = await fetch(`${baseUrl}/api/v2/crystalai/demo`, {
     method: 'POST',
     headers: { 
       "Content-Type": "application/json"
@@ -180,9 +183,12 @@ export async function fastapiCrystalAIDemo(input: DemoRecommendationRequest): Pr
 }
 
 export async function fastapiCrystalAIDemoRateLimit(session_id: string): Promise<{ remaining_requests: number; max_requests: number; window_minutes: number }> {
-  if (!BASE) throw new Error("FASTAPI_URL not set");
+  const baseUrl = process.env.NEXT_PUBLIC_FASTAPI_URL || process.env.FASTAPI_URL;
+  if (!baseUrl) {
+    throw new Error("NEXT_PUBLIC_FASTAPI_URL not set. Please configure the environment variable in Vercel.");
+  }
   
-  const res = await fetch(`${BASE}/api/v2/crystalai/demo/rate-limit?session_id=${session_id}`, {
+  const res = await fetch(`${baseUrl}/api/v2/crystalai/demo/rate-limit?session_id=${session_id}`, {
     headers: { "Content-Type": "application/json" },
     cache: "no-store"
   });
