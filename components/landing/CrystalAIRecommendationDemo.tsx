@@ -279,7 +279,7 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
                   id: rec.id,
                   name: getTranslatedName(rec.name),
                   image: rec.image_url || rec.imageUrl || '',
-                  url: rec.url || '#',
+                  url: rec.url || `/en/report/demo?skinType=${skinType}`, // Demo: link to full report
                   source: rec.source,
                 }))} 
               />
