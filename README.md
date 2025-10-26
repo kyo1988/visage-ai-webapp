@@ -9,6 +9,14 @@ A Next.js application featuring AI-powered skin analysis solutions and evidence-
 - High-precision region detection and analysis
 - SDK/API integration for e-commerce and retail
 
+### 🤖 CrystalAI Recommendation System
+- **Interactive Demo**: `/ja/recommendation-demo` or `/en/recommendation-demo`
+- Real-time product recommendations based on skin type and condition
+- CrystalAI 82-model ensemble integration
+- Rate-limited demo access (3 requests per 10 minutes)
+- Analytics integration with GA4
+- Human-in-the-loop review queue system
+
 ### 📊 Evidence-Based Marketing Playbook
 - **Whitepaper Landing Page**: `/en/whitepaper/ebm-2025/`
 - **Lead Capture System**: Form submission with GA4 tracking and email automation
@@ -75,6 +83,10 @@ NEXT_PUBLIC_SITE_URL=your-site-url
 NEXT_PUBLIC_GA_ID=your-ga-id
 GMAIL_USER=your-email@gmail.com
 GMAIL_APP_PASSWORD=your-app-password
+
+# Required for CrystalAI features
+NEXT_PUBLIC_FASTAPI_URL=https://visage-ai-api.vercel.app
+NEXT_PUBLIC_FASTAPI_TOKEN=your-api-token
 ```
 
 ## Learn More
