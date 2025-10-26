@@ -1,4 +1,4 @@
-import { InteractiveDemo } from "@/components/landing/InteractiveDemo";
+import { CrystalAIRecommendationDemo } from "@/components/landing/CrystalAIRecommendationDemo";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -7,8 +7,8 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const title = locale === 'ja'
-    ? 'CrystalAI インタラクティブデモ - Visage AI'
-    : 'CrystalAI Interactive Demo - Visage AI';
+    ? 'CrystalAI レコメンデーション - Visage AI'
+    : 'CrystalAI Recommendations - Visage AI';
   const description = locale === 'ja'
     ? 'リアルタイムでスキンケア製品レコメンデーションを試す'
     : 'Try real-time skincare product recommendations';
@@ -27,9 +27,7 @@ export default function RecommendationDemoPage({
   params: { locale: string };
 }) {
   return (
-    <main>
-      <InteractiveDemo locale={locale as 'ja' | 'en'} />
-    </main>
+    <CrystalAIRecommendationDemo locale={locale as 'ja' | 'en'} />
   );
 }
 
