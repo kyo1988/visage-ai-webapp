@@ -278,7 +278,7 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
                 products={recommendations.map(rec => ({
                   id: rec.id,
                   name: getTranslatedName(rec.name),
-                  image: rec.image_url || rec.imageUrl || '',
+                  image: rec.image_url || rec.imageUrl || 'https://via.placeholder.com/400x300?text=Product',
                   url: rec.url || `/en/report/demo?skinType=${skinType}`, // Demo: link to full report
                   source: rec.source,
                 }))} 
