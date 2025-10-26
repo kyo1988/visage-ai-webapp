@@ -232,11 +232,23 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
                 onChange={(e) => handleSkinTypeChange(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                <option value="normal">Normal (普通肌)</option>
-                <option value="dry">Dry (乾燥肌)</option>
-                <option value="oily">Oily (脂性肌)</option>
-                <option value="combination">Combination (混合肌)</option>
-                <option value="sensitive">Sensitive (敏感肌)</option>
+                {locale === 'ja' ? (
+                  <>
+                    <option value="normal">普通肌</option>
+                    <option value="dry">乾燥肌</option>
+                    <option value="oily">脂性肌</option>
+                    <option value="combination">混合肌</option>
+                    <option value="sensitive">敏感肌</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="normal">Normal</option>
+                    <option value="dry">Dry</option>
+                    <option value="oily">Oily</option>
+                    <option value="combination">Combination</option>
+                    <option value="sensitive">Sensitive</option>
+                  </>
+                )}
               </select>
             </div>
 

@@ -4,7 +4,6 @@ import TechSection from "@/components/marketing/TechSection";
 import CaseStudies from "@/components/marketing/CaseStudies";
 import Story from "@/components/marketing/Story";
 import Scalability from "@/components/marketing/Scalability";
-import { InteractiveDemo } from "@/components/landing/InteractiveDemo";
 import FinalCta from "@/components/marketing/FinalCta";
 import { Faq } from "@/components/marketing/Faq";
 import Footer from "@/components/landing/Footer";
@@ -19,7 +18,6 @@ export default function LandingPage({
       <Hero />
       <KpiSection />
       <TechSection />
-      <InteractiveDemo locale={locale as 'ja' | 'en'} />
       <CaseStudies />
       <Story />
       <Scalability />
