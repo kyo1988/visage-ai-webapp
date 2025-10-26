@@ -45,12 +45,13 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
     const stored = sessionStorage.getItem('crystalai_demo_session_id');
     if (stored) {
       setSessionId(stored);
+      setIsInitialized(true);
     } else {
       const newId = `demo_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       sessionStorage.setItem('crystalai_demo_session_id', newId);
       setSessionId(newId);
+      setIsInitialized(true);
     }
-    setIsInitialized(true);
     
     gaEvent('crystalai_demo_page_viewed', { locale });
   }, []);
@@ -61,12 +62,15 @@ export function CrystalAIRecommendationDemo({ locale = 'ja' }: CrystalAIRecommen
     
     const checkRateLimit = async () => {
       try {
-      const info = await fastapiCrystalAIDemoRateLimit(sessionId);
-      setRemainingRequests(info.remaining_requests);
-      setRateLimitInfo({ max: info.max_requests, window: info.window_minutes });
-    } catch (err) {
-      console.error('Rate limit check failed:', err);
-    }
+        const info = await fastapiCrystalAIDemoRateLimit(sessionId);
+        setRemainingRequests(info.remaining_requests);
+        setRateLimitInfo({ max: info.max_requests, window: info.window_minutes });
+      } catch (err) {
+        console.error('Rate limit check failed:', err);
+      }
+    };
+    
+    checkRateLimit();
   }, [isInitialized, sessionId]);
 
   // Auto-fetch recommendations on skin type change
