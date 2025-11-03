@@ -700,7 +700,8 @@
         "cases": "Case Studies",
         "docs": "Documentation",
         "pricing": "Pricing",
-        "security": "Security"
+        "security": "Security",
+        "privacy": "Privacy Policy"
       },
       "follow": { "title": "Follow us" },
       "app": "iOS app: Visage AI — Skin Advisor"

@@ -43,10 +43,60 @@ export default function PrivacyPolicyPage() {
                 </li>
               </ul>
             </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-2 text-gray-900">
+                2. Use of Face Images and AI-based Skin Analysis
+              </h2>
+              <p>
+                Our app, Visage AI: Skin Advisor, uses the device camera to capture a facial image only when the user explicitly initiates a skin analysis.
+              </p>
+              
+              <h3 className="text-xl font-semibold mb-2 mt-4 text-gray-900">
+                Face Data Collection:
+              </h3>
+              <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+                <li>The app processes the captured facial image locally on the user&apos;s device using Apple&apos;s CoreML framework.</li>
+                <li>No biometric identifiers (such as facial recognition templates or identity data) are collected or stored.</li>
+                <li>Only non-identifiable pixel data is used temporarily to estimate skin condition metrics (e.g., wrinkle level, pigmentation, brightness, and pore visibility).</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-2 mt-4 text-gray-900">
+                Retention of Face Data:
+              </h3>
+              <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+                <li>The facial image is processed temporarily in memory only during the analysis and is deleted immediately after processing.</li>
+                <li>The image is not stored, uploaded, or retained on our servers or third-party servers at any time.</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-2 mt-4 text-gray-900">
+                Purpose of Processing:
+              </h3>
+              <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+                <li>The temporary use of facial image data is solely for generating AI-based skin condition analysis results for the user&apos;s own viewing.</li>
+                <li>The analysis results are numerical scores only (e.g., wrinkle score, skin tone score), which are saved to the user&apos;s account for reference.</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-2 mt-4 text-gray-900">
+                Third-Party Sharing:
+              </h3>
+              <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+                <li>We do not share any facial images or facial data with any third parties.</li>
+                <li>Only anonymized numerical skin scores are stored in Firebase Firestore for the purpose of displaying past analysis history to the user.</li>
+                <li>Firebase does not store or have access to any raw facial image data.</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-2 mt-4 text-gray-900">
+                Duration of Storage:
+              </h3>
+              <p>
+                Only anonymized skin scores (not face data) are retained in Firebase until the user deletes their account, at which point all associated data is permanently erased.
+              </p>
+            </section>
   
             <section>
               <h2 className="text-2xl font-semibold mb-2 text-gray-900">
-                2. How We Use Your Information
+                3. How We Use Your Information
               </h2>
               <p>
                 The anonymized data we collect is used for the following purposes:
@@ -60,7 +110,7 @@ export default function PrivacyPolicyPage() {
             
             <section>
               <h2 className="text-2xl font-semibold mb-2 text-gray-900">
-                3. Data Storage and Security
+                4. Data Storage and Security
               </h2>
               <p>
                 Your anonymized analysis data and the associated anonymous user ID are stored securely on Google&apos;s Firebase platform. We do not store your original photos on our servers by default.
@@ -69,7 +119,7 @@ export default function PrivacyPolicyPage() {
   
             <section>
               <h2 className="text-2xl font-semibold mb-2 text-gray-900">
-                4. Third-Party Services
+                5. Third-Party Services
               </h2>
               <p>
                 We use Firebase services provided by Google for authentication, database, and storage. Their privacy policy can be found at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">policies.google.com/privacy</a>.
@@ -78,7 +128,7 @@ export default function PrivacyPolicyPage() {
             
             <section>
               <h2 className="text-2xl font-semibold mb-2 text-gray-900">
-                5. Changes to This Privacy Policy
+                6. Changes to This Privacy Policy
               </h2>
               <p>
                 We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
@@ -87,7 +137,7 @@ export default function PrivacyPolicyPage() {
   
             <section>
               <h2 className="text-2xl font-semibold mb-2 text-gray-900">
-                6. Contact Us
+                7. Contact Us
               </h2>
               <p>
                 If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:kyoharada@visageaiconsulting.com" className="text-blue-600 hover:underline">kyoharada@visageaiconsulting.com</a>

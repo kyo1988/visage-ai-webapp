@@ -694,7 +694,8 @@
         "cases": "導入事例",
         "docs": "ドキュメント",
         "pricing": "料金",
-        "security": "セキュリティ"
+        "security": "セキュリティ",
+        "privacy": "プライバシーポリシー"
       },
       "follow": { "title": "SNS" },
       "app": "iOSアプリ：Visage AI — Skin Advisor"
