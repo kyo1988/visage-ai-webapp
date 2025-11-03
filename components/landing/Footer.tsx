@@ -13,7 +13,8 @@ export default function Footer() {
     { href: `${base}/cases`, label: t("footer.sitemap.cases") },
     { href: `${base}/docs`, label: t("footer.sitemap.docs") },
     { href: `${base}/pricing`, label: t("footer.sitemap.pricing") },
-    { href: `${base}/docs/security`, label: t("footer.sitemap.security") }
+    { href: `${base}/docs/security`, label: t("footer.sitemap.security") },
+    { href: `${base}/privacy`, label: t("footer.sitemap.privacy") }
   ];
 
   return (

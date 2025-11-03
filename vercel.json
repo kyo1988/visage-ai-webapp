@@ -11,6 +11,8 @@
     { "source": "/security",          "destination": "/ja/security",          "permanent": true },
     { "source": "/security/:path*",   "destination": "/ja/security/:path*",   "permanent": true },
     { "source": "/demo",              "destination": "/ja/demo",              "permanent": true },
-    { "source": "/demo/:path*",       "destination": "/ja/demo/:path*",       "permanent": true }
+    { "source": "/demo/:path*",       "destination": "/ja/demo/:path*",       "permanent": true },
+    { "source": "/privacy",           "destination": "/ja/privacy",           "permanent": true },
+    { "source": "/privacy/:path*",    "destination": "/ja/privacy/:path*",    "permanent": true }
   ]
 }
