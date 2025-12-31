@@ -236,24 +236,6 @@
     "scalability2_desc": "Flexible introduction is possible according to your security policy and infrastructure environment, such as cloud, on-premise, and hybrid.",
     "scalability_img_alt": "Image of SDK/API integration"
   },
-  "landing": {
-    "scalability": {
-      "title": "Flexibility and Scalability of Introduction",
-      "lead": "Seamlessly integrates into any business model with SDK and API.",
-      "item1": {
-        "title": "SDK & API",
-        "desc": "Web / iOS / Android"
-      },
-      "item2": {
-        "title": "Security",
-        "desc": "PII minimization / SOC2 in progress"
-      },
-      "item3": {
-        "title": "Governance",
-        "desc": "Human-in-the-loop and audit trails"
-      }
-    }
-  },
   "CTASection": {
     "cta_bottom_main_title": "Contact Us",
     "cta_bottom_main_subtitle": "Please feel free to contact us with any questions about Visage AI, demo requests, or material requests.",
@@ -759,7 +741,7 @@
     "ingredientsBySkinType": "Skin Type Based Recommendations",
     "recommendedProducts": "Recommended Products",
     "viewProduct": "View Product",
-    "score": {
+    "scoreLabel": {
       "label": "Good"
     },
     "radar": {
