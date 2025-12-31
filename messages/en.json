@@ -636,10 +636,22 @@
     "title": "Built for scale and governance",
     "subtitle": "Operate globally with transparent controls.",
     "cards": {
-      "region": { "title": "Regions", "desc": "JP/US/EU selectable per tenant." },
-      "sdk": { "title": "SDK & API", "desc": "JS / Swift / Kotlin and REST API." },
-      "security": { "title": "Security", "desc": "TLS 1.2+, JWT auth, PII-optional." },
-      "cost": { "title": "Cost control", "desc": "Analyze at scale with predictable cost." }
+      "region": {
+        "title": "Regions",
+        "desc": "JP/US/EU selectable per tenant."
+      },
+      "sdk": {
+        "title": "SDK & API",
+        "desc": "JS / Swift / Kotlin and REST API."
+      },
+      "security": {
+        "title": "Security",
+        "desc": "TLS 1.2+, JWT auth, PII-optional."
+      },
+      "cost": {
+        "title": "Cost control",
+        "desc": "Analyze at scale with predictable cost."
+      }
     },
     "imageAlt": "Global, scalable architecture illustration"
   },
@@ -649,16 +661,29 @@
       "lead": "Boost CVR and LTV for e-commerce and retail with XAI insights, precise segmentation, and developer-friendly SDKs.",
       "primaryCta": "Book a Demo",
       "secondaryCta": "See Report Examples",
-      "badges": ["A/B growth", "Explainable AI", "SDK & API"],
+      "badges": [
+        "A/B growth",
+        "Explainable AI",
+        "SDK & API"
+      ],
       "previewAlt": "Visage AI report preview",
       "deployedNote": "Already deployed in our iOS app \"Visage AI: Skin Advisor\" — a live showcase for B2B clients."
     },
     "kpi": {
       "title": "Simulated impact after adoption",
       "cards": {
-        "cvr": { "title": "CVR +20%", "desc": "On-site personalization and XAI-based nudges" },
-        "nps": { "title": "NPS +10pt", "desc": "Better explanation → higher satisfaction" },
-        "ltv": { "title": "LTV +10%", "desc": "Retention through routine tracking" }
+        "cvr": {
+          "title": "CVR +20%",
+          "desc": "On-site personalization and XAI-based nudges"
+        },
+        "nps": {
+          "title": "NPS +10pt",
+          "desc": "Better explanation → higher satisfaction"
+        },
+        "ltv": {
+          "title": "LTV +10%",
+          "desc": "Retention through routine tracking"
+        }
       }
     },
     "tech": {
@@ -676,36 +701,45 @@
       "lead": "From trial to scale: measurable outcomes across verticals",
       "disclaimer": "Figures are simulated examples for demonstration purposes."
     },
-    "story": { 
-      "title": "Our story", 
+    "story": {
+      "title": "Our story",
       "lead": "Why we obsess over transparent AI",
       "alt": "Tokyo skyline with elegant East Asian woman illustration and subtle circuitry motif",
       "storyTitle": "Tokyo-born AI, crafted with omotenashi",
       "storyLead": "Inspired by timeless Japanese beauty rituals and the precision of modern AI, Visage AI focuses on transparency, reproducibility, and measurable uplift.",
       "appNote": "Our lightweight model is already deployed in the iOS app \"Visage AI: Skin Advisor\"."
     },
-    "scalability": { "title": "Scale & governance", "lead": "Operate safely at enterprise scale" },
+    "scalability": {
+      "title": "Scale & governance",
+      "lead": "Operate safely at enterprise scale"
+    },
     "finalCta": {
       "title": "Ready to accelerate your business with Visage AI?",
       "primary": "Book a Demo (15 min)",
       "secondary": "Read the Docs"
     },
-    "faq": { "title": "FAQ" }
+    "faq": {
+      "title": "FAQ"
+    }
   },
-      "footer": {
-      "tagline": "Explainable skin analysis SDK/API for e-commerce & retail.",
-      "sitemap": {
-        "title": "Sitemap",
-        "product": "Product",
-        "cases": "Case Studies",
-        "docs": "Documentation",
-        "pricing": "Pricing",
-        "security": "Security",
-        "privacy": "Privacy Policy"
-      },
-      "follow": { "title": "Follow us" },
-      "app": "iOS app: Visage AI — Skin Advisor"
+  "footer": {
+    "tagline": "Explainable skin analysis SDK/API for e-commerce & retail.",
+    "sitemap": {
+      "title": "Sitemap",
+      "product": "Product",
+      "cases": "Case Studies",
+      "docs": "Documentation",
+      "pricing": "Pricing",
+      "security": "Security",
+      "privacy": "Privacy Policy",
+      "dsr": "Data Request (DSR)",
+      "contact": "Contact"
     },
+    "follow": {
+      "title": "Follow us"
+    },
+    "app": "iOS app: Visage AI — Skin Advisor"
+  },
   "NotFound": {
     "title": "Page Not Found",
     "message": "The page you are looking for could not be found."
@@ -729,7 +763,14 @@
       "label": "Good"
     },
     "radar": {
-      "labels": ["Texture", "Hydration", "Pores", "Wrinkles", "Pigmentation", "Sensitivity"]
+      "labels": [
+        "Texture",
+        "Hydration",
+        "Pores",
+        "Wrinkles",
+        "Pigmentation",
+        "Sensitivity"
+      ]
     },
     "ingredients": {
       "title": "Recommended Ingredients",
@@ -737,10 +778,22 @@
       "noRecommendations": "No ingredient recommendations found.",
       "disclaimer": "* These ingredients are general recommendations. Please perform a patch test and consult with a dermatologist before use.",
       "items": [
-        { "name": "Niacinamide 5%", "desc": "Tone-evening, sebum balance, barrier support." },
-        { "name": "Retinol 0.1%", "desc": "Clinically proven for fine lines; ramp slowly." },
-        { "name": "Hyaluronic Acid", "desc": "Humectant; layer under occlusive moisturizer." },
-        { "name": "Urea 5%", "desc": "Keratolytic + humectant for texture care." }
+        {
+          "name": "Niacinamide 5%",
+          "desc": "Tone-evening, sebum balance, barrier support."
+        },
+        {
+          "name": "Retinol 0.1%",
+          "desc": "Clinically proven for fine lines; ramp slowly."
+        },
+        {
+          "name": "Hyaluronic Acid",
+          "desc": "Humectant; layer under occlusive moisturizer."
+        },
+        {
+          "name": "Urea 5%",
+          "desc": "Keratolytic + humectant for texture care."
+        }
       ]
     }
   },
@@ -748,39 +801,114 @@
     "demoTitle": "Ingredient Recommendations Demo",
     "demoSubtitle": "Display optimal ingredients based on skin type",
     "oily": [
-      { "name": "Salicylic Acid", "desc": "Unclogs pores and regulates sebum production." },
-      { "name": "Niacinamide", "desc": "Controls oil production and tightens pores." },
-      { "name": "Retinol", "desc": "Promotes cell turnover and keeps pores clear." },
-      { "name": "Glycolic Acid", "desc": "Exfoliates dead skin cells and improves texture." },
-      { "name": "Ceramides", "desc": "Strengthens skin barrier and retains moisture." }
+      {
+        "name": "Salicylic Acid",
+        "desc": "Unclogs pores and regulates sebum production."
+      },
+      {
+        "name": "Niacinamide",
+        "desc": "Controls oil production and tightens pores."
+      },
+      {
+        "name": "Retinol",
+        "desc": "Promotes cell turnover and keeps pores clear."
+      },
+      {
+        "name": "Glycolic Acid",
+        "desc": "Exfoliates dead skin cells and improves texture."
+      },
+      {
+        "name": "Ceramides",
+        "desc": "Strengthens skin barrier and retains moisture."
+      }
     ],
     "dry": [
-      { "name": "Hyaluronic Acid", "desc": "Hydrates skin and prevents dryness." },
-      { "name": "Ceramides", "desc": "Repairs skin barrier and prevents moisture loss." },
-      { "name": "Urea", "desc": "Softens keratin and enhances moisturization." },
-      { "name": "Panthenol", "desc": "Promotes skin repair and soothes inflammation." },
-      { "name": "Squalane", "desc": "Protects skin and maintains softness." }
+      {
+        "name": "Hyaluronic Acid",
+        "desc": "Hydrates skin and prevents dryness."
+      },
+      {
+        "name": "Ceramides",
+        "desc": "Repairs skin barrier and prevents moisture loss."
+      },
+      {
+        "name": "Urea",
+        "desc": "Softens keratin and enhances moisturization."
+      },
+      {
+        "name": "Panthenol",
+        "desc": "Promotes skin repair and soothes inflammation."
+      },
+      {
+        "name": "Squalane",
+        "desc": "Protects skin and maintains softness."
+      }
     ],
     "combination": [
-      { "name": "Niacinamide", "desc": "Balances oil in T-zone and prevents cheek dryness." },
-      { "name": "Hyaluronic Acid", "desc": "Hydrates dry areas while maintaining balance." },
-      { "name": "Salicylic Acid", "desc": "Unclogs pores and keeps skin clean." },
-      { "name": "Ceramides", "desc": "Strengthens barrier and balances moisture." },
-      { "name": "Retinol", "desc": "Promotes turnover and improves overall skin quality." }
+      {
+        "name": "Niacinamide",
+        "desc": "Balances oil in T-zone and prevents cheek dryness."
+      },
+      {
+        "name": "Hyaluronic Acid",
+        "desc": "Hydrates dry areas while maintaining balance."
+      },
+      {
+        "name": "Salicylic Acid",
+        "desc": "Unclogs pores and keeps skin clean."
+      },
+      {
+        "name": "Ceramides",
+        "desc": "Strengthens barrier and balances moisture."
+      },
+      {
+        "name": "Retinol",
+        "desc": "Promotes turnover and improves overall skin quality."
+      }
     ],
     "sensitive": [
-      { "name": "Ceramides", "desc": "Repairs skin barrier and protects from irritation." },
-      { "name": "Panthenol", "desc": "Soothes inflammation and promotes healing." },
-      { "name": "Aloe Vera", "desc": "Calming properties for irritated skin." },
-      { "name": "Glycerin", "desc": "Gentle hydration without irritation." },
-      { "name": "Squalane", "desc": "Protects skin and minimizes irritation." }
+      {
+        "name": "Ceramides",
+        "desc": "Repairs skin barrier and protects from irritation."
+      },
+      {
+        "name": "Panthenol",
+        "desc": "Soothes inflammation and promotes healing."
+      },
+      {
+        "name": "Aloe Vera",
+        "desc": "Calming properties for irritated skin."
+      },
+      {
+        "name": "Glycerin",
+        "desc": "Gentle hydration without irritation."
+      },
+      {
+        "name": "Squalane",
+        "desc": "Protects skin and minimizes irritation."
+      }
     ],
     "normal": [
-      { "name": "Vitamin C", "desc": "Antioxidant protection and brightness maintenance." },
-      { "name": "Retinol", "desc": "Promotes cell turnover and maintains youthfulness." },
-      { "name": "Hyaluronic Acid", "desc": "Balanced hydration for optimal moisture." },
-      { "name": "Niacinamide", "desc": "Even skin tone and pore refinement." },
-      { "name": "Peptides", "desc": "Improves elasticity and prevents fine lines." }
+      {
+        "name": "Vitamin C",
+        "desc": "Antioxidant protection and brightness maintenance."
+      },
+      {
+        "name": "Retinol",
+        "desc": "Promotes cell turnover and maintains youthfulness."
+      },
+      {
+        "name": "Hyaluronic Acid",
+        "desc": "Balanced hydration for optimal moisture."
+      },
+      {
+        "name": "Niacinamide",
+        "desc": "Even skin tone and pore refinement."
+      },
+      {
+        "name": "Peptides",
+        "desc": "Improves elasticity and prevents fine lines."
+      }
     ]
   },
   "whitepaper": {
