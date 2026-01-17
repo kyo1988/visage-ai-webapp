@@ -1,31 +1,31 @@
 {
   "metadata": {
-    "title": "Visage AI - Maximize CVR & LTV with Explainable AI Skin Analysis",
-    "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail. SDK/API integration in as little as 1 week. Understandable recommendations with region-specific XAI.",
+    "title": "Visage AI - Transform Inbound Retail with AI Skin Analysis",
+    "description": "Break language barriers and boost retail sales. Visage AI turns your iPad into a multilingual beauty expert with explainable skin & color analysis.",
     "og": {
-      "title": "Visage AI - Explainable AI Skin Analysis",
-      "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail.",
+      "title": "Visage AI - AI Skin Analysis for Inbound Retail",
+      "description": "Break language barriers. Instant iPad deployment. Multilingual support for global customers.",
       "siteName": "Visage AI",
-      "alt": "Visage AI diagnostic report UI"
+      "alt": "Visage AI diagnostic report for retail"
     },
     "twitter": {
-      "title": "Visage AI - Explainable AI Skin Analysis",
-      "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail."
+      "title": "Visage AI - Transform Inbound Retail with AI",
+      "description": "Break language barriers. Instant iPad deployment. Multilingual support for global customers."
     }
   },
   "nav": {
     "product": "Product",
     "cases": "Case Studies",
-    "docs": "Documentation",
+    "docs": "Support",
     "whitepaper": "Whitepaper",
     "pricing": "Pricing",
     "security": "Security",
     "demo": "Book a Demo"
   },
   "hero": {
-    "title": "Boost CVR & LTV with AI Skin Analysis",
-    "lead": "Explainable AI & precise region targeting for trustworthy, personalized recommendations",
-    "primaryCta": "Book a demo",
+    "title": "Give your inbound customers <br/>AI-powered evidence.",
+    "lead": "Break the language barrier and deliver convincing consultations with heatmaps and metrics.",
+    "primaryCta": "Book Free Simulation",
     "secondaryCta": "See case studies"
   },
   "examples": {
@@ -143,11 +143,11 @@
   },
   "HeroSection": {
     "badge1": "Analysis < 8s",
-    "badge2": "100% Evidence-based",
-    "badge3": "SDK & API Ready",
-    "title": "From Experience to Retention, <br/> All with Explainable AI Skin Analysis.",
-    "subtitle": "Boost CVR and LTV for e-commerce and retail with XAI and segmentation.",
-    "ctaDemo": "Book a Demo",
+    "badge2": "iPad Ready",
+    "badge3": "Multi-language",
+    "title": "Give your inbound customers <br/>AI-powered evidence for every recommendation.",
+    "subtitle": "'Why do they need this product?' — AI proves it with heatmaps and metrics. Break the language barrier and deliver convincing consultations.",
+    "ctaDemo": "Book Free Simulation",
     "ctaExamples": "See Report Examples"
   },
   "FeaturesSection": {
@@ -201,20 +201,20 @@
     "story_para2": "We aim to be a partner that understands each customer's 'skin story' and guides them to optimal care, not just a diagnostic tool. By visualizing skin conditions and tracking changes, we support customers in confidently pursuing beauty."
   },
   "TechnologySection": {
-    "tech_main_title": "Visage AI Technology",
-    "tech_main_subtitle": "Unraveling the truth of skin through the fusion of cutting-edge AI technology and dermatology.",
-    "tech_title1": "Explainable AI (XAI)",
-    "tech_desc1": "AI clearly presents the basis of diagnostic results. It visualizes which parts were evaluated, why, and how, increasing trust and satisfaction for customers.",
-    "tech_title2": "High-precision Part Segmentation",
-    "tech_desc2": "Accurately identifies each part of the face (eyes, mouth, cheeks, etc.) and analyzes skin conditions in detail for each part. Enables personalized care recommendations.",
-    "tech_img1_caption": "AI skin analysis",
-    "tech_img2_caption": "Grad-CAMによる根拠可視化",
-    "ux_main_title": "Commitment to User Experience",
-    "ux_main_subtitle": "Making skin diagnosis more accessible with an intuitive and seamless experience.",
-    "ux_title1": "High-speed Diagnosis",
-    "ux_desc1": "Fast diagnosis within 8 seconds, no waiting for customers. Provides a stress-free experience.",
-    "ux_title2": "Easy Operation",
-    "ux_desc2": "Anyone can easily diagnose their skin by simply taking a photo of their face with a smartphone. No special equipment is required."
+    "tech_main_title": "3 Features That Transform Inbound Customer Service",
+    "tech_main_subtitle": "Break the language barrier and deliver convincing recommendations.",
+    "tech_title1": "Visualize Skin with Explainable AI",
+    "tech_desc1": "AI highlights skin areas of concern with heatmaps. Even hard-to-describe skin issues become clear—just show the screen to build shared understanding.",
+    "tech_title2": "Personal Color Analysis with Data Logic",
+    "tech_desc2": "Objective color-space analysis instantly determines warm/cool undertones. Dramatically improves the persuasiveness of makeup recommendations.",
+    "tech_img1_caption": "Heatmap Skin Analysis",
+    "tech_img2_caption": "Personal Color Detection",
+    "ux_main_title": "Your Store's iPad Becomes a Beauty Expert",
+    "ux_main_subtitle": "No expensive specialized equipment needed.",
+    "ux_title1": "Same-Day Setup",
+    "ux_desc1": "Just install the app on your existing iPad. Start serving inbound customers tomorrow.",
+    "ux_title2": "Reduce Training Costs",
+    "ux_desc2": "AI provides the evidence—even new staff can deliver consistently high-quality consultations."
   },
   "ResultsSection": {
     "results_main_title": "Implementation Results and Effects",
@@ -563,36 +563,124 @@
         }
       },
       "sdkJs": {
-        "title": "JavaScript SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "title": "STEP 1: App Setup",
+        "subtitle": "Search for \"Visage AI\" on the App Store and install it on your iPad.",
+        "response": "Setup Complete",
         "navigation": {
-          "prev": "overview",
-          "next": "sdk-swift"
+          "prev": "Getting Started",
+          "next": "Initial Setup"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "Open App Store",
+            "desc": "Launch the App Store app on your iPad."
+          },
+          {
+            "num": "2",
+            "title": "Search \"Visage AI\"",
+            "desc": "Type \"Visage AI\" in the search bar."
+          },
+          {
+            "num": "3",
+            "title": "Install the App",
+            "desc": "Tap \"Get\" to download the app."
+          },
+          {
+            "num": "4",
+            "title": "Launch the App",
+            "desc": "Open the app after installation. You're ready!"
+          }
+        ],
+        "success": {
+          "title": "✓ Installation Complete",
+          "message": "App installation is complete. Proceed to the next step for initial setup."
         }
       },
       "sdkSwift": {
-        "title": "Swift SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "title": "STEP 2: Initial Setup",
+        "subtitle": "Launch the app and configure basic settings.",
+        "response": "Setup Steps",
         "navigation": {
-          "prev": "sdk-js",
-          "next": "sdk-kotlin"
+          "prev": "App Setup",
+          "next": "Customer Use"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "Launch the App",
+            "desc": "Tap the Visage AI app to open it."
+          },
+          {
+            "num": "2",
+            "title": "Check Language",
+            "desc": "Currently English only. Multilingual support available with Business Plan."
+          },
+          {
+            "num": "3",
+            "title": "Allow Camera Access",
+            "desc": "Tap \"Allow\" to enable camera permissions."
+          },
+          {
+            "num": "4",
+            "title": "Test Diagnosis",
+            "desc": "Try a diagnosis on yourself. If results appear, setup is complete!"
+          }
+        ],
+        "tips": {
+          "title": "💡 Trial Operation Tips",
+          "items": [
+            "Better lighting improves diagnosis accuracy",
+            "Show the screen to customers while explaining",
+            "Results display automatically in the selected language"
+          ]
         }
       },
       "sdkKotlin": {
-        "title": "Kotlin SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "title": "STEP 3: Customer Use",
+        "subtitle": "Master the diagnosis and recommendation flow for customers.",
+        "response": "Service Flow",
         "navigation": {
-          "prev": "sdk-swift",
-          "next": "security"
+          "prev": "Initial Setup",
+          "next": "Security"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "Welcome Customer",
+            "desc": "Invite the customer to sit in front of the iPad at the counter."
+          },
+          {
+            "num": "2",
+            "title": "Check Language",
+            "desc": "Currently English display. Multilingual available with Business contract."
+          },
+          {
+            "num": "3",
+            "title": "Run Diagnosis",
+            "desc": "Capture the customer's face. AI analyzes skin condition (~8 sec)."
+          },
+          {
+            "num": "4",
+            "title": "Explain Results",
+            "desc": "Point at the heatmap while explaining the skin condition."
+          },
+          {
+            "num": "5",
+            "title": "Recommend Products",
+            "desc": "Guide optimal products based on AI recommendations."
+          }
+        ],
+        "upgrade": {
+          "title": "🎯 Upgrade to Business Plan",
+          "message": "Want AI to recommend your own products? Apply for the Business Plan (store contract). After SKU registration, AI will automatically suggest your products to customers.",
+          "cta": "Book Consultation"
         }
       },
       "security": {
         "title": "Security & Privacy",
         "navigation": {
-          "prev": "sdk-kotlin"
+          "prev": "Customer Use"
         }
       }
     },
@@ -639,43 +727,43 @@
   },
   "landing": {
     "hero": {
-      "title": "From experience to retention — all with explainable AI skin analysis",
-      "lead": "Boost CVR and LTV for e-commerce and retail with XAI insights, precise segmentation, and developer-friendly SDKs.",
-      "primaryCta": "Book a Demo",
-      "secondaryCta": "See Report Examples",
+      "title": "Give your inbound customers AI-powered evidence.",
+      "lead": "'Why do they need this product?' — AI proves it with heatmaps and metrics. Break the language barrier and deliver convincing consultations.",
+      "primaryCta": "Book Free Simulation",
+      "secondaryCta": "See Case Studies",
       "badges": [
-        "A/B growth",
-        "Explainable AI",
-        "SDK & API"
+        "Inbound Ready",
+        "Sales Uplift",
+        "Multilingual"
       ],
       "previewAlt": "Visage AI report preview",
-      "deployedNote": "Already deployed in our iOS app \"Visage AI: Skin Advisor\" — a live showcase for B2B clients."
+      "deployedNote": "iPad Ready. Start serving inbound customers today."
     },
     "kpi": {
-      "title": "Simulated impact after adoption",
+      "title": "3 Features That Transform Inbound Service",
       "cards": {
         "cvr": {
-          "title": "CVR +20%",
-          "desc": "On-site personalization and XAI-based nudges"
+          "title": "1. Explainable Skin Analysis",
+          "desc": "AI visualizes skin concerns with heatmaps. Even without shared language, pointing at the screen creates shared understanding."
         },
         "nps": {
-          "title": "NPS +10pt",
-          "desc": "Better explanation → higher satisfaction"
+          "title": "2. Personal Color Detection",
+          "desc": "Data-driven color space analysis instantly determines warm/cool undertones. Dramatically improves makeup recommendation credibility."
         },
         "ltv": {
-          "title": "LTV +10%",
-          "desc": "Retention through routine tracking"
+          "title": "3. Same-Day iPad Setup",
+          "desc": "No expensive equipment needed. Just install the app on your store's iPad and get an AI beauty expert instantly."
         }
       }
     },
     "tech": {
-      "title": "Visage AI Technology",
-      "lead": "Client-side inference, privacy-first pipeline, and flexible SDKs",
-      "deployedNote": "Deployed and tested in production via our iOS app—ask us for a live demo.",
+      "title": "Secure & Private",
+      "lead": "Customer face images are processed locally on the iPad—never sent to the cloud. Full privacy protection guaranteed.",
+      "deployedNote": "Works offline. No network dependency.",
       "code": {
-        "jsTitle": "JavaScript (Web SDK)",
-        "kotlinTitle": "Kotlin (Android)",
-        "swiftTitle": "Swift (iOS)"
+        "jsTitle": "Offline Analysis",
+        "kotlinTitle": "No Network Required",
+        "swiftTitle": "Privacy First"
       }
     },
     "cases": {
@@ -689,7 +777,7 @@
       "alt": "Tokyo skyline with elegant East Asian woman illustration and subtle circuitry motif",
       "storyTitle": "Tokyo-born AI, crafted with omotenashi",
       "storyLead": "Inspired by timeless Japanese beauty rituals and the precision of modern AI, Visage AI focuses on transparency, reproducibility, and measurable uplift.",
-      "appNote": "Our lightweight model is already deployed in the iOS app \"Visage AI: Skin Advisor\"."
+      "appNote": "Available now as an iPad app. No development required."
     },
     "scalability": {
       "title": "Scale & governance",
@@ -698,14 +786,14 @@
     "finalCta": {
       "title": "Ready to accelerate your business with Visage AI?",
       "primary": "Book a Demo (15 min)",
-      "secondary": "Read the Docs"
+      "secondary": "See Case Studies"
     },
     "faq": {
       "title": "FAQ"
     }
   },
   "footer": {
-    "tagline": "Explainable skin analysis SDK/API for e-commerce & retail.",
+    "tagline": "iPad-based AI solution transforming inbound customer service.",
     "sitemap": {
       "title": "Sitemap",
       "product": "Product",

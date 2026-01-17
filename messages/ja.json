@@ -1,31 +1,31 @@
 {
   "metadata": {
-    "title": "Visage AI - 説明可能なAI肌診断でCVRとLTVを最大化",
-    "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。SDK/APIで最短1週間導入。部位特定×XAIで納得感のあるレコメンド。",
+    "title": "Visage AI - インバウンド接客をAI肌診断で変革",
+    "description": "言葉の壁を超え、店舗の売上を最大化。Visage AIは、iPadひとつで「肌診断」「パーソナルカラー」を提供し、外国人観光客への納得感ある提案を実現します。",
     "og": {
-      "title": "Visage AI - 説明可能なAI肌診断",
-      "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。",
+      "title": "Visage AI - インバウンド向けAI肌診断ソリューション",
+      "description": "iPadで即導入。英語・中国語対応のAI診断で、接客の「言葉の壁」をゼロに。",
       "siteName": "Visage AI",
-      "alt": "Visage AI diagnostic report UI"
+      "alt": "Visage AI diagnostic report for retail"
     },
     "twitter": {
-      "title": "Visage AI - 説明可能なAI肌診断",
-      "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。"
+      "title": "Visage AI - インバウンド接客をAIで変革",
+      "description": "iPadで即導入。英語・中国語対応のAI診断で、接客の「言葉の壁」をゼロに。"
     }
   },
   "nav": {
     "product": "製品",
     "cases": "導入事例",
-    "docs": "ドキュメント",
+    "docs": "サポート",
     "whitepaper": "ホワイトペーパー",
     "pricing": "価格",
     "security": "セキュリティ",
     "demo": "デモを予約"
   },
   "hero": {
-    "title": "AI肌診断でCVRとLTVを最大化",
-    "lead": "XAIによる納得感と高精度な部位特定で、最適なレコメンドを自動化",
-    "primaryCta": "デモを予約",
+    "title": "インバウンド客への提案に、<br/>AIという「確かな根拠」を。",
+    "lead": "「なぜその商品が必要か？」を、AIがヒートマップと数値で客観的に証明。言葉の壁を超えて、納得感のあるカウンセリングを実現します。",
+    "primaryCta": "無料導入シミュレーション",
     "secondaryCta": "事例を見る"
   },
   "examples": {
@@ -45,7 +45,7 @@
     "title": "技術の核",
     "xai": "説明可能AI（XAI）",
     "roi": "ROIに直結する高精度部位特定",
-    "sdk": "SDK / API で簡単統合"
+    "sdk": "iPadアプリで簡単導入"
   },
   "howItWorks": {
     "title": "導入までの3ステップ",
@@ -55,7 +55,7 @@
     },
     "step2": {
       "title": "実装(3–5日)",
-      "description": "SDK/APIを既存システムに組み込み、テスト環境で動作確認を行います。"
+      "description": "店舗のiPadにアプリをインストールし、テスト運用を行います。"
     },
     "step3": {
       "title": "検証(7–14日)",
@@ -120,11 +120,11 @@
     },
     "q2": {
       "question": "導入にはどのくらいの期間がかかりますか？",
-      "answer": "SDK/API連携で最短1週間。3–5日で実装、7–14日で検証を行います。"
+      "answer": "iPadアプリのインストールは即日完了。店舗契約後、最短1週間で自社商品レコメンドが開始できます。"
     },
     "q3": {
       "question": "既存のECサイトやアプリに組み込めますか？",
-      "answer": "はい、SDK/APIを提供しており、既存のシステムに柔軟に組み込むことができます。主要なプラットフォームに対応しています。"
+      "answer": "はい、iPadアプリは単体でご利用いただけます。既存システムとの連携が必要な場合はご相談ください。"
     },
     "moreInfo": "もっと詳しく"
   },
@@ -143,11 +143,11 @@
   },
   "HeroSection": {
     "badge1": "診断 < 8秒",
-    "badge2": "部位根拠100%提示",
-    "badge3": "SDK & API即組み込み",
-    "title": "根拠が見えるAI肌診断で、<br/> 体験からリピートまでを一気通貫。",
-    "subtitle": "説明可能性(XAI) × 部位セグメンテーションで、EC・店頭のCVRとLTVを底上げします。",
-    "ctaDemo": "デモを予約",
+    "badge2": "iPad即導入",
+    "badge3": "多言語対応",
+    "title": "インバウンド客への提案に、<br/>AIという「確かな根拠」を。",
+    "subtitle": "「なぜその商品が必要か？」を、AIがヒートマップと数値で客観的に証明。言葉の壁を超えて、納得感のあるカウンセリングを実現します。",
+    "ctaDemo": "無料導入シミュレーションを予約",
     "ctaExamples": "レポートの実例を見る"
   },
   "FeaturesSection": {
@@ -201,20 +201,20 @@
     "story_para2": "単なる診断ツールではなく、お客様一人ひとりの肌の「物語」を理解し、最適なケアへと導くパートナーとなることを目指しています。肌の状態を可視化し、変化を追跡することで、お客様が自信を持って美しさを追求できるようサポートします。"
   },
   "TechnologySection": {
-    "tech_main_title": "Visage AIの技術",
-    "tech_main_subtitle": "最先端のAI技術と皮膚科学の融合で、肌の真実を解き明かす。",
-    "tech_title1": "説明可能なAI (XAI)",
-    "tech_desc1": "AIが診断結果の根拠を明確に提示。どの部位が、なぜ、どのように評価されたかを可視化し、お客様への信頼と納得感を高めます。",
-    "tech_title2": "高精度部位セグメンテーション",
-    "tech_desc2": "顔の各部位（目元、口元、頬など）を正確に識別し、部位ごとの肌状態を詳細に分析。パーソナライズされたケア提案を可能にします。",
-    "tech_img1_caption": "AIによる肌分析",
-    "tech_img2_caption": "Grad-CAMによる根拠可視化",
-    "ux_main_title": "ユーザー体験へのこだわり",
-    "ux_main_subtitle": "直感的でシームレスな体験で、お客様の肌診断をより身近に。",
-    "ux_title1": "高速診断",
-    "ux_desc1": "8秒以内の高速診断で、お客様を待たせません。ストレスフリーな体験を提供します。",
-    "ux_title2": "簡単操作",
-    "ux_desc2": "スマートフォンで顔写真を撮影するだけで、誰でも簡単に肌診断ができます。特別な機器は不要です。"
+    "tech_main_title": "インバウンド接客を変える3つの機能",
+    "tech_main_subtitle": "言葉の壁を越え、納得感のある提案を実現します。",
+    "tech_title1": "「説明可能なAI」で、肌状態を可視化",
+    "tech_desc1": "AIが注目した肌エリアをヒートマップで表示。言葉で説明しにくい肌トラブルも、画面を見せるだけで共通認識を持てます。",
+    "tech_title2": "パーソナルカラーを数値ロジックで判定",
+    "tech_desc2": "感覚に頼らない色空間分析で、イエベ・ブルベを即座に判定。メイクアップ提案の説得力が劇的に向上します。",
+    "tech_img1_caption": "ヒートマップによる肌分析",
+    "tech_img2_caption": "パーソナルカラー判定",
+    "ux_main_title": "店舗のiPadが、専属の美容部員に",
+    "ux_main_subtitle": "大掛かりな専用機材は不要です。",
+    "ux_title1": "即日導入",
+    "ux_desc1": "普段お使いのiPadにアプリを入れるだけ。明日からすぐにインバウンド対策を始められます。",
+    "ux_title2": "教育コスト削減",
+    "ux_desc2": "AIが根拠を提示するので、新人スタッフでも一貫した高品質な接客が可能です。"
   },
   "ResultsSection": {
     "results_main_title": "導入実績と効果",
@@ -229,12 +229,12 @@
   },
   "ScalabilitySection": {
     "scalability_main_title": "導入の柔軟性と拡張性",
-    "scalability_main_subtitle": "SDKとAPIで、あらゆるビジネスモデルにシームレスに統合。",
-    "scalability1_title": "SDK/API連携",
-    "scalability1_desc": "既存のアプリやウェブサイトに数行のコードで簡単に組み込み可能。開発コストと時間を大幅に削減します。",
+    "scalability_main_subtitle": "iPadアプリで、あらゆる店舗規模に対応。",
+    "scalability1_title": "簡単導入",
+    "scalability1_desc": "App Storeからダウンロードするだけ。専用機材や工事は不要です。",
     "scalability2_title": "多様な導入形態",
-    "scalability2_desc": "クラウド型、オンプレミス型、ハイブリッド型など、お客様のセキュリティポリシーやインフラ環境に合わせた柔軟な導入が可能です。",
-    "scalability_img_alt": "SDK/API連携のイメージ"
+    "scalability2_desc": "1店舗からチェーン展開まで、お客様の規模に合わせた柔軟な導入が可能です。",
+    "scalability_img_alt": "店舗導入のイメージ"
   },
   "CTASection": {
     "cta_bottom_main_title": "お問い合わせ",
@@ -282,7 +282,7 @@
       },
       "integration": {
         "title": "簡単統合",
-        "description": "既存のシステムとワークフローにシームレスに統合できるシンプルなSDK/API。"
+        "description": "専用機材不要。店舗の既存iPadにアプリをインストールするだけです。"
       }
     },
     "technology": {
@@ -307,25 +307,25 @@
       }
     },
     "integration": {
-      "title": "統合オプション",
+      "title": "導入オプション",
       "web": {
-        "title": "Web SDK",
-        "description": "簡単なインストールと包括的なドキュメントを備えたWebアプリケーション用のJavaScript SDK。"
+        "title": "iPadアプリ",
+        "description": "App Storeから無料ダウンロード。その場で導入完了。"
       },
       "mobile": {
-        "title": "モバイルSDK",
-        "description": "最適化されたパフォーマンスを備えたモバイルアプリケーション用のネイティブiOSおよびAndroid SDK。"
+        "title": "店舗契約",
+        "description": "自社商品(SKU)レコメンド、店舗ロゴ表示などのビジネス機能。"
       },
       "api": {
-        "title": "REST API",
-        "description": "カスタム統合とエンタープライズソリューション用のRESTful APIエンドポイント。"
+        "title": "エンタープライズ",
+        "description": "POS連携や全店舗データ統合など、大規模導入向けカスタマイズ。"
       }
     },
     "cta": {
       "title": "始める準備はできていますか？",
       "description": "既にVisage AIを使用して顧客体験を改善し、売上を向上させている主要ブランドに参加しましょう。",
       "primary": "デモを予約",
-      "secondary": "SDKをダウンロード"
+      "secondary": "導入相談"
     }
   },
   "cases": {
@@ -402,7 +402,7 @@
       },
       "step2": {
         "title": "開発・統合",
-        "description": "当社のエンジニアがSDK/APIを既存システムに統合し、開発環境での徹底的なテストを実施します。",
+        "description": "当社担当が店舗でのアプリ設定をサポートし、導入テストを実施します。",
         "duration": "2-4週間"
       },
       "step3": {
@@ -423,47 +423,47 @@
     "description": "Visage AIの価格情報ページです。",
     "underConstruction": "現在、このページは準備中です。",
     "hero": {
-      "title": "シンプルで透明性の高い価格設定",
-      "subtitle": "ビジネスニーズに合ったプランを選択してください。隠れた料金なしで、成長に合わせてスケールアップできます。",
-      "cta": "始める",
-      "secondaryCta": "営業に相談"
+      "title": "店舗規模に合わせたシンプルなプラン",
+      "subtitle": "まずは無料アプリで効果を実感してください。有料プランでは「自社商品」のレコメンドが可能になります。",
+      "cta": "導入相談",
+      "secondaryCta": "資料ダウンロード"
     },
-    "popular": "最も人気",
+    "popular": "おすすめ",
     "perMonth": "月額",
     "tiers": {
       "starter": {
-        "name": "スターター",
+        "name": "トライアル (アプリ)",
         "price": "¥0",
-        "description": "小規模ビジネスやスタートアップに最適",
+        "description": "まずは1店舗で、翻訳機として導入したい方へ",
         "features": {
-          "analyses": "月100回の分析",
-          "support": "メールサポート",
-          "api": "基本APIアクセス",
-          "docs": "ドキュメントアクセス"
+          "analyses": "診断回数 無制限",
+          "support": "ヘルプセンター",
+          "api": "成分・色味の一般的な提案",
+          "docs": "iPadアプリ利用のみ"
         }
       },
       "pro": {
-        "name": "プロ",
-        "price": "¥74,800",
-        "description": "成長中のビジネスに最適",
+        "name": "ビジネス (店舗契約)",
+        "price": "¥19,800",
+        "description": "自社商品を売りたい路面店・観光地に",
         "features": {
-          "analyses": "月10,000回の分析",
-          "support": "優先サポート",
-          "xai": "説明可能AI機能",
-          "analytics": "高度な分析ダッシュボード",
-          "integration": "カスタム統合サポート"
+          "analyses": "自社商品(SKU)レコメンド",
+          "support": "優先サポート / 導入支援",
+          "xai": "店舗ロゴの表示",
+          "analytics": "多言語対応 (英/中/韓)",
+          "integration": "接客ログのデータ提供"
         }
       },
       "enterprise": {
         "name": "エンタープライズ",
-        "price": "カスタム",
-        "description": "特定の要件を持つ大規模組織向け",
+        "price": "お問い合わせ",
+        "description": "複数店舗・チェーン展開向け",
         "features": {
-          "sla": "99.9% SLA保証",
-          "onprem": "オンプレミス展開オプション",
-          "security": "SOC2 Type II準拠",
-          "support": "24/7専用サポート",
-          "custom": "カスタム機能開発"
+          "sla": "全店舗データ統合ダッシュボード",
+          "onprem": "POSシステム連携",
+          "security": "専任担当者による研修",
+          "support": "専用カスタマイズ開発",
+          "custom": "ブランド独自の色診断ロジック"
         }
       }
     },
@@ -493,105 +493,193 @@
   },
   "docs": {
     "home": {
-      "title": "Visage AI ドキュメント",
-      "lead": "SDK/API の導入、コア概念、セキュリティをここから。まずはお使いのプラットフォームを選択してください。"
+      "title": "導入・活用ガイド",
+      "lead": "アプリのインストールから、店舗モードの設定まで。誰でもすぐに使いこなせます。"
     },
     "search": {
-      "placeholder": "ドキュメントを検索...",
+      "placeholder": "ガイドを検索...",
       "noResults": "結果が見つかりません"
     },
     "cards": {
       "overview": {
-        "title": "概要",
-        "desc": "コア概念、制限、サポート"
+        "title": "導入の流れ",
+        "desc": "専用機材は不要です"
       },
       "sdkJs": {
-        "title": "JavaScript SDK",
-        "desc": "Web/Node クイックスタート"
+        "title": "STEP 1: アプリ入手",
+        "desc": "App Storeから無料ダウンロード"
       },
       "sdkSwift": {
-        "title": "Swift SDK",
-        "desc": "iOS サンプル"
+        "title": "STEP 2: トライアル運用",
+        "desc": "現場での診断フローを確認"
       },
       "sdkKotlin": {
-        "title": "Kotlin SDK",
-        "desc": "Android サンプル"
+        "title": "STEP 3: ビジネス契約",
+        "desc": "自社商品データの登録連携"
       },
       "security": {
-        "title": "セキュリティ",
-        "desc": "データフローとコンプライアンス"
+        "title": "セキュリティ設定",
+        "desc": "データの保存期間など"
       }
     },
     "cta": {
-      "demo": "ライブデモを予約 →"
+      "demo": "導入相談を予約 →"
     },
     "pages": {
       "overview": {
-        "title": "Visage AI ドキュメント",
-        "lead": "SDK/API の導入、コア概念、セキュリティをここから。まずはお使いのプラットフォームを選択してください。",
+        "title": "導入の流れ",
+        "lead": "専用機材は不要です。お手持ちのiPadをご用意ください。",
         "nextSteps": {
-          "title": "次のステップ",
-          "step1": "API キーを取得し",
-          "step1Code": "NEXT_PUBLIC_VISAGE_KEY",
-          "step1End": "を設定。",
-          "step2": "サンプルコードを動かしてレスポンスを確認。",
-          "step3": "本番環境に合わせてリージョン/保持期間を設定。"
+          "title": "導入ステップ",
+          "step1": "App Storeでアプリをダウンロード",
+          "step1Code": "Visage AI",
+          "step1End": "を検索。",
+          "step2": "店舗で診断フローを確認。",
+          "step3": "ビジネス契約で自社商品レコメンドを開始。"
         },
         "cards": {
           "sdkJs": {
-            "title": "JavaScript SDK",
-            "desc": "数行で導入。Web/Node 対応。"
+            "title": "STEP 1: アプリ入手",
+            "desc": "App Storeから無料ダウンロード"
           },
           "sdkSwift": {
-            "title": "Swift SDK",
-            "desc": "iOS / visionOS アプリへ。"
+            "title": "STEP 2: トライアル運用",
+            "desc": "現場での診断フローを確認"
           },
           "sdkKotlin": {
-            "title": "Kotlin SDK",
-            "desc": "Android アプリへ。"
+            "title": "STEP 3: ビジネス契約",
+            "desc": "自社商品データの登録連携"
           },
           "security": {
-            "title": "セキュリティ",
-            "desc": "データ取り扱い・保持期間・送信仕様など。"
+            "title": "セキュリティ設定",
+            "desc": "データの保存期間など"
           }
         }
       },
       "sdkJs": {
-        "title": "JavaScript SDK",
-        "subtitle": "数行でインストール・分析",
-        "response": "レスポンス",
+        "title": "STEP 1: アプリ導入",
+        "subtitle": "App Storeで「Visage AI」を検索し、iPadにインストールしてください。",
+        "response": "インストール手順",
         "navigation": {
-          "prev": "概要",
-          "next": "Swift SDK"
+          "prev": "導入の流れ",
+          "next": "初期設定"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "App Storeを開く",
+            "desc": "iPadでApp Storeアプリを起動します。"
+          },
+          {
+            "num": "2",
+            "title": "「Visage AI」で検索",
+            "desc": "検索バーに「Visage AI」と入力して検索します。"
+          },
+          {
+            "num": "3",
+            "title": "アプリをインストール",
+            "desc": "「入手」ボタンをタップしてダウンロードします。"
+          },
+          {
+            "num": "4",
+            "title": "アプリを起動",
+            "desc": "インストール完了後、アプリを開いて準備完了です。"
+          }
+        ],
+        "success": {
+          "title": "✓ インストール完了",
+          "message": "これでアプリの導入は完了です。次のステップで初期設定を行いましょう。"
         }
       },
       "sdkSwift": {
-        "title": "Swift SDK",
-        "subtitle": "数行でインストール・分析",
-        "response": "レスポンス",
+        "title": "STEP 2: 初期設定",
+        "subtitle": "アプリを起動し、基本設定を行います。",
+        "response": "運用手順",
         "navigation": {
-          "prev": "JavaScript SDK",
-          "next": "Kotlin SDK"
+          "prev": "アプリ導入",
+          "next": "接客活用"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "アプリを起動",
+            "desc": "Visage AIアプリをタップして開きます。"
+          },
+          {
+            "num": "2",
+            "title": "言語を確認",
+            "desc": "現在は英語のみ対応。多言語対応はビジネスプランで提供予定です。"
+          },
+          {
+            "num": "3",
+            "title": "カメラ権限を許可",
+            "desc": "「許可」をタップしてカメラへのアクセスを有効にします。"
+          },
+          {
+            "num": "4",
+            "title": "診断テスト",
+            "desc": "ご自身の顔で診断をお試しください。結果が表示されれば設定完了です。"
+          }
+        ],
+        "tips": {
+          "title": "💡 トライアル運用のコツ",
+          "items": [
+            "照明が明るい場所で診断すると精度が向上します",
+            "お客様に画面を見せながら説明すると効果的です",
+            "診断結果は自動で多言語表示されます"
+          ]
         }
       },
       "sdkKotlin": {
-        "title": "Kotlin SDK",
-        "subtitle": "数行でインストール・分析",
-        "response": "レスポンス",
+        "title": "STEP 3: 接客活用",
+        "subtitle": "お客様への診断・提案フローをマスターします。",
+        "response": "接客フロー",
         "navigation": {
-          "prev": "Swift SDK",
+          "prev": "初期設定",
           "next": "セキュリティ"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "お客様を案内",
+            "desc": "カウンターにお客様をお招きし、iPadの前に座っていただきます。"
+          },
+          {
+            "num": "2",
+            "title": "言語を確認",
+            "desc": "現在は英語表示です。ビジネス契約で多言語対応が可能になります。"
+          },
+          {
+            "num": "3",
+            "title": "診断を実行",
+            "desc": "お客様の顔を撮影し、AIが肌診断を行います（約8秒）。"
+          },
+          {
+            "num": "4",
+            "title": "結果を説明",
+            "desc": "ヒートマップを指さしながら、お客様に肌状態を説明します。"
+          },
+          {
+            "num": "5",
+            "title": "商品を提案",
+            "desc": "AIのレコメンドに基づいて、最適な商品をご案内します。"
+          }
+        ],
+        "upgrade": {
+          "title": "🎯 ビジネスプランへのアップグレード",
+          "message": "自社商品をAIにレコメンドさせたい場合は、ビジネスプラン（店舗契約）にお申し込みください。SKU登録を行うことで、お客様に最適な自社商品を自動で提案できます。",
+          "cta": "導入相談を予約"
         }
       },
       "security": {
-        "title": "Security & Privacy",
+        "title": "セキュリティ設定",
         "navigation": {
-          "prev": "sdk-kotlin"
+          "prev": "接客活用"
         }
       }
     },
     "common": {
-      "breadcrumb": "Docs",
+      "breadcrumb": "ガイド",
       "navigation": {
         "prev": "←",
         "next": "→"
@@ -602,9 +690,9 @@
     "title": "Visage AI の活用例",
     "subtitle": "導入から運用まで、実際のお客様の進め方。",
     "points": [
-      "まずは SDK と最小の属性から開始、段階的に拡張。",
-      "説明可能なレコメンドで信頼と CVR を向上。",
-      "リージョン制御と保持期間で安全に運用。"
+      "まずは無料アプリでテスト運用、効果を確認。",
+      "説明可能なレコメンドで信頼と単価を向上。",
+      "ビジネス契約で自社商品レコメンドを開始。"
     ],
     "imageAlt": "導入事例のイメージ"
   },
@@ -617,8 +705,8 @@
         "desc": "JP/US/EU をテナント単位で選択可能。"
       },
       "sdk": {
-        "title": "SDK & API",
-        "desc": "JS / Swift / Kotlin と REST API。"
+        "title": "アプリ導入",
+        "desc": "iPadアプリで即日導入。"
       },
       "security": {
         "title": "セキュリティ",
@@ -633,43 +721,43 @@
   },
   "landing": {
     "hero": {
-      "title": "体験からリテンションまで——説明可能なAI肌診断で一気通貫",
-      "lead": "XAIインサイトと精緻なセグメンテーションで、EC/店舗のCVRとLTVを底上げ。開発者に優しいSDKも提供。",
-      "primaryCta": "デモを予約",
-      "secondaryCta": "レポート例を見る",
+      "title": "インバウンド客への提案に、AIという「確かな根拠」を。",
+      "lead": "「なぜその商品が必要か？」を、AIがヒートマップと数値で客観的に証明。言葉の壁を超えて、納得感のあるカウンセリングを実現します。",
+      "primaryCta": "無料導入シミュレーション",
+      "secondaryCta": "事例を見る",
       "badges": [
-        "A/B成長",
-        "説明可能AI",
-        "SDK & API"
+        "インバウンド対策",
+        "接客効率化",
+        "単価アップ"
       ],
       "previewAlt": "Visage AI レポートのプレビュー",
-      "deployedNote": "iOSアプリ「Visage AI: Skin Advisor」で既に運用中。B2B向けの実機デモとしてご利用いただけます。"
+      "deployedNote": "iPadアプリ対応。店舗ですぐに利用可能です。"
     },
     "kpi": {
-      "title": "導入後のインパクト（シミュレーション）",
+      "title": "インバウンド接客を変える3つの機能",
       "cards": {
         "cvr": {
-          "title": "CVR +20%",
-          "desc": "パーソナライズとXAIナッジ"
+          "title": "1. 説明可能な肌診断",
+          "desc": "AIが肌トラブルをヒートマップで可視化。言葉が通じなくても、指差しだけで共通認識を持てます。"
         },
         "nps": {
-          "title": "NPS +10pt",
-          "desc": "説明が増えると満足度も上がる"
+          "title": "2. パーソナルカラー判定",
+          "desc": "感覚に頼らない数値ロジックでイエベ・ブルベを即座に判定。メイク提案の説得力が向上します。"
         },
         "ltv": {
-          "title": "LTV +10%",
-          "desc": "習慣化支援でリテンション向上"
+          "title": "3. iPadで即日導入",
+          "desc": "大掛かりな機材は不要。店舗のiPadにアプリを入れるだけで、専属のAI美容部員が誕生します。"
         }
       }
     },
     "tech": {
-      "title": "Visage AI の技術",
-      "lead": "クライアントサイド推論・プライバシーファースト・柔軟なSDK",
-      "deployedNote": "iOSアプリで実運用・検証済み。ライブデモをご希望の方はご連絡ください。",
+      "title": "安心のセキュリティ",
+      "lead": "お客様の顔画像はiPad内で処理され、クラウドへ送信されることはありません。個人情報保護も万全です。",
+      "deployedNote": "オフラインでも動作可能。通信環境に依存しません。",
       "code": {
-        "jsTitle": "JavaScript（Web SDK）",
-        "kotlinTitle": "Kotlin（Android）",
-        "swiftTitle": "Swift（iOS）"
+        "jsTitle": "オフライン解析",
+        "kotlinTitle": "通信不要",
+        "swiftTitle": "プライバシー保護"
       }
     },
     "cases": {
@@ -683,7 +771,7 @@
       "alt": "東京のスカイラインと東アジア女性のイラスト（回路モチーフ）",
       "storyTitle": "東京発、もてなしの心でつくるAI",
       "storyLead": "日本の美容文化と現代AIの精緻さから着想を得て、透明性・再現性・測定可能な効果にこだわります。",
-      "appNote": "軽量モデルはiOSアプリ「Visage AI: Skin Advisor」に実装済みです。"
+      "appNote": "iPadアプリとして、今すぐ店舗でご利用いただけます。面倒な開発は一切不要です。"
     },
     "scalability": {
       "title": "スケールとガバナンス",
@@ -692,14 +780,14 @@
     "finalCta": {
       "title": "Visage AIで事業成長を加速しませんか？",
       "primary": "15分でデモ予約",
-      "secondary": "ドキュメントを読む"
+      "secondary": "導入事例を見る"
     },
     "faq": {
       "title": "FAQ"
     }
   },
   "footer": {
-    "tagline": "EC・店舗向けの説明可能な肌診断 SDK/API。",
+    "tagline": "インバウンド接客を変革する、iPad完結型AIソリューション。",
     "sitemap": {
       "title": "サイトマップ",
       "product": "プロダクト",
