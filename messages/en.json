@@ -16,7 +16,7 @@
   "nav": {
     "product": "Product",
     "cases": "Case Studies",
-    "docs": "Documentation",
+    "docs": "Support / Docs",
     "whitepaper": "Whitepaper",
     "pricing": "Pricing",
     "security": "Security",
@@ -689,7 +689,7 @@
       "alt": "Tokyo skyline with elegant East Asian woman illustration and subtle circuitry motif",
       "storyTitle": "Tokyo-born AI, crafted with omotenashi",
       "storyLead": "Inspired by timeless Japanese beauty rituals and the precision of modern AI, Visage AI focuses on transparency, reproducibility, and measurable uplift.",
-      "appNote": "Our lightweight model is already deployed in the iOS app \"Visage AI: Skin Advisor\"."
+      "appNote": "Available now as an iPad app. No development required."
     },
     "scalability": {
       "title": "Scale & governance",
@@ -698,14 +698,14 @@
     "finalCta": {
       "title": "Ready to accelerate your business with Visage AI?",
       "primary": "Book a Demo (15 min)",
-      "secondary": "Read the Docs"
+      "secondary": "See Case Studies"
     },
     "faq": {
       "title": "FAQ"
     }
   },
   "footer": {
-    "tagline": "Explainable skin analysis SDK/API for e-commerce & retail.",
+    "tagline": "iPad-based AI solution transforming inbound customer service.",
     "sitemap": {
       "title": "Sitemap",
       "product": "Product",

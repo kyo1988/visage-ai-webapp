@@ -16,7 +16,7 @@
   "nav": {
     "product": "製品",
     "cases": "導入事例",
-    "docs": "ドキュメント",
+    "docs": "サポート / 技術資料",
     "whitepaper": "ホワイトペーパー",
     "pricing": "価格",
     "security": "セキュリティ",
@@ -683,7 +683,7 @@
       "alt": "東京のスカイラインと東アジア女性のイラスト（回路モチーフ）",
       "storyTitle": "東京発、もてなしの心でつくるAI",
       "storyLead": "日本の美容文化と現代AIの精緻さから着想を得て、透明性・再現性・測定可能な効果にこだわります。",
-      "appNote": "軽量モデルはiOSアプリ「Visage AI: Skin Advisor」に実装済みです。"
+      "appNote": "iPadアプリとして、今すぐ店舗でご利用いただけます。面倒な開発は一切不要です。"
     },
     "scalability": {
       "title": "スケールとガバナンス",
@@ -692,14 +692,14 @@
     "finalCta": {
       "title": "Visage AIで事業成長を加速しませんか？",
       "primary": "15分でデモ予約",
-      "secondary": "ドキュメントを読む"
+      "secondary": "導入事例を見る"
     },
     "faq": {
       "title": "FAQ"
     }
   },
   "footer": {
-    "tagline": "EC・店舗向けの説明可能な肌診断 SDK/API。",
+    "tagline": "インバウンド接客を変革する、iPad完結型AIソリューション。",
     "sitemap": {
       "title": "サイトマップ",
       "product": "プロダクト",
