@@ -1,16 +1,16 @@
 {
   "metadata": {
-    "title": "Visage AI - 説明可能なAI肌診断でCVRとLTVを最大化",
-    "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。SDK/APIで最短1週間導入。部位特定×XAIで納得感のあるレコメンド。",
+    "title": "Visage AI - インバウンド接客をAI肌診断で変革",
+    "description": "言葉の壁を超え、店舗の売上を最大化。Visage AIは、iPadひとつで「肌診断」「パーソナルカラー」を提供し、外国人観光客への納得感ある提案を実現します。",
     "og": {
-      "title": "Visage AI - 説明可能なAI肌診断",
-      "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。",
+      "title": "Visage AI - インバウンド向けAI肌診断ソリューション",
+      "description": "iPadで即導入。英語・中国語対応のAI診断で、接客の「言葉の壁」をゼロに。",
       "siteName": "Visage AI",
-      "alt": "Visage AI diagnostic report UI"
+      "alt": "Visage AI diagnostic report for retail"
     },
     "twitter": {
-      "title": "Visage AI - 説明可能なAI肌診断",
-      "description": "Visage AIは、ECと店舗のCVR+20%、LTV+10%を実現する説明可能なAI肌診断ソリューションです。"
+      "title": "Visage AI - インバウンド接客をAIで変革",
+      "description": "iPadで即導入。英語・中国語対応のAI診断で、接客の「言葉の壁」をゼロに。"
     }
   },
   "nav": {
@@ -23,9 +23,9 @@
     "demo": "デモを予約"
   },
   "hero": {
-    "title": "AI肌診断でCVRとLTVを最大化",
-    "lead": "XAIによる納得感と高精度な部位特定で、最適なレコメンドを自動化",
-    "primaryCta": "デモを予約",
+    "title": "インバウンド客への提案に、<br/>AIという「確かな根拠」を。",
+    "lead": "「なぜその商品が必要か？」を、AIがヒートマップと数値で客観的に証明。言葉の壁を超えて、納得感のあるカウンセリングを実現します。",
+    "primaryCta": "無料導入シミュレーション",
     "secondaryCta": "事例を見る"
   },
   "examples": {
@@ -143,11 +143,11 @@
   },
   "HeroSection": {
     "badge1": "診断 < 8秒",
-    "badge2": "部位根拠100%提示",
-    "badge3": "SDK & API即組み込み",
-    "title": "根拠が見えるAI肌診断で、<br/> 体験からリピートまでを一気通貫。",
-    "subtitle": "説明可能性(XAI) × 部位セグメンテーションで、EC・店頭のCVRとLTVを底上げします。",
-    "ctaDemo": "デモを予約",
+    "badge2": "iPad即導入",
+    "badge3": "多言語対応",
+    "title": "インバウンド客への提案に、<br/>AIという「確かな根拠」を。",
+    "subtitle": "「なぜその商品が必要か？」を、AIがヒートマップと数値で客観的に証明。言葉の壁を超えて、納得感のあるカウンセリングを実現します。",
+    "ctaDemo": "無料導入シミュレーションを予約",
     "ctaExamples": "レポートの実例を見る"
   },
   "FeaturesSection": {
@@ -201,20 +201,20 @@
     "story_para2": "単なる診断ツールではなく、お客様一人ひとりの肌の「物語」を理解し、最適なケアへと導くパートナーとなることを目指しています。肌の状態を可視化し、変化を追跡することで、お客様が自信を持って美しさを追求できるようサポートします。"
   },
   "TechnologySection": {
-    "tech_main_title": "Visage AIの技術",
-    "tech_main_subtitle": "最先端のAI技術と皮膚科学の融合で、肌の真実を解き明かす。",
-    "tech_title1": "説明可能なAI (XAI)",
-    "tech_desc1": "AIが診断結果の根拠を明確に提示。どの部位が、なぜ、どのように評価されたかを可視化し、お客様への信頼と納得感を高めます。",
-    "tech_title2": "高精度部位セグメンテーション",
-    "tech_desc2": "顔の各部位（目元、口元、頬など）を正確に識別し、部位ごとの肌状態を詳細に分析。パーソナライズされたケア提案を可能にします。",
-    "tech_img1_caption": "AIによる肌分析",
-    "tech_img2_caption": "Grad-CAMによる根拠可視化",
-    "ux_main_title": "ユーザー体験へのこだわり",
-    "ux_main_subtitle": "直感的でシームレスな体験で、お客様の肌診断をより身近に。",
-    "ux_title1": "高速診断",
-    "ux_desc1": "8秒以内の高速診断で、お客様を待たせません。ストレスフリーな体験を提供します。",
-    "ux_title2": "簡単操作",
-    "ux_desc2": "スマートフォンで顔写真を撮影するだけで、誰でも簡単に肌診断ができます。特別な機器は不要です。"
+    "tech_main_title": "インバウンド接客を変える3つの機能",
+    "tech_main_subtitle": "言葉の壁を越え、納得感のある提案を実現します。",
+    "tech_title1": "「説明可能なAI」で、肌状態を可視化",
+    "tech_desc1": "AIが注目した肌エリアをヒートマップで表示。言葉で説明しにくい肌トラブルも、画面を見せるだけで共通認識を持てます。",
+    "tech_title2": "パーソナルカラーを数値ロジックで判定",
+    "tech_desc2": "感覚に頼らない色空間分析で、イエベ・ブルベを即座に判定。メイクアップ提案の説得力が劇的に向上します。",
+    "tech_img1_caption": "ヒートマップによる肌分析",
+    "tech_img2_caption": "パーソナルカラー判定",
+    "ux_main_title": "店舗のiPadが、専属の美容部員に",
+    "ux_main_subtitle": "大掛かりな専用機材は不要です。",
+    "ux_title1": "即日導入",
+    "ux_desc1": "普段お使いのiPadにアプリを入れるだけ。明日からすぐにインバウンド対策を始められます。",
+    "ux_title2": "教育コスト削減",
+    "ux_desc2": "AIが根拠を提示するので、新人スタッフでも一貫した高品質な接客が可能です。"
   },
   "ResultsSection": {
     "results_main_title": "導入実績と効果",
@@ -633,17 +633,17 @@
   },
   "landing": {
     "hero": {
-      "title": "体験からリテンションまで——説明可能なAI肌診断で一気通貫",
-      "lead": "XAIインサイトと精緻なセグメンテーションで、EC/店舗のCVRとLTVを底上げ。開発者に優しいSDKも提供。",
-      "primaryCta": "デモを予約",
+      "title": "インバウンド客への提案に、<br/>AIという「確かな根拠」を。",
+      "lead": "「なぜその商品が必要か？」を、AIがヒートマップと数値で客観的に証明。言葉の壁を超えて、納得感のあるカウンセリングを実現します。",
+      "primaryCta": "無料導入シミュレーション",
       "secondaryCta": "レポート例を見る",
       "badges": [
-        "A/B成長",
-        "説明可能AI",
-        "SDK & API"
+        "インバウンド対策",
+        "接客効率化",
+        "売上アップ"
       ],
       "previewAlt": "Visage AI レポートのプレビュー",
-      "deployedNote": "iOSアプリ「Visage AI: Skin Advisor」で既に運用中。B2B向けの実機デモとしてご利用いただけます。"
+      "deployedNote": "iPadアプリ対応。店舗ですぐに利用可能です。"
     },
     "kpi": {
       "title": "導入後のインパクト（シミュレーション）",

@@ -1,16 +1,16 @@
 {
   "metadata": {
-    "title": "Visage AI - Maximize CVR & LTV with Explainable AI Skin Analysis",
-    "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail. SDK/API integration in as little as 1 week. Understandable recommendations with region-specific XAI.",
+    "title": "Visage AI - Transform Inbound Retail with AI Skin Analysis",
+    "description": "Break language barriers and boost retail sales. Visage AI turns your iPad into a multilingual beauty expert with explainable skin & color analysis.",
     "og": {
-      "title": "Visage AI - Explainable AI Skin Analysis",
-      "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail.",
+      "title": "Visage AI - AI Skin Analysis for Inbound Retail",
+      "description": "Break language barriers. Instant iPad deployment. Multilingual support for global customers.",
       "siteName": "Visage AI",
-      "alt": "Visage AI diagnostic report UI"
+      "alt": "Visage AI diagnostic report for retail"
     },
     "twitter": {
-      "title": "Visage AI - Explainable AI Skin Analysis",
-      "description": "Visage AI is an explainable AI skin analysis solution that achieves +20% CVR and +10% LTV for e-commerce and retail."
+      "title": "Visage AI - Transform Inbound Retail with AI",
+      "description": "Break language barriers. Instant iPad deployment. Multilingual support for global customers."
     }
   },
   "nav": {
@@ -23,9 +23,9 @@
     "demo": "Book a Demo"
   },
   "hero": {
-    "title": "Boost CVR & LTV with AI Skin Analysis",
-    "lead": "Explainable AI & precise region targeting for trustworthy, personalized recommendations",
-    "primaryCta": "Book a demo",
+    "title": "Give your inbound customers <br/>AI-powered evidence.",
+    "lead": "Break the language barrier and deliver convincing consultations with heatmaps and metrics.",
+    "primaryCta": "Book Free Simulation",
     "secondaryCta": "See case studies"
   },
   "examples": {
@@ -143,11 +143,11 @@
   },
   "HeroSection": {
     "badge1": "Analysis < 8s",
-    "badge2": "100% Evidence-based",
-    "badge3": "SDK & API Ready",
-    "title": "From Experience to Retention, <br/> All with Explainable AI Skin Analysis.",
-    "subtitle": "Boost CVR and LTV for e-commerce and retail with XAI and segmentation.",
-    "ctaDemo": "Book a Demo",
+    "badge2": "iPad Ready",
+    "badge3": "Multi-language",
+    "title": "Give your inbound customers <br/>AI-powered evidence for every recommendation.",
+    "subtitle": "'Why do they need this product?' — AI proves it with heatmaps and metrics. Break the language barrier and deliver convincing consultations.",
+    "ctaDemo": "Book Free Simulation",
     "ctaExamples": "See Report Examples"
   },
   "FeaturesSection": {
@@ -201,20 +201,20 @@
     "story_para2": "We aim to be a partner that understands each customer's 'skin story' and guides them to optimal care, not just a diagnostic tool. By visualizing skin conditions and tracking changes, we support customers in confidently pursuing beauty."
   },
   "TechnologySection": {
-    "tech_main_title": "Visage AI Technology",
-    "tech_main_subtitle": "Unraveling the truth of skin through the fusion of cutting-edge AI technology and dermatology.",
-    "tech_title1": "Explainable AI (XAI)",
-    "tech_desc1": "AI clearly presents the basis of diagnostic results. It visualizes which parts were evaluated, why, and how, increasing trust and satisfaction for customers.",
-    "tech_title2": "High-precision Part Segmentation",
-    "tech_desc2": "Accurately identifies each part of the face (eyes, mouth, cheeks, etc.) and analyzes skin conditions in detail for each part. Enables personalized care recommendations.",
-    "tech_img1_caption": "AI skin analysis",
-    "tech_img2_caption": "Grad-CAMによる根拠可視化",
-    "ux_main_title": "Commitment to User Experience",
-    "ux_main_subtitle": "Making skin diagnosis more accessible with an intuitive and seamless experience.",
-    "ux_title1": "High-speed Diagnosis",
-    "ux_desc1": "Fast diagnosis within 8 seconds, no waiting for customers. Provides a stress-free experience.",
-    "ux_title2": "Easy Operation",
-    "ux_desc2": "Anyone can easily diagnose their skin by simply taking a photo of their face with a smartphone. No special equipment is required."
+    "tech_main_title": "3 Features That Transform Inbound Customer Service",
+    "tech_main_subtitle": "Break the language barrier and deliver convincing recommendations.",
+    "tech_title1": "Visualize Skin with Explainable AI",
+    "tech_desc1": "AI highlights skin areas of concern with heatmaps. Even hard-to-describe skin issues become clear—just show the screen to build shared understanding.",
+    "tech_title2": "Personal Color Analysis with Data Logic",
+    "tech_desc2": "Objective color-space analysis instantly determines warm/cool undertones. Dramatically improves the persuasiveness of makeup recommendations.",
+    "tech_img1_caption": "Heatmap Skin Analysis",
+    "tech_img2_caption": "Personal Color Detection",
+    "ux_main_title": "Your Store's iPad Becomes a Beauty Expert",
+    "ux_main_subtitle": "No expensive specialized equipment needed.",
+    "ux_title1": "Same-Day Setup",
+    "ux_desc1": "Just install the app on your existing iPad. Start serving inbound customers tomorrow.",
+    "ux_title2": "Reduce Training Costs",
+    "ux_desc2": "AI provides the evidence—even new staff can deliver consistently high-quality consultations."
   },
   "ResultsSection": {
     "results_main_title": "Implementation Results and Effects",
@@ -639,17 +639,17 @@
   },
   "landing": {
     "hero": {
-      "title": "From experience to retention — all with explainable AI skin analysis",
-      "lead": "Boost CVR and LTV for e-commerce and retail with XAI insights, precise segmentation, and developer-friendly SDKs.",
-      "primaryCta": "Book a Demo",
+      "title": "Give your inbound customers <br/>AI-powered evidence.",
+      "lead": "'Why do they need this product?' — AI proves it with heatmaps and metrics. Break the language barrier and deliver convincing consultations.",
+      "primaryCta": "Book Free Simulation",
       "secondaryCta": "See Report Examples",
       "badges": [
-        "A/B growth",
-        "Explainable AI",
-        "SDK & API"
+        "Inbound Ready",
+        "Sales Uplift",
+        "Multilingual"
       ],
       "previewAlt": "Visage AI report preview",
-      "deployedNote": "Already deployed in our iOS app \"Visage AI: Skin Advisor\" — a live showcase for B2B clients."
+      "deployedNote": "iPad Ready. Start serving inbound customers today."
     },
     "kpi": {
       "title": "Simulated impact after adoption",
