@@ -563,36 +563,124 @@
         }
       },
       "sdkJs": {
-        "title": "JavaScript SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "title": "STEP 1: App Setup",
+        "subtitle": "Search for \"Visage AI\" on the App Store and install it on your iPad.",
+        "response": "Setup Complete",
         "navigation": {
-          "prev": "overview",
-          "next": "sdk-swift"
+          "prev": "Getting Started",
+          "next": "Initial Setup"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "Open App Store",
+            "desc": "Launch the App Store app on your iPad."
+          },
+          {
+            "num": "2",
+            "title": "Search \"Visage AI\"",
+            "desc": "Type \"Visage AI\" in the search bar."
+          },
+          {
+            "num": "3",
+            "title": "Install the App",
+            "desc": "Tap \"Get\" to download the app."
+          },
+          {
+            "num": "4",
+            "title": "Launch the App",
+            "desc": "Open the app after installation. You're ready!"
+          }
+        ],
+        "success": {
+          "title": "✓ Installation Complete",
+          "message": "App installation is complete. Proceed to the next step for initial setup."
         }
       },
       "sdkSwift": {
-        "title": "Swift SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "title": "STEP 2: Initial Setup",
+        "subtitle": "Launch the app and configure basic settings.",
+        "response": "Setup Steps",
         "navigation": {
-          "prev": "sdk-js",
-          "next": "sdk-kotlin"
+          "prev": "App Setup",
+          "next": "Customer Use"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "Launch the App",
+            "desc": "Tap the Visage AI app to open it."
+          },
+          {
+            "num": "2",
+            "title": "Select Language",
+            "desc": "Choose from Japanese, English, Chinese, or Korean."
+          },
+          {
+            "num": "3",
+            "title": "Allow Camera Access",
+            "desc": "Tap \"Allow\" to enable camera permissions."
+          },
+          {
+            "num": "4",
+            "title": "Test Diagnosis",
+            "desc": "Try a diagnosis on yourself. If results appear, setup is complete!"
+          }
+        ],
+        "tips": {
+          "title": "💡 Trial Operation Tips",
+          "items": [
+            "Better lighting improves diagnosis accuracy",
+            "Show the screen to customers while explaining",
+            "Results display automatically in the selected language"
+          ]
         }
       },
       "sdkKotlin": {
-        "title": "Kotlin SDK",
-        "subtitle": "Install and analyze in a few lines.",
-        "response": "Response",
+        "title": "STEP 3: Customer Use",
+        "subtitle": "Master the diagnosis and recommendation flow for customers.",
+        "response": "Service Flow",
         "navigation": {
-          "prev": "sdk-swift",
-          "next": "security"
+          "prev": "Initial Setup",
+          "next": "Security"
+        },
+        "steps": [
+          {
+            "num": "1",
+            "title": "Welcome Customer",
+            "desc": "Invite the customer to sit in front of the iPad at the counter."
+          },
+          {
+            "num": "2",
+            "title": "Confirm Language",
+            "desc": "Switch the app language to match the customer's preference."
+          },
+          {
+            "num": "3",
+            "title": "Run Diagnosis",
+            "desc": "Capture the customer's face. AI analyzes skin condition (~8 sec)."
+          },
+          {
+            "num": "4",
+            "title": "Explain Results",
+            "desc": "Point at the heatmap while explaining the skin condition."
+          },
+          {
+            "num": "5",
+            "title": "Recommend Products",
+            "desc": "Guide optimal products based on AI recommendations."
+          }
+        ],
+        "upgrade": {
+          "title": "🎯 Upgrade to Business Plan",
+          "message": "Want AI to recommend your own products? Apply for the Business Plan (store contract). After SKU registration, AI will automatically suggest your products to customers.",
+          "cta": "Book Consultation"
         }
       },
       "security": {
         "title": "Security & Privacy",
         "navigation": {
-          "prev": "sdk-kotlin"
+          "prev": "Customer Use"
         }
       }
     },
