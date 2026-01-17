@@ -639,10 +639,10 @@
   },
   "landing": {
     "hero": {
-      "title": "Give your inbound customers <br/>AI-powered evidence.",
+      "title": "Give your inbound customers\nAI-powered evidence.",
       "lead": "'Why do they need this product?' — AI proves it with heatmaps and metrics. Break the language barrier and deliver convincing consultations.",
       "primaryCta": "Book Free Simulation",
-      "secondaryCta": "See Report Examples",
+      "secondaryCta": "See Case Studies",
       "badges": [
         "Inbound Ready",
         "Sales Uplift",
@@ -652,30 +652,30 @@
       "deployedNote": "iPad Ready. Start serving inbound customers today."
     },
     "kpi": {
-      "title": "Simulated impact after adoption",
+      "title": "3 Features That Transform Inbound Service",
       "cards": {
         "cvr": {
-          "title": "CVR +20%",
-          "desc": "On-site personalization and XAI-based nudges"
+          "title": "1. Explainable Skin Analysis",
+          "desc": "AI visualizes skin concerns with heatmaps. Even without shared language, pointing at the screen creates shared understanding."
         },
         "nps": {
-          "title": "NPS +10pt",
-          "desc": "Better explanation → higher satisfaction"
+          "title": "2. Personal Color Detection",
+          "desc": "Data-driven color space analysis instantly determines warm/cool undertones. Dramatically improves makeup recommendation credibility."
         },
         "ltv": {
-          "title": "LTV +10%",
-          "desc": "Retention through routine tracking"
+          "title": "3. Same-Day iPad Setup",
+          "desc": "No expensive equipment needed. Just install the app on your store's iPad and get an AI beauty expert instantly."
         }
       }
     },
     "tech": {
-      "title": "Visage AI Technology",
-      "lead": "Client-side inference, privacy-first pipeline, and flexible SDKs",
-      "deployedNote": "Deployed and tested in production via our iOS app—ask us for a live demo.",
+      "title": "Secure & Private",
+      "lead": "Customer face images are processed locally on the iPad—never sent to the cloud. Full privacy protection guaranteed.",
+      "deployedNote": "Works offline. No network dependency.",
       "code": {
-        "jsTitle": "JavaScript (Web SDK)",
-        "kotlinTitle": "Kotlin (Android)",
-        "swiftTitle": "Swift (iOS)"
+        "jsTitle": "Offline Analysis",
+        "kotlinTitle": "No Network Required",
+        "swiftTitle": "Privacy First"
       }
     },
     "cases": {
