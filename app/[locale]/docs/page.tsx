@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-export async function generateMetadata({params:{locale}}:{params:{locale:string}}){
-  const title = locale==='ja' ? 'Visage AI – ドキュメント（日本語）' : 'Visage AI – Documentation';
-  const description = locale==='ja' ? 'SDK/API の導入、コア概念、セキュリティをここから' : 'Get started with SDK/API integration, core concepts, and security';
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const title = locale === 'ja' ? 'Visage AI – 導入ガイド（日本語）' : 'Visage AI – Getting Started Guide';
+  const description = locale === 'ja' ? 'アプリのインストールから店舗運用まで、導入の流れをご案内します' : 'From app installation to store operation - your complete onboarding guide';
   return {
     title,
     description,
-    openGraph:{ title, description, images:['/og.jpg'], url:`/${locale}/docs` },
-    alternates:{ canonical:`/${locale}/docs` }
+    openGraph: { title, description, images: ['/og.jpg'], url: `/${locale}/docs` },
+    alternates: { canonical: `/${locale}/docs` }
   };
 }
 
@@ -16,7 +16,7 @@ export default async function DocsHome({
 }: {
   params: { locale: 'ja' | 'en' };
 }) {
-  const messages = locale === 'ja' 
+  const messages = locale === 'ja'
     ? await import('../../../messages/ja.json')
     : await import('../../../messages/en.json');
   const base = `/${locale}/docs`;
