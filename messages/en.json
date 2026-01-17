@@ -613,8 +613,8 @@
           },
           {
             "num": "2",
-            "title": "Select Language",
-            "desc": "Choose from Japanese, English, Chinese, or Korean."
+            "title": "Check Language",
+            "desc": "Currently English only. Multilingual support available with Business Plan."
           },
           {
             "num": "3",
@@ -652,8 +652,8 @@
           },
           {
             "num": "2",
-            "title": "Confirm Language",
-            "desc": "Switch the app language to match the customer's preference."
+            "title": "Check Language",
+            "desc": "Currently English display. Multilingual available with Business contract."
           },
           {
             "num": "3",
