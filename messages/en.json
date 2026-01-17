@@ -45,7 +45,7 @@
     "title": "Core Technology",
     "xai": "Explainable AI (XAI)",
     "roi": "High-precision region detection drives ROI",
-    "sdk": "Easy SDK / API integration"
+    "sdk": "Easy iPad app setup"
   },
   "howItWorks": {
     "title": "3 Steps to Implementation",
@@ -55,7 +55,7 @@
     },
     "step2": {
       "title": "Implementation (3–5 days)",
-      "description": "Integrate SDK/API into your existing system and confirm operation in a test environment."
+      "description": "Install the app on your store's iPad and run test operations."
     },
     "step3": {
       "title": "Verification (7–14 days)",
@@ -124,7 +124,7 @@
     },
     "q3": {
       "question": "Can it be integrated into existing e-commerce sites or apps?",
-      "answer": "Yes, we provide SDK/API that can be flexibly integrated into existing systems. We support major platforms."
+      "answer": "Yes, the iPad app works standalone. Contact us if you need integration with existing systems."
     },
     "moreInfo": "Learn More"
   },
@@ -228,13 +228,13 @@
     "results_conclusion": "Visage AI strongly supports your business growth with data-driven skin diagnosis."
   },
   "ScalabilitySection": {
-    "scalability_main_title": "Flexibility and Scalability of Introduction",
-    "scalability_main_subtitle": "Seamlessly integrates into any business model with SDK and API.",
-    "scalability1_title": "SDK/API Integration",
-    "scalability1_desc": "Easily embed into existing apps and websites with a few lines of code. Significantly reduces development costs and time.",
-    "scalability2_title": "Diverse Introduction Forms",
-    "scalability2_desc": "Flexible introduction is possible according to your security policy and infrastructure environment, such as cloud, on-premise, and hybrid.",
-    "scalability_img_alt": "Image of SDK/API integration"
+    "scalability_main_title": "Flexibility and Scalability",
+    "scalability_main_subtitle": "iPad app adapts to any store size.",
+    "scalability1_title": "Easy Setup",
+    "scalability1_desc": "Just download from App Store. No specialized equipment or construction required.",
+    "scalability2_title": "Flexible Deployment",
+    "scalability2_desc": "From single store to chain deployment, flexible options match your scale.",
+    "scalability_img_alt": "Store deployment illustration"
   },
   "CTASection": {
     "cta_bottom_main_title": "Contact Us",
@@ -282,7 +282,7 @@
       },
       "integration": {
         "title": "Easy Integration",
-        "description": "Simple SDK/API integration that works seamlessly with your existing systems and workflows."
+        "description": "No specialized equipment needed. Just install the app on your store's existing iPad."
       }
     },
     "technology": {
@@ -307,25 +307,25 @@
       }
     },
     "integration": {
-      "title": "Integration Options",
+      "title": "Deployment Options",
       "web": {
-        "title": "Web SDK",
-        "description": "JavaScript SDK for web applications with easy installation and comprehensive documentation."
+        "title": "iPad App",
+        "description": "Download free from App Store. Start using immediately."
       },
       "mobile": {
-        "title": "Mobile SDKs",
-        "description": "Native iOS and Android SDKs for mobile applications with optimized performance."
+        "title": "Store Contract",
+        "description": "SKU recommendations, store logo display, and business features."
       },
       "api": {
-        "title": "REST API",
-        "description": "RESTful API endpoints for custom integrations and enterprise solutions."
+        "title": "Enterprise",
+        "description": "POS integration, multi-store dashboard, and custom development."
       }
     },
     "cta": {
       "title": "Ready to Get Started?",
       "description": "Join leading brands that are already using Visage AI to improve customer experience and increase sales.",
       "primary": "Book a Demo",
-      "secondary": "Download SDK"
+      "secondary": "Get Consultation"
     }
   },
   "cases": {
@@ -402,7 +402,7 @@
       },
       "step2": {
         "title": "Development & Integration",
-        "description": "Our engineers integrate the SDK/API into your existing systems and conduct thorough testing in development environments.",
+        "description": "Our team supports app setup at your store and conducts deployment testing.",
         "duration": "2-4 weeks"
       },
       "step3": {
@@ -494,7 +494,7 @@
   "docs": {
     "home": {
       "title": "Visage AI Documentation",
-      "lead": "Get started with SDK/API integration, core concepts, and security information."
+      "lead": "From app installation to store operation - your complete onboarding guide."
     },
     "search": {
       "placeholder": "Search docs...",
@@ -503,19 +503,19 @@
     "cards": {
       "overview": {
         "title": "Overview",
-        "desc": "Core concepts, limits & support"
+        "desc": "Getting started guide"
       },
       "sdkJs": {
-        "title": "JavaScript SDK",
-        "desc": "Web/Node quickstart"
+        "title": "STEP 1: App Setup",
+        "desc": "Install from App Store"
       },
       "sdkSwift": {
-        "title": "Swift SDK",
-        "desc": "iOS example"
+        "title": "STEP 2: Initial Setup",
+        "desc": "Configure app settings"
       },
       "sdkKotlin": {
-        "title": "Kotlin SDK",
-        "desc": "Android example"
+        "title": "STEP 3: Customer Use",
+        "desc": "Service flow guide"
       },
       "security": {
         "title": "Security",
@@ -534,7 +534,7 @@
     "pages": {
       "overview": {
         "title": "Visage AI Documentation",
-        "lead": "Get started with SDK/API integration, core concepts, and security. Pick your platform to begin.",
+        "lead": "From app installation to store operation. Get your iPad ready.",
         "nextSteps": {
           "title": "Next steps",
           "step1": "Get your API key and",
@@ -545,16 +545,16 @@
         },
         "cards": {
           "sdkJs": {
-            "title": "JavaScript SDK",
-            "desc": "Install in a few lines for Web/Node."
+            "title": "STEP 1: App Setup",
+            "desc": "Install from App Store"
           },
           "sdkSwift": {
-            "title": "Swift SDK",
-            "desc": "For iOS / visionOS apps."
+            "title": "STEP 2: Initial Setup",
+            "desc": "Configure app settings"
           },
           "sdkKotlin": {
-            "title": "Kotlin SDK",
-            "desc": "For Android apps."
+            "title": "STEP 3: Customer Use",
+            "desc": "Service flow guide"
           },
           "security": {
             "title": "Security",
@@ -694,11 +694,11 @@
   },
   "story": {
     "title": "How teams use Visage AI",
-    "subtitle": "From integration to operations, here is how customers adopt and scale.",
+    "subtitle": "From trial to full deployment, here is how customers adopt and scale.",
     "points": [
-      "Start small with SDK and one attribute, expand later.",
-      "Ship explainable recommendations to improve trust and CVR.",
-      "Operate safely with region control and retention policy."
+      "Start with free app trial, confirm the impact.",
+      "Explainable recommendations build trust and boost sales.",
+      "Business contract enables custom SKU recommendations."
     ],
     "imageAlt": "Customer success story"
   },
@@ -711,8 +711,8 @@
         "desc": "JP/US/EU selectable per tenant."
       },
       "sdk": {
-        "title": "SDK & API",
-        "desc": "JS / Swift / Kotlin and REST API."
+        "title": "App Setup",
+        "desc": "Install iPad app instantly."
       },
       "security": {
         "title": "Security",
