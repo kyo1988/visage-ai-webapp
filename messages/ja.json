@@ -423,47 +423,47 @@
     "description": "Visage AIの価格情報ページです。",
     "underConstruction": "現在、このページは準備中です。",
     "hero": {
-      "title": "シンプルで透明性の高い価格設定",
-      "subtitle": "ビジネスニーズに合ったプランを選択してください。隠れた料金なしで、成長に合わせてスケールアップできます。",
-      "cta": "始める",
-      "secondaryCta": "営業に相談"
+      "title": "店舗規模に合わせたシンプルなプラン",
+      "subtitle": "まずは無料アプリで効果を実感してください。有料プランでは「自社商品」のレコメンドが可能になります。",
+      "cta": "導入相談",
+      "secondaryCta": "資料ダウンロード"
     },
-    "popular": "最も人気",
+    "popular": "おすすめ",
     "perMonth": "月額",
     "tiers": {
       "starter": {
-        "name": "スターター",
+        "name": "トライアル (アプリ)",
         "price": "¥0",
-        "description": "小規模ビジネスやスタートアップに最適",
+        "description": "まずは1店舗で、翻訳機として導入したい方へ",
         "features": {
-          "analyses": "月100回の分析",
-          "support": "メールサポート",
-          "api": "基本APIアクセス",
-          "docs": "ドキュメントアクセス"
+          "analyses": "診断回数 無制限",
+          "support": "ヘルプセンター",
+          "api": "成分・色味の一般的な提案",
+          "docs": "iPadアプリ利用のみ"
         }
       },
       "pro": {
-        "name": "プロ",
-        "price": "¥74,800",
-        "description": "成長中のビジネスに最適",
+        "name": "ビジネス (店舗契約)",
+        "price": "¥19,800",
+        "description": "自社商品を売りたい路面店・観光地に",
         "features": {
-          "analyses": "月10,000回の分析",
-          "support": "優先サポート",
-          "xai": "説明可能AI機能",
-          "analytics": "高度な分析ダッシュボード",
-          "integration": "カスタム統合サポート"
+          "analyses": "自社商品(SKU)レコメンド",
+          "support": "優先サポート / 導入支援",
+          "xai": "店舗ロゴの表示",
+          "analytics": "多言語対応 (英/中/韓)",
+          "integration": "接客ログのデータ提供"
         }
       },
       "enterprise": {
         "name": "エンタープライズ",
-        "price": "カスタム",
-        "description": "特定の要件を持つ大規模組織向け",
+        "price": "お問い合わせ",
+        "description": "複数店舗・チェーン展開向け",
         "features": {
-          "sla": "99.9% SLA保証",
-          "onprem": "オンプレミス展開オプション",
-          "security": "SOC2 Type II準拠",
-          "support": "24/7専用サポート",
-          "custom": "カスタム機能開発"
+          "sla": "全店舗データ統合ダッシュボード",
+          "onprem": "POSシステム連携",
+          "security": "専任担当者による研修",
+          "support": "専用カスタマイズ開発",
+          "custom": "ブランド独自の色診断ロジック"
         }
       }
     },
@@ -493,105 +493,105 @@
   },
   "docs": {
     "home": {
-      "title": "Visage AI ドキュメント",
-      "lead": "SDK/API の導入、コア概念、セキュリティをここから。まずはお使いのプラットフォームを選択してください。"
+      "title": "導入・活用ガイド",
+      "lead": "アプリのインストールから、店舗モードの設定まで。誰でもすぐに使いこなせます。"
     },
     "search": {
-      "placeholder": "ドキュメントを検索...",
+      "placeholder": "ガイドを検索...",
       "noResults": "結果が見つかりません"
     },
     "cards": {
       "overview": {
-        "title": "概要",
-        "desc": "コア概念、制限、サポート"
+        "title": "導入の流れ",
+        "desc": "専用機材は不要です"
       },
       "sdkJs": {
-        "title": "JavaScript SDK",
-        "desc": "Web/Node クイックスタート"
+        "title": "STEP 1: アプリ入手",
+        "desc": "App Storeから無料ダウンロード"
       },
       "sdkSwift": {
-        "title": "Swift SDK",
-        "desc": "iOS サンプル"
+        "title": "STEP 2: トライアル運用",
+        "desc": "現場での診断フローを確認"
       },
       "sdkKotlin": {
-        "title": "Kotlin SDK",
-        "desc": "Android サンプル"
+        "title": "STEP 3: ビジネス契約",
+        "desc": "自社商品データの登録連携"
       },
       "security": {
-        "title": "セキュリティ",
-        "desc": "データフローとコンプライアンス"
+        "title": "セキュリティ設定",
+        "desc": "データの保存期間など"
       }
     },
     "cta": {
-      "demo": "ライブデモを予約 →"
+      "demo": "導入相談を予約 →"
     },
     "pages": {
       "overview": {
-        "title": "Visage AI ドキュメント",
-        "lead": "SDK/API の導入、コア概念、セキュリティをここから。まずはお使いのプラットフォームを選択してください。",
+        "title": "導入の流れ",
+        "lead": "専用機材は不要です。お手持ちのiPadをご用意ください。",
         "nextSteps": {
-          "title": "次のステップ",
-          "step1": "API キーを取得し",
-          "step1Code": "NEXT_PUBLIC_VISAGE_KEY",
-          "step1End": "を設定。",
-          "step2": "サンプルコードを動かしてレスポンスを確認。",
-          "step3": "本番環境に合わせてリージョン/保持期間を設定。"
+          "title": "導入ステップ",
+          "step1": "App Storeでアプリをダウンロード",
+          "step1Code": "Visage AI",
+          "step1End": "を検索。",
+          "step2": "店舗で診断フローを確認。",
+          "step3": "ビジネス契約で自社商品レコメンドを開始。"
         },
         "cards": {
           "sdkJs": {
-            "title": "JavaScript SDK",
-            "desc": "数行で導入。Web/Node 対応。"
+            "title": "STEP 1: アプリ入手",
+            "desc": "App Storeから無料ダウンロード"
           },
           "sdkSwift": {
-            "title": "Swift SDK",
-            "desc": "iOS / visionOS アプリへ。"
+            "title": "STEP 2: トライアル運用",
+            "desc": "現場での診断フローを確認"
           },
           "sdkKotlin": {
-            "title": "Kotlin SDK",
-            "desc": "Android アプリへ。"
+            "title": "STEP 3: ビジネス契約",
+            "desc": "自社商品データの登録連携"
           },
           "security": {
-            "title": "セキュリティ",
-            "desc": "データ取り扱い・保持期間・送信仕様など。"
+            "title": "セキュリティ設定",
+            "desc": "データの保存期間など"
           }
         }
       },
       "sdkJs": {
-        "title": "JavaScript SDK",
-        "subtitle": "数行でインストール・分析",
-        "response": "レスポンス",
+        "title": "アプリのインストール",
+        "subtitle": "App Storeで「Visage AI」を検索し、iPadにインストールしてください。",
+        "response": "インストール手順",
         "navigation": {
-          "prev": "概要",
-          "next": "Swift SDK"
+          "prev": "導入の流れ",
+          "next": "トライアル運用"
         }
       },
       "sdkSwift": {
-        "title": "Swift SDK",
-        "subtitle": "数行でインストール・分析",
-        "response": "レスポンス",
+        "title": "トライアル運用",
+        "subtitle": "店舗スタッフで活用し、接客フローを確認してください。",
+        "response": "運用手順",
         "navigation": {
-          "prev": "JavaScript SDK",
-          "next": "Kotlin SDK"
+          "prev": "アプリインストール",
+          "next": "ビジネス契約"
         }
       },
       "sdkKotlin": {
-        "title": "Kotlin SDK",
-        "subtitle": "数行でインストール・分析",
-        "response": "レスポンス",
+        "title": "ビジネス契約",
+        "subtitle": "自社商品データを登録し、SKUレコメンドを有効化します。",
+        "response": "契約手順",
         "navigation": {
-          "prev": "Swift SDK",
+          "prev": "トライアル運用",
           "next": "セキュリティ"
         }
       },
       "security": {
-        "title": "Security & Privacy",
+        "title": "セキュリティ設定",
         "navigation": {
-          "prev": "sdk-kotlin"
+          "prev": "ビジネス契約"
         }
       }
     },
     "common": {
-      "breadcrumb": "Docs",
+      "breadcrumb": "ガイド",
       "navigation": {
         "prev": "←",
         "next": "→"
@@ -640,7 +640,7 @@
       "badges": [
         "インバウンド対策",
         "接客効率化",
-        "売上アップ"
+        "単価アップ"
       ],
       "previewAlt": "Visage AI レポートのプレビュー",
       "deployedNote": "iPadアプリ対応。店舗ですぐに利用可能です。"
