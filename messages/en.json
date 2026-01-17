@@ -16,7 +16,7 @@
   "nav": {
     "product": "Product",
     "cases": "Case Studies",
-    "docs": "Support / Docs",
+    "docs": "Support",
     "whitepaper": "Whitepaper",
     "pricing": "Pricing",
     "security": "Security",
@@ -639,7 +639,7 @@
   },
   "landing": {
     "hero": {
-      "title": "Give your inbound customers\nAI-powered evidence.",
+      "title": "Give your inbound customers AI-powered evidence.",
       "lead": "'Why do they need this product?' — AI proves it with heatmaps and metrics. Break the language barrier and deliver convincing consultations.",
       "primaryCta": "Book Free Simulation",
       "secondaryCta": "See Case Studies",
