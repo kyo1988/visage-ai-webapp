@@ -2,7 +2,6 @@
 
 import { track } from "@/app/lib/analytics";
 import type { StoreProduct } from "@/lib/storeConfig";
-import Image from "next/image";
 
 interface StoreProductsClientProps {
     storeId: string;
@@ -58,16 +57,13 @@ export default function StoreProductsClient({
                         className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
                     >
                         {/* Product Image */}
-                        <div className="relative aspect-square bg-gray-100">
-                            <Image
+                        <div className="relative aspect-square bg-gray-50 flex items-center justify-center p-4">
+                            <img
                                 src={product.image}
                                 alt={product.name}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                className="max-h-full max-w-full object-contain"
                                 onError={(e) => {
-                                    // Fallback to placeholder if image fails
-                                    (e.target as HTMLImageElement).src = "/images/placeholder-product.png";
+                                    (e.target as HTMLImageElement).src = "/images/placeholder-product.svg";
                                 }}
                             />
                         </div>
