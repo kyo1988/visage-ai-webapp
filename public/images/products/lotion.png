@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff"/>
+      <stop offset="100%" style="stop-color:#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="bottle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#0284c7"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg)" width="400" height="400" rx="20"/>
+  <!-- Bottle body -->
+  <rect x="140" y="100" width="120" height="180" rx="12" fill="url(#bottle)" opacity="0.9"/>
+  <!-- Bottle cap -->
+  <rect x="165" y="70" width="70" height="40" rx="8" fill="#0c4a6e"/>
+  <!-- Label -->
+  <rect x="155" y="150" width="90" height="80" rx="6" fill="white" opacity="0.95"/>
+  <!-- Label lines -->
+  <rect x="165" y="165" width="70" height="6" rx="2" fill="#e0f2fe"/>
+  <rect x="165" y="180" width="50" height="4" rx="2" fill="#bae6fd"/>
+  <rect x="165" y="195" width="60" height="4" rx="2" fill="#bae6fd"/>
+  <rect x="165" y="210" width="40" height="4" rx="2" fill="#bae6fd"/>
+  <!-- Shine -->
+  <ellipse cx="170" cy="140" rx="8" ry="20" fill="white" opacity="0.3"/>
+  <!-- Text -->
+  <text x="200" y="320" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#0369a1">Moisture Lotion</text>
+  <text x="200" y="345" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">保湿化粧水</text>
+</svg>

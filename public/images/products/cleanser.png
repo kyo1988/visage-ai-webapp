@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#dcfce7"/>
+    </linearGradient>
+    <linearGradient id="foam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg3)" width="400" height="400" rx="20"/>
+  <!-- Tube body -->
+  <rect x="140" y="90" width="120" height="200" rx="60" fill="url(#foam)" opacity="0.9"/>
+  <!-- Tube cap -->
+  <rect x="175" y="70" width="50" height="30" rx="4" fill="#14532d"/>
+  <!-- Flip cap detail -->
+  <ellipse cx="200" cy="70" rx="20" ry="6" fill="#166534"/>
+  <!-- Label area -->
+  <ellipse cx="200" cy="190" rx="45" ry="60" fill="white" opacity="0.9"/>
+  <!-- Label lines -->
+  <rect x="170" y="160" width="60" height="5" rx="2" fill="#bbf7d0"/>
+  <rect x="175" y="175" width="50" height="4" rx="2" fill="#86efac"/>
+  <rect x="180" y="190" width="40" height="3" rx="1" fill="#86efac"/>
+  <rect x="175" y="205" width="50" height="3" rx="1" fill="#86efac"/>
+  <!-- Shine -->
+  <ellipse cx="165" cy="140" rx="10" ry="30" fill="white" opacity="0.35"/>
+  <!-- Text -->
+  <text x="200" y="325" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#15803d">Cleansing Foam</text>
+  <text x="200" y="350" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">洗顔フォーム</text>
+</svg>
