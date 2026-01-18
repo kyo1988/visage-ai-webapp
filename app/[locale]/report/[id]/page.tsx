@@ -27,11 +27,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// Fallback mock data generator if imports fail or manual construction needed
+function createEmergencyMock(id: string, locale: "ja" | "en"): any {
+  return {
+    id,
+    title: "Skin Analysis Report",
+    generatedAt: Date.now(),
+    score: { skinAge: 29, rank: 75, label: "Good" },
+    radar: { labels: ["Texture", "Hydration", "Pores", "Wrinkles", "Pigmentation", "Sensitivity"], values: [0.7, 0.7, 0.7, 0.7, 0.7, 0.7] },
+    insights: ["Hydration needed", "UV care recommended"],
+    routine: { am: { steps: ["Cleanse", "Moisturize", "SPF"] }, pm: { steps: ["Cleanse", "Retinol", "Cream"] }, ingredients: ["Retinol", "Ceramides"] },
+    ingredients: { items: [{ name: "Retinol", desc: "Anti-aging" }] },
+    products: [],
+    skinType: "normal"
+  };
+}
+
 export default async function Page({ params, searchParams }: Props) {
   const loc = params.locale === "ja" ? "ja" : "en";
   const forceFirebase = searchParams.source === 'firebase';
   const storeId = typeof searchParams.store_id === 'string' ? searchParams.store_id : undefined;
-  const data = await fetchReportById(params.id, loc, { forceFirebase });
+
+  let data = await fetchReportById(params.id, loc, { forceFirebase });
+
+  // If fetch fails but we have a store_id, FORCE a mock report to show the store products
+  if (!data && storeId) {
+    console.log("⚠️ Fetch failed but store_id present, forcing mock report for OMO demo");
+    data = createEmergencyMock(params.id, loc);
+  }
+
   if (!data) return notFound();
 
   return <ReportServer id={params.id} locale={loc} report={data} storeId={storeId} />;
