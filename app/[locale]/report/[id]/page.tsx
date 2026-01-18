@@ -6,7 +6,7 @@ import { fetchReportById } from "@/app/lib/report-api";
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-type Props = { 
+type Props = {
   params: { locale: string; id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
@@ -30,8 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params, searchParams }: Props) {
   const loc = params.locale === "ja" ? "ja" : "en";
   const forceFirebase = searchParams.source === 'firebase';
+  const storeId = typeof searchParams.store_id === 'string' ? searchParams.store_id : undefined;
   const data = await fetchReportById(params.id, loc, { forceFirebase });
   if (!data) return notFound();
-  
-  return <ReportServer id={params.id} locale={loc} report={data} />;
+
+  return <ReportServer id={params.id} locale={loc} report={data} storeId={storeId} />;
 }
