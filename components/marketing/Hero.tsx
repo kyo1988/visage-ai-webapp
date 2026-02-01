@@ -13,24 +13,18 @@ export default function Hero() {
       <div className="grid gap-10 md:grid-cols-2 md:items-center">
         <div>
           <div className="flex gap-2 mb-4">
-            {locale === 'ja' 
-              ? ["A/B成長", "説明可能AI", "SDK & API"].map((b: string, i: number) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium"
-                  >
-                    {b}
-                  </span>
-                ))
-              : ["A/B growth", "Explainable AI", "SDK & API"].map((b: string, i: number) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium"
-                  >
-                    {b}
-                  </span>
-                ))
-            }
+            {[0, 1, 2].map((i) => {
+              const label = t(`badges.${i}`);
+              if (label === `badges.${i}`) return null;
+              return (
+                <span
+                  key={i}
+                  className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium"
+                >
+                  {label}
+                </span>
+              );
+            })}
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
             {t("title")}
@@ -65,14 +59,14 @@ export default function Hero() {
         </div>
 
         <div className="relative">
-          <Image
-            src="/images/hero-report-ui.png"
-            alt={t("previewAlt") ?? "Visage AI report preview"}
-            width={900}
-            height={700}
-            priority
-            className="w-full rounded-2xl border shadow-md"
-          />
+          <div className="relative z-10">
+            <img
+              src="/images/hero_v2.png"
+              alt={t("previewAlt") ?? "Visage AI Deep Skin Analysis"}
+              className="w-full h-auto rounded-3xl shadow-2xl border-4 border-gray-900/50 mx-auto max-w-[320px] md:max-w-sm"
+              style={{ transform: 'rotate(-2deg)' }}
+            />
+          </div>
         </div>
       </div>
     </section>
