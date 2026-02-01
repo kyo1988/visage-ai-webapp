@@ -4,12 +4,13 @@ import TechSection from "@/components/marketing/TechSection";
 import CaseStudies from "@/components/marketing/CaseStudies";
 import Story from "@/components/marketing/Story";
 import Scalability from "@/components/marketing/Scalability";
+import DxSection from "@/components/marketing/DxSection";
 import FinalCta from "@/components/marketing/FinalCta";
 import { Faq } from "@/components/marketing/Faq";
 import Footer from "@/components/landing/Footer";
 
 export default function LandingPage({
-  params: { locale }
+  params: { locale: _locale }
 }: {
   params: { locale: string };
 }) {
@@ -20,6 +21,7 @@ export default function LandingPage({
       <TechSection />
       <CaseStudies />
       <Story />
+      <DxSection />
       <Scalability />
       <FinalCta />
       <Faq />
