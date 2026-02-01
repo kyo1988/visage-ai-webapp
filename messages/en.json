@@ -727,34 +727,42 @@
   },
   "landing": {
     "hero": {
-      "title": "Give your inbound customers AI-powered evidence.",
-      "lead": "'Why do they need this product?' — AI proves it with heatmaps and metrics. Break the language barrier and deliver convincing consultations.",
+      "title": "Deep Skin Analysis",
+      "lead": "Reveal hidden spots, redness, and pores instantly. AI-powered evidence for every recommendation.",
       "primaryCta": "Book Free Simulation",
       "secondaryCta": "See Case Studies",
       "badges": [
-        "Inbound Ready",
-        "Sales Uplift",
-        "Multilingual"
+        "v2.0 Available Now",
+        "Dual-Spectrum",
+        "Focus Track"
       ],
-      "previewAlt": "Visage AI report preview",
+      "previewAlt": "Visage AI report preview with heatmap",
       "deployedNote": "iPad Ready. Start serving inbound customers today."
     },
     "kpi": {
       "title": "3 Features That Transform Inbound Service",
       "cards": {
         "cvr": {
-          "title": "1. Explainable Skin Analysis",
-          "desc": "AI visualizes skin concerns with heatmaps. Even without shared language, pointing at the screen creates shared understanding."
+          "title": "1. Dual-Spectrum Analysis",
+          "desc": "Now detects both Melanin (spots) and Hemoglobin (redness). Visualize inflammation and hidden risks instantly."
         },
         "nps": {
-          "title": "2. Personal Color Detection",
-          "desc": "Data-driven color space analysis instantly determines warm/cool undertones. Dramatically improves makeup recommendation credibility."
+          "title": "2. Focus Track",
+          "desc": "Pinpoint and track specific concern areas over time. Show customers their improvement progress with precision."
         },
         "ltv": {
-          "title": "3. Same-Day iPad Setup",
-          "desc": "No expensive equipment needed. Just install the app on your store's iPad and get an AI beauty expert instantly."
+          "title": "3. Relative Scoring",
+          "desc": "New algorithm ensures fair, accurate analysis for all skin tones. Promote diversity and inclusion in your service."
         }
       }
+    },
+    "dx": {
+      "title": "For Salons & Clinics",
+      "lead": "Accelerate your DX with Visage AI",
+      "subsidyTitle": "DX Ready",
+      "subsidyDesc": "Designed to improve operational efficiency and productivity. May be eligible for various small business subsidies.",
+      "licenseTitle": "Flexible Licensing",
+      "licenseDesc": "Annual License Available. Start small and scale up."
     },
     "tech": {
       "title": "Secure & Private",
