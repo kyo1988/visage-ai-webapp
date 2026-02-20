@@ -61,10 +61,9 @@ export default function Hero() {
         <div className="relative">
           <div className="relative z-10">
             <img
-              src="/images/hero_v2.png"
-              alt={t("previewAlt") ?? "Visage AI Deep Skin Analysis"}
-              className="w-full h-auto rounded-3xl shadow-2xl border-4 border-gray-900/50 mx-auto max-w-[320px] md:max-w-sm"
-              style={{ transform: 'rotate(-2deg)' }}
+              src="/images/hero_inbound.png"
+              alt={t("previewAlt") ?? "Japanese staff showing Visage AI iPad to inbound customer"}
+              className="w-full h-auto rounded-3xl shadow-2xl mx-auto"
             />
           </div>
         </div>
