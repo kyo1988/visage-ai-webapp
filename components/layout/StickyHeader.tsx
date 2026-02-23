@@ -27,8 +27,11 @@ export function StickyHeader() {
             </Link>
 
             <div className="ml-10 hidden lg:flex lg:space-x-8">
-              <Link href={`/${locale}/#technology`} className="text-base font-medium text-gray-500 hover:text-gray-900">
-                {t('product')}
+              <Link href={`/${locale}/technology`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Technology
+              </Link>
+              <Link href={`/${locale}/guide`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Store Guide
               </Link>
               <Link href={`/${locale}/recommendation-demo`} className="text-base font-medium text-blue-600 hover:text-blue-700">
                 Try Demo
