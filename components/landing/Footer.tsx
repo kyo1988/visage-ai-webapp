@@ -16,7 +16,9 @@ export default function Footer() {
     { href: `${base}/docs/security`, label: t("footer.sitemap.security") },
     { href: `${base}/privacy`, label: t("footer.sitemap.privacy") },
     { href: `${base}/dsr`, label: t("footer.sitemap.dsr") },
-    { href: `${base}/contact`, label: t("footer.sitemap.contact") }
+    { href: `${base}/contact`, label: t("footer.sitemap.contact") },
+    { href: `${base}/technology`, label: "Technology" },
+    { href: `${base}/guide`, label: "Store Guide" }
   ];
 
   return (

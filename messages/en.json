@@ -727,42 +727,44 @@
   },
   "landing": {
     "hero": {
-      "title": "Deep Skin Analysis",
-      "lead": "Reveal hidden spots, redness, and pores instantly. AI-powered evidence for every recommendation.",
-      "primaryCta": "Book Free Simulation",
-      "secondaryCta": "See Case Studies",
+      "title": "No English Required. Just Show the Screen.",
+      "lead": "Turn inbound tourist interactions into sales with our AI Beauty Advisor. Analyze skin and bone structure instantly, and propose the perfect products without language barriers.",
+      "primaryCta": "Try on App Store",
+      "secondaryCta": "Contact Sales",
       "badges": [
-        "v2.0 Available Now",
-        "Dual-Spectrum",
-        "Focus Track"
+        "iPad Ready",
+        "Guest Session Mode",
+        "Clinical-Grade AI"
       ],
-      "previewAlt": "Visage AI report preview with heatmap",
-      "deployedNote": "iPad Ready. Start serving inbound customers today."
+      "previewAlt": "Visage AI Omotenashi Card — Japanese staff consultation screen",
+      "deployedNote": "iPad only. No development required. Start tomorrow."
     },
     "kpi": {
-      "title": "3 Features That Transform Inbound Service",
+      "title": "3 Numbers That Tell the Story",
       "cards": {
         "cvr": {
-          "title": "1. Dual-Spectrum Analysis",
-          "desc": "Now detects both Melanin (spots) and Hemoglobin (redness). Visualize inflammation and hidden risks instantly."
+          "title": "-50%",
+          "desc": "Reduction in Consultation Time"
         },
         "nps": {
-          "title": "2. Focus Track",
-          "desc": "Pinpoint and track specific concern areas over time. Show customers their improvement progress with precision."
+          "title": "+30%",
+          "desc": "Inbound Conversion Rate"
         },
         "ltv": {
-          "title": "3. Relative Scoring",
-          "desc": "New algorithm ensures fair, accurate analysis for all skin tones. Promote diversity and inclusion in your service."
+          "title": "Zero",
+          "desc": "Missed Opportunities via Language Barrier"
         }
       }
     },
     "dx": {
-      "title": "For Salons & Clinics",
-      "lead": "Accelerate your DX with Visage AI",
-      "subsidyTitle": "DX Ready",
-      "subsidyDesc": "Designed to improve operational efficiency and productivity. May be eligible for various small business subsidies.",
-      "licenseTitle": "Flexible Licensing",
-      "licenseDesc": "Annual License Available. Start small and scale up."
+      "title": "Enterprise-Grade Trust",
+      "lead": "Built for regulated retail environments",
+      "subsidyTitle": "Atomic Data Wipe (Guest Mode)",
+      "subsidyDesc": "Clear all facial images and analysis data from the device with a single tap after each session. Meets the strict compliance standards of major retailers.",
+      "licenseTitle": "On-Device AI (No Cloud)",
+      "licenseDesc": "Facial data is never sent to external servers. Designed securely in compliance with the latest Apple Intelligence ecosystem.",
+      "subsidyTitle3": "IT Subsidy Eligible",
+      "subsidyDesc3": "Visage AI may qualify as a productivity DX tool under various SME subsidies and IT adoption grant programs. Annual license available."
     },
     "tech": {
       "title": "Secure & Private",
@@ -775,16 +777,30 @@
       }
     },
     "cases": {
-      "title": "Implementation results and effects",
-      "lead": "From trial to scale: measurable outcomes across verticals",
-      "disclaimer": "Figures are simulated examples for demonstration purposes."
+      "title": "Real-World Results",
+      "lead": "Measurable outcomes from beauty counters serving inbound tourists",
+      "disclaimer": "Figures are simulated examples for demonstration purposes.",
+      "cards": [
+        {
+          "value": "+30%",
+          "label": "Inbound conversion rate improvement"
+        },
+        {
+          "value": "-50%",
+          "label": "Reduction in consultation time"
+        },
+        {
+          "value": "+15%",
+          "label": "LTV growth from repeat customers"
+        }
+      ]
     },
     "story": {
-      "title": "Our story",
-      "lead": "Why we obsess over transparent AI",
+      "title": "Translation Apps Don't Sell Cosmetics.",
+      "lead": "Why language barriers cost beauty counters real revenue",
       "alt": "Tokyo skyline with elegant East Asian woman illustration and subtle circuitry motif",
-      "storyTitle": "Tokyo-born AI, crafted with omotenashi",
-      "storyLead": "Inspired by timeless Japanese beauty rituals and the precision of modern AI, Visage AI focuses on transparency, reproducibility, and measurable uplift.",
+      "storyTitle": "The problem we're solving",
+      "storyLead": "Beauty-specific nuances like 'high-hydration primer for dry skin' or 'cool-toned vivid lipsticks' are often lost in standard translation apps. This leads to safe, basic service and missed cross-sell opportunities. Visage AI breaks this barrier not by translating words, but by presenting objective, data-driven product recommendations directly to the customer and staff.",
       "appNote": "Available now as an iPad app. No development required."
     },
     "scalability": {
@@ -792,12 +808,43 @@
       "lead": "Operate safely at enterprise scale"
     },
     "finalCta": {
-      "title": "Ready to accelerate your business with Visage AI?",
+      "title": "Ready to turn inbound tourists into your best customers?",
       "primary": "Book a Demo (15 min)",
-      "secondary": "See Case Studies"
+      "secondary": "Contact Sales"
     },
     "faq": {
       "title": "FAQ"
+    },
+    "omotenashi": {
+      "title": "The Omotenashi Card",
+      "lead": "Non-verbal communication that closes sales. Large Japanese text that any staff can use instantly — no translation skills needed.",
+      "mockup": {
+        "label": "おもてなしカード（Staff View）",
+        "skinToneLabel": "Skin Tone",
+        "skinToneValue": "イエベ春",
+        "colorLabel": "Personal Color",
+        "colorValue": "Warm",
+        "archetypeLabel": "Archetype",
+        "archetypeValue": "小顔型",
+        "recommendLabel": "Recommended Care",
+        "recommendValue": "透明感UP系ファンデ + ピーチハイライト",
+        "caption": "Actual screen display. Large Japanese text optimized for in-store consultations."
+      },
+      "card1": {
+        "label": "Personal Color",
+        "title": "Warm / Cool Tone Detection",
+        "desc": "Computer-vision analysis of hue and undertone. Objective determination of Warm (Yellow-base) vs Cool (Blue-base) in 8 seconds."
+      },
+      "card2": {
+        "label": "Skin Tone Metrics",
+        "title": "Uniformity & Contrast Analysis",
+        "desc": "Clinical-grade biometric measurement of skin evenness and dynamic range. Quantifies concerns like hyperpigmentation and dullness."
+      },
+      "card3": {
+        "label": "Structural Archetype",
+        "title": "Facial Geometry AI",
+        "desc": "AI-powered CMI (Canthal-Mandible Index) and Canthal Tilt analysis determines facial balance archetype for styling recommendations."
+      }
     }
   },
   "footer": {

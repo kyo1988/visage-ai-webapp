@@ -29,7 +29,7 @@ module.exports = {
         display: ['"Montserrat"', '"Noto Sans JP"', 'sans-serif'],
       },
       borderRadius: {
-        'brand':'1rem', // 16px ≒ rounded-2xl
+        'brand': '1rem', // 16px ≒ rounded-2xl
         '4xl': '2rem', // 32px
         '5xl': '2.5rem', // 40px
       },
@@ -39,5 +39,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
