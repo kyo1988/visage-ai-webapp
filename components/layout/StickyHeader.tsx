@@ -30,6 +30,9 @@ export function StickyHeader() {
               <Link href={`/${locale}/technology`} className="text-base font-medium text-gray-500 hover:text-gray-900">
                 Technology
               </Link>
+              <Link href={`/${locale}/practices`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Best Practices
+              </Link>
               <Link href={`/${locale}/guide`} className="text-base font-medium text-gray-500 hover:text-gray-900">
                 Store Guide
               </Link>

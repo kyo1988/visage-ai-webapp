@@ -18,6 +18,7 @@ export default function Footer() {
     { href: `${base}/dsr`, label: t("footer.sitemap.dsr") },
     { href: `${base}/contact`, label: t("footer.sitemap.contact") },
     { href: `${base}/technology`, label: "Technology" },
+    { href: `${base}/practices`, label: "Best Practices" },
     { href: `${base}/guide`, label: "Store Guide" }
   ];
 

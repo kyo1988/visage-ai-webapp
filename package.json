@@ -13,6 +13,7 @@
     "test-email": "node scripts/test-email.js"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@next/third-parties": "^14.2.3",
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "10.4.14",
