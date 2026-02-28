@@ -200,8 +200,8 @@ export default function TechnologyPage({
 
                             <hr className="my-12 border-brand-pink-hover/30" />
 
-                            <h2>4. Visage Labs: Future Developments</h2>
-                            <p>The Visage AI engine continues to be updated daily. Here are some of the features our R&D team is currently working on.</p>
+                            <h2>4. Visage Labs: Latest Innovations</h2>
+                            <p>The Visage AI engine is constantly evolving through our R&D pipeline. Following the release of v3.2, these key innovations have graduated from research to production:</p>
 
                             <ul>
                                 <li>
@@ -320,8 +320,8 @@ export default function TechnologyPage({
 
                             <hr className="my-12 border-brand-pink-hover/30" />
 
-                            <h2>4. Visage Labs: 今後の展開</h2>
-                            <p>Visage AIのエンジンは、日々アップデートを続けています。現在、研究開発チームが取り組んでいる機能の一部をご紹介します。</p>
+                            <h2>4. Visage Labs: 最新のイノベーション</h2>
+                            <p>Visage AIのエンジンは、R&D（研究開発）を通じて日々進化を続けています。最新の v3.2 アップデートにより、以下の革新的な機能が実戦投入されました。</p>
 
                             <ul>
                                 <li>
