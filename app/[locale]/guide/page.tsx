@@ -124,7 +124,7 @@ export default function GuidePage({
                             {/* Graphic Placeholder for Step 2 */}
                             <figure className="my-10 flex flex-col items-center">
                                 <Image
-                                    src="/images/screens/staff_card_en.png"
+                                    src="/images/screens/reader_mode_v32.png"
                                     alt="Hospitality Card Screen"
                                     width={800}
                                     height={500}
@@ -206,7 +206,7 @@ export default function GuidePage({
                             {/* Graphic Placeholder for Step 2 */}
                             <figure className="my-10 flex flex-col items-center">
                                 <Image
-                                    src="/images/screens/staff_card_ja.png"
+                                    src="/images/screens/staff_mode_v32.png"
                                     alt="おもてなしカード画面"
                                     width={800}
                                     height={500}
