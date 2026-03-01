@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : 'Visage Best Practices | ベストプラクティス';
 
     const description = isEn
-        ? 'Turning biometric signals into customer success. Recipes for translating diagnostics into conviction and bundle offers.'
-        : 'データを接客の成果に変えるレシピ。診断結果をセット提案へ変換するためのベストプラクティス。';
+        ? 'Turning biometric signals into customer success. Explore v3.2 scenarios including Future Care Navigation and bundle offer recipes.'
+        : 'データを接客の成果に変えるレシピ。v3.2の新シナリオ「Future Care Navigation」を含む、診断結果をセット提案へ変換するためのベストプラクティス。';
 
     const path = `/${params.locale}/practices`;
 
@@ -127,6 +127,24 @@ const scenarios: Scenario[] = [
         bundlePair: { en: "Highlighter / Shading", ja: "ハイライト / シェーディング" },
         avoidBad: { en: "Your face looks somewhat flat.", ja: "お顔がのっぺり見えてしまいます" },
         avoidGood: { en: "Adding a touch of light and shadow beautifully brings out dimensionality.", ja: "光と影を少し足すと、立体感がよりきれいに出ます" }
+    },
+    {
+        id: 'D',
+        title: { en: "Future Care Navigation (Labs)", ja: "フューチャー・ケア・ナビゲーション" },
+        target: { en: "Repeat customers or those choosing routine items", ja: "リピーター、または日常使いのアイテムを選んでいるお客様" },
+        signal: <>Future Care Priorities <span className="text-gray-400 mx-1">(Top 3)</span></>,
+        insight: {
+            en: "Current skin is stable. The engine surfaces areas that will have the most long-term impact based on preventive weighting.",
+            ja: "現在のお肌は安定。将来的に最も影響の大きいケア項目が、統計的な優先順位（重み付け）に基づき特定されている状態。"
+        },
+        talk: {
+            en: "Since your skin is in great condition, let's look at 'Future Care'. By focusing on [Item] now, you can best preserve your natural beauty for years to come. This [Product] is a perfect investment for that long-term confidence.",
+            ja: "現在のお肌の状態は非常に良好ですので、一歩先の『フューチャーケア』に着目してみましょう。今から[項目]を重点的にケアしておくことが、5年後、10年後の美しさを守るための最短距離になります。こちらの[製品]が、その将来への投資として最適です。"
+        },
+        primaryPair: { en: "Core Preventive Serum", ja: "基幹美容液（先行投資ケア）" },
+        bundlePair: { en: "High-Protection Day Cream", ja: "高機能デイクリーム（守りのケア）" },
+        avoidBad: { en: "Your skin will have serious problems in 5 years if you don't start now.", ja: "今始めないと5年後に大変なことになりますよ" },
+        avoidGood: { en: "Focusing on this now is the most effective way to preserve your natural beauty for the long term.", ja: "今ここを重点的にケアすることが、将来の美しさを守るための最も効率的な近道です" }
     }
 ];
 
@@ -214,7 +232,7 @@ export default function PracticesPage({
     return (
         <div className="min-h-screen bg-bg pt-24 pb-24">
             <div className="mx-auto max-w-4xl px-6 lg:px-8">
-                <article className="prose prose-slate prose-lg max-w-none leading-relaxed tracking-normal text-fg/80 prose-headings:font-display prose-headings:tracking-tight prose-headings:text-brand-brown-dark hover:prose-a:text-brand-pink-hover prose-a:transition-colors prose-a:text-brand-pink-brown">
+                <article className="prose prose-slate prose-base sm:prose-lg max-w-none leading-relaxed tracking-tight text-brand-text-main/90 prose-headings:font-display prose-headings:tracking-tighter prose-headings:text-brand-brown-dark hover:prose-a:text-brand-pink-hover prose-a:transition-colors prose-a:text-brand-pink-brown">
 
                     {/* Header Section */}
                     <div className="mb-16 text-center max-w-3xl mx-auto">

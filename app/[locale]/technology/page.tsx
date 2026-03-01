@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : 'Visage AI の技術基盤 | Technology';
 
     const description = isEn
-        ? 'The Biometric Engine Powering Non-Verbal Beauty Retail. Explore the architecture and design philosophy behind Visage AI.'
-        : '非言語の美容接客を支える生体解析エンジン。Visage AIのアーキテクチャと設計思想を公開。';
+        ? 'Inside Visage AI. Explaining the Biometric Engine, Future Care Navigator (Labs), and Native OS Decoding that power professional beauty retail.'
+        : 'Visage AI の技術基盤。Future Care Navigator (Labs) や OS 標準デコーダー対応など、プロフェッショナルな美容接客を支える解析エンジンを解説。';
 
     const path = `/${params.locale}/technology`;
 
@@ -60,10 +60,30 @@ export default function TechnologyPage({
 }) {
     const isEn = locale === 'en';
 
+    const FormulaCard = ({ formula, description, disclaimer }: { formula: string, description: string, disclaimer: string }) => (
+        <div className="my-10 rounded-2xl border border-brand-pink-brown/10 bg-white p-8 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center gap-8">
+                <div className="flex-1">
+                    <div className="inline-block rounded-lg bg-gray-50 border border-gray-100 px-6 py-4 font-mono text-lg text-brand-brown-dark">
+                        {formula}
+                    </div>
+                </div>
+                <div className="flex-[1.5] space-y-3">
+                    <p className="m-0 text-sm leading-relaxed text-brand-text-main">
+                        {description}
+                    </p>
+                    <p className="m-0 text-[11px] font-bold tracking-wider text-brand-pink-brown uppercase italic border-l-2 border-brand-pink-brown/30 pl-3">
+                        {disclaimer}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+
     return (
         <div className="min-h-screen bg-bg pt-24 pb-20">
             <div className="mx-auto max-w-3xl px-6 lg:px-8">
-                <article className="prose prose-slate prose-lg max-w-none leading-relaxed tracking-normal text-fg/80 prose-headings:font-display prose-headings:tracking-tight prose-headings:text-brand-brown-dark prose-a:text-brand-pink-brown prose-a:hover:text-brand-pink-hover prose-a:transition-colors">
+                <article className="prose prose-slate prose-base sm:prose-lg max-w-none leading-relaxed tracking-tight text-brand-text-main/90 prose-headings:font-display prose-headings:tracking-tighter prose-headings:text-brand-brown-dark prose-a:text-brand-pink-brown prose-a:hover:text-brand-pink-hover prose-a:transition-colors">
 
                     {/* Header Section */}
                     <div className="mb-16 text-center">
@@ -143,6 +163,18 @@ export default function TechnologyPage({
                             <p>To evaluate &quot;dark circles&quot; and &quot;dullness around the eyes,&quot; we analyze using the CIELAB color space (L*a*b*) which is close to human vision, rather than simple RGB values.</p>
                             <p>It compares the standard color of the cheek (base skin tone) with the color difference (ΔE) and lightness difference (ΔL*) in a specific area under the eyes. By doing this, it evaluates the three-dimensional shadow of the face (such as eye bags) separately from dullness caused by coloration (Pigmentation), leading to optimal concealer or eye cream proposals.</p>
 
+                            <h3>Future Care Engine (Labs)</h3>
+                            <p>Beyond current skin analysis, Visage AI introduces a preventive logic to identify long-term care priorities. By weighting current biometric scores against statistical vulnerability, we surface the areas that require the most attention for sustained skin health.</p>
+
+                            <FormulaCard
+                                formula="(1 - score) × weight"
+                                description="Where 'score' represents the current skin metric (0.0 to 1.0, higher is better) and 'weight' is a statistical constant assigned to each concern's long-term impact."
+                                disclaimer="Preventive Guidance Only. Not a medical diagnosis."
+                            />
+
+                            <h3>Native OS Decoding (HEIF Support)</h3>
+                            <p>To ensure high reliability on the shop floor, Visage AI utilizes native OS-level decoders for image processing. By supporting HEIF/HEIC formats taken directly with iPad cameras through robust system pipelines, we have significantly improved compatibility and reduced failures during the analysis flow, ensuring a seamless experience for both staff and customers.</p>
+
                             {/* Diagram 3 */}
                             <figure className="my-10 flex flex-col items-center">
                                 <Image
@@ -168,10 +200,14 @@ export default function TechnologyPage({
 
                             <hr className="my-12 border-brand-pink-hover/30" />
 
-                            <h2>4. Visage Labs: Future Developments</h2>
-                            <p>The Visage AI engine continues to be updated daily. Here are some of the features our R&D team is currently working on.</p>
+                            <h2>4. Visage Labs: Latest Innovations</h2>
+                            <p>The Visage AI engine is constantly evolving through our R&D pipeline. Following the release of v3.2, these key innovations have been integrated into our production environment:</p>
 
                             <ul>
+                                <li>
+                                    <strong>Future Care Navigator (Labs):</strong> Focuses on long-term skin health by prioritizing care areas based on biometric scores and statistical weighting.
+                                    <br /><span className="text-sm opacity-80">*This feature provides preventive guidance and is not intended for medical diagnosis or clinical treatment.</span>
+                                </li>
                                 <li>
                                     <strong>Facial Geometry Profiler:</strong> Based on geometric features such as the ratio of the face&apos;s width and height, and the balance of the contour, it proposes the optimal placement of shading and highlighting.
                                     <br /><span className="text-sm opacity-80">*This feature is a geometric auxiliary tool intended for makeup style proposals and is not intended to estimate an individual&apos;s psychology or personality.</span>
@@ -247,6 +283,18 @@ export default function TechnologyPage({
                             <p>「クマ」や「目元のくすみ」を評価するため、単純なRGB値ではなく、人間の視覚に近い CIELAB色空間（L*a*b*）を用いて解析します。</p>
                             <p>頬の基準色（ベース肌色）と、目の下の特定領域における色差（ΔE）および明度差（ΔL*）を比較。これにより、顔の立体的な影（涙袋など）と、色味由来のくすみ（Pigmentation）を分けて評価し、最適なコンシーラーやアイクリームの提案へと繋げます。</p>
 
+                            <h3>Future Care Engine (Labs)</h3>
+                            <p>現在の肌状態の解析に留まらず、Visage AIは長期的なケアの優先順位を特定するための「予防的ロジック」を導入しました。各項目の解析スコアに対し、統計的な影響度（重み付け）を掛け合わせることで、将来の肌のために今最も注力すべきエリアを可視化します。</p>
+
+                            <FormulaCard
+                                formula="(1 - score) × weight"
+                                description="scoreは各項目の現在のスコア（1.0に近いほど良好）を指し、weightはそれぞれの悩みが将来に与える影響度に基づいた統計的な重み付け定数です。"
+                                disclaimer="予防的ガイダンスであり、医療的診断ではありません。"
+                            />
+
+                            <h3>Native OS Decoding (HEIF対応)</h3>
+                            <p>現場での高い信頼性を担保するため、Visage AIはOS標準のデコーダーを活用した画像処理を行っています。iPadカメラで撮影されたHEIF/HEIC形式のデータを、システムネイティブなパイプラインで処理することで、解析フローにおける堅牢性を大幅に向上。デコードに起因するエラーを抑制し、スタッフとお客様の双方にストレスのない体験を提供します。</p>
+
                             {/* Diagram 3 */}
                             <figure className="my-10 flex flex-col items-center">
                                 <Image
@@ -272,10 +320,14 @@ export default function TechnologyPage({
 
                             <hr className="my-12 border-brand-pink-hover/30" />
 
-                            <h2>4. Visage Labs: 今後の展開</h2>
-                            <p>Visage AIのエンジンは、日々アップデートを続けています。現在、研究開発チームが取り組んでいる機能の一部をご紹介します。</p>
+                            <h2>4. Visage Labs: 最新のイノベーション</h2>
+                            <p>Visage AIのエンジンは、R&D（研究開発）を通じて日々進化を続けています。最新の v3.2 アップデートにより、以下の革新的な機能が正式に導入されました。</p>
 
                             <ul>
+                                <li>
+                                    <strong>Future Care Navigator (Labs):</strong> 現在の解析スコアと統計的な重み付けに基づき、将来的な肌の美しさを保つための優先順位を可視化します。
+                                    <br /><span className="text-sm opacity-80">※本機能は予防的なガイダンスを提供するものであり、医療的な診断や治療を目的としたものではありません。</span>
+                                </li>
                                 <li>
                                     <strong>Facial Geometry Profiler（顔の幾何バランス解析）:</strong> 顔の横幅・縦幅の比率や、輪郭のバランスなどの幾何特徴（Geometry）をもとに、シェーディングやハイライトの最適な配置を提案します。
                                     <br /><span className="text-sm opacity-80">※本機能はメイクアップのスタイル提案を目的とした幾何学的補助ツールであり、個人の心理や性格を推定するものではありません。</span>

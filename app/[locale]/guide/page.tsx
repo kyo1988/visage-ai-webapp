@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : 'Visage AI 店舗向けガイド';
 
     const description = isEn
-        ? 'In-store service manual crossing language barriers.'
-        : '現場で使えるインバウンド接客マニュアル。';
+        ? 'In-store service manual crossing language barriers. Learn how to use the "Reader Mode / For Staff" toggle for optimal consultation.'
+        : '現場で使えるインバウンド接客マニュアル。「Reader Mode / Staff Mode」の切り替えによる、対面接客の最適化フローを解説。';
 
     const path = `/${params.locale}/guide`;
 
@@ -63,7 +63,7 @@ export default function GuidePage({
     return (
         <div className="min-h-screen bg-bg pt-24 pb-20">
             <div className="mx-auto max-w-3xl px-6 lg:px-8">
-                <article className="prose prose-slate prose-lg max-w-none leading-relaxed tracking-normal text-fg/80 prose-headings:font-display prose-headings:tracking-tight prose-headings:text-brand-brown-dark prose-a:text-brand-pink-brown prose-a:hover:text-brand-pink-hover prose-a:transition-colors">
+                <article className="prose prose-slate prose-base sm:prose-lg max-w-none leading-relaxed tracking-tight text-brand-text-main/90 prose-headings:font-display prose-headings:tracking-tighter prose-headings:text-brand-brown-dark prose-a:text-brand-pink-brown prose-a:hover:text-brand-pink-hover prose-a:transition-colors">
 
                     {/* Header Section */}
                     <div className="mb-16 text-center">
@@ -114,10 +114,17 @@ export default function GuidePage({
                             </ul>
                             <p>The staff will pick up and guide the products according to this &quot;Looking for&quot; section. Intentions are easily conveyed across languages without needing to explain detailed beauty terms.</p>
 
+                            <h3>Special Feature: Reader Mode vs. For Staff</h3>
+                            <p>Version 3.2 introduces a display toggle to optimize the consultation experience:</p>
+                            <ul>
+                                <li><strong>Reader Mode (EN)</strong>: Simple, customer-friendly display. Ideal for showing results directly to the guest.</li>
+                                <li><strong>For Staff (JA)</strong>: Expert mode for BS/BA. Provides localized consultation scripts and deeper biometric data for professional guidance.</li>
+                            </ul>
+
                             {/* Graphic Placeholder for Step 2 */}
                             <figure className="my-10 flex flex-col items-center">
                                 <Image
-                                    src="/images/screens/staff_card_en.png"
+                                    src="/images/screens/reader_mode_v32.png"
                                     alt="Hospitality Card Screen"
                                     width={800}
                                     height={500}
@@ -189,10 +196,17 @@ export default function GuidePage({
                             </ul>
                             <p>スタッフは、この「探しているもの」に沿って商品をピックアップしてご案内します。外国語で細かな美容用語を説明しなくても、言葉を超えて意図が伝わりやすくなります。</p>
 
+                            <h3>新機能：接客モードの切り替え（Reader Mode / For Staff）</h3>
+                            <p>v3.2より、接客シーンに合わせて表示を最適化できるトグルスイッチを導入しました。</p>
+                            <ul>
+                                <li><strong>Reader Mode（英語）</strong>: お客様向けのシンプルな表示。診断結果をそのままお見せする際に最適です。</li>
+                                <li><strong>For Staff（日本語）</strong>: 店頭スタッフ向けの専門モード。具体的な接客トーク例や、より詳細な解析データが表示されます。</li>
+                            </ul>
+
                             {/* Graphic Placeholder for Step 2 */}
                             <figure className="my-10 flex flex-col items-center">
                                 <Image
-                                    src="/images/screens/staff_card_ja.png"
+                                    src="/images/screens/staff_mode_v32.png"
                                     alt="おもてなしカード画面"
                                     width={800}
                                     height={500}
