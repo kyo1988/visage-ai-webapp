@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { track } from "@/app/lib/analytics";
 import type { ResultDocument, ResultSku } from "@/app/lib/result-api";
@@ -62,6 +62,29 @@ function onEcClick(result: ResultDocument, sku: ResultSku) {
   });
 }
 
+function SkuImage({ sku }: { sku: ResultSku }) {
+  const [error, setError] = useState(false);
+
+  if (!sku.image_url || error) {
+    return (
+      <div className="flex h-full w-full items-center justify-center text-xs text-slate-400 bg-slate-100">
+        SKU
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={sku.image_url}
+      alt={sku.name}
+      fill
+      unoptimized
+      className="h-full w-full object-cover"
+      onError={() => setError(true)}
+    />
+  );
+}
+
 export default function ResultViewerClient({ locale, result }: Props) {
   const t = copy[locale];
 
@@ -87,7 +110,7 @@ export default function ResultViewerClient({ locale, result }: Props) {
         <h2 className="text-lg font-semibold text-slate-900">{t.summary}</h2>
         <div className="mt-3 flex flex-wrap gap-2">
           {result.analysis_summary.skin_concerns.length === 0 &&
-          result.analysis_summary.style_tags.length === 0 ? (
+            result.analysis_summary.style_tags.length === 0 ? (
             <span className="text-sm text-slate-500">{t.noSummary}</span>
           ) : (
             <>
@@ -125,19 +148,7 @@ export default function ResultViewerClient({ locale, result }: Props) {
                 className="flex items-center gap-3 rounded-xl border border-slate-100 p-3"
               >
                 <div className="relative h-16 w-16 overflow-hidden rounded-lg bg-slate-100">
-                  {sku.image_url ? (
-                    <Image
-                      src={sku.image_url}
-                      alt={sku.name}
-                      fill
-                      unoptimized
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center text-xs text-slate-400">
-                      SKU
-                    </div>
-                  )}
+                  <SkuImage sku={sku} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-slate-900">
