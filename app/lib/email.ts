@@ -20,6 +20,20 @@ export interface WhitepaperLead {
   leadId: string;
 }
 
+export interface DemoRequestLead {
+  name: string;
+  storeName: string;
+  email: string;
+  phone?: string;
+  industry: string;
+  message?: string;
+  locale: "ja" | "en";
+  leadId: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+}
+
 export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean> {
   try {
     if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD) {
@@ -174,6 +188,113 @@ export async function sendInternalNotification(lead: WhitepaperLead): Promise<bo
 
   } catch (error) {
     console.error('❌ Internal notification error:', error);
+    return false;
+  }
+}
+
+export async function sendDemoRequestEmail(lead: DemoRequestLead): Promise<boolean> {
+  try {
+    if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD) {
+      console.error("Email credentials not configured");
+      return false;
+    }
+
+    const transporter = createTransporter();
+    const fromEmail = process.env.NEXT_PUBLIC_EMAIL_USER;
+    const fromName = process.env.NEXT_PUBLIC_EMAIL_FROM_NAME || "Visage AI Consulting";
+    const scheduleUrl =
+      process.env.NEXT_PUBLIC_CAL_URL ||
+      process.env.CALCOM_URL ||
+      "https://www.visageaiconsulting.com/ja/contact";
+
+    const subject =
+      lead.locale === "ja"
+        ? "【Visage AI】無料デモのお申し込みありがとうございます"
+        : "Thanks for your Visage AI demo request";
+
+    const bodyJa = `
+${lead.name} 様
+
+Visage AI の無料デモにお申し込みいただきありがとうございます。
+以下のリンクから、ご都合の良い日時をお選びください。
+
+${scheduleUrl}
+
+お問い合わせ内容:
+${lead.message || "(なし)"}
+
+--
+Visage AI Consulting
+Lead ID: ${lead.leadId}
+`;
+
+    const bodyEn = `
+Hi ${lead.name},
+
+Thank you for requesting a Visage AI demo.
+Please choose your preferred slot from the link below:
+
+${scheduleUrl}
+
+Your message:
+${lead.message || "(none)"}
+
+--
+Visage AI Consulting
+Lead ID: ${lead.leadId}
+`;
+
+    await transporter.sendMail({
+      from: `"${fromName}" <${fromEmail}>`,
+      to: lead.email,
+      subject,
+      text: lead.locale === "ja" ? bodyJa : bodyEn,
+    });
+
+    return true;
+  } catch (error) {
+    console.error("❌ Demo request email sending error:", error);
+    return false;
+  }
+}
+
+export async function sendDemoRequestInternalNotification(
+  lead: DemoRequestLead,
+): Promise<boolean> {
+  try {
+    if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD) {
+      console.error("Email credentials not configured");
+      return false;
+    }
+
+    const transporter = createTransporter();
+    const fromEmail = process.env.NEXT_PUBLIC_EMAIL_USER;
+    const fromName = process.env.NEXT_PUBLIC_EMAIL_FROM_NAME || "Visage AI Consulting";
+    const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "admin@visageaiconsulting.com";
+
+    await transporter.sendMail({
+      from: `"${fromName}" <${fromEmail}>`,
+      to: adminEmail,
+      subject: `📅 New Demo Request: ${lead.storeName}`,
+      text: `
+Lead ID: ${lead.leadId}
+Name: ${lead.name}
+Store: ${lead.storeName}
+Email: ${lead.email}
+Phone: ${lead.phone || "(none)"}
+Industry: ${lead.industry}
+Locale: ${lead.locale}
+UTM Source: ${lead.utmSource || "(none)"}
+UTM Medium: ${lead.utmMedium || "(none)"}
+UTM Campaign: ${lead.utmCampaign || "(none)"}
+Message: ${lead.message || "(none)"}
+Timestamp: ${new Date().toISOString()}
+`,
+    });
+
+    return true;
+  } catch (error) {
+    console.error("❌ Demo request internal notification error:", error);
     return false;
   }
 }

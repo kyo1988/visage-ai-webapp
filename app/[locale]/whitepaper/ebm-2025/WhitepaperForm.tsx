@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { track } from '@/app/lib/analytics';
 
 interface WhitepaperFormProps {
@@ -18,6 +18,20 @@ export default function WhitepaperForm({ t }: WhitepaperFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [utm, setUtm] = useState({
+    source: '',
+    medium: '',
+    campaign: '',
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setUtm({
+      source: params.get('utm_source') ?? '',
+      medium: params.get('utm_medium') ?? '',
+      campaign: params.get('utm_campaign') ?? '',
+    });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -40,6 +54,9 @@ export default function WhitepaperForm({ t }: WhitepaperFormProps) {
         company: formData.company,
         industry: formData.industry,
         role: formData.role,
+        source: utm.source || '(none)',
+        medium: utm.medium || '(none)',
+        campaign: utm.campaign || '(none)',
       });
 
       // Call the API endpoint
@@ -65,6 +82,13 @@ export default function WhitepaperForm({ t }: WhitepaperFormProps) {
         industry: formData.industry,
         role: formData.role,
         lead_id: result.leadId,
+      });
+
+      track('whitepaper_downloaded', {
+        document: 'ebm-2025',
+        source: utm.source || '(none)',
+        medium: utm.medium || '(none)',
+        campaign: utm.campaign || '(none)',
       });
 
       setIsSuccess(true);
