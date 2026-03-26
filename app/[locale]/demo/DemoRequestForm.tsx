@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { track } from "@/app/lib/analytics";
+import { getCurrentUtms } from "@/app/lib/utm-capture";
 
 type Locale = "ja" | "en";
 
@@ -93,18 +94,30 @@ export default function DemoRequestForm({
     source: "",
     medium: "",
     campaign: "",
+    content: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [landingPage, setLandingPage] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    // getCurrentUtms() は URL 優先 → sessionStorage フォールバック
+    // LP でキャプチャした UTM がページ遷移後も引き継がれる
+    const utms = getCurrentUtms();
     setUtm({
-      source: params.get("utm_source") ?? "",
-      medium: params.get("utm_medium") ?? "",
-      campaign: params.get("utm_campaign") ?? "",
+      source:   utms.utm_source   ?? "",
+      medium:   utms.utm_medium   ?? "",
+      campaign: utms.utm_campaign ?? "",
+      content:  utms.utm_content  ?? "",
     });
+    // landing_page: 最初の流入 URL を記録する（document.referrer は不正確なため location を使う）
+    try {
+      const stored = sessionStorage.getItem("visage_landing_page");
+      setLandingPage(stored || window.location.href);
+    } catch {
+      setLandingPage(window.location.href);
+    }
   }, []);
 
   const scheduleUrl = useMemo(() => calendlyUrl || `/${locale}/contact`, [calendlyUrl, locale]);
@@ -131,15 +144,21 @@ export default function DemoRequestForm({
         campaign: utm.campaign || "(none)",
       });
 
+      // UTM / HubSpot fields: server side (route.ts) が submitToHubSpot() で送信済み
       const response = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           locale,
           ...form,
-          utmSource: utm.source,
-          utmMedium: utm.medium,
+          // UTM attribution
+          utmSource:   utm.source,
+          utmMedium:   utm.medium,
           utmCampaign: utm.campaign,
+          utmContent:  utm.content,
+          // HubSpot hidden fields
+          landingPage,   // hs_analytics_first_url
+          // locale は既に含まれる
         }),
       });
 

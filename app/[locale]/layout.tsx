@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
 import AnalyticsListener from "../analytics-listener";
+import CookieBanner from "@/components/CookieBanner";
 
 const base =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
@@ -29,13 +30,31 @@ export default async function RootLayout({
       <head>
         {GA_ID && (
           <>
+            {/* Consent Mode v2: デフォルト拒否。CookieBanner が同意後に 'granted' に更新する */}
+            <Script id="gtag-consent-default" strategy="beforeInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('consent', 'default', {
+                  analytics_storage: 'denied',
+                  ad_storage: 'denied',
+                  wait_for_update: 500
+                });
+                // セッションストレージ or localStorage に同意済みなら即時復元
+                try {
+                  var saved = localStorage.getItem('ga_consent');
+                  if (saved === 'granted') {
+                    gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+                  }
+                } catch(e) {}
+              `}
+            </Script>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
               strategy="afterInteractive"
             />
             <Script id="gtag-init" strategy="afterInteractive">
               {`
-                console.log('[GA4] Initializing with ID:', '${GA_ID}');
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -45,8 +64,6 @@ export default async function RootLayout({
                     domains: ['www.visageaiconsulting.com', 'visageaiconsulting.com', 'kyo1988.github.io']
                   }
                 });
-                console.log('[GA4] Configuration complete');
-                console.log('[GA4] dataLayer:', window.dataLayer);
               `}
             </Script>
           </>
@@ -65,6 +82,7 @@ export default async function RootLayout({
         <Suspense fallback={null}>
           <AnalyticsListener />
         </Suspense>
+        <CookieBanner />
       </body>
     </html>
   );
