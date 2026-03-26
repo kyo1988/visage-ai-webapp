@@ -18,7 +18,59 @@ type Body = {
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
+  utmContent?: string;
+  landingPage?: string; // hs_analytics_first_url 相当
 };
+
+/** HubSpot Forms API v3 へのサブミット
+ *
+ * 環境変数 HUBSPOT_PORTAL_ID / HUBSPOT_FORM_ID が設定されていれば送信、
+ * 未設定の場合は false を返してリクエスト全体を失敗させない。
+ */
+async function submitToHubSpot(lead: DemoRequestLead): Promise<boolean> {
+  const portalId = process.env.HUBSPOT_PORTAL_ID;
+  const formId = process.env.HUBSPOT_FORM_ID;
+
+  if (!portalId || !formId) {
+    console.log("[hubspot] skipped — HUBSPOT_PORTAL_ID or HUBSPOT_FORM_ID not set");
+    return false;
+  }
+
+  const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
+
+  const payload = {
+    fields: [
+      { name: "email",                  value: lead.email },
+      { name: "firstname",              value: lead.name },
+      { name: "company",                value: lead.storeName },
+      { name: "industry",               value: lead.industry },
+      { name: "utm_source",             value: lead.utmSource ?? "" },
+      { name: "utm_medium",             value: lead.utmMedium ?? "" },
+      { name: "utm_campaign",           value: lead.utmCampaign ?? "" },
+      { name: "utm_content",            value: lead.utmContent ?? "" },
+      { name: "hs_analytics_first_url", value: lead.landingPage ?? "" },
+      { name: "hs_language",            value: lead.locale },
+    ],
+    context: {
+      pageUri: lead.landingPage ?? "",
+    },
+  };
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const text = await response.text().catch(() => "");
+    console.error(`[hubspot] submission failed: ${response.status} ${text}`);
+    return false;
+  }
+
+  console.log(`[hubspot] submitted lead ${lead.leadId} (${lead.email})`);
+  return true;
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,6 +97,8 @@ export async function POST(request: NextRequest) {
       utmSource: body.utmSource?.trim(),
       utmMedium: body.utmMedium?.trim(),
       utmCampaign: body.utmCampaign?.trim(),
+      utmContent: body.utmContent?.trim(),
+      landingPage: body.landingPage?.trim(),
     };
 
     const db = getDbOrNull();
@@ -57,9 +111,10 @@ export async function POST(request: NextRequest) {
       console.warn("[demo-request] Firestore unavailable, skipping persistence");
     }
 
-    const [emailResult, internalResult] = await Promise.allSettled([
+    const [emailResult, internalResult, hubspotResult] = await Promise.allSettled([
       sendDemoRequestEmail(lead),
       sendDemoRequestInternalNotification(lead),
+      submitToHubSpot(lead),
     ]);
 
     const calendlyUrl =
@@ -72,6 +127,7 @@ export async function POST(request: NextRequest) {
       leadId,
       emailSent: emailResult.status === "fulfilled" && emailResult.value,
       internalSent: internalResult.status === "fulfilled" && internalResult.value,
+      hubspotSubmitted: hubspotResult.status === "fulfilled" && hubspotResult.value,
       calendlyUrl,
     });
   } catch (error) {

@@ -32,6 +32,8 @@ export interface DemoRequestLead {
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
+  utmContent?: string;
+  landingPage?: string; // hs_analytics_first_url 相当
 }
 
 export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean> {
