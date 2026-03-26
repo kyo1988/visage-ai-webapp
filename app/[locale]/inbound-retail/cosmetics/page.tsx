@@ -1,24 +1,51 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import LPTracker from "@/components/LPTracker";
 import TrackedCTA from "@/components/TrackedCTA";
 
-export const metadata: Metadata = {
-  title: "インバウンド向け AI スキンケアカウンセリング | Visage AI",
-  description:
-    "外国人観光客の購買体験をAIでパーソナライズ。多言語対応のスキンケア解析で客単価向上をサポートします。",
-  alternates: {
-    canonical: "/ja/inbound-retail/cosmetics",
-  },
-};
+export const dynamic = "force-static";
+
+async function getT(locale: string) {
+  const messages = (
+    await import(`../../../../messages/${locale}.json`)
+  ).default as Record<string, any>;
+  const ns = messages["inboundRetailCosmetics"] ?? {};
+  return function t(path: string): any {
+    return path.split(".").reduce<any>((o, k) => (o != null ? o[k] : undefined), ns) ?? path;
+  };
+}
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const isJa = locale === "ja";
+  return {
+    title: isJa
+      ? "インバウンド向け AI スキンケアカウンセリング | Visage AI"
+      : "AI Skincare Counseling for Inbound Retail | Visage AI",
+    description: isJa
+      ? "外国人観光客の購買体験をAIでパーソナライズ。多言語対応のスキンケア解析で客単価向上をサポートします。"
+      : "Personalize every inbound tourist's skincare experience with on-device AI. Multilingual skin analysis that drives conversion.",
+    alternates: {
+      canonical: `/${locale}/inbound-retail/cosmetics`,
+    },
+  };
+}
 
 const PAGE_ID = "inbound_retail_cosmetics_lp";
 
-export default function InboundRetailCosmeticsLP({
+export default async function InboundRetailCosmeticsLP({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
+  const t = await getT(locale);
+
+  const painItems: string[] = t("pain.items");
+  const featureCards: { num: string; title: string; body: string }[] = t("features.cards");
+  const quotes: { quote: string; attr: string }[] = t("social.quotes");
+
   return (
     <main>
       {/* UTM capture + lp_viewed event（client-side）*/}
@@ -42,7 +69,7 @@ export default function InboundRetailCosmeticsLP({
             marginBottom: "16px",
           }}
         >
-          Inbound Retail &times; AI Skincare
+          {t("badge")}
         </p>
         <h1
           style={{
@@ -50,10 +77,10 @@ export default function InboundRetailCosmeticsLP({
             fontWeight: 700,
             lineHeight: 1.3,
             marginBottom: "24px",
+            whiteSpace: "pre-line",
           }}
         >
-          外国人観光客の購買体験を<br />
-          AIでパーソナライズする
+          {t("hero.h1")}
         </h1>
         <p
           style={{
@@ -64,22 +91,21 @@ export default function InboundRetailCosmeticsLP({
             lineHeight: 1.7,
           }}
         >
-          多言語対応のオンデバイスAIが肌状態を解析。スタッフ不要で最適な
-          スキンケアを提案し、客単価向上をサポートします。
+          {t("hero.sub")}
         </p>
         <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
           <TrackedCTA
             href={`/${locale}/demo`}
             ctaId="hero_demo"
             pageId={PAGE_ID}
-            label="デモを予約する"
+            label={t("hero.primaryCta")}
             variant="primary"
           />
           <TrackedCTA
             href={`/${locale}/contact`}
             ctaId="hero_contact"
             pageId={PAGE_ID}
-            label="資料請求"
+            label={t("hero.secondaryCta")}
             variant="outline"
           />
         </div>
@@ -96,9 +122,9 @@ export default function InboundRetailCosmeticsLP({
           borderBottom: "1px solid #e0e7ff",
         }}
       >
-        <span style={{ marginRight: "32px" }}>🌏 多言語対応（EN / ZH / KO / JA）</span>
-        <span style={{ marginRight: "32px" }}>📱 オンデバイス AI — インターネット不要</span>
-        <span>🔒 顔データは端末外に保存しない</span>
+        <span style={{ marginRight: "32px" }}>🌏 {t("proof.multilingual")}</span>
+        <span style={{ marginRight: "32px" }}>📱 {t("proof.offline")}</span>
+        <span>🔒 {t("proof.privacy")}</span>
       </section>
 
       {/* Pain Points */}
@@ -106,7 +132,7 @@ export default function InboundRetailCosmeticsLP({
         <h2
           style={{ fontSize: "24px", fontWeight: 700, marginBottom: "32px", textAlign: "center" }}
         >
-          こんなお悩みはありませんか？
+          {t("pain.heading")}
         </h2>
         <div
           style={{
@@ -115,20 +141,7 @@ export default function InboundRetailCosmeticsLP({
             gap: "24px",
           }}
         >
-          {[
-            {
-              icon: "🌏",
-              text: "多国語での接客スキルがスタッフ不足で対応しきれない",
-            },
-            {
-              icon: "💬",
-              text: "外国人顧客のスキンケアニーズを的確に把握できていない",
-            },
-            {
-              icon: "📉",
-              text: "インバウンド需要はあるが客単価が上がらない",
-            },
-          ].map(({ icon, text }) => (
+          {painItems.map((text: string) => (
             <div
               key={text}
               style={{
@@ -138,7 +151,6 @@ export default function InboundRetailCosmeticsLP({
                 background: "#fafafa",
               }}
             >
-              <div style={{ fontSize: "32px", marginBottom: "12px" }}>{icon}</div>
               <p style={{ fontSize: "15px", lineHeight: 1.6, margin: 0 }}>{text}</p>
             </div>
           ))}
@@ -146,14 +158,12 @@ export default function InboundRetailCosmeticsLP({
       </section>
 
       {/* Features */}
-      <section
-        style={{ padding: "64px 24px", background: "#f8f9ff", maxWidth: "100%" }}
-      >
+      <section style={{ padding: "64px 24px", background: "#f8f9ff", maxWidth: "100%" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <h2
             style={{ fontSize: "24px", fontWeight: 700, marginBottom: "32px", textAlign: "center" }}
           >
-            Visage AI が解決する 3 つの機能
+            {t("features.heading")}
           </h2>
           <div
             style={{
@@ -162,23 +172,7 @@ export default function InboundRetailCosmeticsLP({
               gap: "24px",
             }}
           >
-            {[
-              {
-                num: "01",
-                title: "iPad で完結する AI スキン解析",
-                body: "オンデバイス処理でインターネット不要。肌状態を解析し多言語で結果を表示。顔データは端末外に保存されません。",
-              },
-              {
-                num: "02",
-                title: "QR コードで EC 購買につなぐ",
-                body: "解析結果をQRコードで渡すと、顧客がスマートフォンから推薦商品をそのまま購入可能。オフライン購買の機会損失を防ぎます。",
-              },
-              {
-                num: "03",
-                title: "店舗別の月次レポート",
-                body: "肌タイプ分布・人気商品・客単価の推移をダッシュボードで確認。バイヤーへの仕入れ交渉にも活用できます。",
-              },
-            ].map(({ num, title, body }) => (
+            {featureCards.map(({ num, title, body }) => (
               <div
                 key={num}
                 style={{
@@ -211,14 +205,13 @@ export default function InboundRetailCosmeticsLP({
         </div>
       </section>
 
-      {/* Social Proof / 導入イメージ */}
+      {/* Social Proof */}
       <section style={{ padding: "64px 24px", maxWidth: "900px", margin: "0 auto" }}>
         <h2
           style={{ fontSize: "24px", fontWeight: 700, marginBottom: "32px", textAlign: "center" }}
         >
-          導入店舗の声
+          {t("social.heading")}
         </h2>
-        {/* TODO: 実際の導入事例に差し替える */}
         <div
           style={{
             display: "grid",
@@ -226,16 +219,7 @@ export default function InboundRetailCosmeticsLP({
             gap: "20px",
           }}
         >
-          {[
-            {
-              quote: "言語の壁なく接客できるようになり、外国人客の滞在時間が伸びました。",
-              attr: "都内コスメセレクトショップ（導入準備中）",
-            },
-            {
-              quote: "QR を渡すとスマホで続きを見てくれる。閉店後の購買につながります。",
-              attr: "京都インバウンド対応ドラッグストア（導入準備中）",
-            },
-          ].map(({ quote, attr }) => (
+          {quotes.map(({ quote, attr }) => (
             <div
               key={attr}
               style={{
@@ -245,7 +229,14 @@ export default function InboundRetailCosmeticsLP({
                 border: "1px solid #c7d2fe",
               }}
             >
-              <p style={{ fontSize: "15px", lineHeight: 1.7, margin: "0 0 12px", fontStyle: "italic" }}>
+              <p
+                style={{
+                  fontSize: "15px",
+                  lineHeight: 1.7,
+                  margin: "0 0 12px",
+                  fontStyle: "italic",
+                }}
+              >
                 &ldquo;{quote}&rdquo;
               </p>
               <p style={{ fontSize: "12px", color: "#6366f1", margin: 0 }}>{attr}</p>
@@ -253,7 +244,7 @@ export default function InboundRetailCosmeticsLP({
           ))}
         </div>
         <p style={{ textAlign: "center", marginTop: "24px", fontSize: "12px", color: "#999" }}>
-          ※コメントは現時点のパイロット想定です。実際の効果は店舗・条件により異なります。
+          {t("social.disclaimer")}
         </p>
       </section>
 
@@ -268,13 +259,13 @@ export default function InboundRetailCosmeticsLP({
         }}
       >
         <p style={{ fontSize: "16px", fontWeight: 600, marginBottom: "16px" }}>
-          まずは 30 分のオンラインデモで確認できます。
+          {t("midCta.lead")}
         </p>
         <TrackedCTA
           href={`/${locale}/demo`}
           ctaId="mid_page_demo"
           pageId={PAGE_ID}
-          label="デモを予約する（無料）"
+          label={t("midCta.cta")}
           variant="primary"
         />
       </section>
@@ -289,29 +280,29 @@ export default function InboundRetailCosmeticsLP({
         }}
       >
         <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "16px" }}>
-          まずはデモで体験してみてください
+          {t("bottomCta.heading")}
         </h2>
         <p style={{ color: "#c0c0d0", marginBottom: "32px", fontSize: "15px" }}>
-          30分のオンラインデモで、実際の解析フローをご覧いただけます。
+          {t("bottomCta.sub")}
         </p>
         <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
           <TrackedCTA
             href={`/${locale}/demo`}
             ctaId="bottom_demo"
             pageId={PAGE_ID}
-            label="デモを予約する（無料）"
+            label={t("bottomCta.primaryCta")}
             variant="primary"
           />
           <TrackedCTA
             href={`/${locale}/contact`}
             ctaId="bottom_contact"
             pageId={PAGE_ID}
-            label="まず資料を見る"
+            label={t("bottomCta.secondaryCta")}
             variant="outline-light"
           />
         </div>
         <p style={{ marginTop: "16px", fontSize: "12px", color: "#888" }}>
-          ※実際の効果は店舗・条件により異なります
+          {t("bottomCta.disclaimer")}
         </p>
       </section>
     </main>

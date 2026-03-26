@@ -1066,5 +1066,72 @@
       "decisionBridge": "What We Do This Quarter",
       "legal": "Legal & Compliance"
     }
+  },
+  "inboundRetailCosmetics": {
+    "badge": "Inbound Retail × AI Skincare",
+    "hero": {
+      "h1": "Personalize Every Inbound Tourist's\nSkincare Experience with AI",
+      "sub": "On-device AI analyzes skin condition in seconds and recommends the right products — in any language, no staff expertise needed.",
+      "primaryCta": "Book a Demo",
+      "secondaryCta": "Request Info"
+    },
+    "proof": {
+      "multilingual": "Multilingual (EN / ZH / KO / JA)",
+      "offline": "On-Device AI — No Internet Required",
+      "privacy": "Facial data never leaves the device"
+    },
+    "pain": {
+      "heading": "Sound familiar?",
+      "items": [
+        "Staff can't keep up with multilingual consultations",
+        "You can't accurately understand inbound customers' skincare needs",
+        "Inbound foot traffic is high, but average spend isn't growing"
+      ]
+    },
+    "features": {
+      "heading": "3 Ways Visage AI Solves This",
+      "cards": [
+        {
+          "num": "01",
+          "title": "iPad-Based AI Skin Analysis",
+          "body": "Fully on-device processing — no internet required. Analyzes skin condition and displays results in the customer's language. Facial data never leaves the device."
+        },
+        {
+          "num": "02",
+          "title": "QR Code → EC Purchase Bridge",
+          "body": "Hand customers a QR code with their analysis results so they can browse recommended products on their phone and buy even after leaving the store."
+        },
+        {
+          "num": "03",
+          "title": "Monthly Store Analytics Report",
+          "body": "Track skin type distribution, popular products, and average spend trends on a dashboard. Useful for buyer negotiations and inventory planning."
+        }
+      ]
+    },
+    "social": {
+      "heading": "What Stores Are Saying",
+      "quotes": [
+        {
+          "quote": "We can finally serve foreign customers without a language barrier — and they stay longer.",
+          "attr": "Cosmetics select shop, Tokyo (pilot pending)"
+        },
+        {
+          "quote": "When we hand them the QR code, they keep shopping from their phone after leaving the store.",
+          "attr": "Inbound-focused drugstore, Kyoto (pilot pending)"
+        }
+      ],
+      "disclaimer": "* Comments reflect pilot scenarios. Actual results vary by store and conditions."
+    },
+    "midCta": {
+      "lead": "See it in action — a 30-minute online demo.",
+      "cta": "Book a Free Demo"
+    },
+    "bottomCta": {
+      "heading": "Experience it in a 30-Minute Demo",
+      "sub": "We'll walk you through the full analysis flow live.",
+      "primaryCta": "Book a Free Demo",
+      "secondaryCta": "View Product Info",
+      "disclaimer": "* Actual results vary by store and conditions"
+    }
   }
 }
