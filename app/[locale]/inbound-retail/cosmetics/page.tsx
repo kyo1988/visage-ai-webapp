@@ -246,7 +246,7 @@ export default function InboundRetailCosmeticsLP({
               }}
             >
               <p style={{ fontSize: "15px", lineHeight: 1.7, margin: "0 0 12px", fontStyle: "italic" }}>
-                "{quote}"
+                &ldquo;{quote}&rdquo;
               </p>
               <p style={{ fontSize: "12px", color: "#6366f1", margin: 0 }}>{attr}</p>
             </div>
