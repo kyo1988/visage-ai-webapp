@@ -20,6 +20,7 @@ type Body = {
   utmCampaign?: string;
   utmContent?: string;
   landingPage?: string; // hs_analytics_first_url 相当
+  referrer?: string;    // document.referrer — channel attribution fallback
 };
 
 /** HubSpot Forms API v3 へのサブミット
@@ -99,6 +100,7 @@ export async function POST(request: NextRequest) {
       utmCampaign: body.utmCampaign?.trim(),
       utmContent: body.utmContent?.trim(),
       landingPage: body.landingPage?.trim(),
+      referrer: body.referrer?.trim(),
     };
 
     const db = getDbOrNull();

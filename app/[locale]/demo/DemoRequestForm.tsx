@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { track } from "@/app/lib/analytics";
-import { getCurrentUtms } from "@/app/lib/utm-capture";
+import { captureUtms, getCurrentUtms } from "@/app/lib/utm-capture";
 
 type Locale = "ja" | "en";
 
@@ -100,8 +100,11 @@ export default function DemoRequestForm({
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [landingPage, setLandingPage] = useState("");
+  const [referrer, setReferrer] = useState("");
 
   useEffect(() => {
+    // UTM を sessionStorage に永続化（LP 経由でない直接流入にも対応）
+    captureUtms();
     // getCurrentUtms() は URL 優先 → sessionStorage フォールバック
     // LP でキャプチャした UTM がページ遷移後も引き継がれる
     const utms = getCurrentUtms();
@@ -113,11 +116,18 @@ export default function DemoRequestForm({
     });
     // landing_page: 最初の流入 URL を記録する（document.referrer は不正確なため location を使う）
     try {
+      if (!sessionStorage.getItem("visage_landing_page")) {
+        sessionStorage.setItem("visage_landing_page", window.location.href);
+      }
       const stored = sessionStorage.getItem("visage_landing_page");
       setLandingPage(stored || window.location.href);
     } catch {
       setLandingPage(window.location.href);
     }
+    // referrer: 直前のページ URL（外部 → デモページ の場合に有効）
+    try {
+      setReferrer(document.referrer || "");
+    } catch { /* ignore */ }
   }, []);
 
   const scheduleUrl = useMemo(() => calendlyUrl || `/${locale}/contact`, [calendlyUrl, locale]);
@@ -158,6 +168,7 @@ export default function DemoRequestForm({
           utmContent:  utm.content,
           // HubSpot hidden fields
           landingPage,   // hs_analytics_first_url
+          referrer,      // document.referrer — channel attribution fallback
           // locale は既に含まれる
         }),
       });
