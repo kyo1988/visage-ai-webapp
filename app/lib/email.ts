@@ -34,6 +34,7 @@ export interface DemoRequestLead {
   utmCampaign?: string;
   utmContent?: string;
   landingPage?: string; // hs_analytics_first_url 相当
+  referrer?: string;    // document.referrer — channel attribution fallback
 }
 
 export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean> {
