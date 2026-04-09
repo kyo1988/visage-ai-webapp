@@ -56,6 +56,7 @@ const enCopy: PrivacyCopy = {
       bullets: [
         'We do NOT send user data to OpenAI, Anthropic, Google Gemini, or any other third-party AI service.',
         'Core analysis is performed on-device and does not require cloud AI inference.',
+        'Nearby place recommendations are rule-based (distance/category matching) and do not execute third-party AI model inference.',
       ],
     },
     {
@@ -120,6 +121,7 @@ const jaCopy: PrivacyCopy = {
       bullets: [
         'OpenAI、Anthropic、Google Gemini、その他第三者AIサービスへユーザーデータを送信しません。',
         '主要な肌解析はオンデバイス処理で完結し、クラウドAI推論を前提としません。',
+        '近隣店舗推薦は距離・カテゴリに基づくルールベース処理であり、第三者AIモデル推論は実行しません。',
       ],
     },
     {
