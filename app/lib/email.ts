@@ -1,12 +1,33 @@
 import nodemailer from 'nodemailer';
 
+const EMAIL_USER =
+  process.env.EMAIL_USER ||
+  process.env.GMAIL_USER;
+const EMAIL_APP_PASSWORD =
+  process.env.EMAIL_APP_PASSWORD ||
+  process.env.GMAIL_APP_PASSWORD;
+const EMAIL_FROM_NAME =
+  process.env.EMAIL_FROM_NAME ||
+  'Visage AI Consulting';
+const ADMIN_EMAIL =
+  process.env.ADMIN_EMAIL ||
+  'admin@visageaiconsulting.com';
+const WHITEPAPER_PDF_URL =
+  process.env.WHITEPAPER_PDF_URL ||
+  process.env.NEXT_PUBLIC_WHITEPAPER_PDF_URL ||
+  'https://www.visageaiconsulting.com/whitepapers/ebm-2025-v0.1.pdf';
+const CALENDLY_URL =
+  process.env.CALENDLY_URL ||
+  process.env.CALCOM_URL ||
+  process.env.NEXT_PUBLIC_CAL_URL;
+
 // Nodemailer transporterの設定
 const createTransporter = () => {
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.NEXT_PUBLIC_EMAIL_USER,
-      pass: process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD, // Gmail App Password
+      user: EMAIL_USER,
+      pass: EMAIL_APP_PASSWORD, // Gmail App Password
     },
   });
 };
@@ -39,15 +60,15 @@ export interface DemoRequestLead {
 
 export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean> {
   try {
-    if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD) {
+    if (!EMAIL_USER || !EMAIL_APP_PASSWORD) {
       console.error('Email credentials not configured');
       return false;
     }
 
     const transporter = createTransporter();
-    const fromEmail = process.env.NEXT_PUBLIC_EMAIL_USER;
-    const fromName = process.env.NEXT_PUBLIC_EMAIL_FROM_NAME || 'Visage AI Consulting';
-    const pdfUrl = process.env.NEXT_PUBLIC_WHITEPAPER_PDF_URL || 'https://www.visageaiconsulting.com/whitepapers/ebm-2025-v0.1.pdf';
+    const fromEmail = EMAIL_USER;
+    const fromName = EMAIL_FROM_NAME;
+    const pdfUrl = WHITEPAPER_PDF_URL;
 
     const mailOptions = {
       from: `"${fromName}" <${fromEmail}>`,
@@ -159,15 +180,15 @@ Lead ID: ${lead.leadId}
 
 export async function sendInternalNotification(lead: WhitepaperLead): Promise<boolean> {
   try {
-    if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD) {
+    if (!EMAIL_USER || !EMAIL_APP_PASSWORD) {
       console.error('Email credentials not configured');
       return false;
     }
 
     const transporter = createTransporter();
-    const fromEmail = process.env.NEXT_PUBLIC_EMAIL_USER;
-    const fromName = process.env.NEXT_PUBLIC_EMAIL_FROM_NAME || 'Visage AI Consulting';
-    const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@visageaiconsulting.com';
+    const fromEmail = EMAIL_USER;
+    const fromName = EMAIL_FROM_NAME;
+    const adminEmail = ADMIN_EMAIL;
 
     const mailOptions = {
       from: `"${fromName}" <${fromEmail}>`,
@@ -197,17 +218,16 @@ export async function sendInternalNotification(lead: WhitepaperLead): Promise<bo
 
 export async function sendDemoRequestEmail(lead: DemoRequestLead): Promise<boolean> {
   try {
-    if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD) {
+    if (!EMAIL_USER || !EMAIL_APP_PASSWORD) {
       console.error("Email credentials not configured");
       return false;
     }
 
     const transporter = createTransporter();
-    const fromEmail = process.env.NEXT_PUBLIC_EMAIL_USER;
-    const fromName = process.env.NEXT_PUBLIC_EMAIL_FROM_NAME || "Visage AI Consulting";
+    const fromEmail = EMAIL_USER;
+    const fromName = EMAIL_FROM_NAME;
     const scheduleUrl =
-      process.env.NEXT_PUBLIC_CAL_URL ||
-      process.env.CALCOM_URL ||
+      CALENDLY_URL ||
       "https://www.visageaiconsulting.com/ja/contact";
 
     const subject =
@@ -265,15 +285,15 @@ export async function sendDemoRequestInternalNotification(
   lead: DemoRequestLead,
 ): Promise<boolean> {
   try {
-    if (!process.env.NEXT_PUBLIC_EMAIL_USER || !process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD) {
+    if (!EMAIL_USER || !EMAIL_APP_PASSWORD) {
       console.error("Email credentials not configured");
       return false;
     }
 
     const transporter = createTransporter();
-    const fromEmail = process.env.NEXT_PUBLIC_EMAIL_USER;
-    const fromName = process.env.NEXT_PUBLIC_EMAIL_FROM_NAME || "Visage AI Consulting";
-    const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "admin@visageaiconsulting.com";
+    const fromEmail = EMAIL_USER;
+    const fromName = EMAIL_FROM_NAME;
+    const adminEmail = ADMIN_EMAIL;
 
     await transporter.sendMail({
       from: `"${fromName}" <${fromEmail}>`,

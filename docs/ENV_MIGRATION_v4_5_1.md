@@ -1,0 +1,61 @@
+# Environment Variable Migration (v4.5.1)
+
+This migration aligns runtime config with security/compliance hardening.
+
+## 1) Canonical Backend Domain
+
+- Canonical production backend: `https://api.visageaiconsulting.com`
+- Webapp variables:
+  - `NEXT_PUBLIC_API_BASE_URL` (client-visible base URL)
+  - `API_BASE_URL` (server-side base URL)
+
+## 2) Sensitive Env Naming Cleanup
+
+Sensitive values must not use `NEXT_PUBLIC_*` names.
+
+### Old -> New
+
+| Deprecated (remove) | Replacement (server-only) |
+|---|---|
+| `NEXT_PUBLIC_EMAIL_USER` | `EMAIL_USER` |
+| `NEXT_PUBLIC_EMAIL_APP_PASSWORD` | `EMAIL_APP_PASSWORD` |
+| `NEXT_PUBLIC_EMAIL_FROM_NAME` | `EMAIL_FROM_NAME` |
+| `NEXT_PUBLIC_ADMIN_EMAIL` | `ADMIN_EMAIL` |
+| `NEXT_PUBLIC_FASTAPI_TOKEN` | `API_AUTH_TOKEN` |
+
+Notes:
+- `GMAIL_USER` / `GMAIL_APP_PASSWORD` are still accepted as server-only compatibility fallbacks.
+- `NEXT_PUBLIC_CAL_URL` remains valid because it is intentionally client-visible.
+
+## 3) Required Manual Follow-up (Vercel)
+
+After merging, update environment variables in Vercel project settings:
+
+1. Add new server-only names:
+   - `EMAIL_USER`
+   - `EMAIL_APP_PASSWORD`
+   - `EMAIL_FROM_NAME`
+   - `ADMIN_EMAIL`
+   - `API_AUTH_TOKEN` (if token auth is used)
+2. Verify:
+   - `NEXT_PUBLIC_API_BASE_URL=https://api.visageaiconsulting.com`
+   - `API_BASE_URL=https://api.visageaiconsulting.com`
+3. Remove deprecated sensitive names:
+   - `NEXT_PUBLIC_EMAIL_USER`
+   - `NEXT_PUBLIC_EMAIL_APP_PASSWORD`
+   - `NEXT_PUBLIC_EMAIL_FROM_NAME`
+   - `NEXT_PUBLIC_ADMIN_EMAIL`
+   - `NEXT_PUBLIC_FASTAPI_TOKEN`
+
+## 4) Regression Guard
+
+Run this check before release:
+
+```bash
+npm run check:compliance-hygiene
+```
+
+It fails if active source reintroduces:
+- legacy backend domain (`visage-ai-api.vercel.app`),
+- legacy `/api/v2/crystalai/*` route usage,
+- sensitive `NEXT_PUBLIC_*` names.

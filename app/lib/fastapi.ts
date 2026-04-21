@@ -1,17 +1,38 @@
-const BASE = process.env.NEXT_PUBLIC_FASTAPI_URL || process.env.FASTAPI_URL;
-const TOKEN = process.env.NEXT_PUBLIC_FASTAPI_TOKEN || process.env.FASTAPI_TOKEN;
+import type { RecommendationItem } from "@/types/recommendation";
+
+const PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const SERVER_API_BASE_URL = process.env.API_BASE_URL || process.env.FASTAPI_URL;
+
+// Canonical production backend truth.
+const BASE =
+  PUBLIC_API_BASE_URL ||
+  SERVER_API_BASE_URL ||
+  "https://api.visageaiconsulting.com";
+
+// Server-only auth token. Intentionally no NEXT_PUBLIC fallback.
+const SERVER_API_TOKEN = process.env.API_AUTH_TOKEN || process.env.FASTAPI_TOKEN;
+
+const ROUTES = {
+  recommendations: "/api/v2/recommendations",
+  modelsStatus: "/api/v2/models/status",
+  demo: "/api/v2/demo",
+  demoRateLimit: "/api/v2/demo/rate-limit",
+} as const;
 
 function authHeaders(): Record<string, string> {
-  return TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {};
+  if (typeof window !== "undefined") {
+    return {};
+  }
+  return SERVER_API_TOKEN ? { Authorization: `Bearer ${SERVER_API_TOKEN}` } : {};
 }
 
 export async function fastapiGet(path: string, params?: Record<string, string>) {
-  if (!BASE) throw new Error("FASTAPI_URL not set");
+  if (!BASE) throw new Error("API base URL not set");
   const qs = params ? `?${new URLSearchParams(params).toString()}` : "";
   const res = await fetch(`${BASE}${path}${qs}`, {
     headers: { "Content-Type": "application/json", ...authHeaders() },
     cache: "force-cache",
-    next: { revalidate: 300 }
+    next: { revalidate: 300 },
   });
   if (!res.ok) throw new Error(`FastAPI ${path}: ${res.status}`);
   return res.json();
@@ -23,12 +44,11 @@ export async function fastapiRecommendTags(input: {
   concerns?: string[];
   metrics?: Record<string, number>;
 }) {
-  // 既存のエンドポイントがないため、デフォルト値を返す
-  // 実際の実装では、Firestoreから既存のインサイトを取得する
+  void input;
   return {
     tags: ["美容液", "クリーム", "化粧水"],
     ingredients: ["ヒアルロン酸", "セラミド", "ビタミンC"],
-    insights: [] // 空配列にして、既存のFirestoreデータを使用
+    insights: [],
   };
 }
 
@@ -37,40 +57,39 @@ export async function fastapiRecommendProducts(input: {
   tags: string[];
   limit?: number;
 }) {
-  // main.pyの /api/v1/recommendations エンドポイントを正しく呼び出し
-  if (!BASE) throw new Error("FASTAPI_URL not set");
-  
-  // 肌タイプを決定（tagsから推測、またはデフォルト値）
+  if (!BASE) throw new Error("API base URL not set");
+
   let skinType = "normal";
-  if (input.tags.some(tag => tag.includes("乾燥") || tag.includes("dry"))) {
+  if (input.tags.some((tag) => tag.includes("乾燥") || tag.includes("dry"))) {
     skinType = "dry";
-  } else if (input.tags.some(tag => tag.includes("脂性") || tag.includes("oily"))) {
+  } else if (input.tags.some((tag) => tag.includes("脂性") || tag.includes("oily"))) {
     skinType = "oily";
-  } else if (input.tags.some(tag => tag.includes("混合") || tag.includes("combination"))) {
+  } else if (
+    input.tags.some((tag) => tag.includes("混合") || tag.includes("combination"))
+  ) {
     skinType = "combination";
   }
-  
+
   const res = await fetch(`${BASE}/api/v1/recommendations`, {
-    method: 'POST',
+    method: "POST",
     headers: { "Content-Type": "application/json", ...authHeaders() },
-    body: JSON.stringify({ skinType })
+    body: JSON.stringify({ skinType }),
   });
-  
+
   if (!res.ok) throw new Error(`FastAPI /api/v1/recommendations: ${res.status}`);
   const data = await res.json();
-  
-  // main.pyのレスポンス形式に合わせて変換
+
   return {
     items: (data.products || []).map((p: any) => ({
       id: p.id || p.itemCode,
       name: p.productName || p.itemName,
       brand: p.brandName || p.shopName,
-      price: undefined, // 楽天APIには価格情報がない
+      price: undefined,
       image: p.imageUrl,
       url: p.purchaseUrl || p.itemUrl,
       source: "rakuten",
-      keyword: undefined
-    }))
+      keyword: undefined,
+    })),
   };
 }
 
@@ -80,31 +99,25 @@ export async function fastapiRecommendInsights(input: {
   concerns?: string[];
   metrics?: Record<string, number>;
 }) {
-  // 既存のエンドポイントがないため、デフォルト値を返す
-  // 実際の実装では、Firestoreから既存のインサイトを取得する
-  return {
-    insights: [] // 空配列にして、既存のFirestoreデータを使用
-  };
+  void input;
+  return { insights: [] };
 }
 
 // ======================================================================
-// CrystalAI API Integration
+// Recommendation Engine API Integration
 // ======================================================================
 
-import type { RecommendationItem } from "@/types/recommendation";
-
-// Re-export for external usage
 export type { RecommendationItem };
 
-export interface CrystalAIRecommendationRequest {
+export interface RecommendationEngineRequest {
   skinType: string;
   skinAnalysis?: Record<string, number>;
   limit?: number;
-  context?: 'lp_demo' | 'mobile' | 'premium';
+  context?: "lp_demo" | "mobile" | "premium";
   user_id?: string;
 }
 
-export interface CrystalAIRecommendationResponse {
+export interface RecommendationEngineResponse {
   recommendations: RecommendationItem[];
   message: string;
   accuracy_note?: string;
@@ -125,77 +138,92 @@ export interface ModelStatusResponse {
   performance?: Record<string, number> | null;
 }
 
-export async function fastapiCrystalAIRecommendations(input: CrystalAIRecommendationRequest): Promise<CrystalAIRecommendationResponse> {
-  if (!BASE) throw new Error("FASTAPI_URL not set");
-  
-  const res = await fetch(`${BASE}/api/v2/crystalai/recommendations`, {
-    method: 'POST',
-    headers: { 
-      "Content-Type": "application/json", 
-      ...authHeaders() 
+export async function fastapiRecommendations(
+  input: RecommendationEngineRequest,
+): Promise<RecommendationEngineResponse> {
+  if (!BASE) throw new Error("API base URL not set");
+
+  const res = await fetch(`${BASE}${ROUTES.recommendations}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...authHeaders(),
     },
-    body: JSON.stringify(input)
+    body: JSON.stringify(input),
   });
-  
+
   if (!res.ok) {
     const error = await res.text();
-    throw new Error(`FastAPI /api/v2/crystalai/recommendations: ${res.status} - ${error}`);
+    throw new Error(
+      `FastAPI ${ROUTES.recommendations}: ${res.status} - ${error}`,
+    );
   }
-  
+
   return res.json();
 }
 
-export async function fastapiCrystalAIModelsStatus(): Promise<ModelStatusResponse> {
-  if (!BASE) throw new Error("FASTAPI_URL not set");
-  
-  const res = await fetch(`${BASE}/api/v2/crystalai/models/status`, {
+export async function fastapiModelsStatus(): Promise<ModelStatusResponse> {
+  if (!BASE) throw new Error("API base URL not set");
+
+  const res = await fetch(`${BASE}${ROUTES.modelsStatus}`, {
     headers: { "Content-Type": "application/json", ...authHeaders() },
-    cache: "no-store"
+    cache: "no-store",
   });
-  
+
   if (!res.ok) {
-    throw new Error(`FastAPI /api/v2/crystalai/models/status: ${res.status}`);
+    throw new Error(`FastAPI ${ROUTES.modelsStatus}: ${res.status}`);
   }
-  
+
   return res.json();
 }
 
-export async function fastapiCrystalAIDemo(input: DemoRecommendationRequest): Promise<CrystalAIRecommendationResponse> {
-  const baseUrl = process.env.NEXT_PUBLIC_FASTAPI_URL || process.env.FASTAPI_URL;
-  if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_FASTAPI_URL not set. Please configure the environment variable in Vercel.");
+export async function fastapiDemo(
+  input: DemoRecommendationRequest,
+): Promise<RecommendationEngineResponse> {
+  if (!BASE) {
+    throw new Error(
+      "API base URL is not set. Configure NEXT_PUBLIC_API_BASE_URL or API_BASE_URL (server).",
+    );
   }
-  
-  const res = await fetch(`${baseUrl}/api/v2/crystalai/demo`, {
-    method: 'POST',
-    headers: { 
-      "Content-Type": "application/json"
+
+  const res = await fetch(`${BASE}${ROUTES.demo}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(input)
+    body: JSON.stringify(input),
   });
-  
+
   if (!res.ok) {
     const error = await res.text();
-    throw new Error(`FastAPI /api/v2/crystalai/demo: ${res.status} - ${error}`);
+    throw new Error(`FastAPI ${ROUTES.demo}: ${res.status} - ${error}`);
   }
-  
+
   return res.json();
 }
 
-export async function fastapiCrystalAIDemoRateLimit(session_id: string): Promise<{ remaining_requests: number; max_requests: number; window_minutes: number }> {
-  const baseUrl = process.env.NEXT_PUBLIC_FASTAPI_URL || process.env.FASTAPI_URL;
-  if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_FASTAPI_URL not set. Please configure the environment variable in Vercel.");
+export async function fastapiDemoRateLimit(session_id: string): Promise<{
+  remaining_requests: number;
+  max_requests: number;
+  window_minutes: number;
+}> {
+  if (!BASE) {
+    throw new Error(
+      "API base URL is not set. Configure NEXT_PUBLIC_API_BASE_URL or API_BASE_URL (server).",
+    );
   }
-  
-  const res = await fetch(`${baseUrl}/api/v2/crystalai/demo/rate-limit?session_id=${session_id}`, {
-    headers: { "Content-Type": "application/json" },
-    cache: "no-store"
-  });
-  
+
+  const res = await fetch(
+    `${BASE}${ROUTES.demoRateLimit}?session_id=${session_id}`,
+    {
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+    },
+  );
+
   if (!res.ok) {
-    throw new Error(`FastAPI /api/v2/crystalai/demo/rate-limit: ${res.status}`);
+    throw new Error(`FastAPI ${ROUTES.demoRateLimit}: ${res.status}`);
   }
-  
+
   return res.json();
 }

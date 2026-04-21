@@ -48,7 +48,9 @@ export default function ProductGridClient({ products, tags }: { products: Produc
             </div>
             <div className="mt-2">
               <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] text-slate-500">
-                {p.source === 'crystalai' ? 'via CrystalAI' : `via ${p.source || 'Rakuten'}`}{p.keyword ? ` • ${p.keyword}` : ""}
+                {p.source === 'crystalai' || p.source === 'recommendation_engine'
+                  ? 'via Recommendation Engine'
+                  : `via ${p.source || 'Rakuten'}`}{p.keyword ? ` • ${p.keyword}` : ""}
               </span>
             </div>
             <div className="mt-auto pt-3">
