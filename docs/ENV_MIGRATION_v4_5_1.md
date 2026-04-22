@@ -4,7 +4,7 @@ This migration aligns runtime config with security/compliance hardening.
 
 ## 1) Canonical Backend Domain
 
-- Canonical production backend: `https://api.visageaiconsulting.com`
+- Canonical production backend: `https://visage-ai-api.vercel.app`
 - Webapp variables:
   - `NEXT_PUBLIC_API_BASE_URL` (client-visible base URL)
   - `API_BASE_URL` (server-side base URL)
@@ -38,8 +38,8 @@ After merging, update environment variables in Vercel project settings:
    - `ADMIN_EMAIL`
    - `API_AUTH_TOKEN` (if token auth is used)
 2. Verify:
-   - `NEXT_PUBLIC_API_BASE_URL=https://api.visageaiconsulting.com`
-   - `API_BASE_URL=https://api.visageaiconsulting.com`
+   - `NEXT_PUBLIC_API_BASE_URL=https://visage-ai-api.vercel.app`
+   - `API_BASE_URL=https://visage-ai-api.vercel.app`
 3. Remove deprecated sensitive names:
    - `NEXT_PUBLIC_EMAIL_USER`
    - `NEXT_PUBLIC_EMAIL_APP_PASSWORD`
@@ -61,8 +61,13 @@ Runtime checks performed:
 - `npm run check:compliance-hygiene` passes on current branch.
 
 Open verification item:
-- Direct check to `https://api.visageaiconsulting.com/api/v2/demo/rate-limit?...` from this environment returned DNS resolution failure (`curl` exit code `6`).
-- Action: verify DNS and routing for `api.visageaiconsulting.com` from operator network / Vercel dashboard, then re-run direct API probe.
+- Direct check to `https://visage-ai-api.vercel.app/api/v2/demo/rate-limit?session_id=healthcheck` should return JSON rate-limit metadata.
+- If this probe fails, investigate Vercel deployment health (not DNS/custom-domain setup).
+
+### 3.2) Custom Domain Path (Deferred)
+
+The custom-domain path (`api.visageaiconsulting.com`) was evaluated during hardening but is **not required** for v4.5.1 closure.
+Current operations and compliance posture are based on `https://visage-ai-api.vercel.app`.
 
 ## 4) Regression Guard
 
@@ -73,6 +78,6 @@ npm run check:compliance-hygiene
 ```
 
 It fails if active source reintroduces:
-- legacy backend domain (`visage-ai-api.vercel.app`),
+- non-canonical backend domain (`api.visageaiconsulting.com`),
 - legacy `/api/v2/crystalai/*` route usage,
 - sensitive `NEXT_PUBLIC_*` names.

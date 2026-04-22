@@ -7,7 +7,7 @@ const SERVER_API_BASE_URL = process.env.API_BASE_URL || process.env.FASTAPI_URL;
 const BASE =
   PUBLIC_API_BASE_URL ||
   SERVER_API_BASE_URL ||
-  "https://api.visageaiconsulting.com";
+  "https://visage-ai-api.vercel.app";
 
 // Server-only auth token. Intentionally no NEXT_PUBLIC fallback.
 const SERVER_API_TOKEN = process.env.API_AUTH_TOKEN || process.env.FASTAPI_TOKEN;

@@ -87,8 +87,8 @@ EMAIL_FROM_NAME=Visage AI Consulting
 ADMIN_EMAIL=admin@visageaiconsulting.com
 
 # Required for recommendation API features
-NEXT_PUBLIC_API_BASE_URL=https://api.visageaiconsulting.com
-API_BASE_URL=https://api.visageaiconsulting.com
+NEXT_PUBLIC_API_BASE_URL=https://visage-ai-api.vercel.app
+API_BASE_URL=https://visage-ai-api.vercel.app
 API_AUTH_TOKEN=your-api-token
 ```
 
@@ -100,7 +100,7 @@ npm run check:compliance-hygiene
 ```
 
 This check fails if active source reintroduces:
-- legacy backend domain (`https://visage-ai-api.vercel.app`),
+- non-canonical backend domain (`https://api.visageaiconsulting.com`),
 - legacy route usage (`/api/v2/crystalai/*`) in webapp active paths,
 - sensitive `NEXT_PUBLIC_*` env naming patterns.
 

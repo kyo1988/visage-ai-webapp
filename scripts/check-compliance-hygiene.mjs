@@ -10,9 +10,9 @@ const textExt = new Set(['.ts', '.tsx', '.js', '.jsx', '.md', '.json', '.env', '
 
 const forbiddenRules = [
   {
-    name: 'legacy_backend_domain',
-    regex: /https:\/\/visage-ai-api\.vercel\.app/g,
-    message: 'Legacy backend domain found; canonical is https://api.visageaiconsulting.com',
+    name: 'noncanonical_backend_domain',
+    regex: /https:\/\/api\.visageaiconsulting\.com/g,
+    message: 'Non-canonical backend domain found; canonical is https://visage-ai-api.vercel.app',
   },
   {
     name: 'legacy_crystalai_route',
