@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "check:compliance-hygiene": "node scripts/check-compliance-hygiene.mjs",
     "lint:i18n": "ts-node scripts/find-untranslated.ts",
     "generate-pdf": "node scripts/generate-pdf-fixed.js",
     "generate-whitepaper-pdf": "node scripts/generate-whitepaper-pdf.js",

@@ -9,12 +9,13 @@ export type RakutenItem = {
   keyword: string;
 };
 
-// CrystalAI Recommendation Types
+// Recommendation engine types
+// NOTE: `crystalai` is retained as a legacy compatibility source value.
 export interface RecommendationItem {
   id: string;
   name: string;
   confidence: number;
-  source: 'crystalai' | 'rakuten' | 'hybrid';
+  source: 'recommendation_engine' | 'crystalai' | 'rakuten' | 'hybrid';
   demo_mode?: boolean;
   reason?: string;
   image_url?: string;
@@ -29,7 +30,7 @@ export interface MergedRecommendation {
   price?: string;
   image: string;
   url: string;
-  source: 'crystalai' | 'rakuten' | 'hybrid';
+  source: 'recommendation_engine' | 'crystalai' | 'rakuten' | 'hybrid';
   confidence?: number;
   reason?: string;
   demo_mode?: boolean;

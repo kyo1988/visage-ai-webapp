@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { fastapiCrystalAIDemo, fastapiCrystalAIDemoRateLimit, type RecommendationItem } from '@/app/lib/fastapi';
+import { fastapiDemo, fastapiDemoRateLimit, type RecommendationItem } from '@/app/lib/fastapi';
 import { gaEvent } from '@/app/lib/gtag';
 
 interface InteractiveDemoProps {
@@ -14,7 +14,7 @@ interface InteractiveDemoProps {
  * Provides an interactive landing page demo that allows users to:
  * 1. Adjust skin type via dropdown
  * 2. Adjust skin metrics via sliders
- * 3. See real-time recommendations from CrystalAI
+ * 3. See real-time recommendations from the recommendation engine
  * 4. Track remaining demo requests
  * 5. Display confidence scores and CTAs
  */
@@ -37,12 +37,12 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
 
   // Initialize session ID on mount
   useEffect(() => {
-    const stored = sessionStorage.getItem('crystalai_demo_session_id');
+    const stored = sessionStorage.getItem('recommendation_demo_session_id');
     if (stored) {
       setSessionId(stored);
     } else {
       const newId = `demo_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      sessionStorage.setItem('crystalai_demo_session_id', newId);
+      sessionStorage.setItem('recommendation_demo_session_id', newId);
       setSessionId(newId);
     }
     setIsInitialized(true);
@@ -59,7 +59,7 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
     
     const checkRateLimit = async () => {
       try {
-        const info = await fastapiCrystalAIDemoRateLimit(sessionId);
+        const info = await fastapiDemoRateLimit(sessionId);
         setRemainingRequests(info.remaining_requests);
         setRateLimitInfo({ max: info.max_requests, window: info.window_minutes });
       } catch (err) {
@@ -90,13 +90,13 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
     setError(null);
 
     try {
-      const response = await fastapiCrystalAIDemo({ skinType, session_id: sessionId });
+      const response = await fastapiDemo({ skinType, session_id: sessionId });
       
       setRecommendations(response.recommendations);
       setSessionId(response.session_id || sessionId);
       
       // Update rate limit info
-      const rateLimitResponse = await fastapiCrystalAIDemoRateLimit(response.session_id || sessionId);
+      const rateLimitResponse = await fastapiDemoRateLimit(response.session_id || sessionId);
       setRemainingRequests(rateLimitResponse.remaining_requests);
       
       // Track analytics
@@ -148,7 +148,7 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
 
   const translations = {
     ja: {
-      title: 'CrystalAI インタラクティブデモ',
+      title: 'インタラクティブデモ',
       subtitle: 'スライダーを操作して、リアルタイムでレコメンデーションを生成',
       skinTypeLabel: '肌タイプ',
       metricsLabel: '肌の状態',
@@ -165,7 +165,7 @@ export function InteractiveDemo({ locale = 'ja' }: InteractiveDemoProps) {
       ruleBased: 'ルールベース',
     },
     en: {
-      title: 'CrystalAI Interactive Demo',
+      title: 'Interactive Demo',
       subtitle: 'Adjust the sliders to generate real-time recommendations',
       skinTypeLabel: 'Skin Type',
       metricsLabel: 'Skin Condition',
