@@ -47,6 +47,23 @@ After merging, update environment variables in Vercel project settings:
    - `NEXT_PUBLIC_ADMIN_EMAIL`
    - `NEXT_PUBLIC_FASTAPI_TOKEN`
 
+## 3.1) Operator Status (2026-04-22 JST)
+
+Confirmed by operator (Vercel UI):
+- `NEXT_PUBLIC_EMAIL_USER` removed and replaced with `EMAIL_USER`.
+- `NEXT_PUBLIC_EMAIL_APP_PASSWORD` removed and replaced with `EMAIL_APP_PASSWORD`.
+- `NEXT_PUBLIC_EMAIL_FROM_NAME` removed and replaced with `EMAIL_FROM_NAME`.
+- `NEXT_PUBLIC_ADMIN_EMAIL` removed and replaced with `ADMIN_EMAIL`.
+- `NEXT_PUBLIC_FASTAPI_TOKEN` was not set.
+
+Runtime checks performed:
+- `POST https://www.visageaiconsulting.com/api/demo-request` with `{}` returns `400` (`{"error":"Missing required fields"}`), confirming route is live without triggering email send.
+- `npm run check:compliance-hygiene` passes on current branch.
+
+Open verification item:
+- Direct check to `https://api.visageaiconsulting.com/api/v2/demo/rate-limit?...` from this environment returned DNS resolution failure (`curl` exit code `6`).
+- Action: verify DNS and routing for `api.visageaiconsulting.com` from operator network / Vercel dashboard, then re-run direct API probe.
+
 ## 4) Regression Guard
 
 Run this check before release:
