@@ -26,6 +26,7 @@ A Next.js application featuring AI-powered skin analysis solutions and evidence-
 
 ### 🎯 Analytics & Tracking
 - GA4 integration with cross-domain tracking
+- Meta Pixel base code integration (PageView)
 - Lead attribution and segmentation
 - Event tracking for whitepaper downloads and form submissions
 - Email delivery tracking and internal notifications
@@ -81,6 +82,7 @@ npm run test-email
 # Required for email functionality
 NEXT_PUBLIC_SITE_URL=your-site-url
 NEXT_PUBLIC_GA_ID=your-ga-id
+NEXT_PUBLIC_META_PIXEL_ID=your-meta-pixel-id
 GMAIL_USER=your-email@gmail.com
 GMAIL_APP_PASSWORD=your-app-password
 
@@ -89,6 +91,18 @@ NEXT_PUBLIC_FASTAPI_URL=https://visage-ai-api.vercel.app
 NEXT_PUBLIC_FASTAPI_TOKEN=your-api-token
 ```
 
+### Meta Pixel (PageView)
+- Pixel ID is read from `NEXT_PUBLIC_META_PIXEL_ID`.
+- Pixel is embedded in `app/[locale]/layout.tsx` via `next/script` (`meta-pixel-base`).
+- `noscript` fallback image is rendered in the same layout body.
+- Client-side route changes (App Router navigation) are tracked by `app/meta-pixel-listener.tsx`.
+- Pixel is enabled only when `VERCEL_ENV=production` and `NEXT_PUBLIC_META_PIXEL_ID` is set.
+- Therefore, local development and Vercel preview deployments do not emit Meta events.
+
+#### How to verify in Meta Events Manager (Test Events)
+1. Open Meta Events Manager > your Pixel > **Test Events**.
+2. Open the production LP in a new browser tab and navigate across `/ja` or `/en` pages.
+3. Confirm `PageView` appears for the initial load and subsequent route changes.
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
