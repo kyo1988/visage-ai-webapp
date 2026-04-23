@@ -93,11 +93,13 @@ function createMockData(locale: "ja" | "en"): Report {
 
 export async function fetchReportById(id: string, locale: "ja"|"en" = "ja", options: { forceFirebase?: boolean } = {}): Promise<Report | null> {
   const { forceFirebase = false } = options;
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE;
-  const envApi = !!(process.env.NEXT_PUBLIC_API_BASE || process.env.API_BASE_URL);
+  const apiBase =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.API_BASE_URL;
+  const envApi = !!apiBase;
   console.info("[report] start", { envApi, id, locale, forceFirebase, apiBase: !!apiBase });
   console.log("🔍 fetchReportById called with id:", id, "locale:", locale);
-  console.log("🔍 NEXT_PUBLIC_API_BASE:", apiBase);
+  console.log("🔍 API_BASE_URL:", apiBase);
   
   // 1) API 優先（設定があれば、かつforceFirebaseがfalseの場合のみ）
   if (apiBase && !forceFirebase) {

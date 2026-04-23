@@ -39,14 +39,14 @@ const enCopy: PrivacyCopy = {
       body: 'Visage AI separates on-device processing from server-side infrastructure clearly:',
       bullets: [
         'On-device only (no external transmission): skin analysis, Deep Skin visualization (melanin/redness), face detection, and score calculation.',
-        'Sent to first-party backend (api.visageaiconsulting.com): anonymized scores, timestamp, location (only for nearby recommendations), Firebase auth token.',
+        'Sent to first-party backend (visage-ai-api.vercel.app): anonymized scores, timestamp, location (only for nearby recommendations), Firebase auth token.',
         'Purpose: diagnosis history, nearby place recommendations, and QR-based store-to-online handoff.',
       ],
     },
     {
       title: '4. First-Party Backend and Infrastructure',
       bullets: [
-        'api.visageaiconsulting.com is a first-party backend owned and operated by Faceless (Visage AI).',
+        'visage-ai-api.vercel.app is a first-party backend owned and operated by Faceless (Visage AI).',
         'Infrastructure services: Firebase (auth/database/analytics) and Vercel (hosting).',
         'These services are used as infrastructure and data platform, not as third-party AI analysis providers.',
       ],
@@ -104,14 +104,14 @@ const jaCopy: PrivacyCopy = {
       body: 'Visage AI は端末内処理とサーバー送信を次のとおり分離しています。',
       bullets: [
         '端末内のみ（外部送信なし）: 肌解析、Deep Skin 可視化（メラニン・赤み）、顔検出、スコア算出。',
-        'first-party バックエンド（api.visageaiconsulting.com）へ送信: 匿名化スコア、診断日時、位置情報（近隣推薦利用時のみ）、Firebase認証トークン。',
+        'first-party バックエンド（visage-ai-api.vercel.app）へ送信: 匿名化スコア、診断日時、位置情報（近隣推薦利用時のみ）、Firebase認証トークン。',
         '用途: 診断履歴表示、近隣店舗推薦、QR連携による店頭→オンライン導線。',
       ],
     },
     {
       title: '4. first-party バックエンドとインフラ',
       bullets: [
-        'api.visageaiconsulting.com は Faceless（Visage AI）が所有・運営する first-party バックエンドです。',
+        'visage-ai-api.vercel.app は Faceless（Visage AI）が所有・運営する first-party バックエンドです。',
         '利用インフラ: Firebase（認証・DB・分析）、Vercel（ホスティング）。',
         'これらはインフラ基盤として使用しており、第三者AI解析サービスとしては利用していません。',
       ],

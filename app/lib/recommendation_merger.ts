@@ -2,33 +2,33 @@
  * Recommendation Merger
  * visage-ai-webapp/app/lib/recommendation_merger.ts
  * 
- * Merges CrystalAI recommendations with Rakuten products,
+ * Merges recommendation engine results with Rakuten products,
  * handling duplicates with weighted averages and metadata guarantees.
  */
 
 import type { RecommendationItem, MergedRecommendation, RakutenItem } from "@/types/recommendation";
 
 /**
- * Merge CrystalAI and Rakuten recommendations
+ * Merge recommendation engine and Rakuten recommendations
  * 
  * Handles duplicates by:
  * 1. Calculating weighted average confidence
  * 2. Tracking recommendation count
  * 3. Preserving metadata from both sources
  * 
- * @param crystalAI - CrystalAI recommendations
+ * @param recommendationEngineRecs - recommendation engine recommendations
  * @param rakuten - Rakuten products
  * @returns Merged recommendations
  */
 export function mergeRecommendations(
-  crystalAI: RecommendationItem[],
+  recommendationEngineRecs: RecommendationItem[],
   rakuten: RakutenItem[]
 ): MergedRecommendation[] {
   
   const merged: Map<string, MergedRecommendation> = new Map();
   
-  // Process CrystalAI recommendations
-  for (const rec of crystalAI) {
+  // Process recommendation engine recommendations
+  for (const rec of recommendationEngineRecs) {
     const key = rec.id;
     
     if (!merged.has(key)) {

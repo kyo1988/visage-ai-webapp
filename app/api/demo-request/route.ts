@@ -120,8 +120,9 @@ export async function POST(request: NextRequest) {
     ]);
 
     const calendlyUrl =
-      process.env.NEXT_PUBLIC_CAL_URL ||
+      process.env.CALENDLY_URL ||
       process.env.CALCOM_URL ||
+      process.env.NEXT_PUBLIC_CAL_URL ||
       `https://www.visageaiconsulting.com/${locale}/contact`;
 
     return NextResponse.json({

@@ -9,10 +9,10 @@ A Next.js application featuring AI-powered skin analysis solutions and evidence-
 - High-precision region detection and analysis
 - SDK/API integration for e-commerce and retail
 
-### 🤖 CrystalAI Recommendation System
+### 🤖 Recommendation Engine
 - **Interactive Demo**: `/ja/recommendation-demo` or `/en/recommendation-demo`
 - Real-time product recommendations based on skin type and condition
-- CrystalAI 82-model ensemble integration
+- Recommendation engine API integration
 - Rate-limited demo access (3 requests per 10 minutes)
 - Analytics integration with GA4
 - Human-in-the-loop review queue system
@@ -83,13 +83,32 @@ npm run test-email
 NEXT_PUBLIC_SITE_URL=your-site-url
 NEXT_PUBLIC_GA_ID=your-ga-id
 NEXT_PUBLIC_META_PIXEL_ID=your-meta-pixel-id
-GMAIL_USER=your-email@gmail.com
-GMAIL_APP_PASSWORD=your-app-password
+EMAIL_USER=your-email@gmail.com
+EMAIL_APP_PASSWORD=your-app-password
+EMAIL_FROM_NAME=Visage AI Consulting
+ADMIN_EMAIL=admin@visageaiconsulting.com
 
-# Required for CrystalAI features
-NEXT_PUBLIC_FASTAPI_URL=https://visage-ai-api.vercel.app
-NEXT_PUBLIC_FASTAPI_TOKEN=your-api-token
+# Required for recommendation API features
+NEXT_PUBLIC_API_BASE_URL=https://visage-ai-api.vercel.app
+API_BASE_URL=https://visage-ai-api.vercel.app
+API_AUTH_TOKEN=your-api-token
 ```
+
+### Compliance Hygiene Check (Required Before Merge)
+Run the guardrail check before releasing:
+
+```bash
+npm run check:compliance-hygiene
+```
+
+This check fails if active source reintroduces:
+- non-canonical backend domain (`https://api.visageaiconsulting.com`),
+- legacy route usage (`/api/v2/crystalai/*`) in webapp active paths,
+- sensitive `NEXT_PUBLIC_*` env naming patterns.
+
+### Legacy Compatibility Notes
+- Canonical recommendation routes are `/api/v2/recommendations`, `/api/v2/demo`, and `/api/v2/demo/rate-limit`.
+- Backend may retain hidden legacy aliases for compatibility (`/api/v2/crystalai/*`), but webapp callers must use canonical routes.
 
 ### Meta Pixel (PageView)
 - Pixel ID is read from `NEXT_PUBLIC_META_PIXEL_ID`.
@@ -103,6 +122,7 @@ NEXT_PUBLIC_FASTAPI_TOKEN=your-api-token
 1. Open Meta Events Manager > your Pixel > **Test Events**.
 2. Open the production LP in a new browser tab and navigate across `/ja` or `/en` pages.
 3. Confirm `PageView` appears for the initial load and subsequent route changes.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
