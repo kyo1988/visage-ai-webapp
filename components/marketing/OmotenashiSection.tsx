@@ -60,7 +60,7 @@ export default function OmotenashiSection() {
                     <div className="relative">
                         <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-200">
                             <img
-                                src="/images/omotenashi_screen.png"
+                                src="/images/omotenashi_screen_v2.png"
                                 alt={t("mockup.caption")}
                                 className="w-full h-auto object-cover"
                             />
