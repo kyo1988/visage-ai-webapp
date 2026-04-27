@@ -15,7 +15,7 @@ export default function Story() {
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <Image
-            src="/images/our-story-tokyo-illustration.png"
+            src="/images/our-story-tokyo-illustration_v2.png"
             alt={t("alt") ?? "Tokyo illustration"}
             width={1200}
             height={800}

@@ -228,7 +228,7 @@ export default function LandingV8({ locale }: { locale: string }) {
           </div>
           <div className="space-y-4">
             <Image
-              src="/images/hero_inbound.png"
+              src="/images/hero_inbound_v2.png"
               alt="Visage AI iPad demo"
               width={960}
               height={720}

@@ -74,7 +74,7 @@ export const HeroSection = () => {
         <div className="hero-image-wrapper">
           <div className="relative z-10">
             <img
-              src="/images/hero_v2.png"
+              src="/images/hero_v3.png"
               alt="Visage AI Deep Skin Analysis App Interface"
               className="w-full h-auto rounded-3xl shadow-2xl border-4 border-gray-900/50 mx-auto max-w-[320px] md:max-w-sm"
               style={{ transform: 'rotate(-2deg)' }}
