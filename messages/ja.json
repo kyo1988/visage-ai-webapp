@@ -18,9 +18,15 @@
     "cases": "導入事例",
     "docs": "サポート",
     "whitepaper": "ホワイトペーパー",
-    "pricing": "価格",
+    "pricing": "料金",
     "security": "セキュリティ",
-    "demo": "デモを予約"
+    "demo": "デモ予約",
+    "technology": "技術",
+    "useCases": "活用例",
+    "poc": "PoC",
+    "contact": "お問い合わせ",
+    "menuOpen": "メニューを開く",
+    "menuClose": "メニューを閉じる"
   },
   "hero": {
     "title": "インバウンド客への提案に、<br/>AIという「確かな根拠」を。",

@@ -20,7 +20,13 @@
     "whitepaper": "Whitepaper",
     "pricing": "Pricing",
     "security": "Security",
-    "demo": "Book a Demo"
+    "demo": "Book a Demo",
+    "technology": "Technology",
+    "useCases": "Use Cases",
+    "poc": "PoC",
+    "contact": "Contact",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
   },
   "hero": {
     "title": "Give your inbound customers <br/>AI-powered evidence.",
