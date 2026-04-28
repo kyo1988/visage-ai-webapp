@@ -9,9 +9,16 @@ type Locale = "ja" | "en";
 
 const copy = {
   ja: {
+    heroEyebrow: "Visage AI for Inbound Retail",
     heroTitle: "言葉の壁を超える、AI接客パートナー",
     heroLead:
       "インバウンド観光客の肌をAIで解析し、最適な商品提案までを多言語で支援。スタッフの接客力をデータで底上げします。",
+    heroPocLink: "PoC協力店舗 募集中",
+    heroTrust: [
+      "美容・コスメ・観光小売向け",
+      "多言語接客 (EN / ZH / KR / JA)",
+      "PoC協力店舗 募集中",
+    ],
     demo: "無料デモを予約する",
     whitepaper: "資料をダウンロード",
     problemsTitle: "あなたの店舗、こんなお悩みありませんか？",
@@ -112,9 +119,16 @@ const copy = {
     },
   },
   en: {
+    heroEyebrow: "Visage AI for Inbound Retail",
     heroTitle: "An AI sales partner for inbound retail",
     heroLead:
       "Visage AI analyzes guest skin conditions and supports multilingual product suggestions, so your staff can deliver consistent consultations.",
+    heroPocLink: "Now recruiting pilot stores",
+    heroTrust: [
+      "For beauty, cosmetics & tourism retail",
+      "Multilingual (EN / ZH / KR / JA)",
+      "Recruiting pilot stores",
+    ],
     demo: "Book a Free Demo",
     whitepaper: "Download Materials",
     problemsTitle: "Common retail challenges",
@@ -215,37 +229,6 @@ const copy = {
   },
 } as const;
 
-function CtaButtons({
-  locale,
-  primaryLabel,
-  secondaryLabel,
-  placement,
-}: {
-  locale: Locale;
-  primaryLabel: string;
-  secondaryLabel: string;
-  placement: string;
-}) {
-  return (
-    <div className="flex flex-wrap gap-3">
-      <Link
-        href={`/${locale}/demo`}
-        onClick={() => track("lp_demo_click", { placement, locale })}
-        className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
-      >
-        {primaryLabel}
-      </Link>
-      <Link
-        href={`/${locale}/whitepaper/ebm-2025`}
-        onClick={() => track("lp_whitepaper_click", { placement, locale })}
-        className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-      >
-        {secondaryLabel}
-      </Link>
-    </div>
-  );
-}
-
 export default function LandingV8({ locale }: { locale: string }) {
   const lang: Locale = locale === "en" ? "en" : "ja";
   const t = copy[lang];
@@ -281,150 +264,323 @@ export default function LandingV8({ locale }: { locale: string }) {
 
   return (
     <main className="bg-gradient-to-b from-white via-sky-50/30 to-slate-50">
-      <section className="mx-auto max-w-7xl px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pt-14">
-        <div className="grid gap-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 md:items-center md:p-10">
-          <div>
-            <p className="inline-flex rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
-              Visage AI for Inbound Retail
-            </p>
-            <h1 className="mt-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-              {t.heroTitle}
-            </h1>
-            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              {t.heroLead}
-            </p>
-            <div className="mt-6">
-              <CtaButtons
-                locale={lang}
-                primaryLabel={t.demo}
-                secondaryLabel={t.whitepaper}
-                placement="hero"
-              />
+      {/* ===== HERO ===== */}
+      <section className="relative overflow-hidden">
+        {/* Background decorative gradient */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[640px] bg-gradient-to-b from-sky-50/60 via-white to-transparent"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-32 top-32 -z-10 h-[420px] w-[420px] rounded-full bg-sky-200/30 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-24 top-10 -z-10 h-[360px] w-[360px] rounded-full bg-rose-200/25 blur-3xl"
+        />
+
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pb-20 lg:pt-20">
+          <div className="grid gap-10 md:grid-cols-12 md:items-center md:gap-12">
+            <div className="md:col-span-7">
+              <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-sky-700 backdrop-blur">
+                {t.heroEyebrow}
+              </div>
+              <h1 className="mt-5 text-[34px] font-semibold leading-[1.18] tracking-tight text-slate-900 sm:text-[42px] md:text-[52px] md:leading-[1.1]">
+                {t.heroTitle}
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-[1.85] text-slate-600 sm:text-[17px]">
+                {t.heroLead}
+              </p>
+
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                <Link
+                  href={`/${lang}/demo`}
+                  onClick={() =>
+                    track("lp_demo_click", { placement: "hero", locale: lang })
+                  }
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-12px_rgba(15,23,42,0.6)] transition hover:from-slate-800 hover:to-slate-700 hover:shadow-[0_10px_28px_-10px_rgba(15,23,42,0.55)]"
+                >
+                  {t.demo}
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-200 group-hover:translate-x-0.5"
+                  >
+                    →
+                  </span>
+                </Link>
+                <Link
+                  href={`/${lang}/whitepaper/ebm-2025`}
+                  onClick={() =>
+                    track("lp_whitepaper_click", {
+                      placement: "hero",
+                      locale: lang,
+                    })
+                  }
+                  className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                >
+                  {t.whitepaper}
+                </Link>
+                <Link
+                  href="#poc-recruitment"
+                  onClick={() =>
+                    track("hero_poc_link_click", { locale: lang })
+                  }
+                  className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 hover:text-sky-800 hover:underline"
+                >
+                  {t.heroPocLink}
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
+
+              <a
+                href="tel:+81-80-1180-8294"
+                className="mt-5 inline-flex text-sm font-medium text-slate-500 hover:text-slate-700"
+                onClick={() => track("phone_tap", { page: `/${lang}` })}
+              >
+                {t.phoneLabel}
+              </a>
+
+              {/* Trust strip */}
+              <ul className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-slate-200/80 pt-5 text-xs font-medium text-slate-500">
+                {t.heroTrust.map((item) => (
+                  <li
+                    key={item}
+                    className="inline-flex items-center gap-2 tracking-wide"
+                  >
+                    <span
+                      aria-hidden
+                      className="h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400"
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <a
-              href="tel:+81-80-1180-8294"
-              className="mt-4 inline-flex text-sm font-medium text-sky-700 hover:underline"
-              onClick={() => track("phone_tap", { page: `/${lang}` })}
-            >
-              {t.phoneLabel}
-            </a>
-          </div>
-          <div className="space-y-4">
-            <Image
-              src="/images/hero_inbound_v2.png"
-              alt="Visage AI iPad demo"
-              width={960}
-              height={720}
-              className="w-full rounded-2xl border border-slate-200 object-cover"
-              priority
-            />
-            <Image
-              src="/images/screens/staff_mode_v32.png"
-              alt="Show to Staff screen"
-              width={960}
-              height={720}
-              className="w-full rounded-2xl border border-slate-200 object-cover"
-            />
+
+            <div className="md:col-span-5">
+              <div className="relative">
+                <div
+                  aria-hidden
+                  className="absolute -inset-4 -z-10 rounded-[32px] bg-gradient-to-br from-sky-100/70 via-white to-rose-100/40 blur-2xl"
+                />
+                <div className="relative overflow-hidden rounded-[24px] border border-slate-200/80 bg-white shadow-[0_24px_60px_-30px_rgba(15,23,42,0.35)]">
+                  <Image
+                    src="/images/hero_inbound_v2.png"
+                    alt="Visage AI iPad demo"
+                    width={960}
+                    height={720}
+                    className="w-full object-cover"
+                    priority
+                  />
+                </div>
+                <div className="relative -mt-6 ml-8 hidden overflow-hidden rounded-[20px] border border-slate-200/80 bg-white shadow-[0_18px_45px_-25px_rgba(15,23,42,0.3)] sm:block sm:w-[68%]">
+                  <Image
+                    src="/images/screens/staff_mode_v32.png"
+                    alt="Show to Staff screen"
+                    width={960}
+                    height={720}
+                    className="w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6">
-            <h2 className="text-xl font-semibold text-slate-900">
+      {/* ===== PROBLEMS / SOLUTIONS ===== */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+            01 — Challenge &amp; Approach
+          </span>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-2 md:gap-7">
+          <div className="relative overflow-hidden rounded-3xl border border-rose-100 bg-gradient-to-br from-rose-50/70 via-white to-white p-7 shadow-sm md:p-9">
+            <div className="inline-flex items-center gap-2 rounded-full border border-rose-200/80 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-700">
+              Challenges
+            </div>
+            <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-900 sm:text-[26px]">
               {t.problemsTitle}
             </h2>
-            <ul className="mt-4 space-y-3 text-sm text-slate-700">
+            <ul className="mt-5 space-y-3.5 text-sm leading-7 text-slate-700 sm:text-[15px]">
               {t.problems.map((problem) => (
-                <li key={problem}>❌ {problem}</li>
+                <li key={problem} className="flex gap-3">
+                  <span
+                    aria-hidden
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-400"
+                  />
+                  <span>{problem}</span>
+                </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
-            <h2 className="text-xl font-semibold text-slate-900">
+          <div className="relative overflow-hidden rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50/80 via-white to-white p-7 shadow-sm md:p-9">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-sky-700">
+              Visage AI Approach
+            </div>
+            <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-900 sm:text-[26px]">
               {t.solutionsTitle}
             </h2>
-            <ul className="mt-4 space-y-3 text-sm text-slate-700">
+            <ul className="mt-5 space-y-3.5 text-sm leading-7 text-slate-700 sm:text-[15px]">
               {t.solutions.map((solution) => (
-                <li key={solution}>✅ {solution}</li>
+                <li key={solution} className="flex gap-3">
+                  <span
+                    aria-hidden
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"
+                  />
+                  <span>{solution}</span>
+                </li>
               ))}
             </ul>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-semibold text-slate-900">{t.effectsTitle}</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-2">
-          {t.effects.map((effect) => (
+      {/* ===== EFFECTS ===== */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="max-w-2xl">
+          <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+            02 — Outcomes
+          </span>
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-[34px]">
+            {t.effectsTitle}
+          </h2>
+        </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
+          {t.effects.map((effect, idx) => (
             <article
               key={effect.title}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_14px_36px_-18px_rgba(2,132,199,0.22)] md:p-7"
             >
-              <h3 className="text-base font-semibold text-slate-900">{effect.title}</h3>
-              <p className="mt-2 text-sm leading-7 text-slate-600">{effect.body}</p>
+              <div className="flex items-start gap-4">
+                <span className="inline-flex h-8 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-sky-600 text-[11px] font-semibold tracking-[0.12em] text-white shadow-sm">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900 sm:text-[17px]">
+                    {effect.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    {effect.body}
+                  </p>
+                </div>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-semibold text-slate-900">{t.industryTitle}</h2>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {t.tabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => setActiveTab(tab.id as "cosmetics" | "inbound")}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                activeTab === tab.id
-                  ? "bg-slate-900 text-white"
-                  : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+      {/* ===== INDUSTRY TABS ===== */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="max-w-2xl">
+          <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+            03 — Use Cases
+          </span>
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-[34px]">
+            {t.industryTitle}
+          </h2>
         </div>
-        <article className="mt-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-slate-900">{active.heading}</h3>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
+        <div
+          role="tablist"
+          aria-label={t.industryTitle}
+          className="mt-8 inline-flex flex-wrap gap-2 rounded-full border border-slate-200 bg-white p-1.5 shadow-sm"
+        >
+          {t.tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActiveTab(tab.id as "cosmetics" | "inbound")}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  isActive
+                    ? "bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-sm"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+        <article className="mt-6 overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm md:p-9">
+          <h3 className="text-xl font-semibold leading-snug text-slate-900 sm:text-[22px]">
+            {active.heading}
+          </h3>
+          <ul className="mt-5 grid gap-3 text-sm leading-7 text-slate-700 sm:text-[15px] md:grid-cols-3">
             {active.bullets.map((bullet) => (
-              <li key={bullet}>・{bullet}</li>
+              <li
+                key={bullet}
+                className="flex gap-3 rounded-2xl bg-sky-50/60 p-4"
+              >
+                <span
+                  aria-hidden
+                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"
+                />
+                <span>{bullet}</span>
+              </li>
             ))}
           </ul>
         </article>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">{t.transparencyTitle}</h2>
-          <p className="mt-3 text-sm leading-7 text-slate-600">{t.transparencyLead}</p>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <Image
-              src="/images/screens/analysis_result_en.png"
-              alt="Skin Transparency result example"
-              width={840}
-              height={1180}
-              className="w-full rounded-2xl border border-slate-200 object-cover"
-            />
-            <Image
-              src="/images/screens/staff_card_ja.png"
-              alt="Staff recommendation guide example"
-              width={840}
-              height={1180}
-              className="w-full rounded-2xl border border-slate-200 object-cover"
-            />
+      {/* ===== SKIN TRANSPARENCY ===== */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-gradient-to-br from-white via-sky-50/40 to-rose-50/30 p-7 shadow-sm md:p-12">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-sky-200/30 blur-3xl"
+          />
+          <div className="relative grid gap-10 md:grid-cols-12 md:gap-12 md:items-center">
+            <div className="md:col-span-5">
+              <span className="inline-flex items-center rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+                04 — Technology
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-[32px]">
+                {t.transparencyTitle}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-[15px] sm:leading-[1.85]">
+                {t.transparencyLead}
+              </p>
+              <p className="mt-5 text-xs leading-6 text-slate-500">
+                {t.disclaimer}
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_18px_45px_-25px_rgba(15,23,42,0.25)]">
+                  <Image
+                    src="/images/screens/analysis_result_en.png"
+                    alt="Skin Transparency result example"
+                    width={840}
+                    height={1180}
+                    className="w-full object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_18px_45px_-25px_rgba(15,23,42,0.25)] sm:mt-8">
+                  <Image
+                    src="/images/screens/staff_card_ja.png"
+                    alt="Staff recommendation guide example"
+                    width={840}
+                    height={1180}
+                    className="w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="mt-4 text-xs text-slate-500">{t.disclaimer}</p>
         </div>
       </section>
 
+      {/* ===== POC RECRUITMENT ===== */}
       <section
         id="poc-recruitment"
         ref={pocSectionRef}
-        className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8"
+        className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       >
         <div className="relative overflow-hidden rounded-[28px] border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-rose-50/40 p-6 shadow-[0_10px_40px_-20px_rgba(2,132,199,0.25)] sm:p-8 md:p-12">
           {/* Decorative soft blobs */}
@@ -438,12 +594,17 @@ export default function LandingV8({ locale }: { locale: string }) {
           />
 
           <div className="relative">
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-3 py-1 text-xs font-semibold tracking-wide text-sky-700 backdrop-blur">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500" />
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 backdrop-blur">
+                05 — Pilot
               </span>
-              {t.poc.eyebrow}
+              <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-3 py-1 text-xs font-semibold tracking-wide text-sky-700 backdrop-blur">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500" />
+                </span>
+                {t.poc.eyebrow}
+              </span>
             </div>
             <h2 className="mt-5 max-w-3xl text-[26px] font-semibold leading-[1.35] tracking-tight text-slate-900 sm:text-3xl md:text-[34px] md:leading-[1.3]">
               {t.poc.title}
@@ -522,22 +683,91 @@ export default function LandingV8({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-slate-200 bg-slate-900 p-6 text-white md:p-8">
-          <h2 className="text-2xl font-semibold">{t.pricingTitle}</h2>
-          <ul className="mt-4 space-y-2 text-sm text-slate-100">
-            {t.pricingItems.map((item) => (
-              <li key={item}>・{item}</li>
-            ))}
-          </ul>
-          <p className="mt-3 text-xs text-slate-300">{t.pricingNote}</p>
-          <div className="mt-6">
-            <CtaButtons
-              locale={lang}
-              primaryLabel={t.demo}
-              secondaryLabel={t.whitepaper}
-              placement="pricing"
-            />
+      {/* ===== PRICING / FINAL CTA ===== */}
+      <section className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[28px] border border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 p-7 text-white shadow-[0_30px_80px_-40px_rgba(15,23,42,0.7)] md:p-12">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-rose-500/10 blur-3xl"
+          />
+          <div className="relative grid gap-10 md:grid-cols-12 md:gap-12 md:items-center">
+            <div className="md:col-span-7">
+              <span className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-sky-200 backdrop-blur">
+                06 — PoC Plan
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-[34px]">
+                {t.pricingTitle}
+              </h2>
+              <ul className="mt-6 space-y-3 text-sm leading-7 text-slate-200 sm:text-[15px]">
+                {t.pricingItems.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span
+                      aria-hidden
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400"
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-xs leading-6 text-slate-400">
+                {t.pricingNote}
+              </p>
+            </div>
+            <div className="md:col-span-5">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur md:p-7">
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href={`/${lang}/demo`}
+                    onClick={() =>
+                      track("lp_demo_click", {
+                        placement: "pricing",
+                        locale: lang,
+                      })
+                    }
+                    className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100"
+                  >
+                    {t.demo}
+                    <span
+                      aria-hidden
+                      className="transition-transform duration-200 group-hover:translate-x-0.5"
+                    >
+                      →
+                    </span>
+                  </Link>
+                  <Link
+                    href={`/${lang}/contact?utm_source=lp&utm_medium=pricing_section&utm_campaign=poc_recruitment`}
+                    onClick={() =>
+                      track("poc_cta_click", {
+                        placement: "pricing_section",
+                        locale: lang,
+                      })
+                    }
+                    className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-transparent px-5 py-3.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5"
+                  >
+                    {t.poc.cta}
+                  </Link>
+                  <Link
+                    href={`/${lang}/whitepaper/ebm-2025`}
+                    onClick={() =>
+                      track("lp_whitepaper_click", {
+                        placement: "pricing",
+                        locale: lang,
+                      })
+                    }
+                    className="inline-flex items-center justify-center text-sm font-medium text-sky-200 hover:text-white"
+                  >
+                    {t.whitepaper}
+                    <span aria-hidden className="ml-1">
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
