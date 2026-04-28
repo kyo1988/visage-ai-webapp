@@ -151,7 +151,7 @@ export function StickyHeader() {
         {open && (
           <div
             id="mobile-nav"
-            className="border-t border-slate-200/70 pb-5 pt-4 md:hidden"
+            className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-slate-200/70 pb-28 pt-4 md:hidden"
           >
             <ul className="flex flex-col gap-1">
               {navItems.map((item) => (
