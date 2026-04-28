@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { track } from "@/app/lib/analytics";
 
 type Locale = "ja" | "en";
@@ -254,8 +254,33 @@ export default function LandingV8({ locale }: { locale: string }) {
   );
   const active = t.tabs.find((tab) => tab.id === activeTab) ?? t.tabs[0];
 
+  // Fire poc_section_view once when the section is at least 50% visible.
+  const pocSectionRef = useRef<HTMLElement | null>(null);
+  const pocViewedRef = useRef(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const node = pocSectionRef.current;
+    if (!node || pocViewedRef.current) return;
+    if (typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !pocViewedRef.current) {
+            pocViewedRef.current = true;
+            track("poc_section_view", { locale: lang });
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [lang]);
+
   return (
-    <main className="bg-gradient-to-b from-white to-slate-50">
+    <main className="bg-gradient-to-b from-white via-sky-50/30 to-slate-50">
       <section className="mx-auto max-w-7xl px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pt-14">
         <div className="grid gap-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 md:items-center md:p-10">
           <div>
@@ -398,70 +423,102 @@ export default function LandingV8({ locale }: { locale: string }) {
 
       <section
         id="poc-recruitment"
-        className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8"
-        onMouseEnter={() => track("poc_section_view", { locale: lang })}
+        ref={pocSectionRef}
+        className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8"
       >
-        <div className="rounded-3xl border border-sky-200 bg-sky-50 p-6 shadow-sm md:p-8">
-          <p className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-sky-700 ring-1 ring-sky-200">
-            {t.poc.eyebrow}
-          </p>
-          <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl">
-            {t.poc.title}
-          </h2>
-          <p className="mt-4 text-sm leading-7 text-slate-700 sm:text-base">
-            {t.poc.lead}
-          </p>
+        <div className="relative overflow-hidden rounded-[28px] border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-rose-50/40 p-6 shadow-[0_10px_40px_-20px_rgba(2,132,199,0.25)] sm:p-8 md:p-12">
+          {/* Decorative soft blobs */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-rose-200/30 blur-3xl"
+          />
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-sm font-semibold text-slate-900">
-                {t.poc.targetTitle}
-              </h3>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                {t.poc.target.map((item) => (
-                  <li key={item}>・{item}</li>
-                ))}
-              </ul>
-            </article>
-            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-sm font-semibold text-slate-900">
-                {t.poc.validateTitle}
-              </h3>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                {t.poc.validate.map((item) => (
-                  <li key={item}>・{item}</li>
-                ))}
-              </ul>
-            </article>
-            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-sm font-semibold text-slate-900">
-                {t.poc.effortTitle}
-              </h3>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                {t.poc.effort.map((item) => (
-                  <li key={item}>・{item}</li>
-                ))}
-              </ul>
-            </article>
+          <div className="relative">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-3 py-1 text-xs font-semibold tracking-wide text-sky-700 backdrop-blur">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500" />
+              </span>
+              {t.poc.eyebrow}
+            </div>
+            <h2 className="mt-5 max-w-3xl text-[26px] font-semibold leading-[1.35] tracking-tight text-slate-900 sm:text-3xl md:text-[34px] md:leading-[1.3]">
+              {t.poc.title}
+            </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
+              {t.poc.lead}
+            </p>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {(
+                [
+                  { num: "01", title: t.poc.targetTitle, items: t.poc.target },
+                  {
+                    num: "02",
+                    title: t.poc.validateTitle,
+                    items: t.poc.validate,
+                  },
+                  { num: "03", title: t.poc.effortTitle, items: t.poc.effort },
+                ] as const
+              ).map((card) => (
+                <article
+                  key={card.num}
+                  className="group relative rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_12px_30px_-15px_rgba(2,132,199,0.25)]"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-7 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-sky-600 text-[11px] font-semibold tracking-wider text-white shadow-sm">
+                      {card.num}
+                    </span>
+                    <h3 className="text-sm font-semibold text-slate-900">
+                      {card.title}
+                    </h3>
+                  </div>
+                  <ul className="mt-4 space-y-2.5 text-sm leading-6 text-slate-700">
+                    {card.items.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span
+                          aria-hidden
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Link
+                href={`/${lang}/contact?utm_source=lp&utm_medium=poc_section&utm_campaign=poc_recruitment`}
+                onClick={() =>
+                  track("poc_cta_click", {
+                    placement: "poc_recruitment",
+                    locale: lang,
+                  })
+                }
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-12px_rgba(15,23,42,0.6)] transition hover:from-slate-800 hover:to-slate-700 hover:shadow-[0_10px_28px_-10px_rgba(15,23,42,0.55)]"
+              >
+                {t.poc.cta}
+                <span
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </Link>
+              <span className="text-xs text-slate-600 sm:ml-1">
+                {t.poc.ctaSub}
+              </span>
+            </div>
+
+            <p className="mt-5 max-w-3xl text-xs leading-6 text-slate-500">
+              {t.poc.note}
+            </p>
           </div>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Link
-              href={`/${lang}/contact?utm_source=lp&utm_medium=poc_section&utm_campaign=poc_recruitment`}
-              onClick={() =>
-                track("poc_cta_click", {
-                  placement: "poc_recruitment",
-                  locale: lang,
-                })
-              }
-              className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
-            >
-              {t.poc.cta}
-            </Link>
-            <span className="text-xs text-slate-600">{t.poc.ctaSub}</span>
-          </div>
-
-          <p className="mt-4 text-xs leading-5 text-slate-500">{t.poc.note}</p>
         </div>
       </section>
 
