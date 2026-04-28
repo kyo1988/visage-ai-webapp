@@ -81,6 +81,35 @@ const copy = {
     ],
     pricingNote: "※ 料金詳細はデモ時にご説明します。",
     phoneLabel: "お電話で相談する",
+    poc: {
+      eyebrow: "PoC協力店舗 募集中",
+      title: "訪日客対応の説明負荷を、一緒に検証しませんか",
+      lead:
+        "Visage AIでは、コスメ・美容・観光関連店舗の皆さまと、訪日客への商品説明や多言語接客をどこまで軽くできるかを検証するPoCを準備しています。導入前提ではなく、まずは現場で困っていることを伺うところから始めます。",
+      targetTitle: "こんな店舗・事業者を想定しています",
+      target: [
+        "訪日客への説明対応が発生する店舗",
+        "商品説明や肌悩みヒアリングに時間がかかる店舗",
+        "多言語対応をスタッフだけで担うのが難しい店舗",
+        "美容・コスメ・着物レンタル・観光関連の事業者",
+      ],
+      validateTitle: "PoCで検証したいこと",
+      validate: [
+        "訪日客への説明負荷を減らせるか",
+        "スタッフの接客補助として自然に使えるか",
+        "店舗オペレーションを大きく変えずに組み込めるか",
+      ],
+      effortTitle: "ご参加にあたっての想定負担",
+      effort: [
+        "初回30分のヒアリング（オンライン可）",
+        "PoC期間中の簡単なフィードバック",
+        "店舗運用・人員体制の大幅な変更は不要",
+      ],
+      cta: "PoCについて相談する",
+      ctaSub: "5分の事前ヒアリングのみでも歓迎です",
+      note:
+        "現在、初期PoCにご協力いただける店舗・事業者様を少数募集しています。導入前提ではなく、現場課題の確認から始めます。",
+    },
   },
   en: {
     heroTitle: "An AI sales partner for inbound retail",
@@ -154,6 +183,35 @@ const copy = {
     ],
     pricingNote: "Pricing details are shared during the demo.",
     phoneLabel: "Call us",
+    poc: {
+      eyebrow: "Now recruiting pilot stores",
+      title: "Help us test AI-assisted support for inbound shoppers",
+      lead:
+        "Visage AI is preparing small pilot projects with beauty, cosmetics, and tourism-facing stores to validate how AI can support product explanations and multilingual customer interactions. This is not a full rollout request — we start by understanding real store-level challenges.",
+      targetTitle: "Who we are looking to talk with",
+      target: [
+        "Stores that serve inbound travelers",
+        "Teams that spend time explaining products or recommendations",
+        "Stores where multilingual support depends heavily on staff",
+        "Beauty, cosmetics, kimono rental, and tourism-related businesses",
+      ],
+      validateTitle: "What we want to validate together",
+      validate: [
+        "Whether AI can reduce explanation load for inbound shoppers",
+        "Whether it can support staff naturally during customer interactions",
+        "Whether it can fit existing store operations without major workflow changes",
+      ],
+      effortTitle: "Expected commitment",
+      effort: [
+        "An initial 30-minute discovery call (remote is fine)",
+        "Light feedback during the pilot period",
+        "No major changes to store operations or staffing required",
+      ],
+      cta: "Discuss a pilot",
+      ctaSub: "A short 5-minute discovery conversation is welcome",
+      note:
+        "We are currently looking for a small number of stores or operators to join an early PoC. We start from listening to real on-site challenges, not from a sales pitch.",
+    },
   },
 } as const;
 
@@ -335,6 +393,75 @@ export default function LandingV8({ locale }: { locale: string }) {
             />
           </div>
           <p className="mt-4 text-xs text-slate-500">{t.disclaimer}</p>
+        </div>
+      </section>
+
+      <section
+        id="poc-recruitment"
+        className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8"
+        onMouseEnter={() => track("poc_section_view", { locale: lang })}
+      >
+        <div className="rounded-3xl border border-sky-200 bg-sky-50 p-6 shadow-sm md:p-8">
+          <p className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-sky-700 ring-1 ring-sky-200">
+            {t.poc.eyebrow}
+          </p>
+          <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl">
+            {t.poc.title}
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-slate-700 sm:text-base">
+            {t.poc.lead}
+          </p>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 className="text-sm font-semibold text-slate-900">
+                {t.poc.targetTitle}
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                {t.poc.target.map((item) => (
+                  <li key={item}>・{item}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 className="text-sm font-semibold text-slate-900">
+                {t.poc.validateTitle}
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                {t.poc.validate.map((item) => (
+                  <li key={item}>・{item}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 className="text-sm font-semibold text-slate-900">
+                {t.poc.effortTitle}
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                {t.poc.effort.map((item) => (
+                  <li key={item}>・{item}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Link
+              href={`/${lang}/contact?utm_source=lp&utm_medium=poc_section&utm_campaign=poc_recruitment`}
+              onClick={() =>
+                track("poc_cta_click", {
+                  placement: "poc_recruitment",
+                  locale: lang,
+                })
+              }
+              className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+            >
+              {t.poc.cta}
+            </Link>
+            <span className="text-xs text-slate-600">{t.poc.ctaSub}</span>
+          </div>
+
+          <p className="mt-4 text-xs leading-5 text-slate-500">{t.poc.note}</p>
         </div>
       </section>
 
