@@ -1038,11 +1038,11 @@
   },
   "whitepaper": {
     "title": "エビデンスベースマーケティングプレイブック",
-    "subtitle": "エグゼクティブプレビュー v0.1",
-    "description": "Eコマース・小売業向けAI皮膚分析",
+    "subtitle": "公開データ追試監査・2026年7月改訂",
+    "description": "Ehrenberg-Bass分析アーカイブの訂正版監査",
     "downloadCta": "ホワイトペーパーを取得",
-    "ctaTitle": "マーケティング戦略を変革する準備はできていますか？",
-    "ctaDescription": "実用的な洞察と実装ガイドラインを含む完全なホワイトペーパーをダウンロードしてください。",
+    "ctaTitle": "訂正版の分析を読む",
+    "ctaDescription": "修正済みの結果、方法、限界、参考文献、公開前チェックリストをダウンロードできます。",
     "formTitle": "コピーをダウンロード",
     "formDescription": "完全なエビデンスベースマーケティングプレイブックに即座にアクセス",
     "formFields": {
@@ -1060,10 +1060,10 @@
     "sections": {
       "cover": "表紙",
       "tldr": "エグゼクティブサマリー",
-      "architecture": "技術アーキテクチャ",
-      "reproduction": "実装ガイド",
-      "caseStudies": "ケーススタディ",
-      "decisionBridge": "今四半期のアクション",
+      "architecture": "測定対象",
+      "reproduction": "再現要件",
+      "caseStudies": "分析アーカイブ",
+      "decisionBridge": "主張の境界",
       "legal": "法的・コンプライアンス"
     }
   },

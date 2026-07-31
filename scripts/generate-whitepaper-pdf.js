@@ -1,158 +1,129 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { spawnSync } = require('child_process');
 
-async function generateWhitepaperPDF() {
-  try {
-    console.log('📄 Generating whitepaper PDF...');
-    
-    // Create public/whitepapers directory if it doesn't exist
-    const publicDir = path.join(process.cwd(), 'public', 'whitepapers');
-    if (!fs.existsSync(publicDir)) {
-      fs.mkdirSync(publicDir, { recursive: true });
+const REPORT_FILES = [
+  '00-cover.md',
+  '01-executive-summary.md',
+  '02-what-we-measured.md',
+  '03-finding-1-duplication.md',
+  '04-finding-2-double-jeopardy.md',
+  '05-finding-3-buyer-frequency.md',
+  '06-finding-4-cep.md',
+  '07-methods.md',
+  '08-limits.md',
+  '09-reproduction-checklist.md',
+  '10-references.md',
+  '99-legal.md',
+];
+
+async function generateWhitepaper() {
+  const { remark } = await import('remark');
+  const { default: remarkGfm } = await import('remark-gfm');
+  const { default: remarkHtml } = await import('remark-html');
+
+  const rootDir = path.join(__dirname, '..');
+  const contentDir = path.join(rootDir, 'content', 'whitepaper', 'ebm-2025');
+  const outputDir = path.join(rootDir, 'public', 'whitepapers');
+  const htmlPath = path.join(outputDir, 'ebm-2025-v0.2.html');
+
+  fs.mkdirSync(outputDir, { recursive: true });
+
+  const processor = remark().use(remarkGfm).use(remarkHtml, { sanitize: false });
+  const sections = [];
+
+  for (const filename of REPORT_FILES) {
+    const markdownPath = path.join(contentDir, filename);
+    if (!fs.existsSync(markdownPath)) {
+      throw new Error(`Missing canonical whitepaper section: ${filename}`);
     }
-    
-    // Load all markdown content
-    const contentDir = path.join(process.cwd(), 'content', 'whitepaper', 'ebm-2025');
-    
-    const files = [
-      '00-cover.md',
-      '01-executive-summary.md',
-      '02-what-we-measured.md',
-      '03-finding-1-entry-situations.md',
-      '04-finding-2-heavy-buyers.md',
-      '05-finding-3-top-quarter.md',
-      '06-finding-4-repertoire.md',
-      '07-methods.md',
-      '08-limits.md',
-      '09-checklist.md',
-      '10-references.md'
-    ];
-    
-    // Combine all markdown files
-    let combinedMarkdown = '';
-    for (const file of files) {
-      const filePath = path.join(contentDir, file);
-      if (fs.existsSync(filePath)) {
-        const content = fs.readFileSync(filePath, 'utf-8');
-        combinedMarkdown += content + '\n\n---\n\n';
-      }
+    const markdown = fs.readFileSync(markdownPath, 'utf8');
+    let html = String(processor.processSync(markdown));
+    if (filename === '00-cover.md') {
+      html = html.replace('<blockquote>', '<blockquote id="revision-notice">');
     }
-    
-    // Write combined markdown to temp file
-    const tempMarkdownPath = path.join(process.cwd(), 'temp-whitepaper.md');
-    fs.writeFileSync(tempMarkdownPath, combinedMarkdown);
-    
-    // Generate PDF using pandoc
-    const outputPath = path.join(publicDir, 'ebm-2025-v0.1.pdf');
-    
-    try {
-      execSync(`pandoc "${tempMarkdownPath}" -o "${outputPath}" --pdf-engine=wkhtmltopdf -V margin-left=20mm -V margin-right=20mm -V margin-top=20mm -V margin-bottom=20mm --from=gfm`, {
-        stdio: 'inherit'
-      });
-      console.log('✅ PDF generated successfully:', outputPath);
-    } catch (pandocError) {
-      console.log('⚠️  Pandoc failed, trying alternative method...');
-      
-      // Fallback: Generate HTML and let user print to PDF
-      const htmlContent = `
-<!DOCTYPE html>
+    sections.push(`<section class="report-section" data-source="${filename}">${html}</section>`);
+  }
+
+  const htmlDocument = `<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evidence-Based Marketing Playbook - Executive Preview v0.1</title>
-    <style>
-        @page { 
-            size: A4; 
-            margin: 14mm; 
-        }
-        
-        body { 
-            font: 12pt/1.5 system-ui; 
-            color: #111; 
-            margin: 0;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        h1 { 
-            font-size: 22pt; 
-            margin: 0 0 8mm; 
-            color: #1f2937;
-        }
-        
-        h2 { 
-            font-size: 14pt; 
-            margin: 6mm 0 3mm; 
-            color: #374151;
-        }
-        
-        h3 {
-            font-size: 12pt;
-            margin: 4mm 0 2mm;
-            color: #4b5563;
-        }
-        
-        p {
-            margin-bottom: 6pt;
-            text-align: justify;
-        }
-        
-        ul, ol {
-            margin-bottom: 6pt;
-            padding-left: 15pt;
-        }
-        
-        li {
-            margin-bottom: 3pt;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 6pt 0;
-        }
-        
-        th, td {
-            border: 1pt solid #ddd;
-            padding: 4pt;
-            text-align: left;
-        }
-        
-        th {
-            background-color: #f5f5f5;
-            font-weight: bold;
-        }
-        
-        img, pre, code { 
-            page-break-inside: avoid; 
-        }
-        
-        .page-break {
-            page-break-before: always;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A corrected public-data replication audit of Ehrenberg-Bass regularities.">
+  <title>Evidence-Based Marketing Playbook — Public-data replication audit</title>
+  <style>
+    :root { --ink:#172033; --muted:#5b667a; --line:#d9deea; --blue:#1d4ed8; --paper:#fff; --soft:#f5f7fb; --warn:#fffbeb; }
+    * { box-sizing:border-box; }
+    html { background:#e9edf5; }
+    body { max-width:900px; margin:32px auto; padding:0; background:var(--paper); color:var(--ink); font:16px/1.62 Arial, Helvetica, sans-serif; box-shadow:0 20px 60px rgba(15,23,42,.12); }
+    .report-section { padding:44px 58px; border-bottom:1px solid var(--line); }
+    .report-section:first-child { min-height:980px; padding-top:110px; background:linear-gradient(145deg,#0f172a 0%,#172554 65%,#1e3a8a 100%); color:#fff; }
+    .report-section:first-child h1, .report-section:first-child h2, .report-section:first-child h3 { color:#fff; }
+    .report-section:first-child h1 { max-width:700px; font-size:46px; letter-spacing:-.035em; }
+    .report-section:first-child h2 { color:#bfdbfe; font-size:24px; }
+    .report-section:first-child p { max-width:720px; color:#dbeafe; }
+    .report-section:first-child blockquote { max-width:760px; margin:34px 0; padding:24px 28px; border:1px solid rgba(147,197,253,.6); border-left:5px solid #60a5fa; border-radius:12px; background:rgba(15,23,42,.62); color:#e2e8f0; }
+    .report-section:first-child blockquote p { color:#e2e8f0; }
+    .report-section:first-child blockquote ol { padding-left:24px; }
+    h1 { margin:0 0 26px; color:#0f172a; font-size:32px; line-height:1.16; letter-spacing:-.025em; }
+    h2 { margin:34px 0 14px; color:#172554; font-size:22px; line-height:1.25; }
+    h3 { margin:26px 0 10px; color:#1e3a8a; font-size:18px; line-height:1.3; }
+    p { margin:0 0 16px; }
+    ul, ol { margin:10px 0 20px; padding-left:25px; }
+    li { margin:7px 0; }
+    table { width:100%; margin:22px 0 28px; border-collapse:collapse; font-size:13px; line-height:1.45; }
+    th, td { padding:10px 11px; border:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:#eef2ff; color:#172554; font-weight:700; }
+    tr:nth-child(even) td { background:#fafbfe; }
+    code { border-radius:4px; background:#eef2f7; padding:2px 5px; font:13px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    a { color:var(--blue); overflow-wrap:anywhere; }
+    hr { margin:30px 0; border:0; border-top:1px solid rgba(255,255,255,.28); }
+    blockquote { margin:20px 0; padding:2px 0 2px 18px; border-left:4px solid #93c5fd; color:var(--muted); }
+    @page { size:A4; margin:16mm 15mm 18mm; }
+    @media print {
+      html, body { margin:0; max-width:none; background:#fff; box-shadow:none; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+      .report-section { padding:0; border:0; break-before:page; }
+      .report-section:first-child { min-height:260mm; height:auto; margin:-16mm -15mm -18mm; padding:36mm 22mm; break-before:auto; }
+      h1, h2, h3 { break-after:avoid; }
+      table, pre, blockquote { break-inside:avoid; }
+      p, li { orphans:3; widows:3; }
+      a { color:inherit; text-decoration:none; }
+    }
+  </style>
 </head>
 <body>
-    ${combinedMarkdown.replace(/\n/g, '<br>')}
+${sections.join('\n')}
 </body>
-</html>`;
-      
-      const htmlPath = path.join(publicDir, 'ebm-2025-v0.1.html');
-      fs.writeFileSync(htmlPath, htmlContent);
-      console.log('✅ HTML generated as fallback:', htmlPath);
-      console.log('📝 You can open this HTML file in a browser and print to PDF');
-    }
-    
-    // Clean up temp file
-    fs.unlinkSync(tempMarkdownPath);
-    
-  } catch (error) {
-    console.error('❌ Error generating PDF:', error);
-    process.exit(1);
+</html>
+`;
+
+  fs.writeFileSync(htmlPath, htmlDocument);
+  console.log(`HTML generated: ${htmlPath}`);
+
+  if (process.argv.includes('--html-only')) {
+    return;
+  }
+
+  const python = process.env.WHITEPAPER_PYTHON || 'python3';
+  const pdfScript = path.join(__dirname, 'generate-whitepaper-pdf.py');
+  const result = spawnSync(python, [pdfScript], {
+    cwd: rootDir,
+    env: process.env,
+    stdio: 'inherit',
+  });
+
+  if (result.status !== 0) {
+    throw new Error(
+      'PDF generation failed. Install the pinned dependency with ' +
+      '`python3 -m pip install -r scripts/requirements-whitepaper.txt` or set WHITEPAPER_PYTHON.'
+    );
   }
 }
 
-generateWhitepaperPDF();
+generateWhitepaper().catch((error) => {
+  console.error(error.message);
+  process.exit(1);
+});

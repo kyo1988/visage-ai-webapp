@@ -2,10 +2,10 @@
 
 export default function StatStrip() {
   const stats = [
-    { label: "DoP (MAD)", value: "0.015863", hint: "near-pass" },
-    { label: "DJ @ q≥0.9", value: "r 0.627", hint: "tail deviation" },
-    { label: "Q4 slope", value: "R² 0.472", hint: "strongest slope" },
-    { label: "CEP bottom-5", value: "38→52%", hint: "<5% Δacc" },
+    { label: "DoP weighted MAD", value: "0.015863", hint: "FAIL · gate ≤0.015" },
+    { label: "Double Jeopardy", value: "r 0.627", hint: "FAIL · gate ≥0.80" },
+    { label: "Q4 lagged frequency", value: "R² 0.472", hint: "descriptive only" },
+    { label: "CEP pipeline", value: "Not validated", hint: "parser/schema mismatch" },
   ];
   
   return (

@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A corrected public-data replication audit of Ehrenberg-Bass regularities.">
+  <title>Evidence-Based Marketing Playbook — Public-data replication audit</title>
+  <style>
+    :root { --ink:#172033; --muted:#5b667a; --line:#d9deea; --blue:#1d4ed8; --paper:#fff; --soft:#f5f7fb; --warn:#fffbeb; }
+    * { box-sizing:border-box; }
+    html { background:#e9edf5; }
+    body { max-width:900px; margin:32px auto; padding:0; background:var(--paper); color:var(--ink); font:16px/1.62 Arial, Helvetica, sans-serif; box-shadow:0 20px 60px rgba(15,23,42,.12); }
+    .report-section { padding:44px 58px; border-bottom:1px solid var(--line); }
+    .report-section:first-child { min-height:980px; padding-top:110px; background:linear-gradient(145deg,#0f172a 0%,#172554 65%,#1e3a8a 100%); color:#fff; }
+    .report-section:first-child h1, .report-section:first-child h2, .report-section:first-child h3 { color:#fff; }
+    .report-section:first-child h1 { max-width:700px; font-size:46px; letter-spacing:-.035em; }
+    .report-section:first-child h2 { color:#bfdbfe; font-size:24px; }
+    .report-section:first-child p { max-width:720px; color:#dbeafe; }
+    .report-section:first-child blockquote { max-width:760px; margin:34px 0; padding:24px 28px; border:1px solid rgba(147,197,253,.6); border-left:5px solid #60a5fa; border-radius:12px; background:rgba(15,23,42,.62); color:#e2e8f0; }
+    .report-section:first-child blockquote p { color:#e2e8f0; }
+    .report-section:first-child blockquote ol { padding-left:24px; }
+    h1 { margin:0 0 26px; color:#0f172a; font-size:32px; line-height:1.16; letter-spacing:-.025em; }
+    h2 { margin:34px 0 14px; color:#172554; font-size:22px; line-height:1.25; }
+    h3 { margin:26px 0 10px; color:#1e3a8a; font-size:18px; line-height:1.3; }
+    p { margin:0 0 16px; }
+    ul, ol { margin:10px 0 20px; padding-left:25px; }
+    li { margin:7px 0; }
+    table { width:100%; margin:22px 0 28px; border-collapse:collapse; font-size:13px; line-height:1.45; }
+    th, td { padding:10px 11px; border:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:#eef2ff; color:#172554; font-weight:700; }
+    tr:nth-child(even) td { background:#fafbfe; }
+    code { border-radius:4px; background:#eef2f7; padding:2px 5px; font:13px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    a { color:var(--blue); overflow-wrap:anywhere; }
+    hr { margin:30px 0; border:0; border-top:1px solid rgba(255,255,255,.28); }
+    blockquote { margin:20px 0; padding:2px 0 2px 18px; border-left:4px solid #93c5fd; color:var(--muted); }
+    @page { size:A4; margin:16mm 15mm 18mm; }
+    @media print {
+      html, body { margin:0; max-width:none; background:#fff; box-shadow:none; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+      .report-section { padding:0; border:0; break-before:page; }
+      .report-section:first-child { min-height:260mm; height:auto; margin:-16mm -15mm -18mm; padding:36mm 22mm; break-before:auto; }
+      h1, h2, h3 { break-after:avoid; }
+      table, pre, blockquote { break-inside:avoid; }
+      p, li { orphans:3; widows:3; }
+      a { color:inherit; text-decoration:none; }
+    }
+  </style>
+</head>
+<body>
+<section class="report-section" data-source="00-cover.md"><h1>Evidence-Based Marketing Playbook</h1>
+<h2>Public-data replication audit</h2>
+<p><strong>Testing Ehrenberg-Bass regularities against four archived retail datasets</strong></p>
+<blockquote id="revision-notice">
+<p><strong>Revision notice — July 2026</strong></p>
+<p>This is version 0.2. The original version 0.1 (September 2025) is archived and remains available.</p>
+<p>Re-auditing the original analysis code and logs against the published text showed that several statements in v0.1 exceeded what the code measured. Five claims are withdrawn:</p>
+<ol>
+<li><strong>Top-decile Double Jeopardy deviation.</strong> No top-decile or middle-quantile split exists in the script. The reported r=0.627 was computed across all 27 retained labels.</li>
+<li><strong>R²=0.472 as response to an additional contact.</strong> The regression contains no contact, campaign, or treatment variable. It measures adjacent-quarter frequency persistence only.</li>
+<li><strong>CEP coverage rising from 38% to 52%.</strong> No before/after comparison exists in the archived output, and the associated <code>&#x3C;5% Δaccuracy</code> statement is removed with it.</li>
+<li><strong>Language-bias detection across 27 languages.</strong> The logged run retained one language and used ASINs as brand identifiers.</li>
+<li><strong>Poor Dirichlet model fit.</strong> The evaluation path predicted the sample mean for every user, so R²≈-7×10⁻⁶ evaluates a constant-mean predictor, not the fitted NBD distribution.</li>
+</ol>
+<p>Implementation defects were also found in the bootstrap, negative-control, and NBD evaluation paths. The remaining numerical outputs are retained as an audit trail. They are not presented as a validated replication of the Ehrenberg-Bass laws.</p>
+<p>What v0.1 got right is retained: the weighted Duplication of Purchase statistic did not cross its pre-set gate, and the simplified unweighted statistic was not substituted to manufacture a pass.</p>
+</blockquote>
+<p><strong>DoP weighted MAD 0.015863 — FAIL (>0.015) · DJ Pearson r 0.627 — FAIL (&#x3C;0.80) · Q4 lagged-frequency R² 0.472 — descriptive only · CEP pipeline — not validated</strong></p>
+<hr>
+<p><strong>Author:</strong> Kyo Harada<br>
+<strong>Original analysis:</strong> September 2025<br>
+<strong>Revised public edition:</strong> July 2026<br>
+<strong>Subject:</strong> Marketing science replication audit</p>
+<hr>
+<h3>Abstract</h3>
+<p>This report audits a September 2025 analysis pipeline built from the dunnhumby Complete Journey, Instacart, UCI Online Retail II, and Amazon Review Data (2018) datasets. The archived outputs contain one near-miss and several negative results. The dunnhumby Duplication of Purchase run recorded a weighted mean absolute deviation of 0.015863 against a pre-set 0.015 gate. The UCI Double Jeopardy run recorded Pearson r=0.627 against a 0.80 gate and failed its stationarity check. A buyer-frequency regression produced R²=0.472 in its highest purchase-volume quartile, but it contains no intervention variable and does not estimate a marketing effect.</p>
+<p>Re-auditing the code narrows the claims further. The reported bootstrap intervals are percentile intervals rather than BCa intervals; the CEP parser does not match the configuration schema; and the NBD diagnostic evaluates constant-mean predictions rather than fitted NBD predictions. The numerical outputs remain useful as an audit trail. They do not yet constitute a successful replication of the Ehrenberg-Bass laws.</p>
+<hr>
+<p><em>This document reports an exploratory replication attempt. It is not a client case study, causal evaluation, or peer-reviewed result.</em></p>
+</section>
+<section class="report-section" data-source="01-executive-summary.md"><h1>Executive Summary</h1>
+<p>The 2025 project should be read as a replication audit, not as a validated marketing playbook. Its strongest property is that the archived decision gates preserve unfavorable results. Its principal weakness is that several public claims exceeded what the code measured.</p>
+<table>
+<thead>
+<tr>
+<th>Analysis</th>
+<th align="right">Archived result</th>
+<th align="right">Gate or check</th>
+<th>Defensible conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duplication of Purchase, dunnhumby</td>
+<td align="right">weighted MAD 0.015863</td>
+<td align="right">≤0.015</td>
+<td>Near-miss; the run failed</td>
+</tr>
+<tr>
+<td>Duplication of Purchase, Instacart</td>
+<td align="right">weighted MAD 0.021854</td>
+<td align="right">≤0.015</td>
+<td>Failed</td>
+</tr>
+<tr>
+<td>Double Jeopardy, UCI</td>
+<td align="right">Pearson r=0.627</td>
+<td align="right">≥0.80</td>
+<td>Failed; stationarity also failed</td>
+</tr>
+<tr>
+<td>Buyer-frequency persistence, UCI Q4</td>
+<td align="right">R²=0.472</td>
+<td align="right">no confirmatory gate</td>
+<td>Descriptive association only</td>
+</tr>
+<tr>
+<td>CEP lexical pipeline, Amazon</td>
+<td align="right">r=-0.280</td>
+<td align="right">no valid language-bias test</td>
+<td>Not interpretable because the parser and configuration schemas disagree</td>
+</tr>
+<tr>
+<td>NBD diagnostic, UCI</td>
+<td align="right">R²≈-7×10⁻⁶</td>
+<td align="right">no valid goodness-of-fit test</td>
+<td>Not interpretable as NBD fit because predictions were set to the sample mean</td>
+</tr>
+</tbody>
+</table>
+<p>Three claims in the previous edition are withdrawn.</p>
+<ol>
+<li><strong>There was no top-decile Double Jeopardy analysis.</strong> The value r=0.627 was computed across all 27 retained labels.</li>
+<li><strong>R²=0.472 does not measure response to an additional contact.</strong> The model regressed transaction counts across adjacent quarters and included no contact, campaign, or treatment variable.</li>
+<li><strong>The archive does not show CEP coverage improving from 38% to 52%.</strong> The logged CEP run retained one language, used ASINs as brand identifiers, and produced no before/after comparison.</li>
+</ol>
+<p>The negative results still matter. The weighted DoP calculation did not cross its gate, and the simplified unweighted calculation cannot be substituted to manufacture a pass. That reporting discipline should be retained when the analysis is rebuilt.</p>
+<p>The current asset is not decision-ready or publication-ready. Publication requires corrected estimators, versioned analysis code, redistributable or checksum-verified inputs, and an independent rerun from a clean environment.</p>
+</section>
+<section class="report-section" data-source="02-what-we-measured.md"><h1>What We Measured</h1>
+<p>The project combined four datasets that differ in sampling frame, market definition, and unit of observation. Their outputs cannot be pooled as if they described one market or one period.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Role in the archive</th>
+<th align="right">Logged analysis sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dunnhumby Complete Journey</td>
+<td>Duplication of Purchase</td>
+<td align="right">1,735 households, 46 retained labels</td>
+</tr>
+<tr>
+<td>Instacart Online Grocery Shopping 2017</td>
+<td>Duplication of Purchase comparison</td>
+<td align="right">1,617 users, 129 retained labels</td>
+</tr>
+<tr>
+<td>UCI Online Retail II</td>
+<td>Double Jeopardy, buyer-frequency persistence, NBD diagnostic</td>
+<td align="right">1,264 users and 27 labels for DJ; 1,666 users for the quarterly analysis; 1,648 users for NBD</td>
+</tr>
+<tr>
+<td>Amazon Review Data (2018)</td>
+<td>lexical CEP prototype</td>
+<td align="right">1,000,000 review rows processed; 58 ASINs in the retained output</td>
+</tr>
+</tbody>
+</table>
+<h2>Research questions</h2>
+<h3>1. Duplication of Purchase</h3>
+<p>The intended question was whether cross-brand buyer duplication remains close to a common level in a repertoire market. The project summarized off-diagonal duplication values with a weighted mean absolute deviation and compared the result with an internal gate of 0.015.</p>
+<h3>2. Double Jeopardy</h3>
+<p>The UCI run correlated each retained label's buyer penetration with its average transaction frequency among buyers. The internal gate required Pearson r≥0.80 and a lower confidence bound of at least 0.70.</p>
+<h3>3. Purchase-frequency persistence</h3>
+<p>Users were assigned to purchase-volume quartiles within each calendar quarter. Within each quartile, the script regressed one quarter's transaction count on the adjacent observed quarter's transaction count. This measures within-user frequency persistence under the script's grouping rule. It does not measure response to advertising, reminders, or incremental contact.</p>
+<h3>4. CEP lexical coverage</h3>
+<p>The intended construct was the prevalence of Category Entry Point language in product reviews. The implemented run searched a multilingual lexicon, aggregated hits by ASIN and detected language, and correlated average lexical coverage with review count. A configuration-schema mismatch prevents the output from measuring the intended CEP dimensions or multilingual coverage.</p>
+<h2>What was not measured</h2>
+<p>The project did not observe a 2025 Q3 client market, did not run a marketing intervention, did not estimate incremental sales, did not compare a 38% baseline with a 52% post-treatment value, and did not test Double Jeopardy separately in middle and top buyer quantiles.</p>
+</section>
+<section class="report-section" data-source="03-finding-1-duplication.md"><h1>Finding 1: Duplication of Purchase Did Not Cross the Gate</h1>
+<p>The closest archived run used a 26-week dunnhumby beauty slice after retaining users at or above the 0.90 purchase-count quantile, requiring at least two labels per user, and requiring at least 20 buyers per label. The final matrix contained 1,735 users and 46 labels.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th align="right">Result</th>
+<th align="right">Gate</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weighted MAD</td>
+<td align="right">0.015863</td>
+<td align="right">≤0.015</td>
+<td>FAIL</td>
+</tr>
+<tr>
+<td>Gap to gate</td>
+<td align="right">+0.000863</td>
+<td align="right">—</td>
+<td>Near-miss</td>
+</tr>
+<tr>
+<td>Unweighted MAD</td>
+<td align="right">0.015143</td>
+<td align="right">not the confirmatory metric</td>
+<td>No decision</td>
+</tr>
+<tr>
+<td>Logged interval</td>
+<td align="right">[0.014792, 0.016928]</td>
+<td align="right">—</td>
+<td>Descriptive only</td>
+</tr>
+<tr>
+<td>Median labels per user</td>
+<td align="right">2.0</td>
+<td align="right">≥2.0</td>
+<td>Met</td>
+</tr>
+<tr>
+<td>Negative-control MAD</td>
+<td align="right">0.015629</td>
+<td align="right">≤0.05</td>
+<td>Met under the project rule</td>
+</tr>
+</tbody>
+</table>
+<p>The Instacart comparison was less favorable: weighted MAD=0.021854 on 1,617 users and 129 labels. Its unweighted MAD was 0.011934. The lower unweighted value cannot replace the pre-specified weighted statistic after the result is known.</p>
+<h2>Interpretation</h2>
+<p>The narrow conclusion is that no archived specification-labelled run crossed all gates. Calling 0.015863 a near-miss is accurate; calling it a pass is not.</p>
+<p>The distance from the gate does not show that the Duplication of Purchase law is almost verified. Fourteen filter combinations were examined, and the reported run was selected as the closest result. The threshold is also an internal project rule, not a universal rejection boundary supplied by the underlying theory. A confirmatory replication must fix the category definition, observation window, inclusion rules, duplication estimator, and decision gate before examining the new data.</p>
+<h2>Implementation qualification</h2>
+<p>The current script copies one directional conditional duplication rate into both halves of a symmetric matrix. It also calculates weights after reducing the data to one user-label row, so the values called "purchase-count weights" are effectively retained buyer counts. The logged interval uses percentile resampling of matrix cells, not a bias-corrected and accelerated bootstrap of buyers. These defects prevent inferential use of the interval and require the point estimate to be treated as an archived pipeline output rather than a validated estimator.</p>
+</section>
+<section class="report-section" data-source="04-finding-2-double-jeopardy.md"><h1>Finding 2: The Double Jeopardy Run Failed Its Correlation and Stationarity Checks</h1>
+<p>The UCI run retained 27 labels and 1,264 users in a 26-week slice. Across those 27 labels, buyer penetration and average transaction frequency among buyers had Pearson r=0.6269 and Spearman r=0.5624.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th align="right">Result</th>
+<th align="right">Gate</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pearson correlation</td>
+<td align="right">0.627</td>
+<td align="right">≥0.80</td>
+<td>FAIL</td>
+</tr>
+<tr>
+<td>Spearman correlation</td>
+<td align="right">0.562</td>
+<td align="right">descriptive</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Pearson p-value</td>
+<td align="right">0.00047</td>
+<td align="right">not a fit gate</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Logged stationarity</td>
+<td align="right">false</td>
+<td align="right">required for stable interpretation</td>
+<td>FAIL</td>
+</tr>
+<tr>
+<td>Maximum logged drift</td>
+<td align="right">0.375</td>
+<td align="right">≤0.10 under the script rule</td>
+<td>FAIL</td>
+</tr>
+</tbody>
+</table>
+<p>The result does not support the project's strong Double Jeopardy criterion. It also does not establish a failure of the empirical law. The UCI source is a UK giftware retailer, while the "bodycare" slice and label field were produced by heuristic category and brand transformations. The analysis therefore mixes a theoretical question with uncertain construct validity.</p>
+<h2>Correction to the previous edition</h2>
+<p>The script contains no middle-quantile or top-decile Double Jeopardy split. The value r=0.627 is the correlation across all retained labels. Claims that the relationship held in the middle but weakened among the top 10% are unsupported by this run.</p>
+<h2>Interval qualification</h2>
+<p>The logged interval [0.275, 0.462] does not contain the point estimate 0.627. Code inspection explains the mismatch: the bootstrap path computes penetration with a different denominator than the point-estimate path, and sampling users with replacement is reduced to set membership before recomputation. The interval is not used in this report.</p>
+</section>
+<section class="report-section" data-source="05-finding-3-buyer-frequency.md"><h1>Finding 3: High-Volume Buyers Showed Stronger Adjacent-Quarter Frequency Association</h1>
+<p>The quarterly UCI analysis assigned users to purchase-volume quartiles within each quarter, then regressed transaction frequency in one observed quarter on the adjacent observed quarter within each quartile. The predictor was standardized before estimation.</p>
+<table>
+<thead>
+<tr>
+<th>Purchase-volume quartile</th>
+<th align="right">Observations</th>
+<th align="right">Users</th>
+<th align="right">Standardized slope</th>
+<th align="right">R²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td align="right">126</td>
+<td align="right">107</td>
+<td align="right">-0.002</td>
+<td align="right">0.00001</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td align="right">88</td>
+<td align="right">76</td>
+<td align="right">0.321</td>
+<td align="right">0.196</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td align="right">77</td>
+<td align="right">67</td>
+<td align="right">0.765</td>
+<td align="right">0.204</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td align="right">190</td>
+<td align="right">120</td>
+<td align="right">3.341</td>
+<td align="right">0.472</td>
+</tr>
+</tbody>
+</table>
+<p>Q4 had the strongest within-sample association. The result says that adjacent-quarter transaction counts were more predictable among the highest purchase-volume observations under this grouping rule.</p>
+<h2>What the model does not identify</h2>
+<p>There is no marketing-contact variable, treatment assignment, campaign exposure, stock measure, or price control in the regression. R²=0.472 therefore does not mean that one additional contact causes repeat purchase, nor that the model explains 47% of incremental sales.</p>
+<p>The script names the shifted value <code>freq_t1</code>, but the shift points to the previous recorded quarter. Quartile membership is calculated from purchase volume in each quarter rather than from a fixed pre-period. These choices allow outcome-related grouping and make the Q1–Q4 comparison partly mechanical. A causal or predictive follow-up must define a fixed baseline cohort, preserve time direction, hold out later periods, and introduce the exposure whose effect is being estimated.</p>
+</section>
+<section class="report-section" data-source="06-finding-4-cep.md"><h1>Finding 4: The CEP Run Is a Failed Measurement Prototype</h1>
+<p>The archived Amazon run processed 1,000,000 review rows and wrote 256 aggregate rows covering 58 ASINs. It reported Pearson r=-0.280 between total review count per ASIN and mean lexical hit rate.</p>
+<p>That coefficient is not evidence of language bias. The audit log shows one retained language (<code>en</code>) and 27 excluded language codes. The run therefore did not compare 27 languages.</p>
+<h2>Why the intended construct was not recovered</h2>
+<p>Two schema mismatches change the meaning of the output.</p>
+<ol>
+<li>The CEP configuration is organized as <code>language → dimension → terms</code>, while the parser expects <code>dimension → language → terms</code>. The output consequently records <code>en</code> as the sole CEP category rather than quality, value, innovation, sustainability, and convenience.</li>
+<li>The parser passes ASIN values into a nested brand-normalization dictionary that expects brand-name keys. The retained "brands" are therefore product identifiers.</li>
+</ol>
+<p>The variable named penetration is total review count, not buyer penetration. The value r=-0.280 is a correlation between ASIN review volume and the malformed lexical-coverage output.</p>
+<h2>Withdrawn claim</h2>
+<p>No logged result or archived output contains a before/after test showing bottom-five CEP coverage rising from 38% to 52%. The previous edition converted two percentages into an intervention result without an observed intervention. That claim, and the associated <code>&#x3C;5% Δaccuracy</code> statement, are removed.</p>
+<h2>NBD diagnostic</h2>
+<p>The archive also reports NBD parameters and R²≈-7×10⁻⁶. The fitting routine estimates NBD parameters, but the evaluation path predicts the same sample mean for every user. The resulting R² evaluates a constant-mean predictor, not the fitted NBD distribution and not a full NBD-Dirichlet model. It cannot be used to claim that the Dirichlet model fits poorly.</p>
+</section>
+<section class="report-section" data-source="07-methods.md"><h1>Methods</h1>
+<p>This section describes what the archived scripts did. Labels such as "specification-compliant" and "BCa" are not adopted where the implementation does not meet those definitions.</p>
+<h2>Data preparation</h2>
+<ul>
+<li><strong>dunnhumby:</strong> household transactions were joined to product metadata, mapped to a beauty category, and filtered to the most recent 26 weeks in the processed file.</li>
+<li><strong>Instacart:</strong> orders and products were joined, product names were mapped to shampoo labels, and the most recent 26 weeks were retained.</li>
+<li><strong>UCI Online Retail II:</strong> invoice rows were transformed into user, date, quantity, category, and derived-label fields. The source describes a giftware retailer; the beauty/bodycare mapping is project-specific.</li>
+<li><strong>Amazon Review Data (2018):</strong> up to 1,000,000 review rows were converted to TSV and processed in 100,000-row chunks.</li>
+</ul>
+<p>Counts reported in this document are post-filter counts from the audit logs, not source-dataset totals.</p>
+<h2>Duplication of Purchase</h2>
+<p>The chosen dunnhumby run applied these conditions:</p>
+<ul>
+<li>category regex: <code>beauty</code></li>
+<li>26-week window</li>
+<li>user purchase-count quantile: ≥0.90</li>
+<li>at least two retained labels per user</li>
+<li>at least 20 buyers per label</li>
+<li>random seed: 42</li>
+</ul>
+<p>The script reduced the data to one row per user-label pair and formed a binary user-label matrix. For each off-diagonal pair it calculated a conditional overlap rate. It then copied the upper-triangle value into the lower triangle. The summary statistic was the weighted mean absolute deviation of upper-triangle values from their weighted mean, using the outer product of retained label counts as weights.</p>
+<p>The script ran 5,000 percentile resamples of off-diagonal matrix cells, a within-user week permutation, and a random label-assignment negative control. The output calls the first procedure BCa. It does not calculate bias correction or acceleration and does not resample the primary sampling unit.</p>
+<h2>Double Jeopardy</h2>
+<p>For each retained UCI label, penetration was the number of unique buyers divided by total unique users. Average frequency was row count divided by unique buyers. Pearson and Spearman correlations were computed across labels.</p>
+<p>The stationarity routine aggregated weekly penetration and frequency, measured first-to-last relative drift, and combined it with Kendall trend tests. The bootstrap routine attempted 5,000 user resamples, but replacement multiplicity was lost through membership filtering and its penetration denominator differed from the point-estimate denominator.</p>
+<h2>Buyer-frequency persistence</h2>
+<p>Transaction rows were aggregated to user-quarter observations. Purchase-volume quartiles were recomputed within each quarter. Within each quartile, the script standardized the current transaction count and regressed the shifted adjacent-quarter count on it using ordinary least squares. Reported confidence intervals are t-based slope intervals from that regression.</p>
+<h2>CEP lexical prototype</h2>
+<p>The parser detected review language, required at least 20 rows per ASIN-language cell, searched configured substrings, computed Wilson intervals for hit proportions, and correlated total review count with mean lexical coverage. The parser/configuration mismatch described in Finding 4 invalidates the intended dimension and multilingual interpretation.</p>
+<h2>Archived evidence</h2>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th>Input identification</th>
+<th>Timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dunnhumby DoP</td>
+<td>SHA prefix <code>e2470f224f7f0609</code></td>
+<td>2025-09-27 14:12:31</td>
+</tr>
+<tr>
+<td>Instacart DoP</td>
+<td>SHA prefix <code>fa486f16bde1d909</code></td>
+<td>2025-09-27 01:01:06</td>
+</tr>
+<tr>
+<td>Amazon CEP</td>
+<td>SHA prefix <code>faa6eadcba54534f</code></td>
+<td>2025-09-27 01:22:17</td>
+</tr>
+<tr>
+<td>UCI DJ</td>
+<td>recorded only as <code>loaded</code>; commit <code>unknown</code></td>
+<td>2025-09-23 00:55:12</td>
+</tr>
+<tr>
+<td>UCI buyer frequency</td>
+<td>recorded only as <code>loaded</code>; commit <code>unknown</code></td>
+<td>2025-09-23 13:28:06</td>
+</tr>
+<tr>
+<td>UCI NBD diagnostic</td>
+<td>recorded only as <code>loaded</code>; commit <code>unknown</code></td>
+<td>2025-09-23 13:28:45</td>
+</tr>
+</tbody>
+</table>
+<p>The absence of hashes and commit identifiers for the UCI runs prevents exact provenance reconstruction.</p>
+</section>
+<section class="report-section" data-source="08-limits.md"><h1>Limits and Claim Boundaries</h1>
+<h2>1. The datasets do not form one market</h2>
+<p>The analyses use grocery orders, household retail transactions, giftware invoices, and product reviews. Market boundaries, buyer identifiers, observation windows, and label construction differ. Agreement or disagreement across these outputs cannot be attributed to one common consumer process without a harmonized design.</p>
+<h2>2. Category and brand validity are unresolved</h2>
+<p>The UCI source is a UK giftware retailer. Its bodycare category and brand-like labels were created by project heuristics; retained labels include product-description tokens rather than verified beauty brands. The Amazon pipeline retained ASINs rather than normalized brands. These transformations weaken every claim that depends on a stable brand or category unit.</p>
+<h2>3. The DoP estimator requires reimplementation</h2>
+<ul>
+<li>Directional conditional duplication was forced into a symmetric matrix by copying one direction.</li>
+<li>Purchase rows were deduplicated before the values used as weights were counted.</li>
+<li>The interval is a percentile interval over pairwise cells, not a BCa interval over independent buyers or households.</li>
+<li>The weekly shuffle check is applied after each user-label pair has been reduced to one row, making repeated weeks structurally unavailable.</li>
+<li>The best run was selected after multiple filter combinations were tried.</li>
+</ul>
+<p>These conditions prevent the near-miss from functioning as a confirmatory statistical test.</p>
+<h2>4. The Double Jeopardy interval is invalid</h2>
+<p>The point estimate and bootstrap use different penetration denominators. Bootstrap draws with replacement are collapsed to membership, so repeated users receive no additional weight. The logged interval excludes the point estimate and is not interpretable. The stationarity check also failed.</p>
+<h2>5. The Q4 regression is non-causal</h2>
+<p>Purchase-volume quartiles are defined from contemporaneous outcomes, and the model contains no intervention. Higher Q4 R² can arise from the larger variance and persistence of high-volume buyers. No budget allocation or contact-frequency recommendation follows from this regression.</p>
+<h2>6. The CEP and NBD diagnostics do not test their named constructs</h2>
+<p>The CEP parser and lexicon schemas disagree, leaving one malformed category and one retained language. The NBD evaluation compares observations with a constant mean instead of predictions from the fitted distribution. Neither result can confirm or reject the corresponding theory.</p>
+<h2>7. Reproduction has not been demonstrated</h2>
+<p>The raw data are not bundled with the public report. Instacart and dunnhumby require account- or terms-mediated acquisition. The local analysis folder is not tied to a recorded Git commit, three logs record the input only as <code>loaded</code>, and the advertised one-hour end-to-end guarantee was never evidenced by a clean-room run.</p>
+<h2>8. There was no external review</h2>
+<p>No peer review, preregistration, or independent replication occurred. Thresholds were project-defined and should not be treated as universal theory tests.</p>
+<h2>Claim boundary</h2>
+<p>The archive supports only this claim: a 2025 exploratory pipeline recorded a near-miss DoP summary and several negative or uninterpretable diagnostics, while preserving enough logs to identify what must be rebuilt. It does not support causal marketing recommendations, validation of the Ehrenberg-Bass laws, or a published failure-to-replicate conclusion.</p>
+</section>
+<section class="report-section" data-source="09-reproduction-checklist.md"><h1>Reproduction and Publication Checklist</h1>
+<p>The current archive is not reproducible from the public report alone. This checklist defines the work required before the study can be described as a replication.</p>
+<h2>Freeze the research design</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Define each market and category without post-result filtering.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Define the brand unit and publish the normalization table.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Fix the observation window and buyer-inclusion rule before analysis.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Justify each decision gate from prior literature or label it explicitly as exploratory.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Separate exploratory parameter search from a held-out confirmatory run.</li>
+</ul>
+<h2>Repair the estimators</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Compute both directional duplication rates or use a symmetric overlap statistic whose denominator is defined in advance.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Resample buyers or households, preserving replacement multiplicity.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Implement an actual BCa interval, including bias correction and acceleration, or rename the interval.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Run temporal controls on non-deduplicated event data and specify the null being tested.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Use identical definitions in the Double Jeopardy point estimate and bootstrap.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Define buyer quartiles from a fixed baseline period and evaluate later periods out of sample.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Align the CEP parser with the lexicon schema and join ASINs to verified brand metadata.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Evaluate NBD probabilities or quantiles generated from the fitted model rather than a constant mean.</li>
+</ul>
+<h2>Freeze provenance</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Place the analysis code in version control and record a commit SHA in every run.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Record full SHA-256 hashes for every raw and processed input.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Publish dataset acquisition dates, licenses, and transformation scripts.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Lock the Python version and dependencies.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Store result tables and figures outside an opaque archive with a manifest of hashes.</li>
+</ul>
+<h2>Validate from a clean environment</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Acquire each dataset from its documented source.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Rebuild processed inputs without reusing local caches.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Run unit tests on a small hand-checkable buyer-brand matrix.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Recompute all primary statistics from one documented command.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Confirm that a second operator obtains identical outputs.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Measure actual runtime before making any time-to-reproduce claim.</li>
+</ul>
+<h2>Publication gate</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Report all attempted specifications or register the confirmatory one in advance.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Distinguish failure of a project threshold from failure of a theory.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Release code and non-restricted derived artifacts.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Obtain an independent statistical review.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Submit the corrected study as a replication attempt only after the above items pass.</li>
+</ul>
+<h2>Archived output names</h2>
+<p>The September 2025 audit trail identifies these primary outputs:</p>
+<ul>
+<li><code>results/dop_dunnhumby_beauty_spec_q90_b2_m20.csv</code></li>
+<li><code>results/dop_instacart_shampoo_specification_compliant.csv</code></li>
+<li><code>results/dj_bodycare.csv</code></li>
+<li><code>results/moderation_bodycare.csv</code></li>
+<li><code>results/cep_coverage_complete.csv</code></li>
+<li><code>results/dirichlet_bodycare.csv</code></li>
+</ul>
+<p>These filenames identify the historical snapshot. They are not evidence that the current pipeline reproduces from a clean checkout.</p>
+</section>
+<section class="report-section" data-source="10-references.md"><h1>References</h1>
+<h2>Marketing-science foundations</h2>
+<ol>
+<li>Ehrenberg, A. S. C. (1959). “The Pattern of Consumer Purchases.” <em>Journal of the Royal Statistical Society: Series C (Applied Statistics)</em>, 8(1), 26–41. <a href="https://doi.org/10.2307/2985810">https://doi.org/10.2307/2985810</a></li>
+<li>Goodhardt, G. J., Ehrenberg, A. S. C., &#x26; Chatfield, C. (1984). “The Dirichlet: A Comprehensive Model of Buying Behaviour.” <em>Journal of the Royal Statistical Society: Series A</em>, 147(5), 621–643. <a href="https://doi.org/10.2307/2981696">https://doi.org/10.2307/2981696</a></li>
+<li>Ehrenberg, A. S. C., Uncles, M. D., &#x26; Goodhardt, G. J. (2004). “Understanding Brand Performance Measures: Using Dirichlet Benchmarks.” <em>Journal of Business Research</em>, 57(12), 1307–1325. <a href="https://doi.org/10.1016/j.jbusres.2002.11.001">https://doi.org/10.1016/j.jbusres.2002.11.001</a></li>
+</ol>
+<p>These sources define empirical regularities and model structure. They do not supply the project-specific MAD≤0.015 or Pearson r≥0.80 gates.</p>
+<h2>Data sources</h2>
+<ol start="4">
+<li>Chen, D. (2012). <em>Online Retail II</em>. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C5CG6D">https://doi.org/10.24432/C5CG6D</a></li>
+<li>dunnhumby. <em>The Complete Journey</em>, Source Files. <a href="https://www.dunnhumby.com/source-files/">https://www.dunnhumby.com/source-files/</a></li>
+<li>Instacart. <em>Instacart Online Grocery Shopping Dataset 2017</em>. Kaggle. <a href="https://www.kaggle.com/datasets/instacart/instacart-online-grocery-shopping-2017">https://www.kaggle.com/datasets/instacart/instacart-online-grocery-shopping-2017</a></li>
+<li>Ni, J., Li, J., &#x26; McAuley, J. (2019). “Justifying Recommendations using Distantly-Labeled Reviews and Fine-Grained Aspects.” <em>Proceedings of EMNLP-IJCNLP 2019</em>, 188–197. <a href="https://doi.org/10.18653/v1/D19-1018">https://doi.org/10.18653/v1/D19-1018</a></li>
+<li>McAuley Lab, UC San Diego. <em>Amazon Review Data (2018)</em>. <a href="https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/">https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/</a></li>
+</ol>
+<h2>Archived project evidence</h2>
+<p>The numerical values in this report were checked against the September 2025 JSONL logs and CSV files named in the reproduction checklist. The logs for the dunnhumby, Instacart, and Amazon runs include input-hash prefixes. The UCI logs do not include a recoverable input hash or source commit.</p>
+</section>
+<section class="report-section" data-source="99-legal.md"><h1>Legal &#x26; Compliance</h1>
+<p>This report is provided for informational and educational purposes. It does not constitute professional, investment, or marketing advice. The archived analyses have not been peer reviewed and should not be used to make budget, targeting, or portfolio decisions.</p>
+<p>The source datasets remain subject to their respective licenses and access terms. This report does not redistribute restricted raw data.</p>
+<p>Contact information submitted through the distribution form is retained for up to 12 months for document delivery and research updates. Deletion requests may be sent to <a href="mailto:support@visageaiconsulting.com">support@visageaiconsulting.com</a>.</p>
+</section>
+</body>
+</html>

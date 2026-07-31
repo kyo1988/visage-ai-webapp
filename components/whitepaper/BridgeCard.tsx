@@ -2,20 +2,20 @@
 
 export default function BridgeCard() {
   const doItems = [
-    "Raise bottom-5 CEP to ≥52% (JP/EN normalized)",
-    "Optimize Q4 first; bound and report tail deviation",
-    "Keep Δaccuracy <5% under on-device constraints"
+    "Rebuild estimators against hand-checkable fixtures",
+    "Freeze categories, filters, and gates before rerunning",
+    "Record input hashes and a source commit in every log"
   ];
   
   const dontItems = [
-    "Treat q≥0.9 deviation as failure",
-    "Compare languages without normalization",
-    "Over-parameterize moderation"
+    "Call the DoP near-miss a pass",
+    "Read Q4 association as a contact effect",
+    "Report CEP language bias from the malformed output"
   ];
   
   return (
     <aside className="my-8 rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-5 shadow-[0_1px_0_#E7EAF0,0_8px_24px_-12px_rgba(20,37,63,.12)]">
-      <h3 className="text-[13px] font-semibold text-slate-700 mb-3">What we do this quarter</h3>
+      <h3 className="text-[13px] font-semibold text-slate-700 mb-3">What the next validation must do</h3>
       
       <div className="grid md:grid-cols-2 gap-4">
         <div>

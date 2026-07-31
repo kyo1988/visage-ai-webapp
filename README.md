@@ -20,8 +20,8 @@ A Next.js application featuring AI-powered skin analysis solutions and evidence-
 ### 📊 Evidence-Based Marketing Playbook
 - **Whitepaper Landing Page**: `/en/whitepaper/ebm-2025/`
 - **Lead Capture System**: Form submission with GA4 tracking and email automation
-- **PDF Generation**: Print-ready whitepaper with technical details
-- **Dual-Viewer Structure**: Marketing insights + technical methodology
+- **PDF Generation**: Print-ready replication audit generated from canonical Markdown
+- **Single Source Structure**: Findings, methods, limits, references, and reproduction requirements
 - **Email Integration**: Automated whitepaper delivery via Nodemailer
 
 ### 🎯 Analytics & Tracking
@@ -50,18 +50,21 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Whitepaper System
 
 ### Content Structure
-- **Executive Summary**: Plain-English insights from Q3 2025 experiments
-- **4 Key Findings**: Entry situations, heavy buyers, top quarter response, repertoire behavior
-- **Actionable Insights**: What it means, what to do next, how to measure
-- **Technical Details**: Collapsible methodology for each finding
-- **14-Day Checklist**: Implementation roadmap for immediate action
+- **Executive Summary**: Decision status for each archived analysis
+- **4 Findings**: DoP, Double Jeopardy, buyer-frequency persistence, and CEP pipeline audit
+- **Methods and Limits**: Exact implementation behavior and claim boundaries
+- **References**: Theory, datasets, and archived evidence
+- **Reproduction Checklist**: Requirements for a clean rerun and publication
 
 ### PDF Generation
 ```bash
-# Generate whitepaper PDF
+# Install the pinned PDF renderer once
+python3 -m pip install -r scripts/requirements-whitepaper.txt
+
+# Generate the canonical HTML and PDF
 npm run generate-whitepaper-pdf
 
-# Generate general PDF
+# Alias for the same report build
 npm run generate-pdf
 ```
 
@@ -72,7 +75,7 @@ npm run test-email
 ```
 
 ### Content Management
-- Markdown files in `content/whitepaper/ebm-2025/`
+- Canonical, Git-tracked Markdown files in `content/whitepaper/ebm-2025/`
 - Server-side rendering with `remark` and `remark-html`
 - Responsive design with Tailwind CSS
 - Email templates with HTML formatting

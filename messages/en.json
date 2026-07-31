@@ -1044,11 +1044,11 @@
   },
   "whitepaper": {
     "title": "Evidence-Based Marketing Playbook",
-    "subtitle": "Executive Preview v0.1",
-    "description": "AI-Powered Skin Analysis for E-commerce & Retail",
+    "subtitle": "Public-data replication audit · Revised July 2026",
+    "description": "A corrected audit of archived Ehrenberg-Bass analyses",
     "downloadCta": "Get the Whitepaper",
-    "ctaTitle": "Ready to Transform Your Marketing Strategy?",
-    "ctaDescription": "Download the complete whitepaper with actionable insights and implementation guidelines.",
+    "ctaTitle": "Read the corrected analysis",
+    "ctaDescription": "Download the revised findings, methods, limits, references, and publication checklist.",
     "formTitle": "Download Your Copy",
     "formDescription": "Get instant access to the complete Evidence-Based Marketing Playbook",
     "formFields": {
@@ -1066,10 +1066,10 @@
     "sections": {
       "cover": "Cover",
       "tldr": "Executive Summary",
-      "architecture": "Technical Architecture",
-      "reproduction": "Implementation Guide",
-      "caseStudies": "Case Studies",
-      "decisionBridge": "What We Do This Quarter",
+      "architecture": "What We Measured",
+      "reproduction": "Reproduction Requirements",
+      "caseStudies": "Archived Findings",
+      "decisionBridge": "Claim Boundaries",
       "legal": "Legal & Compliance"
     }
   },

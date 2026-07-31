@@ -61,31 +61,8 @@ export function markdownToHtml(markdown: string): string {
     .replace(/<p class="mb-4 text-gray-700 leading-relaxed">\s*<\/p>/g, '');
 }
 
-// Helper function to extract bridge text for specific findings
-export function getBridgeText(bridgeTexts: string, findingNumber: number): string {
-  const sections = bridgeTexts.split('## Finding ');
-  const targetSection = sections.find(section => section.startsWith(`${findingNumber} Bridge`));
-  
-  if (!targetSection) return '';
-  
-  // Extract content after the heading
-  const lines = targetSection.split('\n');
-  const contentStart = lines.findIndex(line => line.startsWith('**Technical note:**'));
-  
-  if (contentStart === -1) return '';
-  
-  return lines.slice(contentStart).join('\n').trim();
-}
-
 export async function loadWhitepaperContent(): Promise<{
   cover: string;
-  tldr: string;
-  architecture: string;
-  reproduction: string;
-  caseStudies: string;
-  decisionBridge: string;
-  legal: string;
-  // Marketing-focused content
   executiveSummary: string;
   whatWeMeasured: string;
   finding1: string;
@@ -96,69 +73,59 @@ export async function loadWhitepaperContent(): Promise<{
   limits: string;
   checklist: string;
   references: string;
-  bridgeTexts: string;
+  legal: string;
 }> {
   try {
     const contentDir = path.join(process.cwd(), 'content', 'whitepaper', 'ebm-2025');
   
-  const [
-    cover, tldr, architecture, reproduction, caseStudies, decisionBridge, legal,
-    executiveSummary, whatWeMeasured, finding1, finding2, finding3, finding4, methods, limits, checklist, references, bridgeTexts
-  ] = await Promise.all([
-    fs.readFile(path.join(contentDir, '00-cover.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '01-tldr.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '02-architecture.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '03-reproduction.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '04-case-snapshot.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '05-decision-bridge.md'), 'utf-8'),
-    fs.readFile(path.join(contentDir, '99-legal.md'), 'utf-8'),
-    // Marketing-focused content - use existing files
-    fs.readFile(path.join(contentDir, '01-tldr.md'), 'utf-8'), // executiveSummary
-    fs.readFile(path.join(contentDir, '02-architecture.md'), 'utf-8'), // whatWeMeasured
-    fs.readFile(path.join(contentDir, '03-dirichlet.md'), 'utf-8'), // finding1
-    fs.readFile(path.join(contentDir, '04-cep.md'), 'utf-8'), // finding2
-    fs.readFile(path.join(contentDir, '05-decision-bridge.md'), 'utf-8'), // finding3
-    fs.readFile(path.join(contentDir, '06-decision-bridge.md'), 'utf-8'), // finding4
-    fs.readFile(path.join(contentDir, '07-reproduction-checklist.md'), 'utf-8'), // methods
-    fs.readFile(path.join(contentDir, '06-reproduction-checklist.md'), 'utf-8'), // limits
-    fs.readFile(path.join(contentDir, '06-reproduction-checklist.md'), 'utf-8'), // checklist
-    fs.readFile(path.join(contentDir, '99-legal.md'), 'utf-8'), // references
-    fs.readFile(path.join(contentDir, '11-bridge-texts.md'), 'utf-8'), // bridgeTexts
-  ]);
+    const [
+      cover,
+      executiveSummary,
+      whatWeMeasured,
+      finding1,
+      finding2,
+      finding3,
+      finding4,
+      methods,
+      limits,
+      checklist,
+      references,
+      legal,
+    ] = await Promise.all([
+      fs.readFile(path.join(contentDir, '00-cover.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '01-executive-summary.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '02-what-we-measured.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '03-finding-1-duplication.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '04-finding-2-double-jeopardy.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '05-finding-3-buyer-frequency.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '06-finding-4-cep.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '07-methods.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '08-limits.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '09-reproduction-checklist.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '10-references.md'), 'utf-8'),
+      fs.readFile(path.join(contentDir, '99-legal.md'), 'utf-8'),
+    ]);
 
 
-  return {
-    cover,
-    tldr,
-    architecture,
-    reproduction,
-    caseStudies,
-    decisionBridge,
-    legal,
-    // Marketing-focused content
-    executiveSummary,
-    whatWeMeasured,
-    finding1,
-    finding2,
-    finding3,
-    finding4,
-    methods,
-    limits,
-    checklist,
-    references,
-    bridgeTexts,
-  };
+    return {
+      cover,
+      executiveSummary,
+      whatWeMeasured,
+      finding1,
+      finding2,
+      finding3,
+      finding4,
+      methods,
+      limits,
+      checklist,
+      references,
+      legal,
+    };
   } catch (error) {
     console.error('Error loading whitepaper content:', error);
     // Return default content to prevent page crash
     return {
       cover: '# Cover\n\nEvidence-Based Marketing Playbook',
-      tldr: '# TL;DR\n\nKey insights from our marketing experiments.',
-      architecture: '# Architecture\n\nTechnical implementation details.',
-      reproduction: '# Reproduction\n\nHow to reproduce our findings.',
-      caseStudies: '# Case Studies\n\nReal-world applications.',
-      decisionBridge: '# Decision Bridge\n\nActionable recommendations.',
-      legal: '# Legal\n\nTerms and conditions.',
       executiveSummary: '# Executive Summary\n\nOverview of key findings.',
       whatWeMeasured: '# What We Measured\n\nMetrics and methodology.',
       finding1: '# Finding 1\n\nFirst key finding.',
@@ -169,7 +136,7 @@ export async function loadWhitepaperContent(): Promise<{
       limits: '# Limits\n\nStudy limitations.',
       checklist: '# Checklist\n\nImplementation checklist.',
       references: '# References\n\nSource materials.',
-      bridgeTexts: '# Bridge Texts\n\nTechnical details.',
+      legal: '# Legal\n\nTerms and conditions.',
     };
   }
 }

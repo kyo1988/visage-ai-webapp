@@ -13,9 +13,13 @@ const ADMIN_EMAIL =
   process.env.ADMIN_EMAIL ||
   'admin@visageaiconsulting.com';
 const WHITEPAPER_PDF_URL =
-  process.env.WHITEPAPER_PDF_URL ||
-  process.env.NEXT_PUBLIC_WHITEPAPER_PDF_URL ||
-  'https://www.visageaiconsulting.com/whitepapers/ebm-2025-v0.1.pdf';
+  process.env.WHITEPAPER_V02_PDF_URL ||
+  process.env.NEXT_PUBLIC_WHITEPAPER_V02_PDF_URL ||
+  'https://www.visageaiconsulting.com/whitepapers/ebm-2025-v0.2.pdf';
+const WHITEPAPER_REVISION_NOTICE_URL =
+  process.env.WHITEPAPER_V02_NOTICE_URL ||
+  process.env.NEXT_PUBLIC_WHITEPAPER_V02_NOTICE_URL ||
+  'https://www.visageaiconsulting.com/whitepapers/ebm-2025-v0.2.html#revision-notice';
 const CALENDLY_URL =
   process.env.CALENDLY_URL ||
   process.env.CALCOM_URL ||
@@ -69,11 +73,12 @@ export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean
     const fromEmail = EMAIL_USER;
     const fromName = EMAIL_FROM_NAME;
     const pdfUrl = WHITEPAPER_PDF_URL;
+    const revisionNoticeUrl = WHITEPAPER_REVISION_NOTICE_URL;
 
     const mailOptions = {
       from: `"${fromName}" <${fromEmail}>`,
       to: lead.email,
-      subject: 'Your Evidence-Based Marketing Playbook is Ready! 📊',
+      subject: 'Evidence-Based Marketing Playbook v0.2 is ready',
       html: `
         <!DOCTYPE html>
         <html>
@@ -87,23 +92,24 @@ export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean
           <!-- Header -->
           <div style="text-align: center; margin-bottom: 30px;">
             <h1 style="color: #1e40af; margin-bottom: 10px;">Evidence-Based Marketing Playbook</h1>
-            <p style="color: #6b7280; font-size: 18px;">Executive Preview v0.1</p>
+            <p style="color: #6b7280; font-size: 18px;">Public-data replication audit · Version 0.2 · Revised July 2026</p>
           </div>
 
           <!-- Greeting -->
           <div style="margin-bottom: 30px;">
             <p>Hi ${lead.name},</p>
-            <p>Thank you for your interest in our Evidence-Based Marketing Playbook! Your copy is ready for download.</p>
+            <p>Thank you for your interest in the Evidence-Based Marketing Playbook. Version 0.2 of the public-data replication audit is ready for download.</p>
+            <p><strong>Revision notice:</strong> Version 0.2 withdraws five claims from v0.1 after a code audit. <a href="${revisionNoticeUrl}" style="color: #1e40af;">Read the notice.</a></p>
           </div>
 
           <!-- Key Findings Preview -->
           <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
-            <h2 style="color: #1e40af; margin-bottom: 15px;">What's Inside:</h2>
+            <h2 style="color: #1e40af; margin-bottom: 15px;">What the revision contains:</h2>
             <ul style="margin: 0; padding-left: 20px;">
-              <li><strong>Entry Situations:</strong> 38% → 52% improvement in weak moments</li>
-              <li><strong>Heavy Buyers:</strong> Correlation analysis reveals operational signals</li>
-              <li><strong>Top Quarter Response:</strong> ~47% of repeat purchase explained</li>
-              <li><strong>Repertoire Behavior:</strong> Near-pass validation for market dynamics</li>
+              <li><strong>Duplication of Purchase:</strong> weighted MAD 0.015863, reported as a failed near-miss against the 0.015 gate</li>
+              <li><strong>Double Jeopardy:</strong> Pearson r=0.627, with the failed stationarity check retained</li>
+              <li><strong>Buyer frequency:</strong> R²=0.472 in Q4, restricted to a descriptive adjacent-quarter association</li>
+              <li><strong>CEP and NBD:</strong> unsupported conclusions withdrawn after code and configuration audit</li>
             </ul>
           </div>
 
@@ -111,18 +117,18 @@ export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean
           <div style="text-align: center; margin: 30px 0;">
             <a href="${pdfUrl}" 
                style="display: inline-block; background: #1e40af; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px;">
-              📥 Download Your Whitepaper
+              📥 Download Version 0.2
             </a>
           </div>
 
-          <!-- Next Steps -->
-          <div style="background: #ecfdf5; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
-            <h3 style="color: #059669; margin-bottom: 15px;">Next Steps:</h3>
+          <!-- Scope -->
+          <div style="background: #fffbeb; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <h3 style="color: #92400e; margin-bottom: 15px;">Scope of the report:</h3>
             <ol style="margin: 0; padding-left: 20px;">
-              <li>Review the 14-day implementation checklist</li>
-              <li>Focus on your five weakest entry situations</li>
-              <li>Set up measurement for the top quarter of buyers</li>
-              <li>Monitor heavy-buyer behavior changes</li>
+              <li>Exploratory replication audit, not a client case study</li>
+              <li>No causal marketing or budget-allocation claims</li>
+              <li>Methods and failure conditions stated explicitly</li>
+              <li>Reproduction and publication checklist included</li>
             </ol>
           </div>
 
@@ -141,25 +147,29 @@ export async function sendWhitepaperEmail(lead: WhitepaperLead): Promise<boolean
         </html>
       `,
       text: `
-Evidence-Based Marketing Playbook - Executive Preview v0.1
+Evidence-Based Marketing Playbook
+Public-data replication audit - Version 0.2 - Revised July 2026
 
 Hi ${lead.name},
 
-Thank you for your interest in our Evidence-Based Marketing Playbook! Your copy is ready for download.
+Thank you for your interest in the Evidence-Based Marketing Playbook. Version 0.2 of the public-data replication audit is ready for download.
 
-What's Inside:
-- Entry Situations: 38% → 52% improvement in weak moments
-- Heavy Buyers: Correlation analysis reveals operational signals  
-- Top Quarter Response: ~47% of repeat purchase explained
-- Repertoire Behavior: Near-pass validation for market dynamics
+Revision notice: Version 0.2 withdraws five claims from v0.1 after a code audit.
+Read the notice: ${revisionNoticeUrl}
 
-Download your whitepaper: ${pdfUrl}
+What the revision contains:
+- Duplication of Purchase: weighted MAD 0.015863, a failed near-miss against the 0.015 gate
+- Double Jeopardy: Pearson r=0.627, with the failed stationarity check retained
+- Buyer frequency: R²=0.472 in Q4, restricted to a descriptive adjacent-quarter association
+- CEP and NBD: unsupported conclusions withdrawn after code and configuration audit
 
-Next Steps:
-1. Review the 14-day implementation checklist
-2. Focus on your five weakest entry situations
-3. Set up measurement for the top quarter of buyers
-4. Monitor heavy-buyer behavior changes
+Download version 0.2: ${pdfUrl}
+
+Scope:
+1. Exploratory replication audit, not a client case study
+2. No causal marketing or budget-allocation claims
+3. Methods and failure conditions stated explicitly
+4. Reproduction and publication checklist included
 
 Questions? Reply to this email or visit our website: https://www.visageaiconsulting.com
 
