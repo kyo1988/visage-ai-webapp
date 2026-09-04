@@ -137,7 +137,7 @@ export default function AppLandingPage() {
         <StoryRow
           eyebrow="YOUR ROUTINE FIRST"
           title="See whether your routine already covers it"
-          body="Before considering another product, Visage AI checks it against what you already use. No extra purchase needed is a valid, common answer."
+          body="Before considering another product, Visage AI checks it against what you already use. No extra purchase needed is a valid answer."
           imgSrc="/images/app-landing/routine-covered.png"
           imgAlt="Visage AI showing that the current routine already covers the relevant category"
           reverse
@@ -154,7 +154,7 @@ export default function AppLandingPage() {
         <StoryRow
           eyebrow="KEEP IT GROUNDED IN WHAT YOU USE"
           title="Your routine, grounded in what you actually use"
-          body="My Routine reflects the products you're really using today — not a wishlist, not a fabricated ideal routine. Every future decision starts from that current-use truth."
+          body="My Routine reflects the products you're really using today — not a wishlist, not a fabricated ideal routine. When routine context matters, product decisions start from that current-use truth."
           imgSrc="/images/app-landing/my-routine.png"
           imgAlt="Visage AI My Routine screen listing current products"
           reverse
