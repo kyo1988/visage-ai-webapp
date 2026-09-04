@@ -56,7 +56,7 @@ function StoryRow({
       }
     >
       <div className="w-full md:w-1/2">
-        <p className="text-sm font-bold tracking-wide text-[#5F46BE]">
+        <p className="text-sm font-semibold tracking-wide text-[#5F46BE]">
           {eyebrow}
         </p>
         <h3 className="mt-3 text-2xl font-bold text-[#231C38] md:text-3xl">
@@ -104,26 +104,38 @@ export default function AppLandingPage() {
         <div className="mx-auto mt-12 w-full max-w-[280px] md:max-w-[320px]">
           <Image
             src="/images/app-landing/priority.png"
-            alt="Visage AI Analysis Result showing today's one clear priority"
+            alt="Visage AI Analysis Result showing today's one clear priority: Daily UV Protection"
             width={1320}
-            height={2638}
+            height={1140}
             className="w-full h-auto drop-shadow-[0_30px_60px_rgba(95,70,190,0.22)]"
             priority
           />
         </div>
       </section>
 
+      {/* No-buy differentiation — moved up, one of the strongest early messages */}
+      <section className="mx-auto max-w-2xl px-6 pt-20 pb-4 text-center md:pt-28">
+        <h2 className="text-2xl font-bold leading-snug text-[#231C38] md:text-4xl">
+          Sometimes the best recommendation is not another product.
+        </h2>
+        <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-[#4b4560] md:text-lg">
+          Visage AI checks what you already use first. If your routine
+          already covers it, buying more may not make sense. When a real gap
+          remains, one product may be worth considering.
+        </p>
+      </section>
+
       {/* Product story */}
       <section className="mx-auto max-w-5xl px-6">
         <div className="border-t border-[#E0D6F5]" />
         <StoryRow
-          eyebrow="01 — ONE CLEAR PRIORITY"
+          eyebrow="ONE CLEAR PRIORITY"
           title="Understand what to focus on today"
           body="Take a photo and Visage AI surfaces one clear priority, not a dashboard of numbers to interpret on your own."
         />
         <div className="border-t border-[#E0D6F5]" />
         <StoryRow
-          eyebrow="02 — CHECK WHAT YOU ALREADY USE"
+          eyebrow="YOUR ROUTINE FIRST"
           title="See whether your routine already covers it"
           body="Before considering another product, Visage AI checks it against what you already use. No extra purchase needed is a valid, common answer."
           imgSrc="/images/app-landing/routine-covered.png"
@@ -132,7 +144,7 @@ export default function AppLandingPage() {
         />
         <div className="border-t border-[#E0D6F5]" />
         <StoryRow
-          eyebrow="03 — RETURN AND COMPARE"
+          eyebrow="COME BACK AND COMPARE"
           title="Come back later and compare"
           body="Complete another analysis later to compare available measured results in Skin Journey — described plainly, without promising a particular outcome."
           imgSrc="/images/app-landing/skin-journey.png"
@@ -140,34 +152,38 @@ export default function AppLandingPage() {
         />
         <div className="border-t border-[#E0D6F5]" />
         <StoryRow
-          eyebrow="04 — USEFUL CONTEXT FOR TODAY"
-          title="Simple guidance, grounded in your routine"
-          body="When truthful current context is available, Visage AI can offer simple day-to-day guidance without asking for another full analysis — and your routine stays part of the picture, always at hand."
+          eyebrow="KEEP IT GROUNDED IN WHAT YOU USE"
+          title="Your routine, grounded in what you actually use"
+          body="My Routine reflects the products you're really using today — not a wishlist, not a fabricated ideal routine. Every future decision starts from that current-use truth."
           imgSrc="/images/app-landing/my-routine.png"
           imgAlt="Visage AI My Routine screen listing current products"
           reverse
         />
       </section>
 
-      {/* Trust */}
-      <section className="mx-auto max-w-3xl px-6 py-16 md:py-24">
+      {/* Trust — compact, scannable */}
+      <section className="mx-auto max-w-2xl px-6 py-16 md:py-24">
         <h2 className="text-center text-2xl font-bold text-[#231C38] md:text-3xl">
           Built to be honest with you
         </h2>
-        <ul className="mt-8 space-y-4 text-base text-[#4b4560] md:text-lg">
+        <ul className="mx-auto mt-8 grid max-w-lg grid-cols-1 gap-x-8 gap-y-3 text-base text-[#4b4560] sm:grid-cols-2 md:text-lg">
           {[
-            "Beauty and self-care guidance, not medical diagnosis or treatment advice.",
-            "No identity recognition.",
-            "Your existing routine may already be enough — Visage AI doesn't have to recommend another purchase.",
-            "Measured history is presented plainly, without guaranteeing improvement.",
-            "Privacy-safe sharing does not require sharing a face image.",
+            "No identity recognition",
+            "No forced purchase",
+            "Beauty guidance, not medical diagnosis",
+            "Measured history without guaranteed improvement",
           ].map((line) => (
-            <li key={line} className="flex gap-3">
-              <span className="mt-1 text-[#5F46BE]">•</span>
+            <li key={line} className="flex gap-2">
+              <span className="text-[#5F46BE]">•</span>
               <span>{line}</span>
             </li>
           ))}
         </ul>
+        <p className="mt-8 text-center text-sm text-[#6b6580]">
+          <a href="/en/privacy" className="underline hover:text-[#231C38]">
+            Privacy Policy
+          </a>
+        </p>
       </section>
 
       {/* Closing CTA */}
