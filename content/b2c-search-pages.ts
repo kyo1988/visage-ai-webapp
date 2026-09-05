@@ -1,12 +1,9 @@
 // Typed content source for the /learn organic-acquisition surface.
 // Each entry drives a statically generated page at /learn/[slug].
 //
-// `hypothesis` tags which positioning idea a page is testing, so CTA
-// analytics (seo_app_cta_click) can be grouped by message rather than URL:
-//   H1 = "your routine already covers this" (coverage check)
-//   H2 = "you may not need another product" (avoid unnecessary purchase)
-//   H3 = "simplify by role, not product count"
-//   H4 = "track progress with dated comparisons" (Skin Journey)
+// `hypothesis` tags each page against the canonical Growth hypothesis
+// taxonomy (H1-H4), so CTA analytics (seo_app_cta_click) can be grouped
+// by message rather than URL.
 
 export type Hypothesis = "H1" | "H2" | "H3" | "H4";
 
@@ -103,7 +100,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
           "That's normal, and it's also a reasonable time to do nothing new. \"No extra purchase needed\" is a legitimate outcome, not a failure to find something to buy.",
       },
     ],
-    hypothesis: "H1",
+    hypothesis: "H4",
     cta: {
       heading: "Check your own routine against today's priority",
       body: "Take a photo in Visage AI to see one clear priority, then check whether your current routine already covers it.",
@@ -222,7 +219,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         heading: "Cut duplication first",
         paragraphs: [
-          "The most common source of an overcomplicated routine isn't too many roles — it's the same role covered twice. Two products doing the same job add steps and cost without adding coverage. Once you've listed roles, duplicates are usually the easiest and safest thing to remove.",
+          "A common source of an overcomplicated routine is the same role being covered more than once. Two products doing the same job add steps and cost without adding coverage. Once you've listed roles, genuine duplication can be a practical place to simplify.",
         ],
       },
       {
@@ -250,7 +247,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
           "Gradual changes make it easier to notice what a removal actually affects. Removing several unclear steps at once makes it harder to tell what changed and why.",
       },
     ],
-    hypothesis: "H3",
+    hypothesis: "H4",
     cta: {
       heading: "See your current routine's roles laid out plainly",
       body: "My Routine in Visage AI reflects what you're actually using today, so simplifying starts from what's real.",
@@ -322,10 +319,10 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "What's the easiest first step to reduce complexity?",
         answer:
-          "Identify duplicated roles first. They're usually the safest steps to consolidate, since removing a duplicate doesn't remove any coverage you actually have.",
+          "Identify genuinely duplicated roles first. Consolidating genuine duplication can preserve the intended role while reducing complexity.",
       },
     ],
-    hypothesis: "H3",
+    hypothesis: "H4",
     cta: {
       heading: "Get a clear read on what you're actually using",
       body: "Visage AI lays out your current routine and priority in plain terms, so you can judge complexity from clarity, not guesswork.",
@@ -394,7 +391,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
           "That's exactly why routine context matters alongside the dates. Knowing what you were using at each point makes the comparison meaningful instead of ambiguous.",
       },
     ],
-    hypothesis: "H4",
+    hypothesis: "H3",
     cta: {
       heading: "Start a comparison you can trust",
       body: "Skin Journey keeps your measured results tied to dates, so your next check-in is a real comparison, not a guess.",
