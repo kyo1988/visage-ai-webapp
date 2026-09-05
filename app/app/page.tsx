@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { track } from "@/app/lib/analytics";
+import { getCurrentUtms } from "@/app/lib/utm-capture";
 
 const APP_STORE_URL =
   "https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785";
@@ -21,7 +22,18 @@ function AppStoreButton({
       target="_blank"
       rel="noopener noreferrer"
       data-analytics-id="app_store_cta_click"
-      onClick={() => track("app_store_cta_click", { from, page: "/app" })}
+      onClick={() => {
+        const utms = getCurrentUtms();
+        track("app_store_cta_click", {
+          from,
+          page: "/app",
+          utm_source: utms.utm_source ?? "(none)",
+          utm_medium: utms.utm_medium ?? "(none)",
+          utm_campaign: utms.utm_campaign ?? "(none)",
+          utm_term: utms.utm_term ?? "(none)",
+          utm_content: utms.utm_content ?? "(none)",
+        });
+      }}
       className={
         "inline-flex items-center justify-center rounded-2xl bg-[#5F46BE] px-7 py-4 text-base font-semibold text-white shadow-[0_15px_30px_rgba(95,70,190,0.25)] transition hover:opacity-90 " +
         (large ? "text-lg px-8 py-5 " : "") +
