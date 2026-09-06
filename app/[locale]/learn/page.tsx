@@ -12,7 +12,14 @@ export function generateMetadata({ params: { locale } }: { params: { locale: str
   return {
     title,
     description,
-    alternates: { canonical: `${SITE_URL}/ja/learn` },
+    alternates: {
+      canonical: `${SITE_URL}/ja/learn`,
+      languages: {
+        en: `${SITE_URL}/learn`,
+        ja: `${SITE_URL}/ja/learn`,
+        "x-default": `${SITE_URL}/learn`,
+      },
+    },
     openGraph: {
       title,
       description,
