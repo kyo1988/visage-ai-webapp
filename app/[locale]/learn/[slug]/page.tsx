@@ -5,6 +5,12 @@ import { japaneseB2CSearchPages } from "@/content/b2c-search-pages-ja";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
 
+const ENGLISH_EQUIVALENTS: Record<string, string> = {
+  "skincare-routine-review": "is-my-skincare-routine-enough",
+  "do-i-need-another-skincare-product": "do-i-need-another-skincare-product",
+  "skincare-before-buying-checklist": "skincare-checklist-before-buying",
+};
+
 function getPage(slug: string) {
   return japaneseB2CSearchPages.find((page) => page.slug === slug);
 }
@@ -18,10 +24,22 @@ export function generateMetadata({
   const page = getPage(slug);
   if (!page) return {};
   const url = `${SITE_URL}/ja/learn/${page.slug}`;
+  const englishSlug = ENGLISH_EQUIVALENTS[page.slug];
   return {
     title: page.title,
     description: page.description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(englishSlug
+        ? {
+            languages: {
+              en: `${SITE_URL}/learn/${englishSlug}`,
+              ja: url,
+              "x-default": `${SITE_URL}/learn/${englishSlug}`,
+            },
+          }
+        : {}),
+    },
     openGraph: {
       title: page.title,
       description: page.description,

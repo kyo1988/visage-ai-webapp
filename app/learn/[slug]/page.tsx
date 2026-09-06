@@ -12,6 +12,12 @@ import LearnCta from "../LearnCta";
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
 
+const JAPANESE_EQUIVALENTS: Record<string, string> = {
+  "is-my-skincare-routine-enough": "skincare-routine-review",
+  "do-i-need-another-skincare-product": "do-i-need-another-skincare-product",
+  "skincare-checklist-before-buying": "skincare-before-buying-checklist",
+};
+
 export const dynamicParams = false;
 
 type Props = { params: { slug: string } };
@@ -25,11 +31,23 @@ export function generateMetadata({ params }: Props): Metadata {
   if (!page) return {};
 
   const url = `${SITE_URL}/learn/${page.slug}`;
+  const japaneseSlug = JAPANESE_EQUIVALENTS[page.slug];
 
   return {
     title: page.title,
     description: page.description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(japaneseSlug
+        ? {
+            languages: {
+              en: url,
+              ja: `${SITE_URL}/ja/learn/${japaneseSlug}`,
+              "x-default": url,
+            },
+          }
+        : {}),
+    },
     openGraph: {
       title: page.title,
       description: page.description,
