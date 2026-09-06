@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
 import AnalyticsListener from "@/app/analytics-listener";
 import AppCookieBanner from "@/app/app/AppCookieBanner";
+
+export const metadata: Metadata = {
+  itunes: {
+    appId: "6748892785",
+  },
+};
 
 export default function LearnLayout({
   children,
