@@ -7,6 +7,7 @@ export default function Footer() {
   const t = intl.useTranslations();
   const locale = intl.useLocale();
   const base = `/${locale}`;
+  const learnLabel = locale === 'ja' ? 'スキンケアガイド' : 'Skincare guides';
 
   const nav = [
     { href: `${base}`, label: t("footer.sitemap.product") },
@@ -19,7 +20,8 @@ export default function Footer() {
     { href: `${base}/contact`, label: t("footer.sitemap.contact") },
     { href: `${base}/technology`, label: "Technology" },
     { href: `${base}/practices`, label: "Best Practices" },
-    { href: `${base}/guide`, label: "Store Guide" }
+    { href: `${base}/guide`, label: "Store Guide" },
+    { href: "/learn", label: learnLabel }
   ];
 
   return (
