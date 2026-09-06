@@ -2,6 +2,13 @@
 
 A Next.js application featuring AI-powered skin analysis solutions and evidence-based marketing insights.
 
+## B2C Skincare Decision Guides
+
+Consumer-facing guides focus on one clear skincare priority, checking whether the current routine already covers it, and treating "no additional purchase needed" as a valid outcome. These guides are informational and are not medical diagnosis or treatment.
+
+- [Skincare Routine Guides (English)](https://www.visageaiconsulting.com/learn)
+- [スキンケア見直しガイド (日本語)](https://www.visageaiconsulting.com/ja/learn)
+
 ## Features
 
 ### 🧬 AI Skin Analysis
