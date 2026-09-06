@@ -5,12 +5,6 @@ import { japaneseB2CSearchPages } from "@/content/b2c-search-pages-ja";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return japaneseB2CSearchPages.map((page) => ({ locale: "ja", slug: page.slug }));
-}
-
 function getPage(slug: string) {
   return japaneseB2CSearchPages.find((page) => page.slug === slug);
 }
