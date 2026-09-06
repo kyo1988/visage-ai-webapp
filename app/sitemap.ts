@@ -1,6 +1,6 @@
-import type {MetadataRoute} from 'next';
+import type { MetadataRoute } from 'next';
 import { b2cSearchPages } from '@/content/b2c-search-pages';
-import { japaneseB2CSearchPages } from '@/content/b2c-search-pages-ja';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.visageaiconsulting.com';
   const paths = [
@@ -9,9 +9,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/en/docs','/en/docs/sdk-js','/en/docs/sdk-swift','/en/docs/sdk-kotlin','/en/docs/security',
     '/ja/pricing','/en/pricing','/ja/demo','/en/demo',
     '/ja/privacy','/en/privacy',
-    '/learn', ...b2cSearchPages.map(p => `/learn/${p.slug}`),
-    '/ja/learn', ...japaneseB2CSearchPages.map(p => `/ja/learn/${p.slug}`)
+    '/learn', ...b2cSearchPages.map((p) => `/learn/${p.slug}`),
+    '/ja/learn',
+    '/ja/learn/skincare-routine-review',
+    '/ja/learn/do-i-need-another-skincare-product',
+    '/ja/learn/skincare-before-buying-checklist'
   ];
   const now = new Date();
-  return paths.map(p=>({ url: base + p, lastModified: now, changeFrequency:'weekly', priority: p==='/ja'||p==='/en'||p==='/app'?0.9:0.7 }));
+  return paths.map((p) => ({
+    url: base + p,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: p === '/ja' || p === '/en' || p === '/app' ? 0.9 : 0.7,
+  }));
 }
