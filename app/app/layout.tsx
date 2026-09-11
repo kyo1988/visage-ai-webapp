@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   metadataBase: new URL(base),
+  itunes: {
+    appId: "6748892785",
+  },
   alternates: {
     canonical: `${base}/app`,
   },
