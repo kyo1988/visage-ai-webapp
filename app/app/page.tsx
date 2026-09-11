@@ -5,7 +5,7 @@ import { track } from "@/app/lib/analytics";
 import { getCurrentUtms } from "@/app/lib/utm-capture";
 
 const APP_STORE_URL =
-  "https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785";
+  "https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785?ppid=2e97fead-211e-4219-a353-5ec1246b3730";
 
 function AppStoreButton({
   from,
