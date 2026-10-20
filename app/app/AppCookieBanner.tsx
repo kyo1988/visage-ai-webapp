@@ -6,10 +6,10 @@ const CONSENT_KEY = "ga_consent";
 
 type ConsentValue = "granted" | "denied";
 
-function gtag(...args: any[]) {
+function gtag(..._args: any[]) {
   if (typeof window === "undefined") return;
   (window as any).dataLayer = (window as any).dataLayer || [];
-  (window as any).dataLayer.push(args);
+  (window as any).dataLayer.push(arguments);
 }
 
 // English-only consent banner scoped to /app. The shared CookieBanner
