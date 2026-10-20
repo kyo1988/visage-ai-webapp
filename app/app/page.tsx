@@ -3,6 +3,11 @@
 import Image from "next/image";
 import { track } from "@/app/lib/analytics";
 import { getCurrentUtms } from "@/app/lib/utm-capture";
+import messages from "@/messages/en.json";
+
+// /app is the existing English consumer destination. Keep the localized
+// /en and /ja site routes and their locale switcher unchanged.
+const copy = messages.landing.consumerApp;
 
 const APP_STORE_URL =
   "https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785?ppid=2e97fead-211e-4219-a353-5ec1246b3730&pt=127999842&ct=owned-web-routine-sep26&mt=8";
@@ -35,12 +40,12 @@ function AppStoreButton({
         });
       }}
       className={
-        "inline-flex items-center justify-center rounded-2xl bg-[#5F46BE] px-7 py-4 text-base font-semibold text-white shadow-[0_15px_30px_rgba(95,70,190,0.25)] transition hover:opacity-90 " +
-        (large ? "text-lg px-8 py-5 " : "") +
+        "inline-flex min-h-12 max-w-full items-center justify-center rounded-full bg-[#5F46BE] px-7 py-4 text-center text-base font-semibold leading-snug text-white shadow-[0_8px_24px_rgba(95,70,190,0.16)] transition hover:bg-[#513BA6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5F46BE] " +
+        (large ? "md:text-lg md:px-8 " : "") +
         className
       }
     >
-      Download on the App Store
+      {copy.appStoreCta}
     </a>
   );
 }
@@ -51,6 +56,7 @@ function StoryRow({
   body,
   imgSrc,
   imgAlt,
+  imgHeight = 2868,
   reverse,
 }: {
   eyebrow: string;
@@ -58,6 +64,7 @@ function StoryRow({
   body: string;
   imgSrc?: string;
   imgAlt?: string;
+  imgHeight?: number;
   reverse?: boolean;
 }) {
   return (
@@ -84,7 +91,7 @@ function StoryRow({
             src={imgSrc}
             alt={imgAlt ?? ""}
             width={1320}
-            height={2778}
+            height={imgHeight}
             className="w-full h-auto drop-shadow-[0_25px_50px_rgba(95,70,190,0.18)]"
             priority={false}
           />
@@ -96,79 +103,77 @@ function StoryRow({
 
 export default function AppLandingPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#FAF8FF] to-[#E8E2F8] text-[#231C38]">
-      {/* Hero — above the fold: brand, one value prop, one supporting line, one CTA, one visual */}
-      <section className="mx-auto w-full max-w-6xl px-6 pt-12 text-center md:pt-20">
-        <div className="text-sm font-bold tracking-[0.2em] text-[#5F46BE]">
+    <main className="min-h-screen bg-gradient-to-b from-[#FAF8FF] to-[#E8E2F8] text-[#231C38] [&_a]:focus-visible:outline [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-4 [&_a]:focus-visible:outline-[#5F46BE]">
+      <section aria-labelledby="app-hero-title" className="mx-auto w-full max-w-6xl px-6 pt-8 md:pt-12">
+        <div className="text-sm font-semibold tracking-[0.2em] text-[#5F46BE]">
           VISAGE AI
         </div>
-        <h1 className="mx-auto mt-4 max-w-2xl text-4xl font-bold leading-tight text-[#231C38] md:text-6xl">
-          One clear priority.
-          <br />
-          Less guessing.
-        </h1>
-        <p className="mx-auto mt-5 max-w-md text-lg text-[#4b4560] md:text-xl">
-          Take a photo to understand what to focus on today.
-        </p>
-        <div className="mt-8 flex justify-center">
-          <AppStoreButton from="hero" large />
-        </div>
-        <div className="mx-auto mt-12 w-full max-w-[280px] md:max-w-[320px]">
-          <Image
-            src="/images/app-landing/priority.png"
-            alt="Visage AI Analysis Result showing today's one clear priority: Daily UV Protection"
-            width={1320}
-            height={1140}
-            className="w-full h-auto drop-shadow-[0_30px_60px_rgba(95,70,190,0.22)]"
-            priority
-          />
+        <div className="grid items-center gap-10 pb-14 pt-7 md:grid-cols-[1.35fr_0.8fr] md:gap-16 md:pb-20 md:pt-12">
+          <div>
+            <h1 id="app-hero-title" className="max-w-2xl text-[2.15rem] font-semibold leading-[1.13] tracking-[-0.03em] text-[#231C38] sm:text-5xl lg:text-[3.25rem]">
+              {copy.heroTitle}
+            </h1>
+            <p className="mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-[#4b4560] md:text-lg">
+              {copy.heroBody}
+            </p>
+            <div className="mt-7">
+              <AppStoreButton from="hero" large />
+              <p className="mt-3 text-sm text-[#4b4560]">{copy.freeLabel}</p>
+            </div>
+          </div>
+          <figure className="mx-auto w-full max-w-[280px] md:max-w-[300px]">
+            <Image
+              src="/images/app-landing/routine-covered.png"
+              alt={copy.heroAlt}
+              width={1320}
+              height={2638}
+              sizes="(min-width: 768px) 300px, 280px"
+              className="h-auto w-full drop-shadow-[0_20px_40px_rgba(95,70,190,0.14)]"
+              priority
+            />
+            <figcaption className="mt-4 text-sm leading-relaxed text-[#6b6580]">
+              {copy.screenDisclosure}
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* No-buy differentiation — moved up, one of the strongest early messages */}
-      <section className="mx-auto max-w-2xl px-6 pt-20 pb-4 text-center md:pt-28">
-        <h2 className="text-2xl font-bold leading-snug text-[#231C38] md:text-4xl">
-          Sometimes the best recommendation is not another product.
-        </h2>
-        <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-[#4b4560] md:text-lg">
-          Visage AI checks what you already use first. If your routine
-          already covers it, buying more may not make sense. When a real gap
-          remains, one product may be worth considering.
-        </p>
-      </section>
-
-      {/* Product story */}
-      <section className="mx-auto max-w-5xl px-6">
-        <div className="border-t border-[#E0D6F5]" />
+      <section aria-labelledby="app-steps-title" className="mx-auto max-w-5xl px-6">
+        <h2 id="app-steps-title" className="max-w-xl text-3xl font-semibold leading-tight tracking-tight text-[#231C38] md:text-4xl">{copy.stepsTitle}</h2>
         <StoryRow
-          eyebrow="ONE CLEAR PRIORITY"
-          title="Understand what to focus on today"
-          body="Take a photo and Visage AI surfaces one clear priority, not a dashboard of numbers to interpret on your own."
+          eyebrow={copy.step1Eyebrow}
+          title={copy.step1Title}
+          body={copy.step1Body}
+          imgSrc="/images/app-landing/priority.png"
+          imgAlt={copy.step1Alt}
+          imgHeight={1140}
         />
         <div className="border-t border-[#E0D6F5]" />
         <StoryRow
-          eyebrow="YOUR ROUTINE FIRST"
-          title="See whether your routine already covers it"
-          body="Before considering another product, Visage AI checks it against what you already use. No extra purchase needed is a valid answer."
-          imgSrc="/images/app-landing/routine-covered.png"
-          imgAlt="Visage AI showing that the current routine already covers the relevant category"
+          eyebrow={copy.step2Eyebrow}
+          title={copy.step2Title}
+          body={copy.step2Body}
+          imgSrc="/images/app-landing/my-routine.png"
+          imgAlt={copy.step2Alt}
           reverse
         />
         <div className="border-t border-[#E0D6F5]" />
         <StoryRow
-          eyebrow="COME BACK AND COMPARE"
-          title="Come back later and compare"
-          body="Complete another analysis later to compare available measured results in Skin Journey — described plainly, without promising a particular outcome."
-          imgSrc="/images/app-landing/skin-journey.png"
-          imgAlt="Visage AI Skin Journey comparing a first and latest measurement"
+          eyebrow={copy.step3Eyebrow}
+          title={copy.step3Title}
+          body={copy.step3Body}
+          imgSrc="/images/app-landing/routine-covered.png"
+          imgAlt={copy.step3Alt}
+          imgHeight={2638}
         />
+        <p className="max-w-3xl pb-14 text-base leading-relaxed text-[#4b4560] md:pb-20">{copy.routineLimit}</p>
         <div className="border-t border-[#E0D6F5]" />
         <StoryRow
-          eyebrow="KEEP IT GROUNDED IN WHAT YOU USE"
-          title="Your routine, grounded in what you actually use"
-          body="My Routine reflects the products you're really using today — not a wishlist, not a fabricated ideal routine. When routine context matters, product decisions start from that current-use truth."
-          imgSrc="/images/app-landing/my-routine.png"
-          imgAlt="Visage AI My Routine screen listing current products"
+          eyebrow={copy.journeyEyebrow}
+          title={copy.journeyTitle}
+          body={copy.journeyBody}
+          imgSrc="/images/app-landing/skin-journey.png"
+          imgAlt={copy.journeyAlt}
           reverse
         />
       </section>
@@ -176,14 +181,14 @@ export default function AppLandingPage() {
       {/* Trust — compact, scannable */}
       <section className="mx-auto max-w-2xl px-6 py-16 md:py-24">
         <h2 className="text-center text-2xl font-bold text-[#231C38] md:text-3xl">
-          Built to be honest with you
+          {copy.trustTitle}
         </h2>
         <ul className="mx-auto mt-8 grid max-w-lg grid-cols-1 gap-x-8 gap-y-3 text-base text-[#4b4560] sm:grid-cols-2 md:text-lg">
           {[
-            "No identity recognition",
-            "No forced purchase",
-            "Beauty guidance, not medical diagnosis",
-            "Measured history without guaranteed improvement",
+            copy.trustIdentity,
+            copy.trustPurchase,
+            copy.trustMedical,
+            copy.trustHistory,
           ].map((line) => (
             <li key={line} className="flex gap-2">
               <span className="text-[#5F46BE]">•</span>
@@ -193,7 +198,7 @@ export default function AppLandingPage() {
         </ul>
         <p className="mt-8 text-center text-sm text-[#6b6580]">
           <a href="/en/privacy" className="underline hover:text-[#231C38]">
-            Privacy Policy
+            {copy.privacyPolicy}
           </a>
         </p>
       </section>
@@ -201,10 +206,11 @@ export default function AppLandingPage() {
       {/* Closing CTA */}
       <section className="mx-auto max-w-3xl px-6 pb-20 text-center md:pb-28">
         <h2 className="text-2xl font-bold text-[#231C38] md:text-3xl">
-          Start with one photo.
+          {copy.closingTitle}
         </h2>
         <div className="mt-8">
           <AppStoreButton from="closing" large />
+          <p className="mt-3 text-sm text-[#4b4560]">{copy.freeLabel}</p>
         </div>
       </section>
 
@@ -213,7 +219,7 @@ export default function AppLandingPage() {
         <div className="font-semibold text-[#231C38]">Visage AI</div>
         <div className="mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <a href="/en/privacy" className="hover:text-[#231C38]">
-            Privacy
+            {copy.privacy}
           </a>
           <a
             href="/en"
@@ -223,7 +229,7 @@ export default function AppLandingPage() {
               track("app_landing_b2b_link_click", { page: "/app" })
             }
           >
-            For retailers
+            {copy.retailers}
           </a>
         </div>
         <div className="mt-4 text-xs text-[#9c95b0]">
