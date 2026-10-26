@@ -5,9 +5,9 @@ import AppCookieBanner from "./AppCookieBanner";
 const base =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
 
-const TITLE = "Visage AI — One Clear Beauty Priority";
+const TITLE = "Visage AI — One photo. One clear skincare priority.";
 const DESCRIPTION =
-  "Take a photo, understand what to focus on today, check whether your routine already covers it, and return later to compare measured results.";
+  "Photo-based skin assessment with a suggested priority. Routine Check separately checks saved product categories, which may differ from Today's Priority.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -24,15 +24,13 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: `${base}/app`,
     siteName: "Visage AI",
-    images: ["/og.jpg"],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og.jpg"],
   },
   robots: {
     index: true,
