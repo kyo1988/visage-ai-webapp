@@ -98,8 +98,8 @@ export default function LearnArticlePage({ params }: Props) {
           <Image
             src={page.image.src}
             alt={page.image.alt}
-            width={1320}
-            height={1140}
+            width={page.image.width}
+            height={page.image.height}
             className="w-full h-auto drop-shadow-[0_25px_50px_rgba(95,70,190,0.18)]"
           />
         </div>
