@@ -27,6 +27,8 @@ export interface CtaCopy {
 export interface PageImage {
   src: string;
   alt: string;
+  width: number;
+  height: number;
 }
 
 export interface B2CSearchPage {
@@ -48,17 +50,17 @@ export interface B2CSearchPage {
 export const b2cSearchPages: B2CSearchPage[] = [
   {
     slug: "is-my-skincare-routine-enough",
-    title: "Is My Skincare Routine Enough? Here's How to Tell",
+    title: "Is My Skincare Routine Enough? What a Routine Check Can Tell You",
     description:
-      "\"Enough\" isn't about how many steps you use — it's about whether your routine covers what you're actually prioritizing right now. Here's a straightforward way to check.",
+      "A product count cannot establish whether a routine is adequate. Identify a current priority, then review your saved categories without treating category presence as proof of effectiveness.",
     h1: "Is My Skincare Routine Enough?",
     shortAnswer:
-      "Your routine is enough when it already covers the one thing you're prioritizing right now — it isn't a function of how many products are on your shelf. To find out, name your current priority first, then check whether something you already use is actually addressing it.",
+      "A product count or a photo cannot establish whether your routine is adequate. Start with a current priority, then review what you have saved. Visage AI's Routine Check reports saved category presence; it does not determine whether products address that priority.",
     sections: [
       {
         heading: "\"Enough\" is about coverage, not count",
         paragraphs: [
-          "It's tempting to judge a routine by how many steps it has — three products feels minimal, ten feels thorough. But step count doesn't tell you anything about whether those steps are doing the right job. A five-step routine that covers your actual priority is enough. A ten-step routine that doesn't touch it isn't.",
+          "It's tempting to judge a routine by how many steps it has — three products feels minimal, ten feels thorough. Step count alone does not show whether products are suitable or effective. A list of saved categories cannot establish that either.",
           "The more useful question isn't \"how much am I doing,\" it's \"is what I'm doing pointed at the right thing.\"",
         ],
       },
@@ -66,20 +68,20 @@ export const b2cSearchPages: B2CSearchPage[] = [
         heading: "Start by naming one priority",
         paragraphs: [
           "Before you can judge whether a routine is enough, you need to know what it's supposed to be enough for. Skin priorities shift — with season, sleep, stress, and sun exposure — so the honest starting point is figuring out what actually matters today, rather than defaulting to whatever you focused on last year.",
-          "This is the first step in how Visage AI approaches it: a photo-based check that surfaces one clear priority instead of a long list of scores to interpret yourself.",
+          "Visage AI starts with a photo-based assessment and a suggested Today's Priority based on available measurements. Limited results may require another photo. It is beauty guidance, not a medical diagnosis.",
         ],
       },
       {
-        heading: "Then check what you already use against it",
+        heading: "Then review your saved categories separately",
         paragraphs: [
-          "Once you know the priority, look at your current products one by one and ask whether any of them is actually built to address it — not adjacent to it, not \"probably helps,\" but actually doing that job.",
-          "If something already covers it, your routine is enough for that priority, even if the routine looks simple from the outside. If nothing does, that's a real gap — but it's a specific, nameable one, not a vague sense that you should \"do more.\"",
+          "Review the products you have saved and their categories. Routine Check looks for category registration in that list; the category being checked may differ from Today's Priority.",
+          "A listed category means it is registered, not that its ingredients or effects address a priority. An unlisted category is a saved-list gap, not proof that another purchase is necessary.",
         ],
       },
       {
         heading: "Enough today doesn't mean enough forever",
         paragraphs: [
-          "Because priorities change, \"enough\" is worth re-checking periodically rather than deciding once and forgetting about it. That doesn't mean adding something new every time you check — often the answer is that your current routine still holds up, and no action is needed.",
+          "You can revisit your saved routine when it changes. The list does not confirm consistent use, ingredient compatibility or overall adequacy. Re-checking a category does not require buying another product.",
         ],
       },
     ],
@@ -92,7 +94,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "How do I know what my current priority even is?",
         answer:
-          "It helps to look at your skin's current state rather than guess from memory. Visage AI's photo-based check is built for exactly this — it surfaces one priority based on today's analysis instead of asking you to self-diagnose.",
+          "Visage AI can suggest one Today's Priority from the measurements available in a photo-based assessment. It does not provide a medical diagnosis, and a suggestion is not guaranteed for every photo.",
       },
       {
         question: "What if my routine covers my priority but I still feel unsure?",
@@ -102,13 +104,15 @@ export const b2cSearchPages: B2CSearchPage[] = [
     ],
     hypothesis: "H4",
     cta: {
-      heading: "Check your own routine against today's priority",
-      body: "Take a photo in Visage AI to see one clear priority, then check whether your current routine already covers it.",
-      label: "Check My Routine",
+      heading: "Start with a suggested priority",
+      body: "Take a photo for a suggested priority, then separately review saved product categories. Routine Check does not establish ingredient compatibility or product effectiveness.",
+      label: "Explore Visage AI",
     },
     image: {
-      src: "/images/app-landing/priority.png",
-      alt: "Visage AI analysis result highlighting a single, clear skin priority",
+      src: "/images/app-landing/496/todays-priority.png",
+      width: 1086,
+      height: 660,
+      alt: "Captured Today's Priority capture showing a suggested Age-Defying Glow priority",
     },
     relatedSlugs: [
       "do-i-need-another-skincare-product",
@@ -143,7 +147,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
         heading: "Question 2: Does something you already use cover that role?",
         paragraphs: [
           "This is the step most people skip. Look at your current products and check, honestly, whether one of them is already built for that role. If it is, the gap may already be closed — you just haven't been using it consistently, or hadn't connected it to this priority.",
-          "This is the core idea behind Visage AI's routine check: before suggesting anything new, it looks at what you already use and whether it already covers the priority at hand.",
+          "Visage AI's Routine Check checks whether a category is registered in the products you saved. That category may differ from Today's Priority; it does not evaluate whether products cover the priority.",
         ],
       },
       {
@@ -168,7 +172,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "What if I can't tell whether my current products cover the gap?",
         answer:
-          "That's exactly what a routine check is for. Visage AI compares your stated priority against what you've logged in My Routine and tells you plainly whether it's already covered.",
+          "Routine Check cannot answer whether your products address a concern. It checks saved category presence only, not ingredient compatibility, product effectiveness or whether your routine is sufficient.",
       },
       {
         question: "Does this mean I should never buy new skincare?",
@@ -179,12 +183,14 @@ export const b2cSearchPages: B2CSearchPage[] = [
     hypothesis: "H2",
     cta: {
       heading: "Run your next purchase through the check first",
-      body: "See whether your current routine already covers the gap before you add anything new.",
-      label: "Check Before I Buy",
+      body: "Begin with a photo-based assessment and a suggested priority. Then review your saved categories; an unlisted category alone is not a reason to buy.",
+      label: "Explore Visage AI",
     },
     image: {
-      src: "/images/app-landing/routine-covered.png",
-      alt: "Visage AI screen showing a routine that already covers the relevant category",
+      src: "/images/app-landing/496/routine-check.png",
+      width: 1080,
+      height: 970,
+      alt: "Captured Routine Check share card: Cleanser not listed in My Routine; category presence only",
     },
     relatedSlugs: [
       "is-my-skincare-routine-enough",
@@ -213,19 +219,19 @@ export const b2cSearchPages: B2CSearchPage[] = [
         heading: "List what each product is actually for",
         paragraphs: [
           "Go through your current routine and, for each product, write down the one role it's playing — not the marketing description, but what you're actually using it for. If you can't state a clear role for something, that's worth noting.",
-          "This is the same idea behind My Routine in Visage AI: it reflects what you're actually using today, not an idealized list, so the roles you see are grounded in reality rather than good intentions.",
+          "My Routine in Visage AI holds the products you choose to save. It does not verify that you use them consistently. Routine Check reports saved category presence, not a product's actual role or effectiveness.",
         ],
       },
       {
         heading: "Cut duplication first",
         paragraphs: [
-          "A common source of an overcomplicated routine is the same role being covered more than once. Two products doing the same job add steps and cost without adding coverage. Once you've listed roles, genuine duplication can be a practical place to simplify.",
+          "A role list can help you ask whether products overlap. Category labels alone cannot prove duplication: two products in one category may differ. Routine Check does not assess that overlap or tell you which product to remove.",
         ],
       },
       {
         heading: "Keep what maps to a current priority",
         paragraphs: [
-          "After removing duplication, check the remaining products against what you're actually prioritizing right now. A step that once mattered but no longer maps to a current priority is a reasonable candidate to pause, even if it isn't hurting anything.",
+          "Review the purpose of each product yourself rather than treating a suggested priority as a reason to stop everything else. Routine Check does not determine whether a product is needed, should be paused or addresses Today's Priority.",
           "This is a routine check, not a skin diagnosis — the goal is clarity about what each step is for, not judgments about skin health or conditions.",
         ],
       },
@@ -249,13 +255,15 @@ export const b2cSearchPages: B2CSearchPage[] = [
     ],
     hypothesis: "H4",
     cta: {
-      heading: "See your current routine's roles laid out plainly",
-      body: "My Routine in Visage AI reflects what you're actually using today, so simplifying starts from what's real.",
-      label: "See My Routine",
+      heading: "See what you have saved",
+      body: "Start with a photo-based assessment and a suggested priority, then review the products you have saved in My Routine. Category registration does not prove duplication or effectiveness.",
+      label: "Explore Visage AI",
     },
     image: {
-      src: "/images/app-landing/my-routine.png",
-      alt: "Visage AI My Routine screen listing current products by role",
+      src: "/images/app-landing/496/routine-check.png",
+      width: 1080,
+      height: 970,
+      alt: "Captured Routine Check share card showing saved category registration, not the My Routine editor",
     },
     relatedSlugs: [
       "is-my-skincare-routine-too-complicated",
@@ -289,7 +297,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
         heading: "Sign 2: You can't say what changed",
         paragraphs: [
           "If you added or removed something recently and can't clearly connect it to a specific reason or a specific result, that's a sign the routine has outpaced your ability to track it. This isn't about diagnosing a reaction — it's simply about whether the routine is legible to you.",
-          "This is where dated, before-and-after comparisons help more than memory does. Skin Journey in Visage AI keeps measured results attached to dates, so you're comparing against an actual record instead of a recollection.",
+          "Skin Journey in Visage AI compares available measured results across saved analyses. Those differences do not establish which product caused a change, or whether skin improved.",
         ],
       },
       {
@@ -309,7 +317,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "Does a complicated routine cause skin problems?",
         answer:
-          "That's not something a routine check can tell you — irritation and skin reactions are medical questions best handled by a dermatologist. What a routine check can tell you is whether your steps are clear, non-duplicated, and purposeful.",
+          "Routine Check cannot diagnose irritation or skin reactions, or determine whether steps are non-duplicated and purposeful. It checks saved category presence only. For skin conditions or reactions, seek a dermatologist's advice.",
       },
       {
         question: "How many products is too many?",
@@ -325,12 +333,14 @@ export const b2cSearchPages: B2CSearchPage[] = [
     hypothesis: "H4",
     cta: {
       heading: "Get a clear read on what you're actually using",
-      body: "Visage AI lays out your current routine and priority in plain terms, so you can judge complexity from clarity, not guesswork.",
-      label: "Check My Routine",
+      body: "See a photo-based suggested priority, then separately review your saved routine. Routine Check reports category registration, not whether the whole routine is adequate.",
+      label: "Explore Visage AI",
     },
     image: {
-      src: "/images/app-landing/my-routine.png",
-      alt: "Visage AI My Routine screen listing current products for review",
+      src: "/images/app-landing/496/routine-check.png",
+      width: 1080,
+      height: 970,
+      alt: "Captured Routine Check share card showing saved category registration, not the My Routine editor",
     },
     relatedSlugs: [
       "how-to-simplify-skincare-routine",
@@ -364,7 +374,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
         heading: "Attach dates and routine context, not just images",
         paragraphs: [
           "A photo alone doesn't tell you why anything changed. What makes a comparison useful is knowing when it was taken and what your routine looked like at that point — otherwise, even a real change is hard to attribute to anything.",
-          "This is what Skin Journey in Visage AI is built around: it keeps your measured results tied to dates, so a first analysis and a later one can be compared directly, in context, rather than from memory.",
+          "Skin Journey in Visage AI compares a saved baseline with later available measured results. It does not establish product causation or automatically reconstruct what your routine was at each analysis; keep any routine-change notes separately.",
         ],
       },
       {
@@ -378,7 +388,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "How often should I check in to see progress?",
         answer:
-          "Frequent enough to catch real change, but not so frequent that you're comparing noise to noise. Spacing check-ins by several weeks tends to give a more meaningful comparison than day-to-day tracking.",
+          "No fixed interval guarantees a meaningful change. Compare available measured results under similar capture conditions, and treat differences as measurements rather than proof of improvement.",
       },
       {
         question: "Does Visage AI guarantee visible improvement over time?",
@@ -388,18 +398,20 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "What if my routine changed between two check-ins?",
         answer:
-          "That's exactly why routine context matters alongside the dates. Knowing what you were using at each point makes the comparison meaningful instead of ambiguous.",
+          "Keep your own dated notes about routine changes. Skin Journey's measured comparison does not establish which change caused a result, and Routine Check does not supply a verified historical usage record.",
       },
     ],
     hypothesis: "H3",
     cta: {
-      heading: "Start a comparison you can trust",
-      body: "Skin Journey keeps your measured results tied to dates, so your next check-in is a real comparison, not a guess.",
-      label: "Start My Skin Journey",
+      heading: "Start with a photo-based assessment",
+      body: "Start with a photo for a suggested priority based on available measurements. Return later to compare saved measurements in Skin Journey; a difference is not proof of improvement.",
+      label: "Explore Visage AI",
     },
     image: {
-      src: "/images/app-landing/skin-journey.png",
-      alt: "Visage AI Skin Journey comparing a first and latest measurement",
+      src: "/images/app-landing/496/skin-journey.png",
+      width: 1146,
+      height: 2355,
+      alt: "Captured Skin Journey comparison: 47 to 47, with no measurable score change",
     },
     relatedSlugs: [
       "is-my-skincare-routine-enough",
@@ -420,7 +432,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         heading: "Why check before you buy",
         paragraphs: [
-          "Marketing describes what a product could theoretically do; it doesn't know what's already in your routine. A short checklist run against your own routine catches most unnecessary purchases before they happen — no product research required.",
+          "Marketing does not know what you have saved in your routine. Reviewing that list can inform a buying decision, but it cannot establish product suitability or replace product research.",
         ],
       },
       {
@@ -436,13 +448,13 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         heading: "If the checklist comes back clear",
         paragraphs: [
-          "If your current routine already covers the gap, the checklist has done its job — the answer is that you don't need to buy anything right now. That's a valid, complete outcome, not an incomplete one.",
+          "If a category is already registered, you have confirmed a fact about the saved list. That does not establish whether a concern is addressed. You can still choose not to buy; a purchase is not required to complete the check.",
         ],
       },
       {
         heading: "If a real gap remains",
         paragraphs: [
-          "When the checklist surfaces a specific, currently relevant gap that nothing you own addresses, that's a reasonable basis to consider a product, because it's tied to something concrete, not a hunch.",
+          "An unlisted category is not proof that you need a product. Consider what you want to change and review product information separately. Routine Check does not guarantee suitability or effects.",
         ],
       },
     ],
@@ -455,7 +467,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "What if I don't know what's actually in my current routine?",
         answer:
-          "That's worth sorting out first. My Routine in Visage AI keeps a plain list of what you're actually using, so the checklist has something concrete to check against.",
+          "My Routine holds the products you save, so keep it up to date yourself. It does not verify actual use. Routine Check checks whether a saved category is listed, not whether products address a priority.",
       },
       {
         question: "Can this checklist replace advice from a dermatologist?",
@@ -466,12 +478,14 @@ export const b2cSearchPages: B2CSearchPage[] = [
     hypothesis: "H2",
     cta: {
       heading: "Run the checklist against your real routine",
-      body: "Visage AI checks your current products against today's priority, so you know before you buy.",
-      label: "Check Before I Buy",
+      body: "Start with a photo and a suggested priority, then separately review saved categories. Routine Check does not evaluate products against Today's Priority or determine a purchase need.",
+      label: "Explore Visage AI",
     },
     image: {
-      src: "/images/app-landing/routine-covered.png",
-      alt: "Visage AI screen showing a routine that already covers the relevant category",
+      src: "/images/app-landing/496/routine-check.png",
+      width: 1080,
+      height: 970,
+      alt: "Captured Routine Check share card: Cleanser not listed in My Routine; category presence only",
     },
     relatedSlugs: [
       "do-i-need-another-skincare-product",
