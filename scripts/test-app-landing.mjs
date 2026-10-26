@@ -14,7 +14,7 @@ const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const en = JSON.parse(read('messages/en.json'));
 const ja = JSON.parse(read('messages/ja.json'));
 const copy = en.landing.consumerApp;
-const destination = 'https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785?ppid=2e97fead-211e-4219-a353-5ec1246b3730&pt=127999842&ct=owned-web-routine-sep26&mt=8';
+const destination = 'https://apps.apple.com/app/visage-ai-skin-advisor/id6748892785?ppid=2e97fead-211e-4219-a353-5ec1246b3730&pt=127999842&ct=owned-web-pvf-oct26&mt=8';
 
 function load(file, imports = {}, globals = {}) {
   const module = { exports: {} };
@@ -49,11 +49,11 @@ function page(track = () => {}, utms = {}) {
   }).default();
 }
 
-test('B1 hero, primary CTA and ordered product story render without hiding existing content', () => {
+test('Product Value First hero, primary CTA and ordered product story render without hiding existing content', () => {
   const tree = page();
   const all = elements(tree);
   assert.equal(all.filter((el) => el.type === 'h1').length, 1);
-  assert.equal(all.find((el) => el.type === 'h1').props.children, 'Before you buy another skincare product, check what your routine already covers.');
+  assert.equal(all.find((el) => el.type === 'h1').props.children, 'One photo. One clear skincare priority.');
   const html = renderToStaticMarkup(tree);
   const order = [copy.step1Title, copy.step2Title, copy.step3Title, copy.journeyTitle, copy.trustTitle];
   for (let i = 1; i < order.length; i++) assert.ok(html.indexOf(order[i - 1]) < html.indexOf(order[i]));
@@ -63,8 +63,8 @@ test('B1 hero, primary CTA and ordered product story render without hiding exist
 });
 
 test('copy distinguishes category presence, priority and measured comparison from efficacy claims', () => {
-  assert.match(copy.step2Body, /category may be different from Today's Priority/);
-  assert.match(copy.step3Body, /If a category gap is confirmed/);
+  assert.match(copy.step3Body, /category being checked may be different from Today's Priority/);
+  assert.match(copy.step3Body, /If a saved-category gap is confirmed and an eligible product is available/);
   for (const action of ['Not now', 'Save', 'Buy online']) assert.ok(copy.step3Body.includes(action));
   assert.match(copy.routineLimit, /category presence only/);
   for (const limit of ['ingredient compatibility', 'product effectiveness', 'consistent use', 'whole routine']) assert.ok(copy.routineLimit.includes(limit));
@@ -147,8 +147,48 @@ test('EN/JA new copy has complete key parity without replacing localized site me
   for (const [key, value] of Object.entries(ja.landing.consumerApp)) {
     assert.equal(typeof value, 'string');
     assert.ok(value.length > 0);
-    if (key !== 'step2Eyebrow') assert.notEqual(value, copy[key]);
+    if (!['step2Eyebrow', 'step3Eyebrow'].includes(key)) assert.notEqual(value, copy[key]);
   }
   assert.ok(ja.nav.product.includes('製品') || ja.nav.product.includes('プロダクト'));
   assert.ok(en.nav.product);
+});
+
+test('assessment and priority precede routine; only shortlisted device captures render', () => {
+  const tree = page();
+  const all = elements(tree);
+  const headings = all.filter((el) => el.type === 'h3').map((el) => el.props.children);
+  assert.deepEqual(headings.slice(0, 3), ['Start with a photo', 'See your priority', 'Check your routine']);
+  const images = all.filter((el) => el.type === 'img');
+  assert.deepEqual(images.map((el) => el.props.src), [
+    '/images/app-landing/496/todays-priority.png',
+    '/images/app-landing/496/routine-check.png',
+    '/images/app-landing/496/skin-journey.png',
+  ]);
+  assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [[1086, 660], [1080, 970], [1146, 2355]]);
+  assert.ok(images.every((el) => el.props.alt.length > 20));
+  const html = renderToStaticMarkup(tree);
+  assert.ok(html.indexOf(copy.step3Title) < html.indexOf(copy.productPhilosophy));
+  assert.ok(html.includes('based on available measurements'));
+  assert.ok(html.includes('Choosing not to buy is valid.'));
+  assert.ok(html.includes('not the My Routine editor'));
+  assert.ok(html.includes('not evidence of skin improvement'));
+  assert.ok(!html.includes('Analyze Again'));
+});
+
+test('Product Value First metadata is aligned without a placeholder share image', () => {
+  const { metadata } = load('app/app/layout.tsx', {
+    'next/script': { __esModule: true, default: () => null },
+    './AppCookieBanner': { __esModule: true, default: () => null },
+  }, { URL });
+  assert.equal(metadata.title, 'Visage AI — One photo. One clear skincare priority.');
+  assert.equal(metadata.openGraph.title, metadata.title);
+  assert.equal(metadata.twitter.title, metadata.title);
+  assert.equal(metadata.openGraph.description, metadata.description);
+  assert.equal(metadata.twitter.description, metadata.description);
+  assert.match(metadata.description, /suggested priority/);
+  assert.match(metadata.description, /separately checks saved product categories, which may differ/);
+  assert.equal(metadata.openGraph.images, undefined);
+  assert.equal(metadata.twitter.images, undefined);
+  assert.equal(metadata.twitter.card, 'summary');
+  assert.ok(!read('app/app/layout.tsx').includes('/og.jpg'));
 });
