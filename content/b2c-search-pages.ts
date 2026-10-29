@@ -140,13 +140,13 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         heading: "Question 1: What specific gap are you trying to solve?",
         paragraphs: [
-          "Be precise. \"General improvement\" isn't a gap you can check a routine against — it's too broad to ever resolve. A specific role, such as hydration, sun protection, or a particular texture concern, is something you can actually verify against what you own.",
+          "Be precise. \"General improvement\" is too broad to check against your routine. A specific goal, such as hydration, sun protection, or a texture concern, gives you a starting point for reviewing product information and your own experience. Owning something in a category does not prove it addresses that goal.",
         ],
       },
       {
         heading: "Question 2: Does something you already use cover that role?",
         paragraphs: [
-          "This is the step most people skip. Look at your current products and check, honestly, whether one of them is already built for that role. If it is, the gap may already be closed — you just haven't been using it consistently, or hadn't connected it to this priority.",
+          "This is the step most people skip. Review your current products and ask whether one might serve that role, based on its intended use and your own experience. That can inform your decision, but a saved product or category alone cannot establish that the gap is closed.",
           "Visage AI's Routine Check checks whether a category is registered in the products you saved. That category may differ from Today's Priority; it does not evaluate whether products cover the priority.",
         ],
       },
