@@ -1,0 +1,42 @@
+name: Web Analytics consent and build verification
+on:
+  pull_request:
+    paths:
+      - "app/layout.tsx"
+      - "app/app/AppCookieBanner.tsx"
+      - "app/[locale]/privacy/page.tsx"
+      - "components/CookieBanner.tsx"
+      - "components/analytics/**"
+      - "tests/web-analytics-policy.test.mjs"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/web-analytics-verify.yml"
+  push:
+    branches:
+      - "feat/consent-gated-web-analytics"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Use Node 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+          cache: "npm"
+      - name: Install exactly locked dependencies
+        run: npm ci
+      - name: Test opt-in, canonical host and privacy redaction
+        run: node --experimental-strip-types --test tests/web-analytics-policy.test.mjs
+      - name: Build Next.js
+        run: npm run build
+      - name: Inspect registry integrity (not yet lockfile assertion)
+        run: npm view @vercel/analytics@2.0.1 dist.integrity --json

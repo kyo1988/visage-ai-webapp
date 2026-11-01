@@ -2,39 +2,12 @@
 
 import { Analytics, type BeforeSendEvent } from "@vercel/analytics/next";
 import { useEffect, useState } from "react";
+import {
+  permitsMarketingAnalytics,
+  sanitizeMarketingPageUrl,
+} from "./webAnalyticsPolicy";
 
-const VERCEL_CONSENT_KEY = "va_consent_v1";
 const CONSENT_EVENT = "visage:web-analytics-consent-changed";
-
-function mayTrack(): boolean {
-  try {
-    return (
-      localStorage.getItem("ga_consent") === "granted" &&
-      localStorage.getItem(VERCEL_CONSENT_KEY) === "granted"
-    );
-  } catch {
-    return false;
-  }
-}
-
-function redactMarketingPage(event: BeforeSendEvent): BeforeSendEvent | null {
-  // This callback also enforces consent after revocation, even if a previously
-  // loaded analytics script is still present in the browser.
-  if (!mayTrack()) return null;
-  try {
-    const parsed = new URL(event.url, window.location.origin);
-    if (parsed.origin !== window.location.origin) return null;
-    const path = parsed.pathname;
-    const isPublicMarketingPage =
-      path === "/app" || path.startsWith("/app/") ||
-      path === "/learn" || path.startsWith("/learn/");
-    if (!isPublicMarketingPage) return null;
-    // Do not send query strings, fragments, personal data or tokens via URL.
-    return { ...event, url: parsed.origin + path };
-  } catch {
-    return null;
-  }
-}
 
 export default function VercelMarketingAnalytics({
   deploymentIsProduction,
@@ -43,18 +16,41 @@ export default function VercelMarketingAnalytics({
 }) {
   const [consented, setConsented] = useState(false);
 
-  useEffect(() => {
-    const updateConsent = () => setConsented(mayTrack());
-    updateConsent();
-    window.addEventListener("storage", updateConsent);
-    window.addEventListener(CONSENT_EVENT, updateConsent);
-    return () => {
-      window.removeEventListener("storage", updateConsent);
-      window.removeEventListener(CONSENT_EVENT, updateConsent);
-    };
-  }, []);
+  // This repo deploys to several Vercel projects. Restrict analytics to the
+  // single canonical hostname and never load the SDK in other projects.
+  const isAllowedNow = () => {
+    if (typeof window === "undefined") return false;
+    try {
+      return permitsMarketingAnalytics(
+        localStorage.getItem("ga_consent"),
+        localStorage.getItem("va_consent_v1"),
+        deploymentIsProduction,
+        window.location.origin,
+      );
+    } catch {
+      return false;
+    }
+  };
 
-  // Never load the analytics script in preview/development or before opt-in.
-  if (!deploymentIsProduction || !consented) return null;
-  return <Analytics beforeSend={redactMarketingPage} />;
+  useEffect(() => {
+    const update = () => setConsented(isAllowedNow());
+    update();
+    window.addEventListener("storage", update);
+    window.addEventListener(CONSENT_EVENT, update);
+    return () => {
+      window.removeEventListener("storage", update);
+      window.removeEventListener(CONSENT_EVENT, update);
+    };
+  }, [deploymentIsProduction]);
+
+  const beforeSend = (event: BeforeSendEvent): BeforeSendEvent | null => {
+    // Re-check consent after revocation; the SDK may already be loaded.
+    if (!isAllowedNow()) return null;
+    const url = sanitizeMarketingPageUrl(event.url, window.location.origin);
+    if (!url) return null;
+    return { ...event, url };
+  };
+
+  if (!consented) return null;
+  return <Analytics beforeSend={beforeSend} />;
 }
