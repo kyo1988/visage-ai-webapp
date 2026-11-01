@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { track } from "@/app/lib/analytics";
+import { trackConsentedMarketingClick } from "@/components/analytics/marketingClickTracking";
 import { getCurrentUtms } from "@/app/lib/utm-capture";
 import messages from "@/messages/en.json";
 
@@ -38,6 +39,7 @@ function AppStoreButton({
           utm_term: utms.utm_term ?? "(none)",
           utm_content: utms.utm_content ?? "(none)",
         });
+        trackConsentedMarketingClick("app_store_cta_click");
       }}
       className={
         "inline-flex min-h-12 max-w-full items-center justify-center rounded-full bg-[#5F46BE] px-7 py-4 text-center text-base font-semibold leading-snug text-white shadow-[0_8px_24px_rgba(95,70,190,0.16)] transition hover:bg-[#513BA6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5F46BE] " +

@@ -40,3 +40,32 @@ export function sanitizeMarketingPageUrl(
     return null;
   }
 }
+
+/**
+ * No user IDs, campaign tokens or arbitrary custom-event payloads. An event
+ * is eligible only after explicit opt-in on a known public marketing page.
+ */
+export type PublicMarketingClick = "learn_app_cta_click" | "app_store_cta_click";
+
+export function permitsMarketingClick(
+  name: PublicMarketingClick,
+  rawPageUrl: string,
+  gaConsent: string | null,
+  vercelConsent: string | null,
+  currentOrigin: string,
+): boolean {
+  // The exact canonical production origin is also the release-scope guard.
+  if (!permitsMarketingAnalytics(gaConsent, vercelConsent, true, currentOrigin)) {
+    return false;
+  }
+  const scrubbed = sanitizeMarketingPageUrl(rawPageUrl, currentOrigin);
+  if (!scrubbed) return false;
+  const path = new URL(scrubbed).pathname;
+  if (name === "learn_app_cta_click") {
+    return path.startsWith("/learn/") && path.length > "/learn/".length;
+  }
+  if (name === "app_store_cta_click") {
+    return path === "/app" || path === "/app/";
+  }
+  return false;
+}
