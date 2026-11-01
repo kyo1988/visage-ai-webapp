@@ -13,7 +13,7 @@ type PrivacyCopy = {
 
 const enCopy: PrivacyCopy = {
   pageTitle: 'Privacy Policy',
-  updatedAt: 'Last Updated: April 10, 2026',
+  updatedAt: 'Last Updated: November 1, 2026',
   intro:
     'Welcome to Visage AI. This policy explains what data is processed on your device, what is sent to our backend, and why.',
   sections: [
@@ -52,6 +52,15 @@ const enCopy: PrivacyCopy = {
       ],
     },
     {
+      title: '4a. Optional Public-Site Analytics',
+      bullets: [
+        'With your separate affirmative choice, we use cookieless Vercel Web Analytics on public /app and /learn pages to measure aggregated page visits, approximate region, device and referral information. We use it for marketing site improvement, not for diagnosis or app-user identification.',
+        'Vercel Web Analytics is disabled until you opt in to the updated consent prompt. Earlier Google Analytics consent does not automatically enable Vercel Web Analytics.',
+        'We suppress all other routes and strip URL query strings and fragments before events are submitted. Facial photos, skin scores, analysis identifiers, authentication tokens and personal customer records are not sent through this integration.',
+        'Declining the optional website analytics does not prevent use of Visage AI. You can change your choice through the browser site-data controls.',
+      ],
+    },
+    {
       title: '5. Third-Party AI Services',
       bullets: [
         'We do NOT send user data to OpenAI, Anthropic, Google Gemini, or any other third-party AI service.',
@@ -78,7 +87,7 @@ const enCopy: PrivacyCopy = {
 
 const jaCopy: PrivacyCopy = {
   pageTitle: 'プライバシーポリシー',
-  updatedAt: '最終更新日: 2026年4月10日',
+  updatedAt: '最終更新日: 2026年11月1日',
   intro:
     'Visage AI におけるデータ処理と送信の方針を説明します。端末内処理とバックエンド送信を明確に区別しています。',
   sections: [
@@ -114,6 +123,15 @@ const jaCopy: PrivacyCopy = {
         'visage-ai-api.vercel.app は Faceless（Visage AI）が所有・運営する first-party バックエンドです。',
         '利用インフラ: Firebase（認証・DB・分析）、Vercel（ホスティング）。',
         'これらはインフラ基盤として使用しており、第三者AI解析サービスとしては利用していません。',
+      ],
+    },
+    {
+      title: '4a. 公開サイトの任意アクセス解析',
+      bullets: [
+        '新しい同意画面で明示的に同意した場合のみ、Cookieを使用しない Vercel Web Analytics を公開 /app・/learn ページで使用し、ページ閲覧数、概略地域、端末、参照元を集計します。診断やアプリ利用者の個人識別には使いません。',
+        '旧 Google Analytics の同意だけでは Vercel Web Analytics を自動的に有効化しません。',
+        '対象外ページは送信せず、URLのクエリ文字列やフラグメントは送信前に削除します。顔写真、肌解析結果、分析ID、認証トークン、顧客情報は本仕組みで送信しません。',
+        '任意の解析を拒否しても Visage AI は利用できます。選択内容はブラウザーのサイトデータ設定から変更できます。',
       ],
     },
     {

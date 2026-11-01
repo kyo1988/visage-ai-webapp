@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const CONSENT_KEY = "ga_consent";
+const VERCEL_CONSENT_KEY = "va_consent_v1";
 
 type ConsentValue = "granted" | "denied";
 
@@ -17,10 +18,15 @@ export default function CookieBanner() {
 
   useEffect(() => {
     const stored = localStorage.getItem(CONSENT_KEY) as ConsentValue | null;
-    if (!stored) {
-      setVisible(true);
-    } else {
-      applyConsent(stored);
+    const vercelStored = localStorage.getItem(VERCEL_CONSENT_KEY) as ConsentValue | null;
+    if (!stored || !vercelStored) setVisible(true);
+    // Preserve the previous GA choice, but do NOT turn it into consent for
+    // a newly added provider. Existing users must make a new decision.
+    if (stored) {
+      gtag("consent", "update", {
+        analytics_storage: stored,
+        ad_storage: stored,
+      });
     }
   }, []);
 
@@ -30,6 +36,8 @@ export default function CookieBanner() {
       ad_storage: value,
     });
     localStorage.setItem(CONSENT_KEY, value);
+    localStorage.setItem(VERCEL_CONSENT_KEY, value);
+    window.dispatchEvent(new Event("visage:web-analytics-consent-changed"));
   }
 
   function accept() {
@@ -67,7 +75,7 @@ export default function CookieBanner() {
       }}
     >
       <p style={{ margin: 0, flex: "1 1 300px" }}>
-        当サイトは Google Analytics を使用して訪問者の動向を把握しています。
+        当サイトは Google Analytics と、Cookieを使用しない任意の Vercel Web Analytics で公開マーケティングページの閲覧を計測します。
         同意することで、サービス改善にご協力いただけます。
         詳しくは{" "}
         <a href="/privacy" style={{ color: "#a0c4ff", textDecoration: "underline" }}>
