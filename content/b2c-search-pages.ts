@@ -128,7 +128,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       "Before adding anything new, run it through three questions: what gap you're solving, whether something you own already covers it, and whether it replaces a step or just adds one.",
     h1: "Do I Need Another Skincare Product?",
     shortAnswer:
-      "Often, no — and that's a legitimate answer, not an evasion. Before buying, work through three questions: what specific gap are you solving, does something you already use cover that role, and would the new product replace a step or just pile on top of it?",
+      "Not necessarily. Before buying, ask what specific need you are considering, what your existing products are meant to do, and whether a new item would replace a step or simply add another one. A saved category alone cannot answer those questions for you.",
     sections: [
       {
         heading: "Start with the gap, not the product",
@@ -157,6 +157,13 @@ export const b2cSearchPages: B2CSearchPage[] = [
         ],
       },
       {
+        heading: "What a photo can add to the decision",
+        paragraphs: [
+          "If you are unsure what to focus on, Visage AI can suggest one Today's Priority from available photo-based measurements. Results depend on the photo and available measurements; this is non-medical beauty guidance, not a diagnosis or a product prescription.",
+          "You can then separately review the categories you registered in My Routine. A saved category does not prove actual product use, ingredient compatibility, or whether that product addresses the priority. The decision to keep, change, or buy a product remains yours.",
+        ],
+      },
+      {
         heading: "You may not need another product",
         paragraphs: [
           "If your current routine already covers the gap you named, the honest answer is that you don't need to buy anything right now. That's not a consolation prize — it's the outcome this framework is designed to surface when it's true.",
@@ -182,9 +189,9 @@ export const b2cSearchPages: B2CSearchPage[] = [
     ],
     hypothesis: "H2",
     cta: {
-      heading: "Run your next purchase through the check first",
-      body: "Begin with a photo-based assessment and a suggested priority. Then review your saved categories; an unlisted category alone is not a reason to buy.",
-      label: "Explore Visage AI",
+      heading: "See what one photo can help you focus on",
+      body: "Explore the free iPhone app: a photo can suggest a priority when measurements allow, and Routine Check separately shows saved product categories. Neither step confirms that a purchase is needed.",
+      label: "See Visage AI for iPhone",
     },
     image: {
       src: "/images/app-landing/496/routine-check.png",
