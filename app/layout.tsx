@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import VercelMarketingAnalytics from "@/components/analytics/VercelMarketingAnalytics";
 
 const base =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
+        <VercelMarketingAnalytics deploymentIsProduction={process.env.VERCEL_ENV === "production"} />
       </body>
     </html>
   );

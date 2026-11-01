@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const CONSENT_KEY = "ga_consent";
+const VERCEL_CONSENT_KEY = "va_consent_v1";
 
 type ConsentValue = "granted" | "denied";
 
@@ -21,10 +22,15 @@ export default function AppCookieBanner() {
 
   useEffect(() => {
     const stored = localStorage.getItem(CONSENT_KEY) as ConsentValue | null;
-    if (!stored) {
-      setVisible(true);
-    } else {
-      applyConsent(stored);
+    const vercelStored = localStorage.getItem(VERCEL_CONSENT_KEY) as ConsentValue | null;
+    if (!stored || !vercelStored) setVisible(true);
+    // Preserve the previous GA choice, but do NOT turn it into consent for
+    // a newly added provider. Existing users must make a new decision.
+    if (stored) {
+      gtag("consent", "update", {
+        analytics_storage: stored,
+        ad_storage: stored,
+      });
     }
   }, []);
 
@@ -34,6 +40,8 @@ export default function AppCookieBanner() {
       ad_storage: value,
     });
     localStorage.setItem(CONSENT_KEY, value);
+    localStorage.setItem(VERCEL_CONSENT_KEY, value);
+    window.dispatchEvent(new Event("visage:web-analytics-consent-changed"));
   }
 
   function accept() {
@@ -55,7 +63,8 @@ export default function AppCookieBanner() {
       className="fixed inset-x-4 bottom-4 z-[9999] mx-auto flex max-w-md flex-col gap-3 rounded-2xl bg-[#231C38]/95 px-5 py-4 text-xs text-[#f0f0f0] shadow-lg backdrop-blur sm:inset-x-auto sm:right-4"
     >
       <p className="leading-relaxed">
-        This site uses Google Analytics to understand visitor behavior. See
+        This site uses Google Analytics and optional cookieless Vercel Web Analytics
+        to measure visits to public marketing pages. Both respect your choice. See
         our{" "}
         <a href="/en/privacy" className="underline hover:text-white">
           Privacy Policy
