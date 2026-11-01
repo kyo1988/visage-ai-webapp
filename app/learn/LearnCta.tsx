@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { track } from "@/app/lib/analytics";
+import { trackConsentedMarketingClick } from "@/components/analytics/marketingClickTracking";
 import type { Hypothesis } from "@/content/b2c-search-pages";
 
 export default function LearnCta({
@@ -29,9 +30,10 @@ export default function LearnCta({
         <Link
           href="/app"
           data-analytics-id="seo_app_cta_click"
-          onClick={() =>
-            track("seo_app_cta_click", { slug, hypothesis, from: "learn" })
-          }
+          onClick={() => {
+            track("seo_app_cta_click", { slug, hypothesis, from: "learn" });
+            trackConsentedMarketingClick("learn_app_cta_click");
+          }}
           className="inline-flex items-center justify-center rounded-2xl bg-[#5F46BE] px-7 py-4 text-base font-semibold text-white shadow-[0_15px_30px_rgba(95,70,190,0.25)] transition hover:opacity-90"
         >
           {label}

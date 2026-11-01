@@ -4,6 +4,7 @@ import {
   CANONICAL_WEB_ORIGIN,
   permitsMarketingAnalytics,
   sanitizeMarketingPageUrl,
+  permitsMarketingClick,
 } from "../components/analytics/webAnalyticsPolicy.ts";
 
 const SITE = CANONICAL_WEB_ORIGIN;
@@ -60,4 +61,27 @@ test("preview, HTTP and other origins cannot submit pageviews", () => {
   assert.equal(sanitizeMarketingPageUrl("/app", "https://visage-ai-webapp-9drc.vercel.app"), null);
   assert.equal(sanitizeMarketingPageUrl("/app", "http://www.visageaiconsulting.com"), null);
   assert.equal(sanitizeMarketingPageUrl("/app", SITE), SITE + "/app");
+});
+
+test("clicks are blocked unless both explicit consents are granted", () => {
+  assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn/clean-routine", null, "granted", SITE), false);
+  assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn/clean-routine", "granted", null, SITE), false);
+  assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn/clean-routine", "granted", "denied", SITE), false);
+  assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn/clean-routine", "granted", "granted", SITE), true);
+});
+
+test("only correct public page can emit its own CTA event", () => {
+  assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn/clean-routine?secret=yes", "granted", "granted", SITE), true);
+  assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/app", "granted", "granted", SITE), false);
+  assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn", "granted", "granted", SITE), false);
+  assert.equal(permitsMarketingClick("app_store_cta_click", SITE + "/app", "granted", "granted", SITE), true);
+  assert.equal(permitsMarketingClick("app_store_cta_click", SITE + "/learn/clean-routine", "granted", "granted", SITE), false);
+});
+
+test("previews and private routes cannot emit any CTA event", () => {
+  for (const path of ["/report/secret", "/app/private", "/learn/foo/bar"]) {
+    assert.equal(permitsMarketingClick("app_store_cta_click", SITE + path, "granted", "granted", SITE), false);
+    assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + path, "granted", "granted", SITE), false);
+  }
+  assert.equal(permitsMarketingClick("app_store_cta_click", SITE + "/app", "granted", "granted", "https://preview.vercel.app"), false);
 });

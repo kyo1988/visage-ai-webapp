@@ -64,7 +64,8 @@ export default function AppCookieBanner() {
     >
       <p className="leading-relaxed">
         This site uses Google Analytics and optional cookieless Vercel Web Analytics
-        to measure visits to public marketing pages. Both respect your choice. See
+        to measure public-page visits and clicks on Learn/App Store links.
+        Both respect your choice. See
         our{" "}
         <a href="/en/privacy" className="underline hover:text-white">
           Privacy Policy
