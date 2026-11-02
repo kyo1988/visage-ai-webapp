@@ -89,7 +89,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "Does using more products make a routine more likely to be enough?",
         answer:
-          "Not on its own. More steps only help if they cover something your current routine is missing. If they duplicate what you already have, they add effort without adding coverage.",
+          "Not on its own. The number of steps cannot show whether a routine is suitable or effective. Check each product’s intended role and your own experience; saved categories alone cannot confirm adequate care.",
       },
       {
         question: "How do I know what my current priority even is?",
@@ -99,7 +99,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "What if my routine covers my priority but I still feel unsure?",
         answer:
-          "That's normal, and it's also a reasonable time to do nothing new. \"No extra purchase needed\" is a legitimate outcome, not a failure to find something to buy.",
+          "It is reasonable to pause before adding anything new. A saved product category cannot prove that a concern is addressed, and a suggested priority does not require purchasing another product.",
       },
     ],
     hypothesis: "H4",
