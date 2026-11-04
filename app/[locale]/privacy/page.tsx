@@ -171,6 +171,13 @@ export default function PrivacyPolicyPage({
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-8 font-sans text-gray-800">
       <div className="w-full max-w-3xl rounded-lg bg-white p-8 shadow-md md:p-12">
+        <a
+          href="/app"
+          className="mb-6 inline-flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-50 hover:text-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <span aria-hidden="true">←</span>
+          {isJa ? 'Visage AIに戻る' : 'Back to Visage AI'}
+        </a>
         <header className="mb-6 border-b pb-6">
           <h1 className="text-3xl font-bold text-gray-900 md:text-4xl">
             {copy.pageTitle}
