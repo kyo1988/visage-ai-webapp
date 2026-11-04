@@ -5,6 +5,9 @@ on:
       - "app/layout.tsx"
       - "app/app/AppCookieBanner.tsx"
       - "app/[locale]/privacy/page.tsx"
+      - "components/layout/StickyHeader.tsx"
+      - "components/layout/MobileStickyCta.tsx"
+      - "tests/privacy-navigation.test.mjs"
       - "components/CookieBanner.tsx"
       - "components/analytics/**"
       - "tests/web-analytics-policy.test.mjs"
@@ -36,6 +39,8 @@ jobs:
         run: npm ci
       - name: Test opt-in, canonical host and privacy redaction
         run: node --experimental-strip-types --test tests/web-analytics-policy.test.mjs
+      - name: Test privacy navigation and unchanged B2B routes
+        run: node --test tests/privacy-navigation.test.mjs
       - name: Build Next.js
         run: npm run build
       - name: Inspect registry integrity (not yet lockfile assertion)
