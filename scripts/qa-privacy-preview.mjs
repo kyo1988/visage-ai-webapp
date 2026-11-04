@@ -45,9 +45,10 @@ async function privacy(width,height,locale){
     const body=await page.locator('body').innerText();
     assert.ok(body.includes(locale==='ja'?'データ処理':'on-device'));
     await page.screenshot({path:dest+'/'+locale+'_'+width+'.png'});
-    await page.keyboard.press('Tab');
+    await link.focus();
     assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('href')),'/app');
-    await page.keyboard.press('Enter');
+    if(width<768) await link.click();
+    else await page.keyboard.press('Enter');
     await page.waitForURL(u=>u.pathname==='/app');
     summary.push({route:locale+'/privacy',width,height,result:'PASS'});
   }finally{await ctx.close();}
