@@ -37,6 +37,12 @@ export function StickyHeader() {
     setOpen(false);
   }, [pathname]);
 
+  // Privacy is a consumer-facing destination, not a B2B sales page.
+  // Keep all hooks above this route-specific return unconditionally called.
+  if (pathname === '/en/privacy' || pathname === '/ja/privacy') {
+    return null;
+  }
+
   const navItems = [
     { href: `/${locale}/technology`, label: t('technology') },
     { href: `/${locale}/cases`, label: t('useCases') },
