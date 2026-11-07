@@ -125,7 +125,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
     slug: "do-i-need-another-skincare-product",
     title: "Do I Need Another Skincare Product? A 3-Question Framework",
     description:
-      "Before adding anything new, run it through three questions: what gap you're solving, whether something you own already covers it, and whether it replaces a step or just adds one.",
+      "Before adding anything new, ask what need you have in mind, what your existing products are intended for, and whether a new item would replace a step or simply add one.",
     h1: "Do I Need Another Skincare Product?",
     shortAnswer:
       "Not necessarily. Before buying, ask what specific need you are considering, what your existing products are meant to do, and whether a new item would replace a step or simply add another one. A saved category alone cannot answer those questions for you.",
@@ -166,7 +166,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         heading: "You may not need another product",
         paragraphs: [
-          "If your current routine already covers the gap you named, the honest answer is that you don't need to buy anything right now. That's not a consolation prize — it's the outcome this framework is designed to surface when it's true.",
+          "If you decide your current products meet your goals, buying more is optional. Review their intended uses and your own experience; a saved product category or photo suggestion cannot establish whether a concern is addressed.",
         ],
       },
     ],
@@ -431,10 +431,10 @@ export const b2cSearchPages: B2CSearchPage[] = [
     slug: "skincare-checklist-before-buying",
     title: "Skincare Checklist: What to Check Before Buying Anything New",
     description:
-      "A compact, five-point checklist to run through before adding a new skincare product — based on your actual routine coverage, not marketing claims.",
+      "A five-point checklist to consider before buying skincare: your goals, your existing products and whether another item really has a role. Saved categories cannot verify coverage.",
     h1: "A Skincare Checklist Before You Buy",
     shortAnswer:
-      "Before buying, check five things: what specific gap you're solving, whether a current product already covers it, whether the new item would replace or duplicate something, whether it maps to a priority you actually have right now, and whether you could confirm coverage without spending anything.",
+      "Before buying, ask five questions: what goal you have, what your current products are intended to do, whether another item would replace a step, what matters to you now, and what you can verify without buying.",
     sections: [
       {
         heading: "Why check before you buy",
@@ -449,7 +449,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
           "Does something I already own cover that role? Check honestly, not optimistically.",
           "Would this replace a step, or just add another layer on top? Replacing something can be worth it; adding on top of full coverage rarely is.",
           "Does this map to a priority I actually have right now? A product aimed at a concern that isn't currently relevant is easy to postpone.",
-          "Could I confirm the gap without spending anything first? Checking your routine costs nothing; buying does.",
+          "What can I check without spending first? A saved category tells me only what is listed; reviewing product information and my own experience is separate.",
         ],
       },
       {
@@ -479,7 +479,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
       {
         question: "Can this checklist replace advice from a dermatologist?",
         answer:
-          "No — it's a purchasing checklist about routine coverage, not medical guidance. Skin conditions or reactions are a separate question for a dermatologist.",
+          "No — it's a purchasing decision checklist, not medical advice or proof that any routine is adequate. Skin conditions or reactions are a separate question for a dermatologist.",
       },
     ],
     hypothesis: "H2",
