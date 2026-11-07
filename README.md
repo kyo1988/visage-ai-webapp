@@ -4,7 +4,7 @@ A Next.js application featuring AI-powered skin analysis solutions and evidence-
 
 ## B2C Skincare Decision Guides
 
-Consumer-facing guides focus on one clear skincare priority, checking whether the current routine already covers it, and treating "no additional purchase needed" as a valid outcome. These guides are informational and are not medical diagnosis or treatment.
+Consumer-facing guides cover a photo-based suggested beauty priority when measurements support one, plus a separate review of saved product-category presence. Saved categories do not verify suitability, effectiveness, routine adequacy or a need to buy. The guides are nonmedical informational content, and purchasing remains the user’s choice.
 
 - [Skincare Routine Guides (English)](https://www.visageaiconsulting.com/learn)
 - [スキンケア見直しガイド (日本語)](https://www.visageaiconsulting.com/ja/learn)
