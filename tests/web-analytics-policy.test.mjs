@@ -74,6 +74,13 @@ test("only correct public page can emit its own CTA event", () => {
   assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn/clean-routine?secret=yes", "granted", "granted", SITE), true);
   assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/app", "granted", "granted", SITE), false);
   assert.equal(permitsMarketingClick("learn_app_cta_click", SITE + "/learn", "granted", "granted", SITE), false);
+  assert.equal(permitsMarketingClick("learn_hub_app_cta_click", SITE + "/learn", "granted", "granted", SITE), true);
+  assert.equal(permitsMarketingClick("learn_hub_app_cta_click", SITE + "/learn/?utm_source=threads&email=secret", "granted", "granted", SITE), true);
+  assert.equal(permitsMarketingClick("learn_hub_app_cta_click", SITE + "/learn/clean-routine", "granted", "granted", SITE), false);
+  assert.equal(permitsMarketingClick("learn_hub_app_cta_click", SITE + "/app", "granted", "granted", SITE), false);
+  assert.equal(permitsMarketingClick("learn_hub_app_cta_click", SITE + "/learn", null, "granted", SITE), false);
+  assert.equal(permitsMarketingClick("learn_hub_app_cta_click", SITE + "/learn", "granted", "denied", SITE), false);
+  assert.equal(permitsMarketingClick("learn_hub_app_cta_click", SITE + "/learn", "granted", "granted", "https://preview.vercel.app"), false);
   assert.equal(permitsMarketingClick("app_store_cta_click", SITE + "/app", "granted", "granted", SITE), true);
   assert.equal(permitsMarketingClick("app_store_cta_click", SITE + "/learn/clean-routine", "granted", "granted", SITE), false);
 });
