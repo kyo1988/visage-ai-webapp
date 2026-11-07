@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { b2cSearchPages } from "@/content/b2c-search-pages";
+import LearnHubCta from "./LearnHubCta";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.visageaiconsulting.com";
@@ -53,6 +54,7 @@ export default function LearnHubPage() {
           Practical answers to the questions people actually search before
           they buy — grounded in checking what you already use, not in hype.
         </p>
+        <LearnHubCta />
       </section>
 
       <section className="mx-auto mt-14 grid w-full max-w-4xl gap-6 px-6 pb-20 sm:grid-cols-2 md:pb-28">

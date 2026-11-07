@@ -45,7 +45,7 @@ export function sanitizeMarketingPageUrl(
  * No user IDs, campaign tokens or arbitrary custom-event payloads. An event
  * is eligible only after explicit opt-in on a known public marketing page.
  */
-export type PublicMarketingClick = "learn_app_cta_click" | "app_store_cta_click";
+export type PublicMarketingClick = "learn_app_cta_click" | "learn_hub_app_cta_click" | "app_store_cta_click";
 
 export function permitsMarketingClick(
   name: PublicMarketingClick,
@@ -61,6 +61,9 @@ export function permitsMarketingClick(
   const scrubbed = sanitizeMarketingPageUrl(rawPageUrl, currentOrigin);
   if (!scrubbed) return false;
   const path = new URL(scrubbed).pathname;
+  if (name === "learn_hub_app_cta_click") {
+    return path === "/learn" || path === "/learn/";
+  }
   if (name === "learn_app_cta_click") {
     return path.startsWith("/learn/") && path.length > "/learn/".length;
   }
