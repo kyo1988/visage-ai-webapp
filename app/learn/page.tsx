@@ -53,6 +53,12 @@ export default function LearnHubPage() {
           Practical answers to the questions people actually search before
           they buy — grounded in checking what you already use, not in hype.
         </p>
+        <Link
+          href="/app"
+          className="mx-auto mt-7 inline-flex min-h-11 items-center rounded-full border border-[#5F46BE] px-6 py-2.5 text-sm font-semibold text-[#5F46BE] transition hover:bg-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5F46BE]"
+        >
+          Explore Visage AI for iPhone →
+        </Link>
       </section>
 
       <section className="mx-auto mt-14 grid w-full max-w-4xl gap-6 px-6 pb-20 sm:grid-cols-2 md:pb-28">
