@@ -45,7 +45,7 @@ function page(track = () => {}, utms = {}) {
     'next/image': { __esModule: true, default: ({ priority: _priority, ...props }) => React.createElement('img', props) },
     '@/messages/en.json': en,
     '@/app/lib/analytics': { track },
-    '@/app/lib/utm-capture': { getCurrentUtms: () => utms },
+    '@/app/lib/utm-capture': { getConsentedAppUtms: () => utms },
   }).default();
 }
 
