@@ -45,7 +45,7 @@ function page(track = () => {}, utms = {}) {
     'next/image': { __esModule: true, default: ({ priority: _priority, ...props }) => React.createElement('img', props) },
     '@/messages/en.json': en,
     '@/app/lib/analytics': { track },
-    '@/app/lib/utm-capture': { getCurrentUtms: () => utms },
+    '@/app/lib/utm-capture': { getConsentedAppUtms: () => utms },
   }).default();
 }
 
@@ -98,6 +98,91 @@ test('existing UTM capture survives navigation without sending QA or user identi
   assert.equal(utm.getCurrentUtms().utm_campaign, 'b1_lp_20261020');
   assert.equal(utm.getCurrentUtms().diagnosisId, undefined);
   assert.deepEqual([...new URL(destination).searchParams.keys()], ['ppid', 'pt', 'ct', 'mt']);
+});
+
+test('consented /learn -> /app UTMs are bounded, expire and never contaminate Apple link', () => {
+  const session = new Map();
+  const local = new Map();
+  const window = { location: { search: '?utm_source=ph&utm_medium=organic&utm_campaign=us_launch_2026&utm_content=app_profile' } };
+  const sessionStorage = {
+    getItem: key => session.get(key) ?? null,
+    setItem: (key, value) => session.set(key, value),
+    removeItem: key => session.delete(key),
+  };
+  const localStorage = { getItem: key => local.get(key) ?? null };
+  const capture = load('app/lib/utm-capture.ts', {}, { window, localStorage, sessionStorage });
+
+  // No storage at all pre-consent: unknown rather than guessed attribution.
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 0);
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {});
+
+  local.set('ga_consent', 'granted');
+  local.set('va_consent_v1', 'granted');
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 1);
+  window.location.search = '';
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {
+    utm_source: 'ph', utm_medium: 'organic',
+    utm_campaign: 'us_launch_2026', utm_content: 'app_profile',
+  });
+
+  const links = elements(page(() => {}, capture.getConsentedAppUtms())).filter(
+    el => el.props['data-analytics-id'] === 'app_store_cta_click',
+  );
+  assert.ok(links.every(el => el.props.href === destination));
+  assert.deepEqual([...new URL(destination).searchParams.keys()], ['ppid', 'pt', 'ct', 'mt']);
+
+  // Stale campaign is rejected; later untagged /learn CTA clears it.
+  const [key, raw] = [...session.entries()][0];
+  const stale = JSON.parse(raw);
+  stale.capturedAtMs = Date.now() - 31 * 60_000;
+  session.set(key, JSON.stringify(stale));
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {});
+  window.location.search = '';
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 0);
+
+  // Consent revocation means no stored or returned campaign attribution.
+  window.location.search = '?utm_source=ph';
+  capture.captureConsentedLearnUtms();
+  local.set('ga_consent', 'denied');
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {});
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 0);
+});
+
+test('consented /learn attribution rejects private tokens and unsupported UTM values', () => {
+  const session = new Map();
+  const window = { location: { search: '?utm_source=ph&utm_campaign=test%40example.com&utm_content=https%3A%2F%2Fevil.test%2F&utm_term=sensitive%20skin&analysisId=private' } };
+  const localStorage = { getItem: () => 'granted' };
+  const sessionStorage = {
+    getItem: key => session.get(key) ?? null,
+    setItem: (key, value) => session.set(key, value),
+    removeItem: key => session.delete(key),
+  };
+  const capture = load('app/lib/utm-capture.ts', {}, { window, localStorage, sessionStorage });
+  capture.captureConsentedLearnUtms();
+  const parsed = JSON.parse(JSON.stringify(capture.getConsentedAppUtms()));
+  assert.deepEqual(parsed, { utm_source: 'ph' });
+  const stored = JSON.stringify([...session.entries()]);
+  assert.ok(!stored.includes('example.com'));
+  assert.ok(!stored.includes('analysisId'));
+  assert.ok(!stored.includes('evil.test'));
+  assert.ok(!stored.includes('sensitive skin'));
+});
+
+test('existing /learn CTAs call consented capture before legacy GA4/Vercel events', () => {
+  const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+  for (const file of ['app/learn/LearnCta.tsx', 'app/learn/LearnHubCta.tsx']) {
+    const source = read(file);
+    assert.match(source, /captureConsentedLearnUtms\(\)/);
+    assert.ok(source.indexOf('captureConsentedLearnUtms();') <
+      source.indexOf('trackConsentedMarketingClick('));
+    assert.match(source, /href="\/app"/);
+  }
+  assert.match(read('app/app/page.tsx'), /getConsentedAppUtms\(\)/);
+  assert.match(read('components/analytics/marketingClickTracking.ts'), /permitsMarketingClick/);
 });
 
 for (const choice of ['granted', 'denied']) {
