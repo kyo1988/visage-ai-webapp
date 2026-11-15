@@ -45,6 +45,9 @@ function page(track = () => {}, utms = {}) {
     'next/image': { __esModule: true, default: ({ priority: _priority, ...props }) => React.createElement('img', props) },
     '@/messages/en.json': en,
     '@/app/lib/analytics': { track },
+    '@/components/analytics/marketingClickTracking': {
+      trackConsentedMarketingClick: () => {},
+    },
     '@/app/lib/utm-capture': { getConsentedAppUtms: () => utms },
   }).default();
 }
@@ -85,7 +88,16 @@ test('both CTA entrances preserve canonical destination and existing event paylo
     assert.match(link.props.rel, /noopener/);
     link.props.onClick();
     assert.equal(events[i][0], 'app_store_cta_click');
-    assert.deepEqual(JSON.parse(JSON.stringify(events[i][1])), { from: i === 0 ? 'hero' : 'closing', page: '/app', ...utms });
+    const expected = {
+      from: i === 0 ? 'hero' : 'closing',
+      page: '/app',
+      utm_source: utms.utm_source,
+      utm_medium: utms.utm_medium,
+      utm_campaign: utms.utm_campaign,
+      utm_term: utms.utm_term,
+      utm_content: utms.utm_content,
+    };
+    assert.deepEqual(JSON.parse(JSON.stringify(events[i][1])), expected);
   });
 });
 
