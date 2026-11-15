@@ -60,8 +60,12 @@ test('Product Value First hero, primary CTA and ordered product story render wit
   assert.equal(h1.props.children[0], 'Less guessing.');
   assert.equal(h1.props.children[1].props.children, 'More you.');
   const html = renderToStaticMarkup(tree);
-  const order = [copy.step1Title, copy.step2Title, copy.step3Title, copy.journeyTitle, copy.trustTitle];
-  for (let i = 1; i < order.length; i++) assert.ok(html.indexOf(order[i - 1]) < html.indexOf(order[i]));
+  const order = ['how-title', 'priority-title', 'routine-title', 'journey-title', 'cta-title'];
+  for (let i = 1; i < order.length; i++) {
+    const previous = html.indexOf('id="' + order[i - 1] + '"');
+    const next = html.indexOf('id="' + order[i] + '"');
+    assert.ok(previous >= 0 && next > previous, 'required section order: ' + order[i]);
+  }
   assert.ok(html.includes(copy.freeLabel));
   assert.ok(all.some((el) => el.type === 'a' && el.props.href === '/en/privacy'));
   assert.ok(all.some((el) => el.type === 'a' && el.props.href === '/en'));
@@ -265,24 +269,28 @@ test('assessment and priority precede routine; only shortlisted device captures 
   const all = elements(tree);
   const headings = all.filter((el) => el.type === 'h3').map((el) => el.props.children);
   assert.deepEqual(headings.slice(0, 3), [
-    copy.step1Title,
-    copy.step2Title,
-    copy.step3Title,
+    'Take a photo',
+    'Find a focus',
+    'Choose your next step',
   ]);
   const images = all.filter((el) => el.type === 'img');
   assert.deepEqual(images.map((el) => el.props.src), [
     '/images/app-landing/496/todays-priority.png',
+    '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/routine-check.png',
     '/images/app-landing/496/skin-journey.png',
   ]);
-  assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [[1086, 660], [1080, 970], [1146, 2355]]);
+  assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [
+    [1086, 660], [1086, 660], [1080, 970], [1146, 2355],
+  ]);
   assert.ok(images.every((el) => el.props.alt.length > 20));
   const html = renderToStaticMarkup(tree);
-  assert.ok(html.indexOf(copy.step3Title) < html.indexOf(copy.productPhilosophy));
-  assert.ok(html.includes('based on available measurements'));
-  assert.ok(html.includes('Choosing not to buy is valid.'));
-  assert.ok(html.includes('not the My Routine editor'));
-  assert.ok(html.includes('not evidence of skin improvement'));
+  assert.ok(html.indexOf('id="priority-title"') < html.indexOf('id="routine-title"'));
+  assert.ok(html.includes('using available measurements'));
+  assert.ok(html.includes('Keep it. Rethink it. Or decide not to buy.'));
+  assert.ok(html.includes('product category appears in your saved My Routine list'));
+  assert.ok(html.includes('Changes in measurements are not proof'));
+  assert.ok(html.includes('does not imply improved skin'));
   assert.ok(!html.includes('Analyze Again'));
 });
 
