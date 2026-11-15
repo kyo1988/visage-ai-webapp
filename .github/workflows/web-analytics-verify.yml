@@ -4,6 +4,10 @@ on:
     paths:
       - "app/layout.tsx"
       - "app/app/AppCookieBanner.tsx"
+      - "app/app/page.tsx"
+      - "app/lib/utm-capture.ts"
+      - "app/learn/**"
+      - "scripts/test-app-landing.mjs"
       - "app/[locale]/privacy/page.tsx"
       - "components/layout/StickyHeader.tsx"
       - "components/layout/MobileStickyCta.tsx"
@@ -41,6 +45,10 @@ jobs:
         run: node --experimental-strip-types --test tests/web-analytics-policy.test.mjs
       - name: Test privacy navigation and unchanged B2B routes
         run: node --test tests/privacy-navigation.test.mjs
+      - name: Verify opt-in /learn to /app attribution, fixed store links and product truth
+        run: |
+          node --test scripts/test-app-landing.mjs
+          node --test scripts/test-b2c-content-truth.mjs
       - name: Build Next.js
         run: npm run build
       - name: Inspect registry integrity (not yet lockfile assertion)
