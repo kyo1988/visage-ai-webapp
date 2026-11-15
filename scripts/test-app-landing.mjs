@@ -56,7 +56,9 @@ test('Product Value First hero, primary CTA and ordered product story render wit
   const tree = page();
   const all = elements(tree);
   assert.equal(all.filter((el) => el.type === 'h1').length, 1);
-  assert.equal(all.find((el) => el.type === 'h1').props.children, 'One photo. One clear skincare priority.');
+  const h1 = all.find((el) => el.type === 'h1');
+  assert.equal(h1.props.children[0], 'Less guessing.');
+  assert.equal(h1.props.children[1].props.children, 'More you.');
   const html = renderToStaticMarkup(tree);
   const order = [copy.step1Title, copy.step2Title, copy.step3Title, copy.journeyTitle, copy.trustTitle];
   for (let i = 1; i < order.length; i++) assert.ok(html.indexOf(order[i - 1]) < html.indexOf(order[i]));
@@ -83,7 +85,8 @@ test('both CTA entrances preserve canonical destination and existing event paylo
   assert.equal(links.length, 2);
   links.forEach((link, i) => {
     assert.equal(link.props.href, destination);
-    assert.equal(link.props.children, copy.appStoreCta);
+    assert.equal(link.props.children[0], copy.appStoreCta);
+    assert.equal(link.props.children[1].props['aria-hidden'], 'true');
     assert.equal(link.props.target, '_blank');
     assert.match(link.props.rel, /noopener/);
     link.props.onClick();
@@ -200,12 +203,19 @@ test('existing /learn CTAs call consented capture before legacy GA4/Vercel event
 for (const choice of ['granted', 'denied']) {
   test(`PR #47 consent ${choice} is immediately queued as Arguments, persists and closes`, () => {
     const storage = new Map();
-    const window = { dataLayer: [] };
+    const window = { dataLayer: [], dispatchEvent: () => {} };
     let visible = false;
     const effects = [];
     const Banner = load('app/app/AppCookieBanner.tsx', {
       react: { useState: () => [visible, (next) => { visible = next; }], useEffect: (effect) => effects.push(effect) },
-    }, { window, localStorage: { getItem: (key) => storage.get(key), setItem: (key, value) => storage.set(key, value) } }).default;
+    }, {
+      window,
+      Event: class { constructor(type) { this.type = type; } },
+      localStorage: {
+        getItem: (key) => storage.get(key),
+        setItem: (key, value) => storage.set(key, value),
+      },
+    }).default;
     assert.equal(Banner(), null);
     effects.shift()();
     assert.equal(visible, true);
@@ -254,7 +264,11 @@ test('assessment and priority precede routine; only shortlisted device captures 
   const tree = page();
   const all = elements(tree);
   const headings = all.filter((el) => el.type === 'h3').map((el) => el.props.children);
-  assert.deepEqual(headings.slice(0, 3), ['Start with a photo', 'See your priority', 'Check your routine']);
+  assert.deepEqual(headings.slice(0, 3), [
+    copy.step1Title,
+    copy.step2Title,
+    copy.step3Title,
+  ]);
   const images = all.filter((el) => el.type === 'img');
   assert.deepEqual(images.map((el) => el.props.src), [
     '/images/app-landing/496/todays-priority.png',
