@@ -24,7 +24,7 @@ test('six existing slugs, hypothesis taxonomy and related-page graph remain inta
 });
 
 test('every acquisition CTA introduces a photo-based suggested priority rather than promising coverage',()=>{
- for(const p of pages){assert.match(p.cta.body,/photo/i);assert.match(p.cta.body,/suggested priority/i);assert.equal(p.cta.label,'Explore Visage AI');assert.doesNotMatch(p.cta.body,/already covers|checks your current products against|so you know before you buy/i)}
+ for(const p of pages){assert.match(p.cta.body,/photo/i);assert.match(p.cta.body,/(?:suggested priority|suggest a priority)/i);assert.ok(['Explore Visage AI', 'See Visage AI for iPhone'].includes(p.cta.label));assert.doesNotMatch(p.cta.body,/already covers|checks your current products against|so you know before you buy/i)}
  const c=read('app/learn/LearnCta.tsx');assert.match(c,/href="\/app"/);assert.match(c,/track\("seo_app_cta_click", \{ slug, hypothesis, from: "learn" \}\)/);
 });
 

@@ -45,7 +45,10 @@ function page(track = () => {}, utms = {}) {
     'next/image': { __esModule: true, default: ({ priority: _priority, ...props }) => React.createElement('img', props) },
     '@/messages/en.json': en,
     '@/app/lib/analytics': { track },
-    '@/app/lib/utm-capture': { getCurrentUtms: () => utms },
+    '@/components/analytics/marketingClickTracking': {
+      trackConsentedMarketingClick: () => {},
+    },
+    '@/app/lib/utm-capture': { getConsentedAppUtms: () => utms },
   }).default();
 }
 
@@ -53,10 +56,16 @@ test('Product Value First hero, primary CTA and ordered product story render wit
   const tree = page();
   const all = elements(tree);
   assert.equal(all.filter((el) => el.type === 'h1').length, 1);
-  assert.equal(all.find((el) => el.type === 'h1').props.children, 'One photo. One clear skincare priority.');
+  const h1 = all.find((el) => el.type === 'h1');
+  assert.equal(h1.props.children[0], 'Less guessing.');
+  assert.equal(h1.props.children[1].props.children, 'More you.');
   const html = renderToStaticMarkup(tree);
-  const order = [copy.step1Title, copy.step2Title, copy.step3Title, copy.journeyTitle, copy.trustTitle];
-  for (let i = 1; i < order.length; i++) assert.ok(html.indexOf(order[i - 1]) < html.indexOf(order[i]));
+  const order = ['how-title', 'priority-title', 'routine-title', 'journey-title', 'cta-title'];
+  for (let i = 1; i < order.length; i++) {
+    const previous = html.indexOf('id="' + order[i - 1] + '"');
+    const next = html.indexOf('id="' + order[i] + '"');
+    assert.ok(previous >= 0 && next > previous, 'required section order: ' + order[i]);
+  }
   assert.ok(html.includes(copy.freeLabel));
   assert.ok(all.some((el) => el.type === 'a' && el.props.href === '/en/privacy'));
   assert.ok(all.some((el) => el.type === 'a' && el.props.href === '/en'));
@@ -80,12 +89,22 @@ test('both CTA entrances preserve canonical destination and existing event paylo
   assert.equal(links.length, 2);
   links.forEach((link, i) => {
     assert.equal(link.props.href, destination);
-    assert.equal(link.props.children, copy.appStoreCta);
+    assert.equal(link.props.children[0], copy.appStoreCta);
+    assert.equal(link.props.children[1].props['aria-hidden'], 'true');
     assert.equal(link.props.target, '_blank');
     assert.match(link.props.rel, /noopener/);
     link.props.onClick();
     assert.equal(events[i][0], 'app_store_cta_click');
-    assert.deepEqual(JSON.parse(JSON.stringify(events[i][1])), { from: i === 0 ? 'hero' : 'closing', page: '/app', ...utms });
+    const expected = {
+      from: i === 0 ? 'hero' : 'closing',
+      page: '/app',
+      utm_source: utms.utm_source,
+      utm_medium: utms.utm_medium,
+      utm_campaign: utms.utm_campaign,
+      utm_term: utms.utm_term,
+      utm_content: utms.utm_content,
+    };
+    assert.deepEqual(JSON.parse(JSON.stringify(events[i][1])), expected);
   });
 });
 
@@ -100,15 +119,107 @@ test('existing UTM capture survives navigation without sending QA or user identi
   assert.deepEqual([...new URL(destination).searchParams.keys()], ['ppid', 'pt', 'ct', 'mt']);
 });
 
+test('consented /learn -> /app UTMs are bounded, expire and never contaminate Apple link', () => {
+  const session = new Map();
+  const local = new Map();
+  const window = { location: { search: '?utm_source=ph&utm_medium=organic&utm_campaign=us_launch_2026&utm_content=app_profile' } };
+  const sessionStorage = {
+    getItem: key => session.get(key) ?? null,
+    setItem: (key, value) => session.set(key, value),
+    removeItem: key => session.delete(key),
+  };
+  const localStorage = { getItem: key => local.get(key) ?? null };
+  const capture = load('app/lib/utm-capture.ts', {}, { window, localStorage, sessionStorage });
+
+  // No storage at all pre-consent: unknown rather than guessed attribution.
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 0);
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {});
+
+  local.set('ga_consent', 'granted');
+  local.set('va_consent_v1', 'granted');
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 1);
+  window.location.search = '';
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {
+    utm_source: 'ph', utm_medium: 'organic',
+    utm_campaign: 'us_launch_2026', utm_content: 'app_profile',
+  });
+
+  const links = elements(page(() => {}, capture.getConsentedAppUtms())).filter(
+    el => el.props['data-analytics-id'] === 'app_store_cta_click',
+  );
+  assert.ok(links.every(el => el.props.href === destination));
+  assert.deepEqual([...new URL(destination).searchParams.keys()], ['ppid', 'pt', 'ct', 'mt']);
+
+  // Stale campaign is rejected; later untagged /learn CTA clears it.
+  const [key, raw] = [...session.entries()][0];
+  const stale = JSON.parse(raw);
+  stale.capturedAtMs = Date.now() - 31 * 60_000;
+  session.set(key, JSON.stringify(stale));
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {});
+  window.location.search = '';
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 0);
+
+  // Consent revocation means no stored or returned campaign attribution.
+  window.location.search = '?utm_source=ph';
+  capture.captureConsentedLearnUtms();
+  local.set('ga_consent', 'denied');
+  assert.deepEqual(JSON.parse(JSON.stringify(capture.getConsentedAppUtms())), {});
+  capture.captureConsentedLearnUtms();
+  assert.equal(session.size, 0);
+});
+
+test('consented /learn attribution rejects private tokens and unsupported UTM values', () => {
+  const session = new Map();
+  const window = { location: { search: '?utm_source=ph&utm_campaign=test%40example.com&utm_content=https%3A%2F%2Fevil.test%2F&utm_term=sensitive%20skin&analysisId=private' } };
+  const localStorage = { getItem: () => 'granted' };
+  const sessionStorage = {
+    getItem: key => session.get(key) ?? null,
+    setItem: (key, value) => session.set(key, value),
+    removeItem: key => session.delete(key),
+  };
+  const capture = load('app/lib/utm-capture.ts', {}, { window, localStorage, sessionStorage });
+  capture.captureConsentedLearnUtms();
+  const parsed = JSON.parse(JSON.stringify(capture.getConsentedAppUtms()));
+  assert.deepEqual(parsed, { utm_source: 'ph' });
+  const stored = JSON.stringify([...session.entries()]);
+  assert.ok(!stored.includes('example.com'));
+  assert.ok(!stored.includes('analysisId'));
+  assert.ok(!stored.includes('evil.test'));
+  assert.ok(!stored.includes('sensitive skin'));
+});
+
+test('existing /learn CTAs call consented capture before legacy GA4/Vercel events', () => {
+  const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+  for (const file of ['app/learn/LearnCta.tsx', 'app/learn/LearnHubCta.tsx']) {
+    const source = read(file);
+    assert.match(source, /captureConsentedLearnUtms\(\)/);
+    assert.ok(source.indexOf('captureConsentedLearnUtms();') <
+      source.indexOf('trackConsentedMarketingClick('));
+    assert.match(source, /href="\/app"/);
+  }
+  assert.match(read('app/app/page.tsx'), /getConsentedAppUtms\(\)/);
+  assert.match(read('components/analytics/marketingClickTracking.ts'), /permitsMarketingClick/);
+});
+
 for (const choice of ['granted', 'denied']) {
   test(`PR #47 consent ${choice} is immediately queued as Arguments, persists and closes`, () => {
     const storage = new Map();
-    const window = { dataLayer: [] };
+    const window = { dataLayer: [], dispatchEvent: () => {} };
     let visible = false;
     const effects = [];
     const Banner = load('app/app/AppCookieBanner.tsx', {
       react: { useState: () => [visible, (next) => { visible = next; }], useEffect: (effect) => effects.push(effect) },
-    }, { window, localStorage: { getItem: (key) => storage.get(key), setItem: (key, value) => storage.set(key, value) } }).default;
+    }, {
+      window,
+      Event: class { constructor(type) { this.type = type; } },
+      localStorage: {
+        getItem: (key) => storage.get(key),
+        setItem: (key, value) => storage.set(key, value),
+      },
+    }).default;
     assert.equal(Banner(), null);
     effects.shift()();
     assert.equal(visible, true);
@@ -157,21 +268,29 @@ test('assessment and priority precede routine; only shortlisted device captures 
   const tree = page();
   const all = elements(tree);
   const headings = all.filter((el) => el.type === 'h3').map((el) => el.props.children);
-  assert.deepEqual(headings.slice(0, 3), ['Start with a photo', 'See your priority', 'Check your routine']);
+  assert.deepEqual(headings.slice(0, 3), [
+    'Take a photo',
+    'Find a focus',
+    'Choose your next step',
+  ]);
   const images = all.filter((el) => el.type === 'img');
   assert.deepEqual(images.map((el) => el.props.src), [
+    '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/routine-check.png',
     '/images/app-landing/496/skin-journey.png',
   ]);
-  assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [[1086, 660], [1080, 970], [1146, 2355]]);
+  assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [
+    [1086, 660], [1086, 660], [1080, 970], [1146, 2355],
+  ]);
   assert.ok(images.every((el) => el.props.alt.length > 20));
   const html = renderToStaticMarkup(tree);
-  assert.ok(html.indexOf(copy.step3Title) < html.indexOf(copy.productPhilosophy));
-  assert.ok(html.includes('based on available measurements'));
-  assert.ok(html.includes('Choosing not to buy is valid.'));
-  assert.ok(html.includes('not the My Routine editor'));
-  assert.ok(html.includes('not evidence of skin improvement'));
+  assert.ok(html.indexOf('id="priority-title"') < html.indexOf('id="routine-title"'));
+  assert.ok(html.includes('using available measurements'));
+  assert.ok(html.includes('Keep it. Rethink it. Or decide not to buy.'));
+  assert.ok(html.includes('product category appears in your saved My Routine list'));
+  assert.ok(html.includes('Changes in measurements are not proof'));
+  assert.ok(html.includes('does not imply improved skin'));
   assert.ok(!html.includes('Analyze Again'));
 });
 

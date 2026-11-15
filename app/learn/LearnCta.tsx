@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { track } from "@/app/lib/analytics";
+import { captureConsentedLearnUtms } from "@/app/lib/utm-capture";
 import { trackConsentedMarketingClick } from "@/components/analytics/marketingClickTracking";
 import type { Hypothesis } from "@/content/b2c-search-pages";
 
@@ -31,6 +32,7 @@ export default function LearnCta({
           href="/app"
           data-analytics-id="seo_app_cta_click"
           onClick={() => {
+            captureConsentedLearnUtms();
             track("seo_app_cta_click", { slug, hypothesis, from: "learn" });
             trackConsentedMarketingClick("learn_app_cta_click");
           }}

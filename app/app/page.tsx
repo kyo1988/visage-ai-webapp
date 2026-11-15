@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { track } from "@/app/lib/analytics";
 import { trackConsentedMarketingClick } from "@/components/analytics/marketingClickTracking";
-import { getCurrentUtms } from "@/app/lib/utm-capture";
+import { getConsentedAppUtms } from "@/app/lib/utm-capture";
 import messages from "@/messages/en.json";
 
 const copy = messages.landing.consumerApp;
@@ -41,7 +41,7 @@ function AppStoreButton({
       rel="noopener noreferrer"
       data-analytics-id="app_store_cta_click"
       onClick={() => {
-        const utms = getCurrentUtms();
+        const utms = getConsentedAppUtms();
         track("app_store_cta_click", {
           from,
           page: "/app",
