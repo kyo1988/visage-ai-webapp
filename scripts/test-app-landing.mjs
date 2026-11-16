@@ -60,7 +60,7 @@ test('editorial product-first hero matches reviewed direction, preserves source 
   assert.ok(html.includes('One photo. One suggested priority.'));
   assert.ok(html.includes('Take or choose a photo'));
   assert.ok(html.includes('Example result'));
-  assert.ok(html.includes('yours may differ'));
+  assert.ok(html.includes('Example result · may vary'));
   assert.ok(html.includes('Suggested when usable photo measurements are available.'));
   assert.ok(html.includes('Not a medical diagnosis.'));
   assert.ok(!html.includes('Less guessing.'));
@@ -76,8 +76,10 @@ test('premium-clean LP keeps one restrained visual system without decorative bad
   for (const pattern of [/blur-3xl/, /radial-gradient/, /rounded-full/, /shadow-\[/, /bg-\[#f0ebf4\]/]) {
     assert.doesNotMatch(source, pattern);
   }
-  assert.match(source, /bg-\[#fafaf8\]/);
-  assert.match(source, /border-y border-\[#d7dad3\]/);
+  assert.match(source, /bg-\[#fbfaf7\]/);
+  assert.match(source, /aspect-\[2\.9\]/);
+  assert.doesNotMatch(source, /photo-input-moment\.svg/);
+  assert.match(source, /bg-\[#292b28\]/);
   assert.match(source, /Example result/);
   assert.match(source, /usable photo measurements/);
   assert.match(source, /Cosmetic guidance only/);
@@ -186,14 +188,14 @@ test('photo input and authentic priority precede saved-category and journey capt
   assert.deepEqual(headings.slice(0, 3), ['Take a photo', 'Find a focus', 'Choose your next step']);
   const images = all.filter((el) => el.type === 'img');
   assert.deepEqual(images.map((el) => el.props.src), [
-    '/images/app-landing/496/photo-input-moment.svg',
+    '/images/app-landing/496/photo-input-editorial.svg',
     '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/routine-check.png',
     '/images/app-landing/496/skin-journey.png',
   ]);
   assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [
-    [176, 244], [1086, 660], [1086, 660], [1080, 970], [1146, 2355],
+    [800, 276], [1086, 660], [1086, 660], [1080, 970], [1146, 2355],
   ]);
   assert.ok(images.every((el) => el.props.alt.length > 20));
   const html = renderToStaticMarkup(tree);
