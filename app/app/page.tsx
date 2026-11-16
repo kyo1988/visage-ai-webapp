@@ -25,15 +25,7 @@ function Mark({ light = false }: { light?: boolean }) {
   );
 }
 
-function AppStoreButton({
-  from,
-  compact = false,
-  inverse = false,
-}: {
-  from: string;
-  compact?: boolean;
-  inverse?: boolean;
-}) {
+function AppStoreLink({ from, inverse = false }: { from: string; inverse?: boolean }) {
   return (
     <a
       href={APP_STORE_URL}
@@ -54,13 +46,11 @@ function AppStoreButton({
         trackConsentedMarketingClick("app_store_cta_click");
       }}
       className={
-        "group inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#725175] " +
-        (inverse ? "bg-white text-[#3d2939] hover:bg-[#f8f0ed] " : "bg-[#352635] text-white hover:bg-[#63415a] ") +
-        (compact ? "px-5 py-3" : "sm:px-8 sm:py-4 sm:text-base")
+        "inline-flex min-h-11 items-center justify-center py-2 text-[15px] font-semibold tracking-[0.012em] underline decoration-1 underline-offset-[7px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#725175] " +
+        (inverse ? "text-[#f8f2f5] decoration-[#d9c2d7] hover:text-white " : "text-[#584476] decoration-[#73578d] hover:text-[#392852]")
       }
     >
-      {copy.appStoreCta}
-      <span aria-hidden="true" className="text-lg leading-none transition-transform group-hover:translate-x-1">↗</span>
+      Get Visage AI
     </a>
   );
 }
@@ -72,73 +62,58 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 export default function AppLandingPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#fbf8f5] font-sans text-[#392b35]">
-      <div className="bg-[#352635] px-5 py-2.5 text-center text-[10px] font-medium tracking-[0.15em] text-[#f4e9ef] sm:text-xs">
-        A quieter way to decide what comes next in skincare
-      </div>
-
-      <header className="relative z-30 border-b border-[#e9e0e2] bg-[#fbf8f5]/95">
-        <nav aria-label="Main navigation" className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-9 lg:px-12">
-          <a href="#top" className="inline-flex items-center gap-2.5 text-[#392b35] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#725175]">
-            <Mark />
-            <span className="text-xl font-medium tracking-[0.04em]" style={serif}>Visage AI</span>
-          </a>
-          <div className="hidden items-center gap-8 text-xs font-medium tracking-wide text-[#64545f] md:flex">
-            <a href="#how" className="hover:text-[#442e45]">How it works</a>
-            <a href="#priority" className="hover:text-[#442e45]">Your priority</a>
-            <a href="#routine" className="hover:text-[#442e45]">Your routine</a>
-          </div>
-          <a href="#get-app" className="rounded-full border border-[#6a5265] px-4 py-2.5 text-xs font-semibold text-[#4f3951] transition hover:bg-[#efe4ed] sm:px-5">
-            Get the free app <span aria-hidden="true">↗</span>
+      <header className="relative z-20 bg-[#fbf9f7]">
+        <nav aria-label="Main navigation" className="mx-auto flex max-w-7xl items-center px-6 py-3 sm:px-10 lg:px-12 lg:pt-9">
+          <a href="#top" className="inline-flex min-h-11 items-center text-[18px] font-semibold tracking-[-0.01em] text-[#322b38] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#725175]">
+            Visage AI
           </a>
         </nav>
       </header>
 
-      <section id="top" aria-labelledby="hero-title" className="relative isolate">
-        <div className="pointer-events-none absolute -left-40 top-28 h-[400px] w-[400px] rounded-full bg-[#efdddf]/45 blur-3xl" aria-hidden="true" />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-14 sm:px-10 sm:pt-20 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:px-12 lg:pb-28 lg:pt-24">
-          <div className="relative z-10 max-w-[670px]">
-            <Eyebrow>Beauty, with a little more clarity</Eyebrow>
-            <h1 id="hero-title" className="mt-7 max-w-3xl text-[clamp(3.15rem,5.4vw,5.65rem)] font-normal leading-[0.99] tracking-[-0.055em] text-[#352635]" style={serif}>
-              Less guessing.<span className="block italic text-[#9b7397]">More you.</span>
-            </h1>
-            <p className="mt-8 max-w-lg text-lg leading-[1.8] text-[#675960] sm:text-xl">
-              One photo can lead to a suggested skincare priority. Review the products you already have, then decide what feels right for your routine.
-            </p>
-            <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <AppStoreButton from="hero" />
-              <span className="text-sm text-[#786972]">{copy.freeLabel} · Beauty guidance, not medical advice</span>
-            </div>
-            <div className="mt-12 flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.13em] text-[#796973]">
-              <span className="rounded-full border border-[#dbcdd5] px-4 py-2.5">Photo-based assessment</span>
-              <span className="rounded-full border border-[#dbcdd5] px-4 py-2.5">Your next step</span>
-              <span className="rounded-full border border-[#dbcdd5] px-4 py-2.5">No forced purchase</span>
+      <section id="top" aria-labelledby="hero-title" className="relative isolate bg-[#fbf9f7]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 72% 53%, rgba(223,211,228,.52), transparent 48%), radial-gradient(ellipse at 18% 85%, rgba(241,233,220,.24), transparent 40%)" }} />
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-y-3 px-6 pb-9 pt-2 sm:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.06fr)] lg:gap-x-16 lg:gap-y-7 lg:px-12 lg:pb-28 lg:pt-16">
+          <h1 id="hero-title" className="max-w-[650px] text-[clamp(2.55rem,9vw,3.1rem)] font-normal leading-[1.03] tracking-[-0.042em] text-[#322b38] lg:col-start-1 lg:row-start-1 lg:text-[clamp(4.25rem,5.4vw,5.5rem)]" style={serif}>
+            Not sure what <span className="block">to focus on?</span>
+          </h1>
+          <p className="text-[15px] leading-6 text-[#655d69] sm:text-[17px] lg:col-start-1 lg:row-start-2 lg:text-[21px]">
+            One photo. One suggested priority.
+          </p>
+          <div className="mt-1 lg:col-start-1 lg:row-start-3 lg:mt-3">
+            <div className="flex max-w-[370px] items-center gap-3 rounded-[17px] bg-[#f0ebf4] p-2 lg:max-w-[430px] lg:gap-5 lg:p-3">
+              <Image
+                src="/images/app-landing/496/photo-input-moment.svg"
+                alt="Hand holding an iPhone for a photo-based skincare assessment"
+                width={176}
+                height={244}
+                unoptimized
+                className="h-[56px] w-[64px] shrink-0 rounded-[10px] object-cover object-center lg:h-[76px] lg:w-[88px]"
+              />
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.07em] text-[#634e82] lg:text-xs">Photo input</p>
+                <p className="mt-1 text-[13px] leading-[1.35] text-[#382f40] lg:text-base">Take or choose a photo</p>
+              </div>
             </div>
           </div>
-
-          <div className="relative mx-auto w-full max-w-[560px]">
-            <div className="relative aspect-[0.89] overflow-hidden rounded-[34px] bg-[#e7d7dc] shadow-[0_30px_90px_rgba(74,50,71,0.14)]">
-              <div className="absolute inset-0" style={{background: "radial-gradient(circle at 84% 18%, rgba(255,255,255,.91), transparent 29%), radial-gradient(circle at 24% 72%, rgba(255,240,232,.78), transparent 39%), linear-gradient(142deg,#f3e9e8 0%,#e2cfd6 48%,#cbb5ca 100%)"}} aria-hidden="true" />
-              <div className="absolute -right-24 -top-24 h-[360px] w-[260px] rotate-12 rounded-full border-[34px] border-white/35 blur-[1px]" aria-hidden="true" />
-              <div className="absolute -left-20 bottom-[-90px] h-[320px] w-[320px] rounded-full bg-[#fff6eb]/45 blur-3xl" aria-hidden="true" />
-              <div className="absolute left-7 top-8 text-[10px] font-semibold uppercase tracking-[0.21em] text-[#6e5768] sm:left-10 sm:top-10">Your skin. Your decision.</div>
-              <div className="absolute right-8 top-[15%] h-[47%] w-[44%] rounded-[130px_130px_30px_30px] border border-white/65 bg-gradient-to-b from-white/55 to-[#c6a8bf]/30 shadow-[inset_18px_0_38px_rgba(255,255,255,.48),0_28px_56px_rgba(64,43,61,.12)]" aria-hidden="true" />
-              <div className="absolute right-[17%] top-[27%] h-[35%] w-[4px] rotate-[-11deg] bg-white/45 blur-[2px]" aria-hidden="true" />
-              <div className="absolute bottom-[16%] left-5 right-5 -rotate-[5deg] rounded-[22px] border border-white/80 bg-[#fbf9ff] p-3 shadow-[0_24px_50px_rgba(68,39,66,0.22)] sm:left-9 sm:right-10 sm:p-4">
-                <Image
-                  src="/images/app-landing/496/todays-priority.png"
-                  alt="Captured example of a suggested Today's Priority: Age-Defying Glow"
-                  width={1086}
-                  height={660}
-                  priority
-                  sizes="(min-width: 768px) 460px, 90vw"
-                  className="h-auto w-full rounded-xl"
-                />
-              </div>
-              <div className="absolute bottom-[5%] left-8 right-8 flex items-center justify-between gap-2 text-[10px] font-medium tracking-wide text-[#685063] sm:left-10 sm:right-10">
-                <span>VISAGE AI</span>
-                <span>Example result · your priority may differ</span>
-              </div>
-            </div>
+          <figure className="mt-1 min-w-0 lg:col-start-2 lg:row-start-1 lg:row-span-4 lg:mt-0 lg:self-center">
+            <figcaption className="mb-2 text-[10px] font-semibold uppercase tracking-[0.075em] text-[#624c80] lg:mb-4 lg:text-xs">
+              Example result <span className="font-normal normal-case tracking-normal text-[#706578]">· yours may differ</span>
+            </figcaption>
+            <Image
+              src="/images/app-landing/496/todays-priority.png"
+              alt="Unaltered official example of Today's Priority: Age-Defying Glow. Your suggested priority may differ."
+              width={1086}
+              height={660}
+              priority
+              sizes="(min-width: 1024px) 46vw, (min-width: 640px) 560px, calc(100vw - 48px)"
+              className="block h-auto w-full rounded-sm shadow-[0_12px_30px_rgba(69,51,76,0.12)]"
+            />
+          </figure>
+          <div className="flex flex-col items-start gap-1.5 lg:col-start-1 lg:row-start-4 lg:gap-2">
+            <AppStoreLink from="hero" />
+            <p className="max-w-[365px] text-[11px] leading-[1.45] text-[#645d67] sm:text-xs">
+              Suggested when usable photo measurements are available. Cosmetic guidance only. Not a medical diagnosis.
+            </p>
           </div>
         </div>
       </section>
@@ -257,7 +232,7 @@ export default function AppLandingPage() {
             Start with a photo.<br /><em className="text-[#dbbcd7]">Decide with context.</em>
           </h2>
           <p className="mx-auto mt-7 max-w-lg text-base leading-8 text-[#e4d9e3]">Explore Visage AI for iPhone. One possible priority. Your routine. Your choice.</p>
-          <div className="mt-10"><AppStoreButton from="closing" inverse /></div>
+          <div className="mt-10"><AppStoreLink from="closing" inverse /></div>
           <p className="mt-5 text-sm text-[#d5c6d4]">{copy.freeLabel} · No forced purchase</p>
         </div>
       </section>
