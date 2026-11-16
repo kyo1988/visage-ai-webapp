@@ -73,15 +73,15 @@ test('editorial product-first hero matches reviewed direction, preserves source 
 
 test('premium-clean LP keeps one restrained visual system without decorative badges, gradients or fake proof', () => {
   const source = read('app/app/page.tsx');
-  for (const pattern of [/blur-3xl/, /radial-gradient/, /rounded-full/, /shadow-\\[/, /bg-\\[#f0ebf4\\]/]) {
+  for (const pattern of [/blur-3xl/, /radial-gradient/, /rounded-full/, /shadow-\[/, /bg-\[#f0ebf4\]/]) {
     assert.doesNotMatch(source, pattern);
   }
-  assert.match(source, /bg-\\[#fafaf8\\]/);
-  assert.match(source, /border-y border-\\[#d7dad3\\]/);
+  assert.match(source, /bg-\[#fafaf8\]/);
+  assert.match(source, /border-y border-\[#d7dad3\]/);
   assert.match(source, /Example result/);
   assert.match(source, /usable photo measurements/);
   assert.match(source, /Cosmetic guidance only/);
-  assert.equal((source.match(/todays-priority\\.png/g) || []).length, 2);
+  assert.equal((source.match(/todays-priority\.png/g) || []).length, 2);
   const html = renderToStaticMarkup(page());
   assert.ok(html.indexOf('Get Visage AI') > html.indexOf('Example result'));
 });
