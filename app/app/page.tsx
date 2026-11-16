@@ -131,7 +131,7 @@ export default function AppLandingPage() {
           <div className="w-full max-w-[520px]">
             <Eyebrow>04 / Skin Journey</Eyebrow>
             <h2 id="journey-title" className="mt-4 text-[clamp(2.35rem,5vw,4.8rem)] font-normal leading-[1.06] tracking-[-0.04em]" style={serif}>Look back, with context.</h2>
-            <p className="mt-5 max-w-[480px] text-[14px] leading-[1.75] text-[#615b54] sm:text-[16px]">Compare available measurements over time. Changes are not proof of skin improvement or a product's effect.</p>
+            <p className="mt-5 max-w-[480px] text-[14px] leading-[1.75] text-[#615b54] sm:text-[16px]">Compare available measurements over time. Changes are not proof of skin improvement or a product&apos;s effect.</p>
           </div>
           <figure className="w-[185px] shrink-0 sm:w-[230px]">
             <Image
