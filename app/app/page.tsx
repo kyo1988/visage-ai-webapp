@@ -84,14 +84,14 @@ export default function AppLandingPage() {
                 className="h-11 w-11 shrink-0 object-cover sm:h-14 sm:w-14"
               />
               <div className="min-w-0">
-                <p className="text-[9px] font-medium uppercase tracking-[0.17em] text-[#677267] sm:text-[10px]">01 / Photo input</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#536057] sm:text-[11px]">01 / Photo input</p>
                 <p className="mt-0.5 text-[13px] font-medium leading-5 text-[#303933] sm:text-[15px]">Take or choose a photo</p>
               </div>
             </div>
           </div>
 
           <figure className="min-w-0 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
-            <figcaption className="mb-2 flex items-baseline justify-between gap-3 text-[10px] font-medium tracking-[0.08em] text-[#49594e] sm:mb-4 sm:text-[11px]">
+            <figcaption className="mb-2 flex items-baseline justify-between gap-3 text-[11px] font-medium tracking-[0.055em] text-[#49594e] sm:mb-4 sm:text-[12px]">
               <span>02 / Today&apos;s Priority</span>
               <span className="shrink-0 uppercase tracking-[0.13em]">Example result · yours may differ</span>
             </figcaption>
@@ -110,7 +110,7 @@ export default function AppLandingPage() {
 
           <div className="flex flex-col items-start gap-0.5 lg:col-start-1 lg:row-start-2 lg:self-start lg:pt-4">
             <AppStoreLink from="hero" />
-            <p className="max-w-[390px] text-[11px] leading-[1.48] text-[#5e6860] sm:mt-1 sm:text-[12px]">
+            <p className="max-w-[390px] text-[12px] leading-[1.5] text-[#536057] sm:mt-1 sm:text-[13px]">
               Suggested when usable photo measurements are available. Cosmetic guidance only. Not a medical diagnosis.
             </p>
           </div>
