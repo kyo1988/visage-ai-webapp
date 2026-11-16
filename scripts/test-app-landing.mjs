@@ -46,16 +46,25 @@ function page(track = () => {}, utms = {}) {
     '@/messages/en.json': en,
     '@/app/lib/analytics': { track },
     '@/app/lib/utm-capture': { getCurrentUtms: () => utms },
+    '@/components/analytics/marketingClickTracking': { trackConsentedMarketingClick: () => {} },
   }).default();
 }
 
-test('Product Value First hero, primary CTA and ordered product story render without hiding existing content', () => {
+test('editorial product-first hero matches reviewed direction, preserves source screens and footer', () => {
   const tree = page();
   const all = elements(tree);
   assert.equal(all.filter((el) => el.type === 'h1').length, 1);
-  assert.equal(all.find((el) => el.type === 'h1').props.children, 'One photo. One clear skincare priority.');
   const html = renderToStaticMarkup(tree);
-  const order = [copy.step1Title, copy.step2Title, copy.step3Title, copy.journeyTitle, copy.trustTitle];
+  assert.ok(html.includes('Not sure what'));
+  assert.ok(html.includes('to focus on?'));
+  assert.ok(html.includes('One photo. One suggested priority.'));
+  assert.ok(html.includes('Take or choose a photo'));
+  assert.ok(html.includes('Example result'));
+  assert.ok(html.includes('yours may differ'));
+  assert.ok(html.includes('Suggested when usable photo measurements are available.'));
+  assert.ok(html.includes('Not a medical diagnosis.'));
+  assert.ok(!html.includes('Less guessing.'));
+  const order = ['Take a photo', 'Find a focus', 'Choose your next step', 'A place to', 'What you already have', 'A little perspective'];
   for (let i = 1; i < order.length; i++) assert.ok(html.indexOf(order[i - 1]) < html.indexOf(order[i]));
   assert.ok(html.includes(copy.freeLabel));
   assert.ok(all.some((el) => el.type === 'a' && el.props.href === '/en/privacy'));
@@ -80,7 +89,9 @@ test('both CTA entrances preserve canonical destination and existing event paylo
   assert.equal(links.length, 2);
   links.forEach((link, i) => {
     assert.equal(link.props.href, destination);
-    assert.equal(link.props.children, copy.appStoreCta);
+    assert.equal(link.props.children, 'Get Visage AI');
+    assert.ok(!/rounded-full|bg-\\[|border-/.test(link.props.className), 'CTA must remain buttonless');
+    assert.match(link.props.className, /underline/);
     assert.equal(link.props.target, '_blank');
     assert.match(link.props.rel, /noopener/);
     link.props.onClick();
@@ -153,25 +164,29 @@ test('EN/JA new copy has complete key parity without replacing localized site me
   assert.ok(en.nav.product);
 });
 
-test('assessment and priority precede routine; only shortlisted device captures render', () => {
+test('photo input and authentic priority precede saved-category and journey captures', () => {
   const tree = page();
   const all = elements(tree);
   const headings = all.filter((el) => el.type === 'h3').map((el) => el.props.children);
-  assert.deepEqual(headings.slice(0, 3), ['Start with a photo', 'See your priority', 'Check your routine']);
+  assert.deepEqual(headings.slice(0, 3), ['Take a photo', 'Find a focus', 'Choose your next step']);
   const images = all.filter((el) => el.type === 'img');
   assert.deepEqual(images.map((el) => el.props.src), [
+    '/images/app-landing/496/photo-input-moment.svg',
+    '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/routine-check.png',
     '/images/app-landing/496/skin-journey.png',
   ]);
-  assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [[1086, 660], [1080, 970], [1146, 2355]]);
+  assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [
+    [176, 244], [1086, 660], [1086, 660], [1080, 970], [1146, 2355],
+  ]);
   assert.ok(images.every((el) => el.props.alt.length > 20));
   const html = renderToStaticMarkup(tree);
-  assert.ok(html.indexOf(copy.step3Title) < html.indexOf(copy.productPhilosophy));
-  assert.ok(html.includes('based on available measurements'));
-  assert.ok(html.includes('Choosing not to buy is valid.'));
-  assert.ok(html.includes('not the My Routine editor'));
-  assert.ok(html.includes('not evidence of skin improvement'));
+  assert.ok(html.indexOf('Find a focus') < html.indexOf('Routine Check shows'));
+  assert.ok(html.includes('usable photo measurements'));
+  assert.ok(html.includes('Keeping what you have is always an option.'));
+  assert.ok(html.includes('category appears in your saved My Routine list'));
+  assert.ok(html.includes('Changes in measurements are not proof'));
   assert.ok(!html.includes('Analyze Again'));
 });
 
