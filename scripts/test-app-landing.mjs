@@ -60,11 +60,13 @@ test('editorial product-first hero matches reviewed direction, preserves source 
   assert.ok(html.includes('One photo. One suggested priority.'));
   assert.ok(html.includes('Take or choose a photo'));
   assert.ok(html.includes('Example result'));
-  assert.ok(html.includes('Example result · may vary'));
+  assert.ok(html.includes('Example result · yours may differ'));
+  assert.ok(html.includes('See what you have.'));
+  assert.ok(html.includes('Look back, with context.'));
   assert.ok(html.includes('Suggested when usable photo measurements are available.'));
   assert.ok(html.includes('Not a medical diagnosis.'));
   assert.ok(!html.includes('Less guessing.'));
-  const order = ['Take a photo', 'Find a focus', 'Choose your next step', 'A place to', 'What you already have', 'A little perspective'];
+  const order = ['Not sure what', 'Take or choose a photo', 'Example result', 'Get Visage AI', 'See what you have.', 'Look back, with context.'];
   for (let i = 1; i < order.length; i++) assert.ok(html.indexOf(order[i - 1]) < html.indexOf(order[i]));
   assert.ok(html.includes(copy.freeLabel));
   assert.ok(all.some((el) => el.type === 'a' && el.props.href === '/en/privacy'));
@@ -77,13 +79,17 @@ test('premium-clean LP keeps one restrained visual system without decorative bad
     assert.doesNotMatch(source, pattern);
   }
   assert.match(source, /bg-\[#fbfaf7\]/);
-  assert.match(source, /aspect-\[2\.9\]/);
+  assert.match(source, /aspect-\[3\.1\]/);
+  assert.match(source, /photo-input-still-life\.webp/);
+  assert.doesNotMatch(source, /photo-input-editorial\.svg|hand holding an iPhone/);
   assert.doesNotMatch(source, /photo-input-moment\.svg/);
   assert.match(source, /bg-\[#292b28\]/);
   assert.match(source, /Example result/);
   assert.match(source, /usable photo measurements/);
   assert.match(source, /Cosmetic guidance only/);
-  assert.equal((source.match(/todays-priority\.png/g) || []).length, 2);
+  assert.equal((source.match(/todays-priority\.png/g) || []).length, 1);
+  assert.equal((source.match(/<Image/g) || []).length, 4);
+  assert.doesNotMatch(source, /id="priority"/);
   const html = renderToStaticMarkup(page());
   assert.ok(html.indexOf('Get Visage AI') > html.indexOf('Example result'));
 });
@@ -181,29 +187,28 @@ test('EN/JA new copy has complete key parity without replacing localized site me
   assert.ok(en.nav.product);
 });
 
-test('photo input and authentic priority precede saved-category and journey captures', () => {
-  const tree = page();
-  const all = elements(tree);
-  const headings = all.filter((el) => el.type === 'h3').map((el) => el.props.children);
-  assert.deepEqual(headings.slice(0, 3), ['Take a photo', 'Find a focus', 'Choose your next step']);
+test('a true-screen image-led hero precedes honest saved-routine and journey captures', () => {
+  const all = elements(page());
   const images = all.filter((el) => el.type === 'img');
   assert.deepEqual(images.map((el) => el.props.src), [
-    '/images/app-landing/496/photo-input-editorial.svg',
-    '/images/app-landing/496/todays-priority.png',
+    '/images/app-landing/496/photo-input-still-life.webp',
     '/images/app-landing/496/todays-priority.png',
     '/images/app-landing/496/routine-check.png',
     '/images/app-landing/496/skin-journey.png',
   ]);
   assert.deepEqual(images.map((el) => [el.props.width, el.props.height]), [
-    [800, 276], [1086, 660], [1086, 660], [1080, 970], [1146, 2355],
+    [820, 265], [1086, 660], [1080, 970], [1146, 2355],
   ]);
   assert.ok(images.every((el) => el.props.alt.length > 20));
-  const html = renderToStaticMarkup(tree);
-  assert.ok(html.indexOf('Find a focus') < html.indexOf('Routine Check shows'));
+  assert.ok(!images.some((el) => /hand holding|person holding|face portrait/i.test(el.props.alt)));
+  const html = renderToStaticMarkup(page());
+  assert.ok(html.indexOf('Take or choose a photo') < html.indexOf('Example result'));
+  assert.ok(html.indexOf('Example result') < html.indexOf('See what you have.'));
+  assert.ok(html.indexOf('See what you have.') < html.indexOf('Look back, with context.'));
   assert.ok(html.includes('usable photo measurements'));
-  assert.ok(html.includes('Keeping what you have is always an option.'));
-  assert.ok(html.includes('category appears in your saved My Routine list'));
-  assert.ok(html.includes('Changes in measurements are not proof'));
+  assert.ok(html.includes('Buying more is always optional.'));
+  assert.ok(html.includes('saved product categories'));
+  assert.ok(html.includes('Changes are not proof'));
   assert.ok(!html.includes('Analyze Again'));
 });
 
