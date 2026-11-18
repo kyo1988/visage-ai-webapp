@@ -24,13 +24,13 @@ export default function ContactPage() {
 
                 <div className="space-y-8">
 
-                    {/* General Inquiries */}
+                    {/* General Inquiries & App Support */}
                     <section className="p-6 bg-gray-50 rounded-lg">
                         <h2 className="text-xl font-semibold text-gray-900 mb-3">
-                            General Inquiries
+                            General Inquiries &amp; App Support
                         </h2>
                         <p className="text-gray-600 mb-4">
-                            For business inquiries, partnership opportunities, or product questions.
+                            For general questions about Visage AI, or help with the Visage AI: Skin Advisor app.
                         </p>
                         <a
                             href={`mailto:${CONTACT_EMAIL}`}
@@ -100,12 +100,12 @@ export default function ContactPage() {
                                 </p>
                             </Link>
                             <Link
-                                href="/en/docs"
+                                href="/app"
                                 className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
                             >
-                                <h3 className="font-medium text-gray-900">Documentation</h3>
+                                <h3 className="font-medium text-gray-900">Visage AI App</h3>
                                 <p className="text-sm text-gray-500 mt-1">
-                                    SDK & API guides
+                                    Get the iOS app
                                 </p>
                             </Link>
                         </div>

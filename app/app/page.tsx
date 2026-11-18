@@ -160,7 +160,7 @@ export default function AppLandingPage() {
           <span className="text-[21px] text-[#292723]" style={serif}>Visage AI</span>
           <div className="flex flex-wrap gap-x-7 gap-y-2 text-[13px] text-[#686159]">
             <a href="/en/privacy" className="underline-offset-4 hover:underline">Privacy Policy</a>
-            <a href="/en" className="underline-offset-4 hover:underline" data-analytics-id="app_landing_b2b_link_click" onClick={() => track("app_landing_b2b_link_click", { page: "/app" })}>For retailers</a>
+            <a href="/en/contact" className="underline-offset-4 hover:underline">Contact</a>
           </div>
           <p className="text-[11px] text-[#7b736a]">© {new Date().getFullYear()} Visage AI · Beauty guidance only</p>
         </div>

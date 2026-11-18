@@ -5,20 +5,13 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations, useLocale } from '@/app/lib/intl';
-import { track } from '@/app/lib/analytics';
 import { LocaleSwitcher } from '../common/LocaleSwitcher';
-import { DemoButton } from '../common/DemoButton';
 
 export function StickyHeader() {
   const t = useTranslations('nav');
   const locale = useLocale();
   const pathname = usePathname() ?? '';
   const [open, setOpen] = useState(false);
-
-  // PoC anchor: when on landing page, use in-page anchor; otherwise route to landing then anchor.
-  const onLanding =
-    pathname === `/${locale}` || pathname === `/${locale}/`;
-  const pocHref = onLanding ? '#poc-recruitment' : `/${locale}#poc-recruitment`;
 
   // Lock body scroll when mobile menu open.
   useEffect(() => {
@@ -43,15 +36,11 @@ export function StickyHeader() {
     return null;
   }
 
+  // B2B suspension (2026-11-18): navigation now points only to pages that
+  // remain public — the consumer app page, the guides, and contact.
   const navItems = [
-    { href: `/${locale}/technology`, label: t('technology') },
-    { href: `/${locale}/cases`, label: t('useCases') },
-    {
-      href: pocHref,
-      label: t('poc'),
-      isPoc: true as const,
-    },
-    { href: `/${locale}/pricing`, label: t('pricing') },
+    { href: '/app', label: t('app') },
+    { href: locale === 'ja' ? '/ja/learn' : '/learn', label: t('learn') },
     { href: `/${locale}/contact`, label: t('contact') },
   ];
 
@@ -60,7 +49,7 @@ export function StickyHeader() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex h-16 items-center justify-between gap-4">
           <Link
-            href={`/${locale}`}
+            href="/app"
             aria-label="Visage AI"
             className="flex shrink-0 items-center"
           >
@@ -80,12 +69,6 @@ export function StickyHeader() {
               <Link
                 key={item.label}
                 href={item.href}
-                onClick={
-                  item.isPoc
-                    ? () =>
-                        track('header_poc_link_click', { locale })
-                    : undefined
-                }
                 className="text-sm font-medium tracking-wide text-slate-600 transition hover:text-slate-900"
               >
                 {item.label}
@@ -94,13 +77,6 @@ export function StickyHeader() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="hidden md:inline-flex">
-              <DemoButton
-                label={t('demo')}
-                from="header"
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold shadow-sm"
-              />
-            </div>
             <div className="hidden text-sm font-medium text-slate-600 hover:text-slate-900 md:inline-flex">
               <LocaleSwitcher />
             </div>
@@ -164,12 +140,7 @@ export function StickyHeader() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    onClick={() => {
-                      if (item.isPoc) {
-                        track('header_poc_link_click', { locale });
-                      }
-                      setOpen(false);
-                    }}
+                    onClick={() => setOpen(false)}
                     className="flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                   >
                     <span>{item.label}</span>
@@ -180,13 +151,6 @@ export function StickyHeader() {
                 </li>
               ))}
             </ul>
-            <div className="mt-4 px-1">
-              <DemoButton
-                label={t('demo')}
-                from="header_mobile"
-                className="w-full justify-center rounded-xl px-5 py-3 text-sm font-semibold"
-              />
-            </div>
           </div>
         )}
       </nav>
