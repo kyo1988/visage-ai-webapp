@@ -191,7 +191,7 @@ export const b2cSearchPages: B2CSearchPage[] = [
     cta: {
       heading: "See what one photo can help you focus on",
       body: "Explore the free iPhone app: a photo can suggest a priority when measurements allow, and Routine Check separately shows saved product categories. Neither step confirms that a purchase is needed.",
-      label: "See Visage AI for iPhone",
+      label: "Explore Visage AI",
     },
     image: {
       src: "/images/app-landing/496/routine-check.png",
